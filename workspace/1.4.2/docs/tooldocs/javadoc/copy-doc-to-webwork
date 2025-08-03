@@ -1,0 +1,44 @@
+#!/bin/ksh -x
+
+# Can run this from any directory (other than 
+# one it is replacing):
+#
+# % copy-doc-to-webwork
+
+# PRIOR TO RUNNING THIS FILE:
+# 1) Update Java SDK version number
+# 2) Manually update the directory names below if they have changed
+#
+#    To figure out which directories to replace, 
+#    first look to see if there are any new directories
+#    to add to the script further below:
+#   
+#    % cd /java/re/jdk/1.4.2/latest/doc
+#    % ls -f 
+#      api/       build/     guide/     tooldocs/
+#    % ls -f guide/2d guide/jpda guide/plugin guide/security
+#      guide/2d:
+#      api-jpeg/
+#    
+#      guide/jpda:
+#      jdi/   jdwp/
+#    
+#      guide/plugin:
+#      dom/
+#    
+#      guide/security:
+#      jaas/  jgss/
+
+#SRCDIR=/java/re/jdk/1.4.2/latest/doc
+SRCDIR=/java/pubs/ws/mantis-docs-GA/build/solaris-sparc/doc
+OUTDIR=/usr/web/work/j2se/1.4.2/docs
+SCCSCREATEALL=/java/pubs/bin/sccscreate-recursive
+
+echo "MUST BE LOGGED IN TO webwork.sfbay"
+
+mkdir -p     $OUTDIR/tooldocs/javadoc
+cd           $OUTDIR/tooldocs/javadoc
+workspace filerm                      doclet
+cp -r        $SRCDIR/tooldocs/javadoc/doclet .
+$SCCSCREATEALL                        doclet
+
