@@ -1,10 +1,9 @@
 # SEAdapter
 
-## Struttura della repo:
+## Repository Structure:
 
-- In [src](/src) ci sono file sorgente e test
-- In [scripts](/scripts) ci sono script per documentazione, testing e compilazione
-- In [lib](/lib) i pacchetti per JUnit (per testing)
-- In [matcher](/matcher) i pacchetti per il matcher (per testing)
-- In [workspace](/workspace) ogni documento utile per il progetto
-
+- [src](/src): Contains source files and tests
+- [scripts](/scripts): Holds scripts for documentation, testing, and compilation
+- [lib](/lib): Stores JUnit packages (for testing)
+- [matcher](/matcher): Contains matcher packages (for testing)
+- [workspace](/workspace): Includes all project-related documents
