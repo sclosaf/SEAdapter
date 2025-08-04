@@ -1,6 +1,6 @@
 package myAdapter;
 
-public class ListIteratorAdapter implements HListIterator
+public class ListIteratorAdapter extends IteratorAdapter implements HListIterator
 {
 
 }

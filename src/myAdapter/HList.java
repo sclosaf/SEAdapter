@@ -2,7 +2,7 @@ package myAdapter;
 
 public interface HList extends HCollection
 {
-    boolean addAll(int index, HCollection c)
+    boolean addAll(int index, HCollection c);
 
     Object get(int index);
 
