@@ -1,4 +1,6 @@
 package myAdapter;
 
-public class StackAdapter implements HList, HCollection
-{}
+public class StackAdapter extends VectorAdapter
+{
+
+}

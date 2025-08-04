@@ -8,7 +8,7 @@ public interface HCollection
 
     boolean contains(Object o);
 
-    HIterator iterator()
+    HIterator iterator();
 
     Object[] toArray();
 
