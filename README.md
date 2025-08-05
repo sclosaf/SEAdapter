@@ -7,3 +7,6 @@
 - [lib](/lib): Stores JUnit packages (for testing)
 - [Matcher](/Matcher): Contains matcher packages (for testing)
 - [workspace](/workspace): Includes all project-related documents
+
+## Useful Links:
+- [Documentation java 1.4.2](https://javaalmanac.io/jdk/1.4/api/index.html)
