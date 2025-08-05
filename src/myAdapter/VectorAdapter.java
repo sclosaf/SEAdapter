@@ -3,8 +3,6 @@ package myAdapter;
 import java.util.Vector;
 import java.util.Enumeration;
 
-// DA RIVEDERE INTERFACCIA METODI E SE NE MANCANO
-
 public class VectorAdapter implements HList
 {
     protected Vector vector;
@@ -167,4 +165,57 @@ public class VectorAdapter implements HList
 
     public HListIterator listIterator(int index)
     {}
+
+    private class EnumerationAdapter implements HEnumeration
+    {
+        private int cursor = 0;
+
+        public boolean hasMoreElements()
+        {}
+
+        public Object nextElement()
+        {}
+    }
+
+    private class IteratorAdapter implements HIterator
+    {
+        private int cursor = 0;
+        private int lastRet = -1;
+
+        public boolean hasNext()
+        {}
+
+        public Object next()
+        {}
+
+        public void remove()
+        {}
+    }
+
+    private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
+    {
+        ListIteratorAdapter()
+        {}
+
+        ListIteratorAdapter(int index)
+        {}
+
+        boolean hasPrevious()
+        {}
+
+        Object previous()
+        {}
+
+        int nextIndex()
+        {}
+
+        int previousIndex()
+        {}
+
+        void set(Object o)
+        {}
+
+        void add(Object o)
+        {}
+    }
 }
