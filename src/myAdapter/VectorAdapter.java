@@ -3,6 +3,11 @@ package myAdapter;
 import java.util.Vector;
 import java.util.Enumeration;
 
+import java.util.NoSuchElementException;
+
+import java.lang.IllegalStateException;
+import java.lang.IndexOutOfBoundsException;
+
 public class VectorAdapter implements HList
 {
     protected Vector vector;
@@ -171,25 +176,47 @@ public class VectorAdapter implements HList
         private int cursor = 0;
 
         public boolean hasMoreElements()
-        {}
+        {
+            return cursor < size();
+        }
 
         public Object nextElement()
-        {}
+        {
+            if(!hasMoreElements())
+                throw new NoSuchElementException();
+
+            return get(cursor++);
+        }
     }
 
     private class IteratorAdapter implements HIterator
     {
-        private int cursor = 0;
-        private int lastRet = -1;
+        protected int cursor = 0;
+        protected int lastRet = -1;
 
         public boolean hasNext()
-        {}
+        {
+            return cursor < size();
+        }
 
         public Object next()
-        {}
+        {
+            if(!hasNext())
+                throw new NoSuchElementException();
+
+            lastRet = cursor;
+            return get(cursor++);
+        }
 
         public void remove()
-        {}
+        {
+            if(lastRet == -1)
+                throw new IllegalStateException();
+
+            VectorAdapter.this.remove(lastRet);
+            cursor = lastRet;
+            lastRet = -1;
+        }
     }
 
     private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
@@ -198,24 +225,51 @@ public class VectorAdapter implements HList
         {}
 
         ListIteratorAdapter(int index)
-        {}
+        {
+            if(index < 0 || index > size())
+                throw new IndexOutOfBoundsException();
 
-        boolean hasPrevious()
-        {}
+            cursor = index;
+        }
 
-        Object previous()
-        {}
+        public boolean hasPrevious()
+        {
+            return cursor > 0;
+        }
 
-        int nextIndex()
-        {}
+        public Object previous()
+        {
+            if(!hasPrevious())
+                throw new NoSuchElementException();
 
-        int previousIndex()
-        {}
+            lastRet = cursor;
+            return get(cursor--);
+        }
 
-        void set(Object o)
-        {}
+        public int nextIndex()
+        {
+            return cursor;
+        }
 
-        void add(Object o)
-        {}
+        public int previousIndex()
+        {
+            return cursor--;
+        }
+
+        public void set(Object o)
+        {
+            if(lastRet == -1)
+                throw new IllegalStateException();
+
+            VectorAdapter.this.set(lastRet, o);
+        }
+
+        public void add(Object o)
+        {
+            VectorAdapter.this.add(cursor, o);
+
+            cursor++;
+            lastRet = -1;
+        }
     }
 }
