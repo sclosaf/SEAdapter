@@ -6,4 +6,5 @@ SRC_DIR="../src"
 mkdir -p "$OUTPUT_DIR"
 
 javac -d "$OUTPUT_DIR" \
-    "$SRC_DIR/myAdapter/"*.java
+    "$SRC_DIR/myAdapter/"*.java \
+    "$SRC_DIR/myException/"*.java

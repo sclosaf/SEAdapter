@@ -3,11 +3,20 @@ package myAdapter;
 import java.util.Vector;
 import java.util.Enumeration;
 
-import java.util.NoSuchElementException;
+import java.util.NoSuchElementException; // YES
 
-import java.lang.IllegalStateException;
-import java.lang.IndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+import java.lang.NullPointerException; // YES
+import java.lang.IllegalStateException; // NO
+import java.lang.IndexOutOfBoundsException; // YES
+import java.lang.ArrayIndexOutOfBoundsException; // YES
+import java.lang.IllegalArgumentException; // YES
+
+/*
+ * Implemento in java micro
+ * Interfaccia 1.4.2
+ * No @Override
+ * CONTROLLARE ECCEZIONI MANCANTI
+ */
 
 public class VectorAdapter implements HList
 {
@@ -63,6 +72,9 @@ public class VectorAdapter implements HList
 
     public void setSize(int newSize) // YES
     {
+        if(newSize < 0)
+            throw new ArrayIndexOutOfBoundsException();
+
         vec.setSize(newSize);
     }
 
@@ -86,11 +98,9 @@ public class VectorAdapter implements HList
         return new EnumerationAdapter();
     }
 
-    // TO CONTINUE, CHECK FROM HERE THE NEXT FIVE / SIX
-
     public boolean contains(Object elem) // YES
     {
-        return indexOf(elem) != -1;
+        return indexOf(elem, 0) != -1;
     }
 
     public int indexOf(Object elem) // YES
@@ -101,7 +111,7 @@ public class VectorAdapter implements HList
     public int indexOf(Object elem, int index) // YES
     {
         if(index < 0)
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException();
 
         if(index > size())
             return -1;
@@ -130,7 +140,7 @@ public class VectorAdapter implements HList
     public int lastIndexOf(Object elem, int index) // YES
     {
         if(index >= size())
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException();
 
         if(index < 0)
             return -1;
@@ -193,74 +203,232 @@ public class VectorAdapter implements HList
 
     public void insertElementAt(Object obj, int index) // YES
     {
-        if(index < 0 || index >= size())
+        if(index < 0 || index > size())
             throw new ArrayIndexOutOfBoundsException();
 
-        vec.
+        vec.insertElementAt(obj, index);
     }
 
     public void addElement(Object obj) // YES
-    {}
+    {
+        vec.addElement(obj);
+    }
 
     public boolean removeElement(Object obj) // YES
-    {}
+    {
+        return vec.removeElement(obj);
+    }
 
     public void removeAllElements() // YES
-    {}
+    {
+        vec.removeAllElements();
+    }
 
     public Object clone()
-    {}
+    {
+        VectorAdapter newVec = VectorAdapter(size());
+
+        HIterator iter = iterator();
+
+        while(iter.hasNext())
+            newVec.addElement(iter.next());
+
+        return newVec
+    }
 
     public Object[] toArray()
-    {}
+    {
+        Object[] arr = new Object[size()];
+
+        HIterator iter = iterator();
+
+        for(int i = 0; iter.hasNext(); i++)
+            arr[i] = iter.next();
+
+        return arr;
+    }
 
     public Object[] toArray(Object[] a)
-    {}
+    {
+        if(a == null)
+            throw new NullPointerException();
+
+        if(a.length < size())
+            a = new Object[size()];
+
+        System.arraycopy(vec, 0, a, 0, size());
+
+        if(a.length > size())
+            a[size()] = null;
+
+        return a;
+    }
 
     public Object get(int index)
-    {}
+    {
+        return elementAt(index);
+    }
 
     public Object set(int index, Object element)
-    {}
+    {
+        if(index < 0 || index >= size())
+            throw new ArrayIndexOutOfBoundsException();
+
+        Object obj = elementAt(index);
+        setElementAt(element, index);
+
+        return obj;
+    }
 
     public boolean add(Object o)
-    {}
+    {
+        add(size(), o);
+        return true;
+    }
 
     public boolean remove(Object o)
-    {}
+    {
+        return removeElement(o);
+    }
 
     public void add(int index, Object element)
-    {}
+    {
+        if(index < 0 || index > size())
+            throw new ArrayIndexOutOfBoundsException();
+
+        insertElementAt(element, index);
+    }
 
     public Object remove(int index)
-    {}
+    {
+        if(index < 0 || index >= size())
+            throw new ArrayIndexOutOfBoundsException();
+
+        removeElementAt(index);
+    }
 
     public void clear()
-    {}
+    {
+        removeAllElements();
+    }
 
     public boolean containsAll(HCollection c)
-    {}
+    {
+        if(c == null)
+            throw new NullPointerException();
+
+        HIterator iter = c.iterator();
+
+        while(iter.hasNext())
+            if(!contains(iter.next()))
+                return false;
+
+        return true;
+    }
 
     public boolean addAll(HCollection c)
-    {}
+    {
+        return addAll(size(), c);
+    }
 
     public boolean removeAll(HCollection c)
-    {}
+    {
+        if(c == null)
+            throw new NullPointerException();
+
+        HIterator iter = c.iterator();
+
+        boolean changed = false;
+
+        while(iterator.hasNext())
+        {
+            Object elem = iterator.next();
+
+            while(indexOf(elem) != -1)
+            {
+                remove(indexOf(elem));
+                changed = true;
+            }
+        }
+
+        return changed;
+    }
 
     public boolean retainAll(HCollection c)
-    {}
+    {
+        if(c == null)
+            throw new NullPointerException();
+
+        HIterator iter = iterator();
+        boolean changed = false;
+
+        while(iter.hasNext())
+        {
+            if(!c.contains(iter.next()))
+            {
+                iter.remove();
+                changed = true;
+            }
+        }
+
+        return changed;
+    }
 
     public boolean addAll(int index, HCollection c)
-    {}
+    {
+        if(index < 0 || index > size())
+            throw new ArrayIndexOutOfBoundsException();
+
+        if(c == null)
+            throw new NullPointerException();
+
+        HIterator iter = c.iterator();
+
+        boolean changed = false;
+
+        for(int i = 0; i < c.size(); i++)
+        {
+            insertElementAt(index + i, c.next())
+            changed = true;
+        }
+
+        return changed;
+    }
 
     public boolean equals(Object o) // YES
-    {}
+    {
+        if(o == this)
+            return true;
+
+        if(!(o instanceof HList))
+            return false;
+
+        HListIterator it1 = listIterator();
+        HListIterator it2 = ((HList) o).listIterator();
+
+        while (it1.hasNext() && it2.hasNext())
+        {
+            Object o1 = it1.next();
+            Object o2 = it2.next();
+
+            if (!(o1 == null ? o2 == null : o1.equals(o2)))
+                return false;
+        }
+
+        return !(it1.hasNext() || it2.hasNext());
+    }
 
     public int hashCode() // YES
-    {}
+    {
+        return vec.hashcode();
+    }
 
     public String toString() // YES
-    {}
+    {
+        return vec.toString();
+    }
+
+    // TO CONTINUE HERE
 
     public HList subList(int fromIndex, int toIndex)
     {}
@@ -317,7 +485,7 @@ public class VectorAdapter implements HList
         public void remove()
         {
             if(lastRet == -1)
-                throw new IllegalStateException();
+                throw new IllegalStateException(); // DA CAMBIARE
 
             VectorAdapter.this.removeElementAt(lastRet);
             cursor = lastRet;
@@ -365,7 +533,7 @@ public class VectorAdapter implements HList
         public void set(Object o)
         {
             if(lastRet == -1)
-                throw new IllegalStateException();
+                throw new IllegalStateException(); // CAMBIARE
 
             VectorAdapter.this.setElementAt(lastRet, o);
         }
