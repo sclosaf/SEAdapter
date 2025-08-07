@@ -81,12 +81,12 @@ public class VectorAdapter implements HList
         return size() == 0;
     }
 
-    // TO CONTINUE
-
     public HEnumeration elements() // YES
     {
         return new EnumerationAdapter();
     }
+
+    // TO CONTINUE, CHECK FROM HERE THE NEXT FIVE / SIX
 
     public boolean contains(Object elem) // YES
     {
@@ -103,9 +103,21 @@ public class VectorAdapter implements HList
         if(index < 0)
             throw new ArrayIndexOutOfBoundsException();
 
-        for(int i = index; i < size(); i++)
-            if(elem == null ? get(i) == null : elem.equals(get(i)))
-                return i;
+        if(index > size())
+            return -1;
+
+        if(elem == null)
+        {
+            for(int i = index; i < size(); i++)
+                if(elementAt(i) == null)
+                    return i;
+        {
+        else
+        {
+            for(int i = index; i < size(); i++)
+                if(elem.equals(elementAt(i)))
+                    return i;
+        }
 
         return -1;
     }
@@ -120,9 +132,21 @@ public class VectorAdapter implements HList
         if(index >= size())
             throw new ArrayIndexOutOfBoundsException();
 
-        for(int i = index; i > 0; i--)
-            if(elem == null ? get(i) == null : elem.equals(get(i)))
-                return i;
+        if(index < 0)
+            return -1;
+
+        if(elem == null)
+        {
+            for(int i = index; i >= 0; i--)
+                if(elementAt(i) == null)
+                    return i;
+        }
+        else
+        {
+            for(int i = index; i >= 0; i--)
+                if(elem.equals(elementAt(i)))
+                    return i;
+        }
 
         return -1;
     }
@@ -267,7 +291,7 @@ public class VectorAdapter implements HList
             if(!hasMoreElements())
                 throw new NoSuchElementException();
 
-            return get(cursor++);
+            return elementAt(cursor++);
         }
     }
 
@@ -287,7 +311,7 @@ public class VectorAdapter implements HList
                 throw new NoSuchElementException();
 
             lastRet = cursor;
-            return get(cursor++);
+            return elementAt(cursor++);
         }
 
         public void remove()
@@ -295,7 +319,7 @@ public class VectorAdapter implements HList
             if(lastRet == -1)
                 throw new IllegalStateException();
 
-            VectorAdapter.this.remove(lastRet);
+            VectorAdapter.this.removeElementAt(lastRet);
             cursor = lastRet;
             lastRet = -1;
         }
@@ -325,7 +349,7 @@ public class VectorAdapter implements HList
                 throw new NoSuchElementException();
 
             lastRet = cursor;
-            return get(cursor--);
+            return elementAt(cursor--);
         }
 
         public int nextIndex()
@@ -343,12 +367,12 @@ public class VectorAdapter implements HList
             if(lastRet == -1)
                 throw new IllegalStateException();
 
-            VectorAdapter.this.set(lastRet, o);
+            VectorAdapter.this.setElementAt(lastRet, o);
         }
 
         public void add(Object o)
         {
-            VectorAdapter.this.add(cursor, o);
+            VectorAdapter.this.addElementAt(cursor, o);
 
             cursor++;
             lastRet = -1;
