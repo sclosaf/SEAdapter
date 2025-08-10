@@ -199,6 +199,7 @@ public class VectorAdapter implements HList
             throw new ArrayIndexOutOfBoundsException();
 
         vec.removeElementAt(index);
+        setSize()
     }
 
     public void insertElementAt(Object obj, int index) // YES
@@ -431,7 +432,15 @@ public class VectorAdapter implements HList
     // TO CONTINUE HERE
 
     public HList subList(int fromIndex, int toIndex)
-    {}
+    {
+        if(fromIndex > toIndex)
+            throw new IllegalArgumentException();
+
+        if(fromIndex < 0 || toIndex > size())
+            throw new IndexOutOfBoundsException();
+
+
+    }
 
     protected void removeRange(int fromIndex, int toIndex)
     {}
@@ -448,10 +457,22 @@ public class VectorAdapter implements HList
     private class EnumerationAdapter implements HEnumeration
     {
         private int cursor = 0;
+        private final int end;
+
+        public EnumerationAdapter()
+        {
+            this(0, size());
+        }
+
+        public EnumerationAdapter(int start, int end)
+        {
+            this.cursor = start;
+            this.end = end;
+        }
 
         public boolean hasMoreElements()
         {
-            return cursor < size();
+            return cursor < end;
         }
 
         public Object nextElement()
@@ -467,10 +488,29 @@ public class VectorAdapter implements HList
     {
         protected int cursor = 0;
         protected int lastRet = -1;
+        protected final int start;
+        protected final int end;
+
+        public IteratorAdapter()
+        {
+            this(0, size());
+        }
+
+        public IteratorAdapter(int start)
+        {
+            this(start, size());
+        }
+
+        public IteratorAdapter(int start, int end)
+        {
+            this.cursor = start;
+            this.start = start;
+            this.end = end;
+        }
 
         public boolean hasNext()
         {
-            return cursor < size();
+            return cursor < end;
         }
 
         public Object next()
@@ -490,13 +530,26 @@ public class VectorAdapter implements HList
             VectorAdapter.this.removeElementAt(lastRet);
             cursor = lastRet;
             lastRet = -1;
+            end--;
         }
     }
 
     private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
     {
         ListIteratorAdapter()
-        {}
+        {
+            super();
+        }
+
+        public ListIteratorAdapter(int start)
+        {
+            super(start, size());
+        }
+
+        public ListIteratorAdapter(int start, int end)
+        {
+            super(start, end);
+        }
 
         ListIteratorAdapter(int index)
         {
@@ -508,7 +561,7 @@ public class VectorAdapter implements HList
 
         public boolean hasPrevious()
         {
-            return cursor > 0;
+            return cursor > start;
         }
 
         public Object previous()
@@ -522,12 +575,12 @@ public class VectorAdapter implements HList
 
         public int nextIndex()
         {
-            return cursor;
+            return cursor - start;
         }
 
         public int previousIndex()
         {
-            return cursor--;
+            return cursor - start - 1;
         }
 
         public void set(Object o)
@@ -544,6 +597,84 @@ public class VectorAdapter implements HList
 
             cursor++;
             lastRet = -1;
+            end++;
         }
+    }
+
+    private class SubListAdapter implements HList
+    {
+        private final int offset;
+        private int subListSize;
+
+        public SubList(int fromIndex, int toIndex)
+        {
+            this.offset = fromIndex;
+            this.subListSize = toIndex - fromIndex;
+        }
+
+        public int size()
+        {
+            return subListSize;
+        }
+
+        public boolean isEmpty()
+        {
+            subLisSize == 0;
+        }
+
+        public boolean contains(Object o)
+        {
+            int index = super.indexOf(o, offset);
+
+            return index < offset + subListSize;
+        }
+
+        public HIterator iterator()
+        {
+
+        }
+
+        public Object[] toArray()
+        {}
+
+        public Object[] toArray(Object[] a)
+
+        public boolean add(Object o)
+
+        public boolean remove(Object o)
+
+        public boolean containsAll(HCollection c)
+
+        public boolean addAll(HCollection c)
+
+        public boolean removeAll(HCollection c)
+
+        public boolean retainAll(HCollection c)
+
+        public void clear()
+
+        public boolean equals(Object o)
+
+        public int hashCode()
+
+        public boolean addAll(int index, HCollection c)
+
+        public Object get(int index)
+
+        public Object set(int index, Object element)
+
+        public void add(int index, Object element)
+
+        public Object remove(int index)
+
+        public int indexOf(Object o)
+
+        public int lastIndexOf(Object o)
+
+        public HListIterator listIterator()
+
+        public HListIterator listIterator(int index)
+
+        public HList subList(int fromIndex, int toIndex)
     }
 }
