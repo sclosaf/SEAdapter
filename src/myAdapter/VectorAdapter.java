@@ -445,14 +445,25 @@ public class VectorAdapter implements HList
     protected void removeRange(int fromIndex, int toIndex)
     {}
 
+    // END UP HERE
+
     public HIterator iterator()
-    {}
+    {
+        return new IteratorAdapter();
+    }
 
     public HListIterator listIterator()
-    {}
+    {
+        return new ListIteratorAdapter();
+    }
 
     public HListIterator listIterator(int index)
-    {}
+    {
+        if(index < 0 || index > size())
+            throw new IndexOutOfBoundsException();
+
+        return new ListIteratorAdapter(index);
+    }
 
     private class EnumerationAdapter implements HEnumeration
     {
@@ -533,7 +544,7 @@ public class VectorAdapter implements HList
             end--;
         }
     }
-
+1
     private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
     {
         ListIteratorAdapter()
@@ -601,7 +612,7 @@ public class VectorAdapter implements HList
         }
     }
 
-    private class SubListAdapter implements HList
+    private class SubListAdapter extends VectorAdapter
     {
         private final int offset;
         private int subListSize;
@@ -631,7 +642,7 @@ public class VectorAdapter implements HList
 
         public HIterator iterator()
         {
-
+            return HIterator
         }
 
         public Object[] toArray()
