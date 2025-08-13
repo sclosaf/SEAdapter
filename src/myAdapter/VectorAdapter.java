@@ -432,15 +432,7 @@ public class VectorAdapter implements HList
     // TO CONTINUE HERE
 
     public HList subList(int fromIndex, int toIndex)
-    {
-        if(fromIndex > toIndex)
-            throw new IllegalArgumentException();
-
-        if(fromIndex < 0 || toIndex > size())
-            throw new IndexOutOfBoundsException();
-
-
-    }
+    {}
 
     protected void removeRange(int fromIndex, int toIndex)
     {}
@@ -544,7 +536,7 @@ public class VectorAdapter implements HList
             end--;
         }
     }
-1
+
     private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
     {
         ListIteratorAdapter()
@@ -623,6 +615,17 @@ public class VectorAdapter implements HList
             this.subListSize = toIndex - fromIndex;
         }
 
+        public void copyInto(Object[] anArray)
+        {
+            if(anArray == null)
+                throw new NullPointerException();
+
+            if(anArray.lenght < size())
+                throw new IndexOutOfBoundsException();
+
+            System.arraycopy(vec.toArray(), offset, anArray, 0, subListSize);
+        }
+
         public int size()
         {
             return subListSize;
@@ -633,6 +636,11 @@ public class VectorAdapter implements HList
             subLisSize == 0;
         }
 
+        public HEnumeration elements()
+        {
+            return new EnumerationAdapter(offset, subListSize);
+        }
+
         public boolean contains(Object o)
         {
             int index = super.indexOf(o, offset);
@@ -640,52 +648,132 @@ public class VectorAdapter implements HList
             return index < offset + subListSize;
         }
 
-        public HIterator iterator()
+        public int indexOf(Object elem)
         {
-            return HIterator
+            return indexOf(elem, offset);
         }
+
+        public int indexOf(Object elem, ind index)
+        {
+            int i = super.indexOf(elem, index);
+
+            if(i < offset || i >= offset + subListSize)
+                return -1;
+
+            return i - offset;
+        }
+
+        public int lastIndexOf(Object elem)
+        {
+            return lastIndexOf(elem, subListSize--);
+        }
+
+        public int lastIndexOf(Object elem, int index)
+        {
+            int i = super.indexOf(elem, index);
+
+            if(i < offset || i > offset + subListSize)
+                return -1;
+
+            return i - offset;
+        }
+
+        public Object elementAt(int index)
+        {}
+
+        public Object firstElement()
+        {}
+
+        public Object lastElement()
+        {}
+
+        public void setElementAt(Object obj, int index)
+        {}
+
+        public void removeElementAt(int index)
+        {}
+
+        public void insertElementAt(Object obj, int index)
+        {}
+
+        public void addElement(Object obj)
+        {}
+
+        public boolean removeElement(Object obj)
+        {}
+
+        public void removeAllElement()
+        {}
+
+        public Object clone()
+        {}
 
         public Object[] toArray()
         {}
 
         public Object[] toArray(Object[] a)
-
-        public boolean add(Object o)
-
-        public boolean remove(Object o)
-
-        public boolean containsAll(HCollection c)
-
-        public boolean addAll(HCollection c)
-
-        public boolean removeAll(HCollection c)
-
-        public boolean retainAll(HCollection c)
-
-        public void clear()
-
-        public boolean equals(Object o)
-
-        public int hashCode()
-
-        public boolean addAll(int index, HCollection c)
+        {}
 
         public Object get(int index)
+        {}
 
         public Object set(int index, Object element)
+        {}
+
+        public boolean add(Object o)
+        {}
+
+        public boolean remove(Object o)
+        {}
 
         public void add(int index, Object element)
+        {}
 
         public Object remove(int index)
+        {}
 
-        public int indexOf(Object o)
+        public void clear()
+        {}
 
-        public int lastIndexOf(Object o)
+        public boolean containsAll(HCollection c)
+        {}
 
-        public HListIterator listIterator()
+        public boolean addAll(HCollection c)
+        {}
 
-        public HListIterator listIterator(int index)
+        public boolean removeAll(HCollection c)
+        {}
+
+        public boolean retainAll(HCollection c)
+        {}
+
+        public boolean addAll(int index, HCollection c)
+        {}
+
+        public boolean equals(Object o)
+        {}
+
+        public int hashCode()
+        {}
+
+        public String toString()
+        {}
 
         public HList subList(int fromIndex, int toIndex)
+        {}
+
+        protected void removeRange(int fromIndex, int toIndex)
+        {}
+
+        public HIterator iterator()
+        {
+            return IteratorAdapter(offset, subListSize);
+        }
+
+        public HListIterator listIterator()
+        {}
+
+        public HListIterator listIterator(int index)
+        {}
     }
 }
