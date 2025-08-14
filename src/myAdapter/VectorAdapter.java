@@ -16,6 +16,7 @@ import java.lang.IllegalArgumentException; // YES
  * Interfaccia 1.4.2
  * No @Override
  * CONTROLLARE ECCEZIONI MANCANTI
+ * RICONTROLL tutto
  */
 
 public class VectorAdapter implements HList
@@ -134,7 +135,7 @@ public class VectorAdapter implements HList
 
     public int lastIndexOf(Object elem) // YES
     {
-        return lastIndexOf(elem, size()--);
+        return lastIndexOf(elem, size() - 1);
     }
 
     public int lastIndexOf(Object elem, int index) // YES
@@ -182,7 +183,7 @@ public class VectorAdapter implements HList
         if(isEmpty())
             throw new NoSuchElementException();
 
-        return vec.elementAt(size()--);
+        return vec.elementAt(size() - 1);
     }
 
     public void setElementAt(Object obj, int index) // YES
@@ -199,7 +200,6 @@ public class VectorAdapter implements HList
             throw new ArrayIndexOutOfBoundsException();
 
         vec.removeElementAt(index);
-        setSize()
     }
 
     public void insertElementAt(Object obj, int index) // YES
@@ -227,25 +227,20 @@ public class VectorAdapter implements HList
 
     public Object clone()
     {
-        VectorAdapter newVec = VectorAdapter(size());
+        VectorAdapter cloned = new VectorAdapter(size());
 
         HIterator iter = iterator();
 
         while(iter.hasNext())
-            newVec.addElement(iter.next());
+            cloned.addElement(iter.next());
 
-        return newVec
+        return cloned;
     }
 
     public Object[] toArray()
     {
         Object[] arr = new Object[size()];
-
-        HIterator iter = iterator();
-
-        for(int i = 0; iter.hasNext(); i++)
-            arr[i] = iter.next();
-
+        System.arraycopy(vec.toArray(), 0, arr, 0, size());
         return arr;
     }
 
@@ -257,9 +252,9 @@ public class VectorAdapter implements HList
         if(a.length < size())
             a = new Object[size()];
 
-        System.arraycopy(vec, 0, a, 0, size());
+        System.arraycopy(vec.toArray(), 0, a, 0, size());
 
-        if(a.length > size())
+        if (a.length > size())
             a[size()] = null;
 
         return a;
@@ -385,15 +380,10 @@ public class VectorAdapter implements HList
 
         HIterator iter = c.iterator();
 
-        boolean changed = false;
-
         for(int i = 0; i < c.size(); i++)
-        {
-            insertElementAt(index + i, c.next())
-            changed = true;
-        }
+            insertElementAt(index + i, iter.next())
 
-        return changed;
+        return true;
     }
 
     public boolean equals(Object o) // YES
@@ -620,10 +610,10 @@ public class VectorAdapter implements HList
             if(anArray == null)
                 throw new NullPointerException();
 
-            if(anArray.lenght < size())
+            if(anArray.length < size())
                 throw new IndexOutOfBoundsException();
 
-            System.arraycopy(vec.toArray(), offset, anArray, 0, subListSize);
+            System.arraycopy(vec.toArray(), offset, anArray, 0, size());
         }
 
         public int size()
@@ -633,19 +623,19 @@ public class VectorAdapter implements HList
 
         public boolean isEmpty()
         {
-            subLisSize == 0;
+            subListSize == 0;
         }
 
         public HEnumeration elements()
         {
-            return new EnumerationAdapter(offset, subListSize);
+            return new EnumerationAdapter(offset, size());
         }
 
         public boolean contains(Object o)
         {
             int index = super.indexOf(o, offset);
 
-            return index < offset + subListSize;
+            return index < offset + size();
         }
 
         public int indexOf(Object elem)
@@ -655,125 +645,325 @@ public class VectorAdapter implements HList
 
         public int indexOf(Object elem, ind index)
         {
-            int i = super.indexOf(elem, index);
+            if(index < 0)
+                throw new IndexOutOfBoundsException();
 
-            if(i < offset || i >= offset + subListSize)
+            if(index > size())
                 return -1;
 
-            return i - offset;
+            int i = super.indexOf(elem, offset + index);
+
+            return (i < offset) ? -1 : i - offset;
         }
 
         public int lastIndexOf(Object elem)
         {
-            return lastIndexOf(elem, subListSize--);
+            return lastIndexOf(elem, size() - 1);
         }
 
         public int lastIndexOf(Object elem, int index)
         {
-            int i = super.indexOf(elem, index);
+            if(index >= size())
+                throw new IndexOutOfBoundsException();
 
-            if(i < offset || i > offset + subListSize)
+            if(index < 0)
                 return -1;
 
-            return i - offset;
+            int i = super.lastIndexOf(elem, offset + index);
+
+            return (i < offset) ? -1 : i - offset;
         }
 
         public Object elementAt(int index)
-        {}
+        {
+            if(index < 0 || index >= size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            return vec.elementAt(offset + index);
+        }
 
         public Object firstElement()
-        {}
+        {
+            if(isEmpty())
+                throw new NoSuchElementException();
+
+            return vec.elementAt(offset);
+        }
 
         public Object lastElement()
-        {}
+        {
+            if(isEmpty())
+                throw new NoSuchElementException();
+
+            return vec.elementAt(offset + size() - 1);
+        }
 
         public void setElementAt(Object obj, int index)
-        {}
+        {
+            if(index < 0 || index >= size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            vec.setElementAt(obj, offset + index);
+        }
 
         public void removeElementAt(int index)
-        {}
+        {
+            if(index < 0 || index >= size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            vec.removeElementAt(index);
+            subListSize--;
+        }
 
         public void insertElementAt(Object obj, int index)
-        {}
+        {
+            if(index < 0 || index > size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            vec.insertElementAt(obj, offset + index);
+            subListSize++;
+        }
 
         public void addElement(Object obj)
-        {}
+        {
+            insertElementAt(obj, offset + subListSize);
+        }
 
         public boolean removeElement(Object obj)
-        {}
+        {
+            int index = indexOf(obj);
+
+            if(index == -1)
+                return false;
+
+            return vec.removeElementAt(index);
+        }
 
         public void removeAllElement()
-        {}
+        {
+            for(int i = size() - 1; i >= 0; i--)
+                vec.removeElementAt(offset + i);
+
+            subListSize = 0;
+        }
 
         public Object clone()
-        {}
+        {
+            SubListAdapter cloned = new SubListAdapter(offset, offset + size());
+
+            HIterator iter = iterator();
+
+            while(iter.hasNext())
+                cloned.addElement(iter.next());
+
+            return cloned;
+        }
 
         public Object[] toArray()
-        {}
+        {
+            Object[] arr = new Object[size()];
+            System.arraycopy(vec.toArray(), offset, arr, 0, size());
+
+            return arr;
+        }
 
         public Object[] toArray(Object[] a)
-        {}
+        {
+            if(a == null)
+                throw new NullPointerException();
+
+            if (a.length < size())
+                a = new Object[size()];
+
+            System.arraycopy(vec.toArray(), offset, a, 0, size());
+
+            if (a.length > size())
+                a[size()] = null;
+
+            return a;
+        }
 
         public Object get(int index)
-        {}
+        {
+            return elementAt(index);
+        }
 
         public Object set(int index, Object element)
-        {}
+        {
+            if(index < 0 || index >= size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            Object obj = elementAt(index);
+            setElementAt(element, index);
+
+            return obj;
+        }
 
         public boolean add(Object o)
-        {}
+        {
+            add(size(), o);
+            return true;
+        }
 
         public boolean remove(Object o)
-        {}
+        {
+            return removeElement(o);
+        }
 
         public void add(int index, Object element)
-        {}
+        {
+            if(index < 0 || index > size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            insertElementAt(element, index);
+        }
 
         public Object remove(int index)
-        {}
+        {
+            if(index < 0 || index > size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            removeElementAt(index);
+        }
 
         public void clear()
-        {}
+        {
+            removeAllElements();
+        }
 
         public boolean containsAll(HCollection c)
-        {}
+        {
+            if(c == null)
+                throw new NullPointerException();
+
+            HIterator iter = c.iterator();
+
+            while(iter.hasNext())
+                if(!contains(iter.next()))
+                    return false;
+
+            return true;
+        }
 
         public boolean addAll(HCollection c)
-        {}
+        {
+            return addAll(size(), c);
+        }
 
         public boolean removeAll(HCollection c)
-        {}
+        {
+            if(c == null)
+                throw new NullPointerException();
+
+            HIterator iter = c.iterator();
+
+            boolean changed = false;
+
+            while(iterator.hasNext())
+            {
+                Object elem = iterator.next();
+
+                while(indexOf != -1)
+                {
+                    remove(indexOf(elem));
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
 
         public boolean retainAll(HCollection c)
-        {}
+        {
+            if(c == null)
+                throw new NullPointerException();
+
+            HIterator iter = iterator();
+            boolean changed = false;
+
+            while(iter.hasNext())
+            {
+                if(!c.contains(iter.next()))
+                {
+                    iter.remove();
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
 
         public boolean addAll(int index, HCollection c)
-        {}
+        {
+            if(index < 0 || index > size())
+                throw new ArrayIndexOutOfBoundsException();
+
+            if(c == null)
+                throw new NullPointerException();
+
+            HIterator iter = c.iterator();
+
+            for(int i = 0; i < c.size(); i++)
+                insertElementAt(index + i, iter.next())
+
+            return true;
+        }
 
         public boolean equals(Object o)
-        {}
+        {
+            if(this == o)
+                return true;
 
-        public int hashCode()
-        {}
+            if(!(o instanceof HList))
+                return false;
 
-        public String toString()
-        {}
+            HListIterator1 = listIterator();
+            HListIterator2 = ((HList) o).listIterator();
 
-        public HList subList(int fromIndex, int toIndex)
-        {}
+            while(it1.hasNext() && it2.hasNext())
+            {
+                Object o1 = it1.next();
+                Object o2 = it2.next();
+
+                if(!(o1 == null ? o2 == null : o1.equals(o2)))
+                    return false;
+            }
+
+            return !(it1.hasNext() || it2.hasNext());
+        }
+
+        public HList subList(int fromIndex, int toIndexddd
+        {
+            if(fromIndex > toIndex)
+                throw new IllegalArgumentException();
+
+            if(fromIndex < 0 || toIndex > size())
+                throw new IndexOutOfBoundsException();
+
+            return new SubListAdapter(offset + fromIndex, offset + toIndex);
+        }
 
         protected void removeRange(int fromIndex, int toIndex)
-        {}
+        {
+            subList(offset + fromIndex, offset, toIndex).clear();
+        }
 
         public HIterator iterator()
         {
-            return IteratorAdapter(offset, subListSize);
+            return IteratorAdapter(offset, offset + size());
         }
 
         public HListIterator listIterator()
-        {}
+        {
+            return new ListIterator(offset, offset + size());
+        }
 
         public HListIterator listIterator(int index)
-        {}
+        {
+            if(index < 0 || index > size())
+                throw new IndexOutOfBoundsException();
+
+            return new ListIteratorAdapter(offset + index, size());
+        }
     }
 }
