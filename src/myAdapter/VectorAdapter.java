@@ -1,12 +1,13 @@
 package myAdapter;
 
+import myAdapter.IllegalStateException;
+
 import java.util.Vector;
 import java.util.Enumeration;
 
 import java.util.NoSuchElementException; // YES
 
 import java.lang.NullPointerException; // YES
-import java.lang.IllegalStateException; // NO
 import java.lang.IndexOutOfBoundsException; // YES
 import java.lang.ArrayIndexOutOfBoundsException; // YES
 import java.lang.IllegalArgumentException; // YES
