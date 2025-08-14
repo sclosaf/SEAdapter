@@ -119,17 +119,13 @@ public class VectorAdapter implements HList
             return -1;
 
         if(elem == null)
-        {
             for(int i = index; i < size(); i++)
                 if(elementAt(i) == null)
                     return i;
-        {
         else
-        {
             for(int i = index; i < size(); i++)
                 if(elem.equals(elementAt(i)))
                     return i;
-        }
 
         return -1;
     }
@@ -382,7 +378,7 @@ public class VectorAdapter implements HList
         HIterator iter = c.iterator();
 
         for(int i = 0; i < c.size(); i++)
-            insertElementAt(index + i, iter.next())
+            insertElementAt(index + i, iter.next());
 
         return true;
     }
@@ -600,7 +596,7 @@ public class VectorAdapter implements HList
         private final int offset;
         private int subListSize;
 
-        public SubList(int fromIndex, int toIndex)
+        public SubListAdapter(int fromIndex, int toIndex)
         {
             this.offset = fromIndex;
             this.subListSize = toIndex - fromIndex;
@@ -624,7 +620,7 @@ public class VectorAdapter implements HList
 
         public boolean isEmpty()
         {
-            subListSize == 0;
+            return subListSize == 0;
         }
 
         public HEnumeration elements()
@@ -905,7 +901,7 @@ public class VectorAdapter implements HList
             HIterator iter = c.iterator();
 
             for(int i = 0; i < c.size(); i++)
-                insertElementAt(index + i, iter.next())
+                insertElementAt(index + i, iter.next());
 
             return true;
         }
@@ -933,7 +929,7 @@ public class VectorAdapter implements HList
             return !(it1.hasNext() || it2.hasNext());
         }
 
-        public HList subList(int fromIndex, int toIndexddd
+        public HList subList(int fromIndex, int toIndex)
         {
             if(fromIndex > toIndex)
                 throw new IllegalArgumentException();
