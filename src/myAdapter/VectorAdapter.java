@@ -44,9 +44,6 @@ public class VectorAdapter implements HList
 
     public VectorAdapter(HCollection c)
     {
-        if(c == null)
-            throw new NullPointerException();
-
         this(c.size(), 0);
         addAll(c);
     }
@@ -56,10 +53,10 @@ public class VectorAdapter implements HList
         if(anArray == null)
             throw new NullPointerException();
 
-        if(anArray.length < vec.size())
+        if(anArray.length < size())
             throw new IndexOutOfBoundsException();
 
-        System.arraycopy(vec.toArray(), 0, anArray, 0, vec.size());
+        System.arraycopy(vec.toArray(), beginIndex(), anArray, 0, size());
     }
 
     public void trimToSize() // YES
@@ -97,12 +94,12 @@ public class VectorAdapter implements HList
 
     public HEnumeration elements() // YES
     {
-        return new EnumerationAdapter();
+        return new EnumerationAdapter(beginIndex(), beginIndex() + size());
     }
 
     public boolean contains(Object elem) // YES
     {
-        return indexOf(elem, 0) != -1;
+        return indexOf(elem) != -1;
     }
 
     public int indexOf(Object elem) // YES
@@ -119,13 +116,13 @@ public class VectorAdapter implements HList
             return -1;
 
         if(elem == null)
-            for(int i = index; i < size(); i++)
+            for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
                 if(elementAt(i) == null)
-                    return i;
+                    return i - beginIndex();
         else
-            for(int i = index; i < size(); i++)
+            for(i = beginIndex() + index; i < beginIndex() + size(); i++)
                 if(elem.equals(elementAt(i)))
-                    return i;
+                    return i - beginIndex();
 
         return -1;
     }
@@ -145,19 +142,21 @@ public class VectorAdapter implements HList
 
         if(elem == null)
         {
-            for(int i = index; i >= 0; i--)
+            for(int i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elementAt(i) == null)
-                    return i;
+                    return i - beginIndex();
         }
         else
         {
-            for(int i = index; i >= 0; i--)
+            for(int i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elem.equals(elementAt(i)))
-                    return i;
+                    return i - beginIndex();
         }
 
         return -1;
     }
+
+    // CONTINUARE ZERO BASED DA QUA
 
     public Object elementAt(int index) // YES
     {
@@ -297,7 +296,9 @@ public class VectorAdapter implements HList
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
 
+        Object removed = elementAt(index);
         removeElementAt(index);
+        return removed;
     }
 
     public void clear()
@@ -333,9 +334,9 @@ public class VectorAdapter implements HList
 
         boolean changed = false;
 
-        while(iterator.hasNext())
+        while(iter.hasNext())
         {
-            Object elem = iterator.next();
+            Object elem = iter.next();
 
             while(indexOf(elem) != -1)
             {
@@ -378,7 +379,7 @@ public class VectorAdapter implements HList
         HIterator iter = c.iterator();
 
         for(int i = 0; i < c.size(); i++)
-            insertElementAt(index + i, iter.next());
+            insertElementAt(iter.next(), index + i);
 
         return true;
     }
@@ -408,7 +409,7 @@ public class VectorAdapter implements HList
 
     public int hashCode() // YES
     {
-        return vec.hashcode();
+        return vec.hashCode();
     }
 
     public String toString() // YES
@@ -416,15 +417,21 @@ public class VectorAdapter implements HList
         return vec.toString();
     }
 
-    // TO CONTINUE HERE
-
     public HList subList(int fromIndex, int toIndex)
-    {}
+    {
+        if(fromIndex > toIndex)
+            throw new IllegalArgumentException();
+
+        if(fromIndex < 0 || toIndex > size())
+            throw new IndexOutOfBoundsException();
+
+        return new SubListAdapter(beginIndex() + fromIndex, beginIndex() + toIndex);
+    }
 
     protected void removeRange(int fromIndex, int toIndex)
-    {}
-
-    // END UP HERE
+    {
+        subList(fromIndex, toIndex).clear();
+    }
 
     public HIterator iterator()
     {
@@ -444,6 +451,11 @@ public class VectorAdapter implements HList
         return new ListIteratorAdapter(index);
     }
 
+    protected int beginIndex()
+    {
+        return 0;
+    }
+
     private class EnumerationAdapter implements HEnumeration
     {
         private int cursor = 0;
@@ -456,6 +468,12 @@ public class VectorAdapter implements HList
 
         public EnumerationAdapter(int start, int end)
         {
+            if(start > end)
+                throw new IllegalArgumentException();
+
+            if(start < 0 || end > size())
+                throw new IndexOutOfBoundsException();
+
             this.cursor = start;
             this.end = end;
         }
@@ -478,21 +496,27 @@ public class VectorAdapter implements HList
     {
         protected int cursor = 0;
         protected int lastRet = -1;
-        protected final int start;
-        protected final int end;
+        protected int start;
+        protected int end;
 
         public IteratorAdapter()
         {
             this(0, size());
         }
 
-        public IteratorAdapter(int start)
+        public IteratorAdapter(int index)
         {
-            this(start, size());
+            this(index, size());
         }
 
         public IteratorAdapter(int start, int end)
         {
+            if(start > end)
+                throw new IllegalArgumentException();
+
+            if(start < 0 || end > size())
+                throw new IndexOutOfBoundsException();
+
             this.cursor = start;
             this.start = start;
             this.end = end;
@@ -526,27 +550,19 @@ public class VectorAdapter implements HList
 
     private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
     {
-        ListIteratorAdapter()
+        public ListIteratorAdapter()
         {
             super();
         }
 
-        public ListIteratorAdapter(int start)
+        public ListIteratorAdapter(int index)
         {
-            super(start, size());
+            super(index);
         }
 
         public ListIteratorAdapter(int start, int end)
         {
             super(start, end);
-        }
-
-        ListIteratorAdapter(int index)
-        {
-            if(index < 0 || index > size())
-                throw new IndexOutOfBoundsException();
-
-            cursor = index;
         }
 
         public boolean hasPrevious()
@@ -578,12 +594,12 @@ public class VectorAdapter implements HList
             if(lastRet == -1)
                 throw new IllegalStateException(); // CAMBIARE
 
-            VectorAdapter.this.setElementAt(lastRet, o);
+            VectorAdapter.this.setElementAt(o, lastRet);
         }
 
         public void add(Object o)
         {
-            VectorAdapter.this.addElementAt(cursor, o);
+            VectorAdapter.this.insertElementAt(o, cursor);
 
             cursor++;
             lastRet = -1;
@@ -598,19 +614,14 @@ public class VectorAdapter implements HList
 
         public SubListAdapter(int fromIndex, int toIndex)
         {
-            this.offset = fromIndex;
-            this.subListSize = toIndex - fromIndex;
-        }
+            if(fromIndex > toIndex)
+                throw new IllegalArgumentException();
 
-        public void copyInto(Object[] anArray)
-        {
-            if(anArray == null)
-                throw new NullPointerException();
-
-            if(anArray.length < size())
+            if(fromIndex < 0 || toIndex > size())
                 throw new IndexOutOfBoundsException();
 
-            System.arraycopy(vec.toArray(), offset, anArray, 0, size());
+            this.offset = fromIndex;
+            this.subListSize = toIndex - fromIndex;
         }
 
         public int size()
@@ -620,55 +631,7 @@ public class VectorAdapter implements HList
 
         public boolean isEmpty()
         {
-            return subListSize == 0;
-        }
-
-        public HEnumeration elements()
-        {
-            return new EnumerationAdapter(offset, size());
-        }
-
-        public boolean contains(Object o)
-        {
-            int index = super.indexOf(o, offset);
-
-            return index < offset + size();
-        }
-
-        public int indexOf(Object elem)
-        {
-            return indexOf(elem, offset);
-        }
-
-        public int indexOf(Object elem, ind index)
-        {
-            if(index < 0)
-                throw new IndexOutOfBoundsException();
-
-            if(index > size())
-                return -1;
-
-            int i = super.indexOf(elem, offset + index);
-
-            return (i < offset) ? -1 : i - offset;
-        }
-
-        public int lastIndexOf(Object elem)
-        {
-            return lastIndexOf(elem, size() - 1);
-        }
-
-        public int lastIndexOf(Object elem, int index)
-        {
-            if(index >= size())
-                throw new IndexOutOfBoundsException();
-
-            if(index < 0)
-                return -1;
-
-            int i = super.lastIndexOf(elem, offset + index);
-
-            return (i < offset) ? -1 : i - offset;
+            return size() == 0;
         }
 
         public Object elementAt(int index)
@@ -733,7 +696,8 @@ public class VectorAdapter implements HList
             if(index == -1)
                 return false;
 
-            return vec.removeElementAt(index);
+            vec.removeElementAt(index);
+            return true;
         }
 
         public void removeAllElement()
@@ -820,7 +784,9 @@ public class VectorAdapter implements HList
             if(index < 0 || index > size())
                 throw new ArrayIndexOutOfBoundsException();
 
+            Object removed = elementAt(index);
             removeElementAt(index);
+            return removed;
         }
 
         public void clear()
@@ -856,11 +822,11 @@ public class VectorAdapter implements HList
 
             boolean changed = false;
 
-            while(iterator.hasNext())
+            while(iter.hasNext())
             {
-                Object elem = iterator.next();
+                Object elem = iter.next();
 
-                while(indexOf != -1)
+                while(indexOf(elem) != -1)
                 {
                     remove(indexOf(elem));
                     changed = true;
@@ -901,7 +867,7 @@ public class VectorAdapter implements HList
             HIterator iter = c.iterator();
 
             for(int i = 0; i < c.size(); i++)
-                insertElementAt(index + i, iter.next());
+                insertElementAt(iter.next(), index + i);
 
             return true;
         }
@@ -914,8 +880,8 @@ public class VectorAdapter implements HList
             if(!(o instanceof HList))
                 return false;
 
-            HListIterator1 = listIterator();
-            HListIterator2 = ((HList) o).listIterator();
+            HListIterator it1 = listIterator();
+            HListIterator it2 = ((HList) o).listIterator();
 
             while(it1.hasNext() && it2.hasNext())
             {
@@ -942,17 +908,17 @@ public class VectorAdapter implements HList
 
         protected void removeRange(int fromIndex, int toIndex)
         {
-            subList(offset + fromIndex, offset, toIndex).clear();
+            subList(offset + fromIndex, offset + toIndex).clear();
         }
 
         public HIterator iterator()
         {
-            return IteratorAdapter(offset, offset + size());
+            return new IteratorAdapter(offset, offset + size());
         }
 
         public HListIterator listIterator()
         {
-            return new ListIterator(offset, offset + size());
+            return new ListIteratorAdapter(offset, offset + size());
         }
 
         public HListIterator listIterator(int index)
@@ -961,6 +927,11 @@ public class VectorAdapter implements HList
                 throw new IndexOutOfBoundsException();
 
             return new ListIteratorAdapter(offset + index, size());
+        }
+
+        protected int beginIndex()
+        {
+            return offset;
         }
     }
 }
