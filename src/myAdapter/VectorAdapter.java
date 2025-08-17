@@ -18,13 +18,14 @@ import java.lang.IllegalArgumentException; // YES
  * No @Override
  * CONTROLLARE ECCEZIONI MANCANTI
  * RICONTROLL tutto
+ * controlla metodi usati su vec.
  */
 
 public class VectorAdapter implements HList
 {
     protected Vector vec;
 
-    public VectorAdapter(int initialCapacity, int capacityIncrement) // YES
+    public VectorAdapter(int initialCapacity, int capacityIncrement)
     {
         if(initialCapacity < 0)
             throw new IllegalArgumentException();
@@ -32,12 +33,12 @@ public class VectorAdapter implements HList
         vec = new Vector(initialCapacity, capacityIncrement);
     }
 
-    public VectorAdapter(int initialCapacity) // YES
+    public VectorAdapter(int initialCapacity)
     {
         this(initialCapacity, 0);
     }
 
-    public VectorAdapter() // YES
+    public VectorAdapter()
     {
         this(10);
     }
@@ -48,7 +49,7 @@ public class VectorAdapter implements HList
         addAll(c);
     }
 
-    public void copyInto(Object[] anArray) // YES
+    public void copyInto(Object[] anArray)
     {
         if(anArray == null)
             throw new NullPointerException();
@@ -59,17 +60,17 @@ public class VectorAdapter implements HList
         System.arraycopy(vec.toArray(), beginIndex(), anArray, 0, size());
     }
 
-    public void trimToSize() // YES
+    public void trimToSize()
     {
         vec.trimToSize();
     }
 
-    public void ensureCapacity(int minCapacity) // YES
+    public void ensureCapacity(int minCapacity)
     {
         vec.ensureCapacity(minCapacity);
     }
 
-    public void setSize(int newSize) // YES
+    public void setSize(int newSize)
     {
         if(newSize < 0)
             throw new ArrayIndexOutOfBoundsException();
@@ -77,37 +78,37 @@ public class VectorAdapter implements HList
         vec.setSize(newSize);
     }
 
-    public int capacity() // YES
+    public int capacity()
     {
         return vec.capacity();
     }
 
-    public int size() // YES
+    public int size()
     {
         return vec.size();
     }
 
-    public boolean isEmpty() // YES
+    public boolean isEmpty()
     {
         return size() == 0;
     }
 
-    public HEnumeration elements() // YES
+    public HEnumeration elements()
     {
         return new EnumerationAdapter(beginIndex(), beginIndex() + size());
     }
 
-    public boolean contains(Object elem) // YES
+    public boolean contains(Object elem)
     {
         return indexOf(elem) != -1;
     }
 
-    public int indexOf(Object elem) // YES
+    public int indexOf(Object elem)
     {
         return indexOf(elem, 0);
     }
 
-    public int indexOf(Object elem, int index) // YES
+    public int indexOf(Object elem, int index)
     {
         if(index < 0)
             throw new IndexOutOfBoundsException();
@@ -127,12 +128,12 @@ public class VectorAdapter implements HList
         return -1;
     }
 
-    public int lastIndexOf(Object elem) // YES
+    public int lastIndexOf(Object elem)
     {
         return lastIndexOf(elem, size() - 1);
     }
 
-    public int lastIndexOf(Object elem, int index) // YES
+    public int lastIndexOf(Object elem, int index)
     {
         if(index >= size())
             throw new IndexOutOfBoundsException();
@@ -156,9 +157,7 @@ public class VectorAdapter implements HList
         return -1;
     }
 
-    // CONTINUARE ZERO BASED DA QUA
-
-    public Object elementAt(int index) // YES
+    public Object elementAt(int index)
     {
         if (index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
@@ -166,7 +165,7 @@ public class VectorAdapter implements HList
         return vec.elementAt(beginIndex() + index);
     }
 
-    public Object firstElement() // YES
+    public Object firstElement()
     {
         if(isEmpty())
             throw new NoSuchElementException();
@@ -174,7 +173,7 @@ public class VectorAdapter implements HList
         return vec.elementAt(beginIndex());
     }
 
-    public Object lastElement() // YES
+    public Object lastElement()
     {
         if(isEmpty())
             throw new NoSuchElementException();
@@ -182,7 +181,7 @@ public class VectorAdapter implements HList
         return vec.elementAt(beginIndex() + size() - 1);
     }
 
-    public void setElementAt(Object obj, int index) // YES
+    public void setElementAt(Object obj, int index)
     {
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
@@ -190,7 +189,7 @@ public class VectorAdapter implements HList
         vec.setElementAt(obj, beginIndex() + index);
     }
 
-    public void removeElementAt(int index) // YES
+    public void removeElementAt(int index)
     {
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
@@ -199,7 +198,7 @@ public class VectorAdapter implements HList
         setSize(size() - 1);
     }
 
-    public void insertElementAt(Object obj, int index) // YES
+    public void insertElementAt(Object obj, int index)
     {
         if(index < 0 || index > size())
             throw new ArrayIndexOutOfBoundsException();
@@ -208,12 +207,12 @@ public class VectorAdapter implements HList
         setSize(size() + 1);
     }
 
-    public void addElement(Object obj) // YES
+    public void addElement(Object obj)
     {
         addElementAt(obj, beginIndex() + size());
     }
 
-    public boolean removeElement(Object obj) // YES
+    public boolean removeElement(Object obj)
     {
         int index = indexOf(obj);
 
@@ -224,7 +223,7 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public void removeAllElements() // YES
+    public void removeAllElements()
     {
         for(int i = size() - 1; i >= 0; i--)
             vec.removeElementAt(beginIndex() + i);
@@ -395,7 +394,7 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public boolean equals(Object o) // YES
+    public boolean equals(Object o)
     {
         if(o == this) return true;
 
@@ -418,12 +417,12 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public int hashCode() // YES
+    public int hashCode()
     {
         return vec.hashCode();
     }
 
-    public String toString() // YES
+    public String toString()
     {
         return vec.toString();
     }
@@ -540,7 +539,7 @@ public class VectorAdapter implements HList
         public void remove()
         {
             if(lastRet == -1)
-                throw new IllegalStateException(); // DA CAMBIARE
+                throw new IllegalStateException();
 
             VectorAdapter.this.removeElementAt(lastRet);
             cursor = lastRet;
@@ -583,7 +582,7 @@ public class VectorAdapter implements HList
         public void set(Object o)
         {
             if(lastRet == -1)
-                throw new IllegalStateException(); // CAMBIARE
+                throw new IllegalStateException();
 
             VectorAdapter.this.setElementAt(o, lastRet);
         }
