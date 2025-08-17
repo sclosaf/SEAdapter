@@ -5,12 +5,12 @@ import myAdapter.IllegalStateException;
 import java.util.Vector;
 import java.util.Enumeration;
 
-import java.util.NoSuchElementException; // YES
+import java.util.NoSuchElementException;
 
-import java.lang.NullPointerException; // YES
-import java.lang.IndexOutOfBoundsException; // YES
-import java.lang.ArrayIndexOutOfBoundsException; // YES
-import java.lang.IllegalArgumentException; // YES
+import java.lang.NullPointerException;
+import java.lang.IndexOutOfBoundsException;
+import java.lang.ArrayIndexOutOfBoundsException;
+import java.lang.IllegalArgumentException;
 
 /*
  * Implemento in java micro
@@ -113,7 +113,7 @@ public class VectorAdapter implements HList
         if(index < 0)
             throw new IndexOutOfBoundsException();
 
-        if(index > size())
+        if(index >= size())
             return -1;
 
         if(elem == null)
@@ -142,17 +142,13 @@ public class VectorAdapter implements HList
             return -1;
 
         if(elem == null)
-        {
             for(int i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elementAt(i) == null)
                     return i - beginIndex();
-        }
         else
-        {
             for(int i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elem.equals(elementAt(i)))
                     return i - beginIndex();
-        }
 
         return -1;
     }
@@ -195,7 +191,9 @@ public class VectorAdapter implements HList
             throw new ArrayIndexOutOfBoundsException();
 
         vec.removeElementAt(beginIndex() + index);
-        setSize(size() - 1);
+
+        if(this instanceof SubListAdapter)
+            setSize(size() - 1);
     }
 
     public void insertElementAt(Object obj, int index)
@@ -204,12 +202,14 @@ public class VectorAdapter implements HList
             throw new ArrayIndexOutOfBoundsException();
 
         vec.insertElementAt(obj, beginIndex() + index);
-        setSize(size() + 1);
+
+        if(this instanceof SubListAdapter)
+            setSize(size() + 1);
     }
 
     public void addElement(Object obj)
     {
-        addElementAt(obj, beginIndex() + size());
+        insertElementAt(obj, beginIndex() + size());
     }
 
     public boolean removeElement(Object obj)
@@ -226,7 +226,7 @@ public class VectorAdapter implements HList
     public void removeAllElements()
     {
         for(int i = size() - 1; i >= 0; i--)
-            vec.removeElementAt(beginIndex() + i);
+            removeElementAt(beginIndex() + i);
 
         setSize(0);
     }
@@ -273,9 +273,6 @@ public class VectorAdapter implements HList
 
     public Object set(int index, Object element)
     {
-        if(index < 0 || index >= size())
-            throw new ArrayIndexOutOfBoundsException();
-
         Object obj = elementAt(index);
         setElementAt(element, index);
 
@@ -295,19 +292,14 @@ public class VectorAdapter implements HList
 
     public void add(int index, Object element)
     {
-        if(index < 0 || index > size())
-            throw new ArrayIndexOutOfBoundsException();
-
         insertElementAt(element, index);
     }
 
     public Object remove(int index)
     {
-        if(index < 0 || index >= size())
-            throw new ArrayIndexOutOfBoundsException();
-
         Object removed = elementAt(index);
         removeElementAt(index);
+
         return removed;
     }
 
@@ -518,7 +510,7 @@ public class VectorAdapter implements HList
                 throw new IndexOutOfBoundsException();
 
             this.cursor = start;
-            this.start = start;
+            this.start = VectorAdapter.this.beginIndex();
             this.end = end;
         }
 
@@ -533,7 +525,7 @@ public class VectorAdapter implements HList
                 throw new NoSuchElementException();
 
             lastRet = cursor;
-            return elementAt(cursor++);
+            return VectorAdapter.this.elementAt(cursor++);
         }
 
         public void remove()
@@ -566,7 +558,7 @@ public class VectorAdapter implements HList
                 throw new NoSuchElementException();
 
             lastRet = cursor;
-            return elementAt(cursor--);
+            return VectorAdapter.this.elementAt(cursor--);
         }
 
         public int nextIndex()
