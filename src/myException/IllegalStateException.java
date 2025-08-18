@@ -1,4 +1,4 @@
-package myAdapter;
+package myException;
 
 public class IllegalStateException extends RuntimeException
 {

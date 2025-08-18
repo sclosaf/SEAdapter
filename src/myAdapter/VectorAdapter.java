@@ -1,6 +1,6 @@
 package myAdapter;
 
-import myAdapter.IllegalStateException;
+import myException.IllegalStateException;
 
 import java.util.Vector;
 import java.util.Enumeration;
