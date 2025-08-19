@@ -9,6 +9,8 @@ import org.junit.runner.notification.Failure;
 import org.junit.runners.Suite;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     VectorAdapterTester.class,
