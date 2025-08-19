@@ -146,7 +146,7 @@ public class VectorAdapter implements HList
                 if(elementAt(i) == null)
                     return i - beginIndex();
         else
-            for(int i = beginIndex() + index; i >= beginIndex(); i--)
+            for(i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elem.equals(elementAt(i)))
                     return i - beginIndex();
 
@@ -392,10 +392,10 @@ public class VectorAdapter implements HList
 
         if(!(o instanceof HList)) return false;
 
-        if(this.size() != o.size()) return false;
+        if(this.size() != ((HList) o).size()) return false;
 
         HIterator it1 = this.listIterator();
-        HIterator it2 = o.listIterator();
+        HIterator it2 = ((HList) o).listIterator();
 
         while(it1.hasNext() && it2.hasNext())
         {

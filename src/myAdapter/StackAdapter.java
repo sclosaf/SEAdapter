@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 
 public class StackAdapter extends VectorAdapter
 {
-    public StackAdapter
+    public StackAdapter()
     {
         super();
     }
@@ -20,7 +20,7 @@ public class StackAdapter extends VectorAdapter
         if(isEmpty())
             throw new EmptyStackException();
 
-        return removeElementAt(size() - 1);
+        return remove(size() - 1);
     }
 
     public Object peek()
