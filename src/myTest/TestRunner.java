@@ -13,12 +13,12 @@ import java.util.List;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    VectorAdapterTester.class,
-    EnumerationAdapterTester.class,
-    IteratorAdapterTester.class,
-    SubListAdapterTester.class,
-    ListIteratorAdapterTester.class,
-    StackAdapterTester.class,
+    VectorAdapterTest.class,
+    EnumerationAdapterTest.class,
+    IteratorAdapterTest.class,
+    SubListAdapterTest.class,
+    ListIteratorAdapterTest.class,
+    StackAdapterTest.class,
 })
 public class TestRunner
 {
