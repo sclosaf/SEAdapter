@@ -1,4 +1,4 @@
 package myTest;
 
-public class IteratorAdapterTester
+public class IteratorAdapterTest
 {}

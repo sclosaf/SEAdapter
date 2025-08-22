@@ -1,4 +1,4 @@
 package myTest;
 
-public class SubListAdapterTester
+public class SubListAdapterTest
 {}

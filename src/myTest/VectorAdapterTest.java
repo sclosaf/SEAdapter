@@ -1,4 +1,4 @@
 package myTest;
 
-public class VectorAdapterTester
+public class VectorAdapterTest
 {}

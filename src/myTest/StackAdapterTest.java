@@ -1,4 +1,4 @@
 package myTest;
 
-public class StackAdapterTester
+public class StackAdapterTest
 {}
