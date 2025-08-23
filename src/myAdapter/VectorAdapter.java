@@ -3,7 +3,6 @@ package myAdapter;
 import myException.IllegalStateException;
 
 import java.util.Vector;
-import java.util.Enumeration;
 
 import java.util.NoSuchElementException;
 
@@ -16,7 +15,6 @@ import java.lang.IllegalArgumentException;
  * Implemento in java micro
  * Interfaccia 1.4.2
  * No @Override
- * CONTROLLARE ECCEZIONI MANCANTI
  * RICONTROLL tutto
  * controlla metodi usati su vec.
  */
@@ -95,7 +93,7 @@ public class VectorAdapter implements HList
 
     public HEnumeration elements()
     {
-        return new EnumerationAdapter(beginIndex(), beginIndex() + size());
+        return new EnumerationAdapter(this, beginIndex(), beginIndex() + size());
     }
 
     public boolean contains(Object elem)
@@ -437,12 +435,12 @@ public class VectorAdapter implements HList
 
     public HIterator iterator()
     {
-        return new IteratorAdapter(beginIndex(), beginIndex() + size());
+        return new IteratorAdapter(this, beginIndex(), beginIndex() + size());
     }
 
     public HListIterator listIterator()
     {
-        return new ListIteratorAdapter(beginIndex(), beginIndex() + size());
+        return new ListIteratorAdapter(this, beginIndex(), beginIndex() + size());
     }
 
     public HListIterator listIterator(int index)
@@ -450,190 +448,60 @@ public class VectorAdapter implements HList
         if(index < 0 || index > size())
             throw new IndexOutOfBoundsException();
 
-        return new ListIteratorAdapter(beginIndex() + index, beginIndex() + size());
+        return new ListIteratorAdapter(this, beginIndex() + index, beginIndex() + size());
     }
 
     protected int beginIndex()
     {
         return 0;
     }
+}
 
-    private class EnumerationAdapter implements HEnumeration
+class SubListAdapter extends VectorAdapter
+{
+    private final int offset;
+    private int subListSize;
+
+    public SubListAdapter(int fromIndex, int toIndex)
     {
-        private int cursor = 0;
-        private final int end;
+        if(fromIndex > toIndex)
+            throw new IllegalArgumentException();
 
-        public EnumerationAdapter()
-        {
-            this(0, size());
-        }
+        if(fromIndex < 0 || toIndex > size())
+            throw new IndexOutOfBoundsException();
 
-        public EnumerationAdapter(int start, int end)
-        {
-            if(start > end)
-                throw new IllegalArgumentException();
-
-            if(start < 0 || end > size())
-                throw new IndexOutOfBoundsException();
-
-            this.cursor = start;
-            this.end = end;
-        }
-
-        public boolean hasMoreElements()
-        {
-            return cursor < end;
-        }
-
-        public Object nextElement()
-        {
-            if(!hasMoreElements())
-                throw new NoSuchElementException();
-
-            return elementAt(cursor++);
-        }
+        this.vec = super.vec;
+        this.offset = fromIndex;
+        this.subListSize = toIndex - fromIndex;
     }
 
-    private class IteratorAdapter implements HIterator
+    public void setSize(int newSize)
     {
-        protected int cursor = 0;
-        protected int lastRet = -1;
-        protected int start;
-        protected int end;
+        if(newSize < 0)
+            throw new ArrayIndexOutOfBoundsException();
 
-        public IteratorAdapter(int start, int end)
-        {
-            if(start > end)
-                throw new IllegalArgumentException();
-
-            if(start < 0 || end > size())
-                throw new IndexOutOfBoundsException();
-
-            this.cursor = start;
-            this.start = VectorAdapter.this.beginIndex();
-            this.end = end;
-        }
-
-        public boolean hasNext()
-        {
-            return cursor < end;
-        }
-
-        public Object next()
-        {
-            if(!hasNext())
-                throw new NoSuchElementException();
-
-            lastRet = cursor;
-            return VectorAdapter.this.elementAt(cursor++);
-        }
-
-        public void remove()
-        {
-            if(lastRet == -1)
-                throw new IllegalStateException();
-
-            VectorAdapter.this.removeElementAt(lastRet);
-            cursor = lastRet;
-            lastRet = -1;
-            end--;
-        }
+        subListSize = newSize;
     }
 
-    private class ListIteratorAdapter extends IteratorAdapter implements HListIterator
+    public int size()
     {
-        public ListIteratorAdapter(int start, int end)
-        {
-            super(start, end);
-        }
-
-        public boolean hasPrevious()
-        {
-            return cursor > start;
-        }
-
-        public Object previous()
-        {
-            if(!hasPrevious())
-                throw new NoSuchElementException();
-
-            lastRet = cursor;
-            return VectorAdapter.this.elementAt(cursor--);
-        }
-
-        public int nextIndex()
-        {
-            return cursor - start;
-        }
-
-        public int previousIndex()
-        {
-            return cursor - start - 1;
-        }
-
-        public void set(Object o)
-        {
-            if(lastRet == -1)
-                throw new IllegalStateException();
-
-            VectorAdapter.this.setElementAt(o, lastRet);
-        }
-
-        public void add(Object o)
-        {
-            VectorAdapter.this.insertElementAt(o, cursor);
-
-            cursor++;
-            lastRet = -1;
-            end++;
-        }
+        return subListSize;
     }
 
-    private class SubListAdapter extends VectorAdapter
+    public Object clone()
     {
-        private final int offset;
-        private int subListSize;
+        SubListAdapter cloned = new SubListAdapter(offset, offset + size());
 
-        public SubListAdapter(int fromIndex, int toIndex)
-        {
-            if(fromIndex > toIndex)
-                throw new IllegalArgumentException();
+        HIterator iter = iterator();
 
-            if(fromIndex < 0 || toIndex > size())
-                throw new IndexOutOfBoundsException();
+        while(iter.hasNext())
+            cloned.addElement(iter.next());
 
-            this.offset = fromIndex;
-            this.subListSize = toIndex - fromIndex;
-        }
+        return cloned;
+    }
 
-        public void setSize(int newSize)
-        {
-            if(newSize < 0)
-                throw new ArrayIndexOutOfBoundsException();
-
-            subListSize = newSize;
-        }
-
-        public int size()
-        {
-            return subListSize;
-        }
-
-        public Object clone()
-        {
-            SubListAdapter cloned = new SubListAdapter(offset, offset + size());
-
-            HIterator iter = iterator();
-
-            while(iter.hasNext())
-                cloned.addElement(iter.next());
-
-            return cloned;
-        }
-
-        protected int beginIndex()
-        {
-            return offset;
-        }
+    protected int beginIndex()
+    {
+        return offset;
     }
 }
