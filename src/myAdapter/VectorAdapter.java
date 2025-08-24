@@ -425,7 +425,7 @@ public class VectorAdapter implements HList
         if(fromIndex < 0 || toIndex > size())
             throw new IndexOutOfBoundsException();
 
-        return new SubListAdapter(beginIndex() + fromIndex, beginIndex() + toIndex);
+        return new SubListAdapter(vec, beginIndex() + fromIndex, beginIndex() + toIndex);
     }
 
     protected void removeRange(int fromIndex, int toIndex)
@@ -454,54 +454,5 @@ public class VectorAdapter implements HList
     protected int beginIndex()
     {
         return 0;
-    }
-}
-
-class SubListAdapter extends VectorAdapter
-{
-    private final int offset;
-    private int subListSize;
-
-    public SubListAdapter(int fromIndex, int toIndex)
-    {
-        if(fromIndex > toIndex)
-            throw new IllegalArgumentException();
-
-        if(fromIndex < 0 || toIndex > size())
-            throw new IndexOutOfBoundsException();
-
-        this.vec = super.vec;
-        this.offset = fromIndex;
-        this.subListSize = toIndex - fromIndex;
-    }
-
-    public void setSize(int newSize)
-    {
-        if(newSize < 0)
-            throw new ArrayIndexOutOfBoundsException();
-
-        subListSize = newSize;
-    }
-
-    public int size()
-    {
-        return subListSize;
-    }
-
-    public Object clone()
-    {
-        SubListAdapter cloned = new SubListAdapter(offset, offset + size());
-
-        HIterator iter = iterator();
-
-        while(iter.hasNext())
-            cloned.addElement(iter.next());
-
-        return cloned;
-    }
-
-    protected int beginIndex()
-    {
-        return offset;
     }
 }

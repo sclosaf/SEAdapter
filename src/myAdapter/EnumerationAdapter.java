@@ -43,6 +43,9 @@ public class EnumerationAdapter implements HEnumeration
         if(!hasMoreElements())
             throw new NoSuchElementException();
 
-        return vect.elementAt(cursor++);
+        Object obj = vect.elementAt(cursor - vect.beginIndex());
+        cursor++;
+
+        return obj;
     }
 }
