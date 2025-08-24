@@ -45,8 +45,8 @@ public class IteratorAdapterTest
     @Test
     public void testHasNextOnNonEmptyCollection()
     {
-        assertTrue("Iterator should have next elements on non-empty collection",
-                   iterator.hasNext());
+        assertTrue("Collection should have been created and filled properly",
+            iterator.hasNext());
     }
 
     @Test
@@ -55,8 +55,8 @@ public class IteratorAdapterTest
         while(iterator.hasNext())
             iterator.next();
 
-        assertFalse("hasNext should return false after full iteration",
-                    iterator.hasNext());
+        assertFalse("hasNext should return false after full emptying iteration",
+            iterator.hasNext());
     }
 
     @Test
@@ -65,15 +65,15 @@ public class IteratorAdapterTest
         VectorAdapter vec = new VectorAdapter();
         HIterator iter = vec.iterator();
 
-        assertFalse("Empty collection should have no next elements",
-                    iter.hasNext());
+        assertFalse("Empty collection should have no elements",
+            iter.hasNext());
     }
 
     @Test
     public void testHasNextOnSubList()
     {
-        assertTrue("SubList iterator should have next elements",
-                   subIterator.hasNext());
+        assertTrue("Sub collection should have been creaed and filled properly",
+            subIterator.hasNext());
     }
 
     @Test
@@ -101,12 +101,12 @@ public class IteratorAdapterTest
     public void testNextOnSingleElementCollection()
     {
         VectorAdapter vec = new VectorAdapter();
-        vec.add("single");
+        vec.add("0");
 
         HIterator iter = vec.iterator();
 
         assertTrue("Should have one element", iter.hasNext());
-        assertEquals("Should return the single element", "single", iter.next());
+        assertEquals("Should return the single element", "0", iter.next());
         assertFalse("Should have no more elements", iter.hasNext());
     }
 
@@ -142,8 +142,8 @@ public class IteratorAdapterTest
 
         }
 
-        assertFalse("Should have no more elements after full iteration",
-                    iterator.hasNext());
+        assertFalse("Should have no more elements after full emptying iteration",
+            iterator.hasNext());
     }
 
     @Test
@@ -195,7 +195,7 @@ public class IteratorAdapterTest
         iterator.remove();
 
         assertEquals("Size should decrease by 1", 4, vector.size());
-        assertFalse("Should not contain null element", vector.contains(null));
+        assertFalse("Should not contain the null element", vector.contains(null));
     }
 
     @Test
@@ -221,7 +221,8 @@ public class IteratorAdapterTest
         }
 
         assertTrue("Collection should be empty after removing all elements",
-                   vector.isEmpty());
+            vector.isEmpty());
+
         assertEquals("Size should be 0", 0, vector.size());
     }
 
@@ -235,9 +236,9 @@ public class IteratorAdapterTest
         iter1.next();
 
         assertEquals("Second iterator should still be at the beginning",
-                     "1", iter2.next());
+            "1", iter2.next());
         assertEquals("First iterator should be at iterated position",
-                     "3", iter1.next());
+            "3", iter1.next());
     }
 
     @Test
@@ -250,16 +251,16 @@ public class IteratorAdapterTest
         iter1.remove();
 
         assertEquals("Second iterator should see modified collection",
-                     "2", iter2.next());
+            "2", iter2.next());
         assertFalse("Second iterator should not see removed element",
-                    vector.contains("1"));
+            vector.contains("1"));
     }
 
     @Test
     public void testSubListHasNext()
     {
         assertTrue("SubList iterator should have next elements",
-                   subIterator.hasNext());
+            subIterator.hasNext());
     }
 
     @Test
@@ -289,9 +290,10 @@ public class IteratorAdapterTest
         subIter1.next();
 
         assertEquals("Second iterator should still be at the beginning",
-                     "2", subIter2.next());
+            "2", subIter2.next());
+
         assertEquals("First iterator should be at iterated position",
-                     "3", subIter1.next());
+            "3", subIter1.next());
     }
 
     @Test
@@ -301,7 +303,7 @@ public class IteratorAdapterTest
         HIterator iter = sub.iterator();
 
         assertFalse("Empty subList should have no elements",
-                    iter.hasNext());
+            iter.hasNext());
     }
 
     @Test

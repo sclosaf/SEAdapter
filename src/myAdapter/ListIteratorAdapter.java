@@ -21,9 +21,9 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
         if(!hasPrevious())
             throw new NoSuchElementException();
 
+        cursor--;
         lastRet = cursor;
         Object obj = vect.elementAt(cursor - vect.beginIndex());
-        cursor--;
 
         return obj;
     }
