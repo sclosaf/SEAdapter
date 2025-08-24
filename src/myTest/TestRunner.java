@@ -14,6 +14,7 @@ import java.util.List;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     EnumerationAdapterTest.class,
+    IteratorAdapterTest.class
 })
 public class TestRunner
 {

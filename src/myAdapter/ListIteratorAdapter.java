@@ -22,7 +22,10 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
             throw new NoSuchElementException();
 
         lastRet = cursor;
-        return vect.elementAt(cursor--);
+        Object obj = vect.elementAt(cursor - vect.beginIndex());
+        cursor--;
+
+        return obj;
     }
 
     public int nextIndex()
@@ -40,12 +43,12 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
         if(lastRet == -1)
             throw new IllegalStateException();
 
-        vect.setElementAt(o, lastRet);
+        vect.setElementAt(o, lastRet - vect.beginIndex());
     }
 
     public void add(Object o)
     {
-        vect.insertElementAt(o, cursor);
+        vect.insertElementAt(o, cursor - vect.beginIndex());
 
         cursor++;
         lastRet = -1;

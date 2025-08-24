@@ -115,13 +115,17 @@ public class VectorAdapter implements HList
             return -1;
 
         if(elem == null)
+        {
             for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
                 if(elementAt(i) == null)
                     return i - beginIndex();
+        }
         else
-            for(i = beginIndex() + index; i < beginIndex() + size(); i++)
+        {
+            for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
                 if(elem.equals(elementAt(i)))
                     return i - beginIndex();
+        }
 
         return -1;
     }
@@ -140,13 +144,17 @@ public class VectorAdapter implements HList
             return -1;
 
         if(elem == null)
+        {
             for(int i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elementAt(i) == null)
                     return i - beginIndex();
+        }
         else
-            for(i = beginIndex() + index; i >= beginIndex(); i--)
+        {
+            for(int i = beginIndex() + index; i >= beginIndex(); i--)
                 if(elem.equals(elementAt(i)))
                     return i - beginIndex();
+        }
 
         return -1;
     }

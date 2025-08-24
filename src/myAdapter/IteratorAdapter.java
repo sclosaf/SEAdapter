@@ -45,7 +45,10 @@ public class IteratorAdapter implements HIterator
             throw new NoSuchElementException();
 
         lastRet = cursor;
-        return vect.elementAt(cursor++);
+        Object obj = vect.elementAt(cursor - vect.beginIndex());
+        cursor++;
+
+        return obj;
     }
 
     public void remove()
@@ -53,7 +56,7 @@ public class IteratorAdapter implements HIterator
         if(lastRet == -1)
             throw new IllegalStateException();
 
-        vect.removeElementAt(lastRet);
+        vect.removeElementAt(lastRet - vect.beginIndex());
         cursor = lastRet;
         lastRet = -1;
         end--;

@@ -10,6 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/*
+ * RIVEDERE BENE
+ * RICONTROLLARE CON DOCUMENTAZIONE
+ * */
+
 public class EnumerationAdapterTest
 {
     private VectorAdapter vector;
@@ -175,7 +180,7 @@ public class EnumerationAdapterTest
     @Test
     public void testSubListHasMoreElementsOnEmptyCollection()
     {
-        VectorAdapter sub = (SubListAdapter)vector.subList(1, 1);
+        SubListAdapter sub = (SubListAdapter)vector.subList(1, 1);
         HEnumeration subEnumer = sub.elements();
 
         assertFalse("Empty subList should have no elements",
@@ -202,7 +207,7 @@ public class EnumerationAdapterTest
         vec.add(null);
         vec.add(null);
 
-        VectorAdapter sub = (SubListAdapter)vec.subList(1, 4);
+        SubListAdapter sub = (SubListAdapter)vec.subList(1, 4);
         HEnumeration subEnumer = sub.elements();
 
         assertTrue("Should have elements", subEnumer.hasMoreElements());
@@ -258,7 +263,7 @@ public class EnumerationAdapterTest
     @Test
     public void testSubListEnumerationWithSingleNullElement()
     {
-        VectorAdapter sub = (SubListAdapter)vector.subList(3, 4);
+        SubListAdapter sub = (SubListAdapter)vector.subList(3, 4);
         HEnumeration subEnumer = sub.elements();
 
         assertTrue("Should have one element", subEnumer.hasMoreElements());
