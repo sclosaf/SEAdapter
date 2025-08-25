@@ -16,7 +16,7 @@ public class IteratorAdapter implements HIterator
     protected int end;
     protected VectorAdapter vect;
 
-    public IteratorAdapter(VectorAdapter vect, int start, int end)
+    IteratorAdapter(VectorAdapter vect, int start, int end)
     {
         if(vect == null)
             throw new NullPointerException();

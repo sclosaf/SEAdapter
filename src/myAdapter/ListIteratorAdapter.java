@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class ListIteratorAdapter extends IteratorAdapter implements HListIterator
 {
-    public ListIteratorAdapter(VectorAdapter vect, int start, int end)
+    ListIteratorAdapter(VectorAdapter vect, int start, int end)
     {
         super(vect, start, end);
     }

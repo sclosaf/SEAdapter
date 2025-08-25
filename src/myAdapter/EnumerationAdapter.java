@@ -12,12 +12,12 @@ public class EnumerationAdapter implements HEnumeration
     private final int end;
     private VectorAdapter vect;
 
-    public EnumerationAdapter(VectorAdapter vect)
+    EnumerationAdapter(VectorAdapter vect)
     {
         this(vect, vect.beginIndex(), vect.beginIndex() + vect.size());
     }
 
-    public EnumerationAdapter(VectorAdapter vect, int start, int end)
+    EnumerationAdapter(VectorAdapter vect, int start, int end)
     {
         if(vect == null)
             throw new NullPointerException();

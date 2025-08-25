@@ -13,4 +13,4 @@ javac -d "$OUTPUT_DIR" \
       "$SRC_DIR/myException/"*.java || exit 1
 
 java -cp "$OUTPUT_DIR:$LIB_DIR/junit-4.13.jar:$MATCHER_DIR/hamcrest-core-1.3.jar" \
-     org.junit.runner.JUnitCore myTest.TestRunner
+     myTest.TestRunner
