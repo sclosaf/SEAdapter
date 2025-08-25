@@ -18,7 +18,10 @@ import java.util.Date;
 @Suite.SuiteClasses({
     EnumerationAdapterTest.class,
     IteratorAdapterTest.class,
-    ListIteratorAdapterTest.class
+    ListIteratorAdapterTest.class,
+    StackAdapterTest.class,
+    SubListAdapterTest.class,
+    VectorAdapterTest.class
 })
 public class TestRunner
 {
@@ -31,21 +34,28 @@ public class TestRunner
 
     private static final String SEPARATOR = "================================================================";
     private static final String SUB_SEPARATOR = "----------------------------------------------------------------";
+    private static final String HEADER_START = ">>> ";
+    private static final String SUCCESS_MARKER = "[✓] ";
+    private static final String FAIL_MARKER = "[✗] ";
+    private static final String WARNING_MARKER = "[!] ";
+    private static final String INFO_MARKER = "[i] ";
 
     public static void main(String[] args)
     {
         printHeader();
 
-        System.out.println("Starting test suite execution...\n");
+        System.out.println(INFO_MARKER + "Starting test suite execution...\n");
+
+        Result testResults = JUnitCore.runClasses(TestRunner.class);
 
         long startTime = System.currentTimeMillis();
-        Result testResults = JUnitCore.runClasses(TestRunner.class);
         long actualExecutionTime = System.currentTimeMillis() - startTime;
 
-        System.out.println("\nExecution completed!");
+        System.out.println("\n" + INFO_MARKER + "Execution completed!");
         System.out.println(SUB_SEPARATOR);
 
         elaborateResults(testResults, actualExecutionTime);
+
         printDetailedStats();
         printFailureDetails();
         printSummary();
@@ -56,20 +66,23 @@ public class TestRunner
     private static void printHeader()
     {
         System.out.println(SEPARATOR);
-        System.out.println("                    TEST SUITE EXECUTION");
+        System.out.println("                    **TEST SUITE EXECUTION**");
         System.out.println(SEPARATOR);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        System.out.println("Start time: " + sdf.format(new Date()));
-        System.out.println("JUnit version: 4.13");
 
-        System.out.println("Java version: " + System.getProperty("java.version"));
-        System.out.println("JVM: " + System.getProperty("java.vm.name") + " " + System.getProperty("java.vm.version"));
+        System.out.println(INFO_MARKER + "Start time: " + sdf.format(new Date()));
+        System.out.println(INFO_MARKER + "JUnit version: 4.13");
+        System.out.println(INFO_MARKER + "Java version: " + System.getProperty("java.version"));
+        System.out.println(INFO_MARKER + "JVM: " + System.getProperty("java.vm.name") + " " + System.getProperty("java.vm.version"));
 
-        System.out.println("\nConfigured test classes:");
-        System.out.println("  - EnumerationAdapterTest");
-        System.out.println("  - IteratorAdapterTest");
-        System.out.println("  - ListIteratorAdapterTest");
+        System.out.println("\n" + HEADER_START + "CONFIGURED TEST CLASSES:");
+        System.out.println("  • EnumerationAdapterTest");
+        System.out.println("  • IteratorAdapterTest");
+        System.out.println("  • ListIteratorAdapterTest");
+        System.out.println("  • StackAdapterTest");
+        System.out.println("  • SubListAdapterTest");
+        System.out.println("  • VectorAdapterTest");
 
         System.out.println(SEPARATOR);
     }
@@ -80,24 +93,37 @@ public class TestRunner
         numberOfFails = result.getFailureCount();
         numberOfIgnored = result.getIgnoreCount();
         numberOfSuccesses = numberOfTests - numberOfFails;
+
         failures = result.getFailures();
+
         time = actualTime;
     }
 
     private static void printDetailedStats()
     {
-        System.out.println("\nDETAILED RESULTS:");
+        System.out.println("\n" + HEADER_START + "**DETAILED RESULTS:**");
         System.out.println(SUB_SEPARATOR);
 
-        System.out.printf("%-25s: %d%n", "Tests run", numberOfTests);
-        System.out.printf("%-25s: %d", "Tests passed", numberOfSuccesses);
+        System.out.printf("%-25s: **%d**%n", "Tests run", numberOfTests);
+
+        System.out.printf("%-25s: ", "Tests passed");
+
+        if(numberOfSuccesses == numberOfTests && numberOfTests > 0)
+            System.out.printf("**%d** %s", numberOfSuccesses, SUCCESS_MARKER);
+        else
+            System.out.printf("%d", numberOfSuccesses);
 
         if(numberOfTests > 0)
             System.out.printf(" (%.1f%%)", (float)numberOfSuccesses / (float)numberOfTests * 100);
 
         System.out.println();
 
-        System.out.printf("%-25s: %d", "Tests failed", numberOfFails);
+        System.out.printf("%-25s: ", "Tests failed");
+
+        if(numberOfFails > 0)
+            System.out.printf("**%d** %s", numberOfFails, FAIL_MARKER);
+        else
+            System.out.printf("%d %s", numberOfFails, SUCCESS_MARKER);
 
         if(numberOfTests > 0)
             System.out.printf(" (%.1f%%)", (float)numberOfFails / (float)numberOfTests * 100);
@@ -106,7 +132,7 @@ public class TestRunner
 
         if(numberOfIgnored > 0)
         {
-            System.out.printf("%-25s: %d", "Tests ignored", numberOfIgnored);
+            System.out.printf("%-25s: **%d** %s", "Tests ignored", numberOfIgnored, WARNING_MARKER);
 
             if(numberOfTests > 0)
                 System.out.printf(" (%.1f%%)", (float)numberOfIgnored / (float)numberOfTests * 100);
@@ -115,46 +141,71 @@ public class TestRunner
         }
 
         System.out.println();
-        System.out.printf("%-25s: %d ms%n", "Total time", time);
+
+        System.out.printf("%-25s: ", "Total time");
+
+        if(time > 5000)
+            System.out.printf("**%d ms** %s", time, WARNING_MARKER);
+        else
+            System.out.printf("%d ms", time);
+
+        System.out.println();
 
         if(numberOfTests > 0)
-            System.out.printf("%-25s: %.2f ms%n", "Average time per test", (float)time / numberOfTests);
+        {
+            float avgTime = (float)time / numberOfTests;
 
+            System.out.printf("%-25s: ", "Average time per test");
+
+            if(avgTime > 1000)
+                System.out.printf("**%.2f ms** %s", avgTime, WARNING_MARKER);
+            else
+                System.out.printf("%.2f ms", avgTime);
+
+            System.out.println();
+        }
 
         Runtime runtime = Runtime.getRuntime();
-        long usedMemory = runtime.totalMemory() - runtime.freeMemory();
 
-        System.out.printf("%-25s: %.2f MB%n", "Memory used", usedMemory / (1024.0 * 1024.0));
+        long usedMemory = runtime.totalMemory() - runtime.freeMemory();
+        double memoryMB = usedMemory / (1024.0 * 1024.0);
+
+        System.out.printf("%-25s: ", "Memory used");
+
+        if(memoryMB > 100)
+            System.out.printf("**%.2f MB** %s%n", memoryMB, WARNING_MARKER);
+        else
+            System.out.printf("%.2f MB%n", memoryMB);
+
     }
 
     private static void printFailureDetails()
     {
         if(numberOfFails > 0)
         {
-            System.out.println("\nFAILURE DETAILS:");
+            System.out.println("\n" + HEADER_START + "**FAILURE DETAILS:** " + FAIL_MARKER);
             System.out.println(SUB_SEPARATOR);
 
             int failureNumber = 1;
 
             for(Failure f : failures)
             {
-                System.out.println(failureNumber + ") " + getTestMethodName(f.getDescription()));
+                System.out.println("**" + failureNumber + ") " + getTestMethodName(f.getDescription()) + "** " + FAIL_MARKER);
                 System.out.println("   Class: " + f.getDescription().getClassName());
 
                 String message = f.getMessage();
 
                 if(message != null && !message.trim().isEmpty())
-                    System.out.println("   Error: " + message);
+                    System.out.println("   **Error:** " + message);
                 else
-                    System.out.println("   Error: " + f.getException().getClass().getSimpleName());
-
+                    System.out.println("   **Error:** " + f.getException().getClass().getSimpleName());
 
                 String trace = f.getTrace();
 
                 if(trace != null)
                 {
                     String[] lines = trace.split("\n");
-                    System.out.println("   Stack trace (relevant lines):");
+                    System.out.println("   **Stack trace (relevant lines):**");
 
                     int count = 0;
 
@@ -162,14 +213,15 @@ public class TestRunner
                     {
                         if(line.contains("myTest") || line.contains("myAdapter") || line.contains("myException"))
                         {
-                            System.out.println("     " + line.trim());
+                            System.out.println("     >>> " + line.trim());
+
                             count++;
                             if(count >= 3) break;
                         }
                     }
 
                     if(count == 0 && lines.length > 0)
-                        System.out.println("     " + lines[0].trim());
+                        System.out.println("     >>> " + lines[0].trim());
                 }
 
                 System.out.println();
@@ -181,24 +233,39 @@ public class TestRunner
     private static void printSummary()
     {
         System.out.println(SEPARATOR);
-        System.out.println("                         SUMMARY");
+        System.out.println("                         **SUMMARY**");
         System.out.println(SEPARATOR);
 
         if(numberOfFails == 0)
         {
-            System.out.println("SUCCESS: All " + numberOfTests + " tests passed!");
+            System.out.println("**SUCCESS:** All " + numberOfTests + " tests passed! " + SUCCESS_MARKER);
             System.out.println("Test suite completed without errors.");
         }
         else
         {
-            System.out.println("WARNING: " + numberOfFails + " out of " + numberOfTests + " tests failed.");
+            System.out.println("**WARNING:** " + numberOfFails + " out of " + numberOfTests + " tests failed. " + FAIL_MARKER);
             System.out.println("Check the failure details reported above.");
         }
 
-        System.out.println("\nExecution completed in " + time + " ms");
+        System.out.println();
+
+        System.out.print("Execution completed in ");
+
+        if(time > 10000)
+            System.out.println("**" + time + " ms** " + WARNING_MARKER + " (Slow execution)");
+        else
+            System.out.println("**" + time + " ms**");
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         System.out.println("End time: " + sdf.format(new Date()));
+
+        System.out.println(SEPARATOR);
+
+        if(numberOfFails == 0)
+            System.out.println("                    " + SUCCESS_MARKER + " **ALL TESTS PASSED** " + SUCCESS_MARKER);
+        else
+            System.out.println("                    " + FAIL_MARKER + " **TESTS FAILED** " + FAIL_MARKER);
 
         System.out.println(SEPARATOR);
     }

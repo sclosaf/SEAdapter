@@ -10,11 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/*
- * RIVEDERE BENE
- * RICONTROLLARE CON DOCUMENTAZIONE
- * */
-
 public class EnumerationAdapterTest
 {
     private VectorAdapter vector;
