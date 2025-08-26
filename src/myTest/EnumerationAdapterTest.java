@@ -325,7 +325,7 @@ public class EnumerationAdapterTest
             "2", subEnumer2.nextElement());
 
         assertEquals("First enumeration should be at iterated position",
-           "3", subEnumer1.nextElement());
+            "3", subEnumer1.nextElement());
     }
 
     @Test
