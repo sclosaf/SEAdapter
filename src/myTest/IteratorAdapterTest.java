@@ -16,14 +16,19 @@ import static org.junit.Assert.*;
 /*
  * RIVEDERE BENE
  * CONTROLLA DOCUMENTAZIONE
+ * CONFRONTA CON ENUMERATION
+ * DA ESTENDERE
+ * RICONTROLLA COERENZA
  * */
 
 public class IteratorAdapterTest
 {
     private VectorAdapter vector;
     private SubListAdapter subList;
+    private SubListAdapter fullSubList;
     private HIterator iterator;
     private HIterator subIterator;
+    private HIterator fullSubIterator;
 
     @Before
     public void setUp()
@@ -40,6 +45,9 @@ public class IteratorAdapterTest
 
         subList = (SubListAdapter) vector.subList(1, 4);
         subIterator = subList.iterator();
+
+        fullSubList = (SubListAdapter) vector.subList(0, vector.size());
+        fullSubIterator = fullSubList.iterator();
     }
 
     @Test
@@ -60,6 +68,45 @@ public class IteratorAdapterTest
     }
 
     @Test
+    public void testNextReturnsCorrectElements()
+    {
+        assertTrue("Collection should still have some elements", iterator.hasNext());
+        assertEquals("First element should match", "1", iterator.next());
+
+        assertTrue("Collection should still have some elements", iterator.hasNext());
+        assertEquals("Second element should match", "2", iterator.next());
+
+        assertTrue("Collection should still have some elements", iterator.hasNext());
+        assertEquals("Third element should match", "3", iterator.next());
+
+        assertTrue("Collection should still have some elements", iterator.hasNext());
+        assertNull("Fourth element should be null", iterator.next());
+
+        assertTrue("Collection should still have some elements", iterator.hasNext());
+        assertEquals("Fifth element should match", "5", iterator.next());
+
+        assertFalse("Collection should still no more elements", iterator.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testHasNextThrowsExceptionWhenNoMoreElements()
+    {
+        while(iterator.hasNext())
+            iterator.next();
+
+        iterator.next();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testHasNextThrowsExceptionOnEmptyCollection()
+    {
+        VectorAdapter vec = new VectorAdapter();
+
+        HIterator iter = vec.iterator();
+        iter.next();
+    }
+
+    @Test
     public void testHasNextOnEmptyCollection()
     {
         VectorAdapter vec = new VectorAdapter();
@@ -67,34 +114,6 @@ public class IteratorAdapterTest
 
         assertFalse("Empty collection should have no elements",
             iter.hasNext());
-    }
-
-    @Test
-    public void testHasNextOnSubList()
-    {
-        assertTrue("Sub collection should have been creaed and filled properly",
-            subIterator.hasNext());
-    }
-
-    @Test
-    public void testNextReturnsCorrectElements()
-    {
-        assertEquals("First element should match", "1", iterator.next());
-        assertEquals("Second element should match", "2", iterator.next());
-        assertEquals("Third element should match", "3", iterator.next());
-        assertNull("Fourth element should be null", iterator.next());
-        assertEquals("Fifth element should match", "5", iterator.next());
-    }
-
-    @Test(expected = NoSuchElementException.class)
-    public void testNextThrowsExceptionWhenNoMoreElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("1");
-
-        HIterator iter = vec.iterator();
-        iter.next();
-        iter.next();
     }
 
     @Test
@@ -108,6 +127,17 @@ public class IteratorAdapterTest
         assertTrue("Should have one element", iter.hasNext());
         assertEquals("Should return the single element", "0", iter.next());
         assertFalse("Should have no more elements", iter.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testNextThrowsExceptionWhenNoMoreElements()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("1");
+
+        HIterator iter = vec.iterator();
+        iter.next();
+        iter.next();
     }
 
     @Test

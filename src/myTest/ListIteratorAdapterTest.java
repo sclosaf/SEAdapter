@@ -14,8 +14,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /*
- * Ricontrollare tutto
- * RIVEDERE DOCUMENTAZIONE
+ * RIVEDERE BENE
+ * CONTROLLA DOCUMENTAZIONE
+ * CONFRONTA CON ITERATOR E ENUMERATION
+ * DA ESTENDERE
+ * RICONTROLLA COERENZA
  * */
 
 public class ListIteratorAdapterTest

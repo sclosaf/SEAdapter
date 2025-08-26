@@ -35,10 +35,10 @@ public class TestRunner
     private static final String SEPARATOR = "================================================================";
     private static final String SUB_SEPARATOR = "----------------------------------------------------------------";
     private static final String HEADER_START = ">>> ";
-    private static final String SUCCESS_MARKER = "[✓] ";
-    private static final String FAIL_MARKER = "[✗] ";
-    private static final String WARNING_MARKER = "[!] ";
-    private static final String INFO_MARKER = "[i] ";
+    private static final String SUCCESS_MARKER = "[✓]";
+    private static final String FAIL_MARKER = "[✗]";
+    private static final String WARNING_MARKER = "[!]";
+    private static final String INFO_MARKER = "[i]";
 
     public static void main(String[] args)
     {
