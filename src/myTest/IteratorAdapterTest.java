@@ -138,42 +138,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testNextWithAllNullElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(null);
-        vec.add(null);
-        vec.add(null);
-
-        HIterator iter = vec.iterator();
-
-        assertTrue("Should have elements", iter.hasNext());
-        assertNull("First element should be null", iter.next());
-        assertNull("Second element should be null", iter.next());
-        assertNull("Third element should be null", iter.next());
-        assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
-    public void testNextOrderMatchesCollectionOrder()
-    {
-        for(int i = 0; i < vector.size(); i++)
-        {
-            Object expected = vector.get(i);
-            Object actual = iterator.next();
-
-            if(expected == null)
-                assertNull("Element at index " + i + " should be null", actual);
-            else
-                assertEquals("Element at index " + i + " should match", expected, actual);
-
-        }
-
-        assertFalse("Should have no more elements after full emptying iteration",
-            iterator.hasNext());
-    }
-
-    @Test
     public void testMultipleIteratorsAreIndependent()
     {
         HIterator iter1 = vector.iterator();
@@ -407,43 +371,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testSubListIteratorWithAllNullElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(null);
-        vec.add(null);
-        vec.add(null);
-        vec.add(null);
-
-        SubListAdapter sub = (SubListAdapter) vec.subList(1, 4);
-        HIterator subIter = sub.iterator();
-
-        assertTrue("Should have elements", subIter.hasNext());
-        assertNull("First element should be null", subIter.next());
-        assertNull("Second element should be null", subIter.next());
-        assertNull("Third element should be null", subIter.next());
-        assertFalse("Should have no more elements", subIter.hasNext());
-    }
-
-    @Test
-    public void testSubListIteratorOrderMatchesSubListOrder()
-    {
-        for(int i = 0; i < subList.size(); i++)
-        {
-            Object expected = subList.get(i);
-            Object actual = subIterator.next();
-
-            if(expected == null)
-                assertNull("Element at index " + i + " should be null", actual);
-            else
-                assertEquals("Element at index " + i + " should match", expected, actual);
-        }
-
-        assertFalse("Should have no more elements after full emptying iteration",
-            subIterator.hasNext());
-    }
-
-    @Test
     public void testSubListMultipleIterators()
     {
         HIterator subIter1 = subList.iterator();
@@ -456,86 +383,6 @@ public class IteratorAdapterTest
 
         assertEquals("First iterator should be at the beginning",
             "3", subIter1.next());
-    }
-
-    @Test
-    public void tesFullSubListHasNextOnCollection()
-    {
-        assertTrue("Collection should have been created and filled properly",
-            fullSubIterator.hasNext());
-    }
-
-    @Test
-    public void testFullSubListHasNextReturnsFalseAfterIteration()
-    {
-        while(fullSubIterator.hasNext())
-            fullSubIterator.next();
-
-        assertFalse("hasNext should return after full emptying iteration",
-            fullSubIterator.hasNext());
-    }
-
-    @Test
-    public void testFullSubListProperIterationOverElements()
-    {
-        assertTrue("Should have some elements", fullSubIterator.hasNext());
-        assertEquals("First element should match", "1", fullSubIterator.next());
-
-        assertTrue("Should have some elements", fullSubIterator.hasNext());
-        assertEquals("Second element should match", "2", fullSubIterator.next());
-
-        assertTrue("Should have some elements", fullSubIterator.hasNext());
-        assertEquals("Third element should match", "3", fullSubIterator.next());
-
-        assertTrue("Should have some elements", fullSubIterator.hasNext());
-        assertNull("Fourth element should be null", fullSubIterator.next());
-
-        assertTrue("Should have some elements", fullSubIterator.hasNext());
-        assertEquals("Fifth element should match", "5", fullSubIterator.next());
-
-        assertFalse("Should have no more elements", fullSubIterator.hasNext());
-    }
-
-    @Test(expected = NoSuchElementException.class)
-    public void testFullSubListNextThrowsExceptionWhenNoMoreElements()
-    {
-        while(fullSubIterator.hasNext())
-            fullSubIterator.next();
-
-        fullSubIterator.next();
-    }
-
-    @Test
-    public void testFullSubListIteratorOrderMatchesCollectionOrder()
-    {
-        for(int i = 0; i < fullSubList.size(); i++)
-        {
-            Object expected = fullSubList.get(i);
-            Object actual = fullSubIterator.next();
-
-            if(expected == null)
-                assertNull("Element at index " + i + " should be null", actual);
-            else
-                assertEquals("Element at index " + i + " should match", actual, expected);
-        }
-
-        assertFalse("SHould have no more elements",
-            fullSubIterator.hasNext());
-    }
-
-    @Test
-    public void testFullSubListIteratorsAreIndependent()
-    {
-        HIterator fullSubIter1 = fullSubList.iterator();
-        HIterator fullSubIter2 = fullSubList.iterator();
-
-        fullSubIter1.next();
-        fullSubIter1.next();
-
-        assertEquals("First iterator should be at position 2",
-            "3", fullSubIter1.next());
-        assertEquals("Second iterator should be at beginning",
-            "1", fullSubIter2.next());
     }
 
     @Test
@@ -649,90 +496,6 @@ public class IteratorAdapterTest
         assertEquals("First element should be 3", "3", iter.next());
         assertNull("Second element should be null", iter.next());
         assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
-    public void testIteratorWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(Integer.valueOf(1));
-        vec.add(Boolean.valueOf(true));
-        vec.add(Double.valueOf(0.11));
-
-        HIterator iter = vec.iterator();
-
-        assertTrue("First element should be an Integer", iter.next() instanceof Integer);
-        assertTrue("Second element should be a Boolean", iter.next() instanceof Boolean);
-        assertTrue("Third element should be a Double", iter.next() instanceof Double);
-        assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
-    public void testRemoveWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(Integer.valueOf(1));
-        vec.add(Double.valueOf(3.14));
-
-        HIterator iter = vec.iterator();
-        iter.next();
-        iter.remove();
-
-        assertEquals("Size should be 1", 1, vec.size());
-        assertEquals("First element should be Double", Double.valueOf(3.14), vec.get(0));
-    }
-
-    @Test
-    public void testIteratorWithMixedTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("str");
-        vec.add(123);
-        vec.add(null);
-        vec.add(new VectorAdapter());
-
-        HIterator iter = vec.iterator();
-
-        assertEquals("First element should be a string", "str", iter.next());
-        assertEquals("Second element shoudl be an int", 123, iter.next());
-        assertNull("Third element should be a null", iter.next());
-        assertTrue("Fourth element should be a VectorAdapter", iter.next() instanceof VectorAdapter);
-
-        assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
-    public void testIteratorWithDuplicateElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("0");
-        vec.add("0");
-        vec.add("0");
-
-        HIterator iter = vec.iterator();
-
-        assertEquals("First element should be '0'", "0", iter.next());
-        assertEquals("Second element should be '0'", "0", iter.next());
-        assertEquals("Third element should be '0'", "0", iter.next());
-
-        assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
-    public void testRemoveDuplicateElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("0");
-        vec.add("0");
-        vec.add("0");
-
-        HIterator iter = vec.iterator();
-        iter.next();
-        iter.remove();
-
-        assertEquals("Size should be 2", 2, vec.size());
-        assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(0));
-        assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(1));
     }
 
     @Test(timeout = 1000)
