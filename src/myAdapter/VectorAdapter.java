@@ -47,7 +47,7 @@ public class VectorAdapter implements HList
         addAll(c);
     }
 
-    public void copyInto(Object[] anArray)
+    public synchronized void copyInto(Object[] anArray)
     {
         if(anArray == null)
             throw new NullPointerException();
@@ -63,12 +63,12 @@ public class VectorAdapter implements HList
         vec.trimToSize();
     }
 
-    public void ensureCapacity(int minCapacity)
+    public synchronized void ensureCapacity(int minCapacity)
     {
         vec.ensureCapacity(minCapacity);
     }
 
-    public void setSize(int newSize)
+    public synchronized void setSize(int newSize)
     {
         if(newSize < 0)
             throw new ArrayIndexOutOfBoundsException();
@@ -76,17 +76,17 @@ public class VectorAdapter implements HList
         vec.setSize(newSize);
     }
 
-    public int capacity()
+    public synchronized int capacity()
     {
         return vec.capacity();
     }
 
-    public int size()
+    public synchronized int size()
     {
         return vec.size();
     }
 
-    public boolean isEmpty()
+    public synchronized boolean isEmpty()
     {
         return size() == 0;
     }
@@ -106,7 +106,7 @@ public class VectorAdapter implements HList
         return indexOf(elem, 0);
     }
 
-    public int indexOf(Object elem, int index)
+    public synchronized int indexOf(Object elem, int index)
     {
         if(index < 0)
             throw new IndexOutOfBoundsException();
@@ -117,13 +117,13 @@ public class VectorAdapter implements HList
         if(elem == null)
         {
             for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
-                if(elementAt(i) == null)
+                if(elementAt(i - beginIndex()) == null)
                     return i - beginIndex();
         }
         else
         {
             for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
-                if(elem.equals(elementAt(i)))
+                if(elem.equals(elementAt(i - beginIndex())))
                     return i - beginIndex();
         }
 
@@ -135,7 +135,7 @@ public class VectorAdapter implements HList
         return lastIndexOf(elem, size() - 1);
     }
 
-    public int lastIndexOf(Object elem, int index)
+    public synchronized int lastIndexOf(Object elem, int index)
     {
         if(index >= size())
             throw new IndexOutOfBoundsException();
@@ -159,7 +159,7 @@ public class VectorAdapter implements HList
         return -1;
     }
 
-    public Object elementAt(int index)
+    public synchronized Object elementAt(int index)
     {
         if (index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
@@ -167,7 +167,7 @@ public class VectorAdapter implements HList
         return vec.elementAt(beginIndex() + index);
     }
 
-    public Object firstElement()
+    public synchronized Object firstElement()
     {
         if(isEmpty())
             throw new NoSuchElementException();
@@ -175,7 +175,7 @@ public class VectorAdapter implements HList
         return vec.elementAt(beginIndex());
     }
 
-    public Object lastElement()
+    public synchronized Object lastElement()
     {
         if(isEmpty())
             throw new NoSuchElementException();
@@ -183,7 +183,7 @@ public class VectorAdapter implements HList
         return vec.elementAt(beginIndex() + size() - 1);
     }
 
-    public void setElementAt(Object obj, int index)
+    public synchronized void setElementAt(Object obj, int index)
     {
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
@@ -191,7 +191,7 @@ public class VectorAdapter implements HList
         vec.setElementAt(obj, beginIndex() + index);
     }
 
-    public void removeElementAt(int index)
+    public synchronized void removeElementAt(int index)
     {
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
@@ -202,7 +202,7 @@ public class VectorAdapter implements HList
             setSize(size() - 1);
     }
 
-    public void insertElementAt(Object obj, int index)
+    public synchronized void insertElementAt(Object obj, int index)
     {
         if(index < 0 || index > size())
             throw new ArrayIndexOutOfBoundsException();
@@ -213,12 +213,12 @@ public class VectorAdapter implements HList
             setSize(size() + 1);
     }
 
-    public void addElement(Object obj)
+    public synchronized void addElement(Object obj)
     {
         insertElementAt(obj, beginIndex() + size());
     }
 
-    public boolean removeElement(Object obj)
+    public synchronized boolean removeElement(Object obj)
     {
         int index = indexOf(obj);
 
@@ -229,7 +229,7 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public void removeAllElements()
+    public synchronized void removeAllElements()
     {
         for(int i = size() - 1; i >= 0; i--)
             removeElementAt(beginIndex() + i);
@@ -237,7 +237,7 @@ public class VectorAdapter implements HList
         setSize(0);
     }
 
-    public Object clone()
+    public synchronized Object clone()
     {
         VectorAdapter cloned = new VectorAdapter(size());
 
@@ -249,14 +249,14 @@ public class VectorAdapter implements HList
         return cloned;
     }
 
-    public Object[] toArray()
+    public synchronized Object[] toArray()
     {
         Object[] arr = new Object[size()];
         System.arraycopy(vec.toArray(), beginIndex(), arr, 0, size());
         return arr;
     }
 
-    public Object[] toArray(Object[] a)
+    public synchronized Object[] toArray(Object[] a)
     {
         if(a == null)
             throw new NullPointerException();
@@ -272,12 +272,12 @@ public class VectorAdapter implements HList
         return a;
     }
 
-    public Object get(int index)
+    public synchronized Object get(int index)
     {
         return elementAt(index);
     }
 
-    public Object set(int index, Object element)
+    public synchronized Object set(int index, Object element)
     {
         Object obj = elementAt(index);
         setElementAt(element, index);
@@ -285,7 +285,7 @@ public class VectorAdapter implements HList
         return obj;
     }
 
-    public boolean add(Object o)
+    public synchronized boolean add(Object o)
     {
         addElement(o);
         return true;
@@ -301,7 +301,7 @@ public class VectorAdapter implements HList
         insertElementAt(element, index);
     }
 
-    public Object remove(int index)
+    public synchronized Object remove(int index)
     {
         Object removed = elementAt(index);
         removeElementAt(index);
@@ -314,7 +314,7 @@ public class VectorAdapter implements HList
         removeAllElements();
     }
 
-    public boolean containsAll(HCollection c)
+    public synchronized boolean containsAll(HCollection c)
     {
         if(c == null)
             throw new NullPointerException();
@@ -328,12 +328,12 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public boolean addAll(HCollection c)
+    public synchronized boolean addAll(HCollection c)
     {
         return addAll(size(), c);
     }
 
-    public boolean removeAll(HCollection c)
+    public synchronized boolean removeAll(HCollection c)
     {
         if(c == null)
             throw new NullPointerException();
@@ -356,7 +356,7 @@ public class VectorAdapter implements HList
         return changed;
     }
 
-    public boolean retainAll(HCollection c)
+    public synchronized boolean retainAll(HCollection c)
     {
         if(c == null)
             throw new NullPointerException();
@@ -376,7 +376,7 @@ public class VectorAdapter implements HList
         return changed;
     }
 
-    public boolean addAll(int index, HCollection c)
+    public synchronized boolean addAll(int index, HCollection c)
     {
         if(index < 0 || index > size())
             throw new ArrayIndexOutOfBoundsException();
@@ -392,7 +392,7 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public boolean equals(Object o)
+    public synchronized boolean equals(Object o)
     {
         if(o == this) return true;
 
@@ -415,12 +415,12 @@ public class VectorAdapter implements HList
         return true;
     }
 
-    public int hashCode()
+    public synchronized int hashCode()
     {
         return vec.hashCode();
     }
 
-    public String toString()
+    public synchronized String toString()
     {
         return vec.toString();
     }

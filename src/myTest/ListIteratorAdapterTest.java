@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
  * CONFRONTA CON ITERATOR E ENUMERATION
  * DA ESTENDERE
  * RICONTROLLA COERENZA
+ * NOMI METODI
  * */
 
 public class ListIteratorAdapterTest

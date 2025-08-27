@@ -39,7 +39,7 @@ public class IteratorAdapter implements HIterator
         return cursor < end;
     }
 
-    public Object next()
+    public synchronized Object next()
     {
         if(!hasNext())
             throw new NoSuchElementException();
@@ -51,7 +51,7 @@ public class IteratorAdapter implements HIterator
         return obj;
     }
 
-    public void remove()
+    public synchronized void remove()
     {
         if(lastRet == -1)
             throw new IllegalStateException();

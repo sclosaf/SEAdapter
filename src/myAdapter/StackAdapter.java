@@ -15,7 +15,7 @@ public class StackAdapter extends VectorAdapter
         return item;
     }
 
-    public Object pop()
+    public synchronized Object pop()
     {
         if(isEmpty())
             throw new EmptyStackException();
@@ -23,7 +23,7 @@ public class StackAdapter extends VectorAdapter
         return remove(size() - 1);
     }
 
-    public Object peek()
+    public synchronized Object peek()
     {
         if(isEmpty())
             throw new EmptyStackException();
@@ -36,7 +36,7 @@ public class StackAdapter extends VectorAdapter
         return size() == 0;
     }
 
-    public int search(Object o)
+    public synchronized int search(Object o)
     {
         int index = lastIndexOf(o);
 

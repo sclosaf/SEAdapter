@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
  * CONTROLLA DOCUMENTAZIONE
  * DA ESTENDERE
  * RICONTROLLA COERENZA
+ * NOMI METODI
  * */
 public class VectorAdapterTest
 {

@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
  * CONFRONTA CON VECTOR
  * DA ESTENDERE
  * RICONTROLLA COERENZA
+ * NOMI METODI
  * */
 public class SubListAdapterTest
 {

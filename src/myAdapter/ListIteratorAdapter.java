@@ -16,7 +16,7 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
         return cursor > start;
     }
 
-    public Object previous()
+    public synchronized Object previous()
     {
         if(!hasPrevious())
             throw new NoSuchElementException();
@@ -28,17 +28,17 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
         return obj;
     }
 
-    public int nextIndex()
+    public synchronized int nextIndex()
     {
         return cursor - start;
     }
 
-    public int previousIndex()
+    public synchronized int previousIndex()
     {
         return cursor - start - 1;
     }
 
-    public void set(Object o)
+    public synchronized void set(Object o)
     {
         if(lastRet == -1)
             throw new IllegalStateException();
@@ -46,7 +46,7 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
         vect.setElementAt(o, lastRet - vect.beginIndex());
     }
 
-    public void add(Object o)
+    public synchronized void add(Object o)
     {
         vect.insertElementAt(o, cursor - vect.beginIndex());
 

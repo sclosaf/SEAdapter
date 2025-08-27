@@ -11,6 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /*
+ * NOMI METODI
  * RICONTROLLARE COERENZA
  * */
 
@@ -324,7 +325,7 @@ public class EnumerationAdapterTest
         assertEquals("Second enumeration should still be at the beginning",
             "2", subEnumer2.nextElement());
 
-        assertEquals("First enumeration should be at iterated position",
+        assertEquals("First enumeration should be at the beginning",
             "3", subEnumer1.nextElement());
     }
 
@@ -349,19 +350,19 @@ public class EnumerationAdapterTest
     public void testFullSubListProperIterationOverElements()
     {
 
-        assertTrue("Should have elements", fullSubEnumeration.hasMoreElements());
+        assertTrue("Should have some elements", fullSubEnumeration.hasMoreElements());
         assertEquals("First element should match", "1", fullSubEnumeration.nextElement());
 
-        assertTrue("Should have elements", fullSubEnumeration.hasMoreElements());
+        assertTrue("Should have some elements", fullSubEnumeration.hasMoreElements());
         assertEquals("Second element should match", "2", fullSubEnumeration.nextElement());
 
-        assertTrue("Should have elements", fullSubEnumeration.hasMoreElements());
+        assertTrue("Should have some elements", fullSubEnumeration.hasMoreElements());
         assertEquals("Third element should match", "3", fullSubEnumeration.nextElement());
 
-        assertTrue("Should have elements", fullSubEnumeration.hasMoreElements());
+        assertTrue("Should have some elements", fullSubEnumeration.hasMoreElements());
         assertNull("Fourth element should be null", fullSubEnumeration.nextElement());
 
-        assertTrue("Should have elements", fullSubEnumeration.hasMoreElements());
+        assertTrue("Should have some elements", fullSubEnumeration.hasMoreElements());
         assertEquals("Fifth element should match", "5", fullSubEnumeration.nextElement());
 
         assertFalse("Should have no more elements", fullSubEnumeration.hasMoreElements());
@@ -405,7 +406,7 @@ public class EnumerationAdapterTest
 
         assertEquals("First enumeration should be at position 2",
             "3", fullSubEnumer1.nextElement());
-        assertEquals("Second enumeration should be at beginning",
+        assertEquals("Second enumeration should be at the beginning",
             "1", fullSubEnumer2.nextElement());
     }
 
@@ -491,27 +492,29 @@ public class EnumerationAdapterTest
 
         HEnumeration enumer = vec.elements();
 
-        assertTrue("First element should be a Integer", enumer.nextElement() instanceof Integer);
+        assertTrue("First element should be an Integer", enumer.nextElement() instanceof Integer);
         assertTrue("Second element should be a Boolean", enumer.nextElement() instanceof Boolean);
         assertTrue("Third element should be a Double", enumer.nextElement() instanceof Double);
+
         assertFalse("Should have no more elements", enumer.hasMoreElements());
     }
 
     @Test
-    public void testEnumerationWithMixedElementTypes()
+    public void testEnumerationWithMixedTypes()
     {
-        VectorAdapter mixedVec = new VectorAdapter();
-        mixedVec.add("str");
-        mixedVec.add(123);
-        mixedVec.add(null);
-        mixedVec.add(new VectorAdapter());
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("str");
+        vec.add(123);
+        vec.add(null);
+        vec.add(new VectorAdapter());
 
-        HEnumeration enumer = mixedVec.elements();
+        HEnumeration enumer = vec.elements();
 
-        assertTrue("First element should be a string", enumer.nextElement() instanceof String);
+        assertEquals("First element should be a string", "str", enumer.nextElement());
         assertEquals("Second element should be an int", 123, enumer.nextElement());
         assertNull("Third element should be null", enumer.nextElement());
         assertTrue("Fourth element should be a VectorAdapter", enumer.nextElement() instanceof VectorAdapter);
+
         assertFalse("Should have no more elements", enumer.hasMoreElements());
     }
 
@@ -524,9 +527,11 @@ public class EnumerationAdapterTest
         vec.add("0");
 
         HEnumeration enumer = vec.elements();
+
         assertEquals("First element should be '0'", "0", enumer.nextElement());
         assertEquals("Second element should be '0'", "0", enumer.nextElement());
         assertEquals("Third element should be '0'", "0", enumer.nextElement());
+
         assertFalse("Should have no more elements", enumer.hasMoreElements());
     }
 

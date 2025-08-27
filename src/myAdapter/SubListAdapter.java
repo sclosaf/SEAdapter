@@ -28,7 +28,7 @@ public class SubListAdapter extends VectorAdapter
         this.subListSize = toIndex - fromIndex;
     }
 
-    public void setSize(int newSize)
+    public synchronized void setSize(int newSize)
     {
         if(newSize < 0)
             throw new ArrayIndexOutOfBoundsException();
@@ -36,12 +36,12 @@ public class SubListAdapter extends VectorAdapter
         subListSize = newSize;
     }
 
-    public int size()
+    public synchronized int size()
     {
         return subListSize;
     }
 
-    public Object clone()
+    public synchronized Object clone()
     {
         SubListAdapter cloned = new SubListAdapter(vec, offset, offset + size());
 

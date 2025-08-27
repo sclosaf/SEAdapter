@@ -38,7 +38,7 @@ public class EnumerationAdapter implements HEnumeration
         return cursor < end;
     }
 
-    public Object nextElement()
+    public synchronized Object nextElement()
     {
         if(!hasMoreElements())
             throw new NoSuchElementException();
