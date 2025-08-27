@@ -14,10 +14,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /*
- * RIVEDERE BENE
- * CONTROLLA DOCUMENTAZIONE
- * CONFRONTA CON ENUMERATION
- * DA ESTENDERE
  * NOMI METODI
  * RICONTROLLA COERENZA
  * */
