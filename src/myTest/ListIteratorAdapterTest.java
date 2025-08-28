@@ -14,14 +14,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-// VEDERE TEST AI, tmp, ESPANDERE E AGGIUNGERE TEST SU METODI IN PIù
-//UNICI PER SUBLIST
-
 /*
- * RIVEDERE BENE
  * CONTROLLA DOCUMENTAZIONE
- * CONFRONTA CON ITERATOR E ENUMERATION
- * DA ESTENDERE
  * RICONTROLLA COERENZA
  * NOMI METODI
  * */
@@ -48,6 +42,14 @@ public class ListIteratorAdapterTest
 
         subList = (SubListAdapter) vector.subList(1, 4);
         subListLIterator = subList.listIterator();
+    }
+
+    @Test
+    public void testNextIndexCorrectElements()
+    {
+        while(listIterator.hasNext())
+            assertEquals("Element should match corresponding index at " + listIterator.nextIndex(),
+                vector.get(listIterator.nextIndex()), listIterator.next());
     }
 
     @Test
@@ -109,6 +111,17 @@ public class ListIteratorAdapterTest
         listIterator.next();
         listIterator.set("6");
         assertEquals("Should not update after set", 1, listIterator.nextIndex());
+    }
+
+    @Test
+    public void testPreviousIndexCorrectElements()
+    {
+        while(listIterator.hasNext())
+            listIterator.next();
+
+        while(listIterator.hasPrevious())
+            assertEquals("Element should match corresponding index at " + listIterator.previousIndex(),
+                vector.get(listIterator.previousIndex()), listIterator.previous());
     }
 
     @Test
@@ -1235,6 +1248,14 @@ public class ListIteratorAdapterTest
     }
 
     @Test
+    public void testSubListNextIndexCorrectElements()
+    {
+        while(subListLIterator.hasNext())
+            assertEquals("Element should match corresponding at " + subListLIterator.nextIndex(),
+                subList.get(subListLIterator.nextIndex()), subListLIterator.next());
+    }
+
+    @Test
     public void testSubListNextIndexAtBeginning()
     {
         assertEquals("Should be 0 at beginning", 0, subListLIterator.nextIndex());
@@ -1293,6 +1314,17 @@ public class ListIteratorAdapterTest
         subListLIterator.next();
         subListLIterator.set("6");
         assertEquals("Should not update after set", 1, subListLIterator.nextIndex());
+    }
+
+    @Test
+    public void testSubListPreviousIndexCorrectElements()
+    {
+        while(subListLIterator.hasNext())
+            subListLIterator.next();
+
+        while(subListLIterator.hasPrevious())
+            assertEquals("Element should match corresponding index at " + subListLIterator.previousIndex(),
+                subList.get(subListLIterator.previousIndex()), subListLIterator.previous());
     }
 
     @Test
