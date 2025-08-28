@@ -129,6 +129,23 @@ public class EnumerationAdapterTest
     }
 
     @Test
+    public void testEnumerationWithAllNullElements()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add(null);
+        vec.add(null);
+        vec.add(null);
+
+        HEnumeration enumer = vec.elements();
+
+        assertTrue("Should manage null elements", enumer.hasMoreElements());
+        assertNull("First element should be null", enumer.nextElement());
+        assertNull("Second element should be null", enumer.nextElement());
+        assertNull("Third element should be null", enumer.nextElement());
+        assertFalse("Should have no more elements", enumer.hasMoreElements());
+    }
+
+    @Test
     public void testMultipleEnumerationsAreIndependent()
     {
         HEnumeration enumer1 = vector.elements();
@@ -229,6 +246,25 @@ public class EnumerationAdapterTest
     }
 
     @Test
+    public void testSubListEnumerationWithAllNullElements()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add(null);
+        vec.add(null);
+        vec.add(null);
+        vec.add(null);
+
+        SubListAdapter sub = (SubListAdapter) vec.subList(1, 4);
+        HEnumeration subEnumer = sub.elements();
+
+        assertTrue("Should have elements", subEnumer.hasMoreElements());
+        assertNull("First element should be null", subEnumer.nextElement());
+        assertNull("Second element should be null", subEnumer.nextElement());
+        assertNull("Third element should be null", subEnumer.nextElement());
+        assertFalse("Should have no more elements", subEnumer.hasMoreElements());
+    }
+
+    @Test
     public void testMultipleSubListEnumerationsAreIndependent()
     {
         HEnumeration subEnumer1 = subList.elements();
@@ -312,6 +348,59 @@ public class EnumerationAdapterTest
 
         assertEquals("First element should be 3", "3", enumer.nextElement());
         assertNull("Second element should be null", enumer.nextElement());
+        assertFalse("Should have no more elements", enumer.hasMoreElements());
+    }
+
+    @Test
+    public void testEnumerationWithPrimitiveTypes()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add(Integer.valueOf(1));
+        vec.add(Boolean.valueOf(true));
+        vec.add(Double.valueOf(0.11));
+
+        HEnumeration enumer = vec.elements();
+
+        assertTrue("First element should be an Integer", enumer.nextElement() instanceof Integer);
+        assertTrue("Second element should be a Boolean", enumer.nextElement() instanceof Boolean);
+        assertTrue("Third element should be a Double", enumer.nextElement() instanceof Double);
+
+        assertFalse("Should have no more elements", enumer.hasMoreElements());
+    }
+
+    @Test
+    public void testEnumerationWithMixedTypes()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("str");
+        vec.add(123);
+        vec.add(null);
+        vec.add(new VectorAdapter());
+
+        HEnumeration enumer = vec.elements();
+
+        assertEquals("First element should be a string", "str", enumer.nextElement());
+        assertEquals("Second element should be an int", 123, enumer.nextElement());
+        assertNull("Third element should be null", enumer.nextElement());
+        assertTrue("Fourth element should be a VectorAdapter", enumer.nextElement() instanceof VectorAdapter);
+
+        assertFalse("Should have no more elements", enumer.hasMoreElements());
+    }
+
+    @Test
+    public void testEnumerationWithDuplicateElements()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("0");
+        vec.add("0");
+        vec.add("0");
+
+        HEnumeration enumer = vec.elements();
+
+        assertEquals("First element should be '0'", "0", enumer.nextElement());
+        assertEquals("Second element should be '0'", "0", enumer.nextElement());
+        assertEquals("Third element should be '0'", "0", enumer.nextElement());
+
         assertFalse("Should have no more elements", enumer.hasMoreElements());
     }
 
