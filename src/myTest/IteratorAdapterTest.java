@@ -10,6 +10,7 @@ import myException.IllegalStateException;
 import java.util.NoSuchElementException;
 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -40,6 +41,15 @@ public class IteratorAdapterTest
 
         subList = (SubListAdapter) vector.subList(1, 4);
         subIterator = subList.iterator();
+    }
+
+    @After
+    public void tearDown()
+    {
+        vector = null;
+        subList = null;
+        iterator = null;
+        subIterator = null;
     }
 
     @Test

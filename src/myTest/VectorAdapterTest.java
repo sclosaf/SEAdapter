@@ -1,6 +1,11 @@
 package myTest;
 
+import myAdapter.VectorAdapter;
+import myAdapter.HCollection;
+
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 import static org.junit.Assert.*;
 
 /*
@@ -12,9 +17,5 @@ import static org.junit.Assert.*;
  * */
 public class VectorAdapterTest
 {
-    @Test
-    public void testPlaceholder()
-    {
-        assertTrue("Placeholder test", true);
-    }
+    private VectorAdapter
 }

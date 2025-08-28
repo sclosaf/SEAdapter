@@ -7,6 +7,7 @@ import myAdapter.HEnumeration;
 import java.util.NoSuchElementException;
 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -37,6 +38,15 @@ public class EnumerationAdapterTest
 
         subList = (SubListAdapter) vector.subList(1, 4);
         subEnumeration = subList.elements();
+    }
+
+    @After
+    public void tearDown()
+    {
+        vector = null;
+        subList = null;
+        enumeration = null;
+        subEnumeration = null;
     }
 
     @Test
