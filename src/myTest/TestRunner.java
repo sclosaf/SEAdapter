@@ -49,9 +49,10 @@ public class TestRunner
 
         System.out.println(INFO_MARKER + " Starting test suite execution...\n");
 
+        long startTime = System.currentTimeMillis();
+
         Result testResults = JUnitCore.runClasses(TestRunner.class);
 
-        long startTime = System.currentTimeMillis();
         long actualExecutionTime = System.currentTimeMillis() - startTime;
 
         System.out.println("\n" + INFO_MARKER + " Execution completed!");
