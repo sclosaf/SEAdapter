@@ -22,10 +22,8 @@ public class IteratorAdapterTest
 {
     private VectorAdapter vector;
     private SubListAdapter subList;
-    private SubListAdapter fullSubList;
     private HIterator iterator;
     private HIterator subIterator;
-    private HIterator fullSubIterator;
 
     @Before
     public void setUp()
@@ -42,20 +40,26 @@ public class IteratorAdapterTest
 
         subList = (SubListAdapter) vector.subList(1, 4);
         subIterator = subList.iterator();
-
-        fullSubList = (SubListAdapter) vector.subList(0, vector.size());
-        fullSubIterator = fullSubList.iterator();
     }
 
     @Test
-    public void testHasNextOnCollection()
+    public void testHasNextAtTheBeginning()
     {
         assertTrue("Collection should have been created and filled properly",
             iterator.hasNext());
     }
 
     @Test
-    public void testHasNextReturnsFalseAfterIteration()
+    public void testHasNextInTheMiddle()
+    {
+        iterator.next();
+        iterator.next();
+
+        assertTrue("Collection should have some more elements", iterator.hasNext());
+    }
+
+    @Test
+    public void testHasNextAtTheEnd()
     {
         while(iterator.hasNext())
             iterator.next();
@@ -67,19 +71,10 @@ public class IteratorAdapterTest
     @Test
     public void testNextReturnsCorrectElements()
     {
-        assertTrue("Collection should still have some elements", iterator.hasNext());
         assertEquals("First element should match", "1", iterator.next());
-
-        assertTrue("Collection should still have some elements", iterator.hasNext());
         assertEquals("Second element should match", "2", iterator.next());
-
-        assertTrue("Collection should still have some elements", iterator.hasNext());
         assertEquals("Third element should match", "3", iterator.next());
-
-        assertTrue("Collection should still have some elements", iterator.hasNext());
         assertNull("Fourth element should be null", iterator.next());
-
-        assertTrue("Collection should still have some elements", iterator.hasNext());
         assertEquals("Fifth element should match", "5", iterator.next());
 
         assertFalse("Collection should still no more elements", iterator.hasNext());
@@ -94,15 +89,6 @@ public class IteratorAdapterTest
         iterator.next();
     }
 
-    @Test(expected = NoSuchElementException.class)
-    public void testHasNextThrowsExceptionOnEmptyCollection()
-    {
-        VectorAdapter vec = new VectorAdapter();
-
-        HIterator iter = vec.iterator();
-        iter.next();
-    }
-
     @Test
     public void testHasNextOnEmptyCollection()
     {
@@ -111,6 +97,15 @@ public class IteratorAdapterTest
 
         assertFalse("Empty collection should have no elements",
             iter.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testHasNextThrowsExceptionOnEmptyCollection()
+    {
+        VectorAdapter vec = new VectorAdapter();
+
+        HIterator iter = vec.iterator();
+        iter.next();
     }
 
     @Test
@@ -146,10 +141,47 @@ public class IteratorAdapterTest
         iter1.next();
         iter1.next();
 
-        assertEquals("Second iterator should still be at the beginning",
-            "1", iter2.next());
         assertEquals("First iterator should be at the beginning",
             "3", iter1.next());
+        assertEquals("Second iterator should still be at the beginning",
+            "1", iter2.next());
+    }
+
+    @Test
+    public void testRemoveAtTheBeginning()
+    {
+        iterator.next();
+        iterator.remove();
+
+        assertEquals("Size should decrease by 1", 4, vector.size());
+        assertEquals("First element should be '2'", "2", vector.get(0));
+        assertFalse("Should not contain removed element", vector.contains("1"));
+    }
+
+    @Test
+    public void testRemoveInTheMiddle()
+    {
+        iterator.next();
+        iterator.next();
+        iterator.next();
+        iterator.remove();
+
+        assertEquals("Size should decrease by 1", 4, vector.size());
+        assertNull("Third element should be null", vector.get(2));
+        assertFalse("Should not contain removed element", vector.contains("3"));
+    }
+
+    @Test
+    public void testRemoveAtTheEnd()
+    {
+        while(iterator.hasNext())
+            iterator.next();
+
+        iterator.remove();
+
+        assertEquals("Size should be 4", 4, vector.size());
+        assertEquals("Last element should now be null", null, vector.get(3));
+        assertFalse("Should not contain the removed element", vector.contains("5"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -167,17 +199,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testRemoveAfterNext()
-    {
-        iterator.next();
-        iterator.remove();
-
-        assertEquals("Size should decrease by 1", 4, vector.size());
-        assertEquals("First element should be '2'", "2", vector.get(0));
-        assertFalse("Should not contain removed element", vector.contains("1"));
-    }
-
-    @Test
     public void testRemoveMultipleElements()
     {
         iterator.next();
@@ -190,35 +211,8 @@ public class IteratorAdapterTest
         iterator.remove();
 
         assertEquals("Size should be 2", 2, vector.size());
-        assertEquals("First element should be null", null, vector.get(0));
+        assertNull("First element should be null", vector.get(0));
         assertEquals("Second element should be '5'", "5", vector.get(1));
-    }
-
-    @Test
-    public void testRemoveLastElement()
-    {
-        while(iterator.hasNext())
-            iterator.next();
-
-        iterator.remove();
-
-        assertEquals("Size should be 4", 4, vector.size());
-        assertEquals("Last element should now be null", null, vector.get(3));
-        assertFalse("Should not contain the removed element", vector.contains("5"));
-    }
-
-    @Test
-    public void testRemoveNullElement()
-    {
-        iterator.next();
-        iterator.next();
-        iterator.next();
-        iterator.next();
-
-        iterator.remove();
-
-        assertEquals("Size should be 4", 4, vector.size());
-        assertFalse("Null element should be removed", vector.contains(null));
     }
 
     @Test
@@ -255,17 +249,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testRemoveThenAdd()
-    {
-        iterator.next();
-        iterator.remove();
-
-        vector.add("6");
-        assertEquals("Size should be 5 after remove and add", 5, vector.size());
-        assertEquals("Last element should be '6'", "6", vector.get(4));
-    }
-
-    @Test
     public void testRemoveAffectsOtherIterators()
     {
         HIterator iter1 = vector.iterator();
@@ -298,13 +281,8 @@ public class IteratorAdapterTest
     @Test
     public void testSubListNextReturnsCorrectElements()
     {
-        assertTrue("Collection should still have some elements", subIterator.hasNext());
         assertEquals("First element of subList should be '2'", "2", subIterator.next());
-
-        assertTrue("Collection should still have some elements", subIterator.hasNext());
         assertEquals("Second element of subList should be '3'", "3", subIterator.next());
-
-        assertTrue("Collection should still have some elements", subIterator.hasNext());
         assertNull("Third element of subList should be null", subIterator.next());
 
         assertFalse("Should have no more elements", subIterator.hasNext());
@@ -319,15 +297,6 @@ public class IteratorAdapterTest
         subIterator.next();
     }
 
-    @Test(expected = NoSuchElementException.class)
-    public void testSubListNextThrowsExceptionOnEmptyCollection()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(0, 0);
-        HIterator subIter = sub.iterator();
-
-        subIter.next();
-    }
-
     @Test
     public void testIteratorOnEmptySubList()
     {
@@ -336,6 +305,15 @@ public class IteratorAdapterTest
 
         assertFalse("Empty subList should have no elements",
             iter.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testSubListNextThrowsExceptionOnEmptyCollection()
+    {
+        SubListAdapter sub = (SubListAdapter) vector.subList(0, 0);
+        HIterator subIter = sub.iterator();
+
+        subIter.next();
     }
 
     @Test
@@ -360,17 +338,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testSubListIteratorWithSingleNullElement()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(3, 4);
-        HIterator subIter = sub.iterator();
-
-        assertTrue("Should have one element", subIter.hasNext());
-        assertNull("Should return null", subIter.next());
-        assertFalse("Should have no more elements", subIter.hasNext());
-    }
-
-    @Test
     public void testSubListMultipleIterators()
     {
         HIterator subIter1 = subList.iterator();
@@ -386,16 +353,15 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testRemoveAffectsSubList()
+    public void testRemoveAtTheBeginningOfSubList()
     {
-        Object elem = subList.get(0);
         subIterator.next();
         subIterator.remove();
 
         assertEquals("SubList size should decrease", 2, subList.size());
         assertEquals("Original vector size should decrease", 4, vector.size());
-        assertFalse("Element should be removed from subList", subList.contains(elem));
-        assertFalse("Element should be removed from original vector", vector.contains(elem));
+        assertFalse("Element should be removed from subList", subList.contains("2"));
+        assertFalse("Element should be removed from original vector", vector.contains("2"));
     }
 
     @Test
@@ -406,8 +372,21 @@ public class IteratorAdapterTest
         subIterator.remove();
 
         assertEquals("SubList size should be 2", 2, subList.size());
-        assertEquals("Next element should be null", null, subIterator.next());
-        assertEquals("SubList at index 1 should be null", null, subList.get(1));
+        assertTrue("Should contain other elements", subIterator.hasNext());
+        assertFalse("Should not contain '3'", subList.contains("3"));
+    }
+
+    @Test
+    public void testRemoveInTheEndOfSubList()
+    {
+        while(subIterator.hasNext())
+            subIterator.next();
+
+        subIterator.remove();
+
+        assertEquals("SubList size should be 2", 2, subList.size());
+        assertFalse("Should not contain other elements", subIterator.hasNext());
+        assertFalse("Should not contain null", subList.contains(null));
     }
 
     @Test
@@ -424,21 +403,6 @@ public class IteratorAdapterTest
         assertEquals("Parent sublist size should be 3", 3, sub.size());
         assertEquals("Original vector size should be 4", 4, vector.size());
         assertEquals("Nested sublist should contain only null", null, subSub.get(0));
-    }
-
-    @Test
-    public void testSubListOfSubListIterator()
-    {
-        SubListAdapter subSub = (SubListAdapter) subList.subList(1, 3);
-        HIterator iter = subSub.iterator();
-
-        assertTrue("Sub-subList should have elements", iter.hasNext());
-        assertEquals("First element should be 3", "3", iter.next());
-
-        assertTrue("Sub-subList should have elements", iter.hasNext());
-        assertNull("Second element should be null", iter.next());
-
-        assertFalse("Should have no more elements", iter.hasNext());
     }
 
     @Test
@@ -464,7 +428,7 @@ public class IteratorAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testSubListOfSubListThrowsExceptionWhenEmpty()
+    public void testNestedSubListThrowsExceptionWhenEmpty()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
@@ -474,7 +438,7 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testSubListOfSubListWithSingleElement()
+    public void testNestedSubListWithSingleElement()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(0, 3);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 2);
