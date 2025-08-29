@@ -1362,4 +1362,657 @@ public class VectorAdapterTest
         for(int i = 0; i < 3; i++)
             assertEquals("All elements should remain '1'", "1", vector.get(i));
     }
+
+    @Test
+    public void testSetSizeIncreaseFromEmpty()
+    {
+        vector = new VectorAdapter();
+        vector.setSize(3);
+
+        assertEquals("Size should be increased to 3", 3, vector.size());
+        assertEquals("Capacity should accommodate new size", 10, vector.capacity());
+        assertNull("First element should be null", vector.get(0));
+        assertNull("Second element should be null", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+    }
+
+    @Test
+    public void testSetSizeIncreaseWithExistingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.setSize(4);
+
+        assertEquals("Size should be increased to 4", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+    }
+
+    @Test
+    public void testSetSizeDecreaseWithExistingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.setSize(2);
+
+        assertEquals("Size should be decreased to 2", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+    }
+
+    @Test
+    public void testSetSizeSameSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.setSize(3);
+
+        assertEquals("Size should remain 3", 3, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+    }
+
+    @Test
+    public void testSetSizeToZero()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.setSize(0);
+
+        assertEquals("Size should be 0", 0, vector.size());
+        assertTrue("Vector should be empty", vector.isEmpty());
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSetSizeNegative()
+    {
+        vector = new VectorAdapter();
+        vector.setSize(-1);
+    }
+
+    @Test
+    public void testSetSizeLargeIncrease()
+    {
+        vector = new VectorAdapter();
+        vector.setSize(1000);
+
+        assertEquals("Size should be increased to 1000", 1000, vector.size());
+        assertEquals("Capacity should accommodate large size", 1000, vector.capacity());
+
+        for(int i = 0; i < 1000; i++)
+            assertNull("Element " + i + " should be null", vector.get(i));
+    }
+
+    @Test
+    public void testSetSizeFromEmptyToZero()
+    {
+        vector = new VectorAdapter();
+        vector.setSize(0);
+
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should remain empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testSetSizeDecreaseThenIncrease()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        vector.setSize(3);
+        vector.setSize(7);
+
+        assertEquals("Size should be decreased to 7", 7, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+        assertNull("Fourth element should be null",  vector.get(3));
+        assertNull("Fifth element should be null", vector.get(4));
+        assertNull("Sixth element should be null", vector.get(5));
+        assertNull("Seventh element should be null", vector.get(6));
+    }
+
+    @Test
+    public void testSetSizeIncreaseThenDecrease()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.setSize(4);
+        vector.setSize(1);
+
+        assertEquals("Size should be decreased to 1", 1, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+    }
+
+    @Test
+    public void testSetSizeWithNullElements()
+    {
+
+        vector = new VectorAdapter();
+        vector.add(null);
+        vector.add(null);
+        vector.add(null);
+
+        vector.setSize(5);
+
+        assertEquals("Size should be increased to 5", 5, vector.size());
+        assertNull("First element should remain null", vector.get(0));
+        assertNull("Second element should remain null", vector.get(1));
+        assertNull("Third element should remain null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+        assertNull("Fifth element should be null", vector.get(4));
+    }
+
+    @Test
+    public void testSetSizeWithMixedElementTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("str");
+        vector.add(123);
+        vector.add(3.14);
+
+        vector.setSize(2);
+        vector.setSize(5);
+
+        assertEquals("Size should be increased to 5", 5, vector.size());
+        assertEquals("First element should remain", "str", vector.get(0));
+        assertEquals("Second element should remain", 123, vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+        assertNull("Fifth element should be null", vector.get(4));
+    }
+
+    @Test
+    public void testSetSizeCapacityGrowth()
+    {
+        vector = new VectorAdapter(2);
+        vector.setSize(10);
+
+        assertEquals("Size should be 10", 10, vector.size());
+        assertTrue("Capacity should grow to accommodate size", vector.capacity() >= 10);
+
+        for(int i = 0; i < 10; i++)
+            assertNull("Element " + i + "-th should be null", vector.get(i));
+    }
+
+    @Test
+    public void testSetSizeMultipleOperations()
+    {
+        vector = new VectorAdapter();
+
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        vector.setSize(3);
+        int sizeAfterFirst = vector.size();
+
+        vector.setSize(1);
+        int sizeAfterSecond = vector.size();
+
+        vector.setSize(5);
+        int sizeAfterThird = vector.size();
+
+        assertEquals("First setSize should set size to 3", 3, sizeAfterFirst);
+        assertEquals("Second setSize should set size to 1", 1, sizeAfterSecond);
+        assertEquals("Third setSize should set size to 5", 5, sizeAfterThird);
+
+        assertEquals("First element should be '1'", "1", vector.get(0));
+        assertNull("Second element should be null", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+        assertNull("Fifth element should be null", vector.get(4));
+    }
+
+    @Test
+    public void testSetSizeAfterAddOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.setSize(4);
+        vector.add("5");
+
+        assertEquals("Size should be 5 after add", 5, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+        assertEquals("Fifth element should be new element", "5", vector.get(4));
+    }
+
+    @Test
+    public void testSetSizeAfterRemoveOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove(1);
+        vector.setSize(2);
+
+        assertEquals("Size should be 2", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should be '3'", "3", vector.get(1));
+    }
+
+    @Test
+    public void testSetSizeBeforeRemoveOperation()
+    {
+        vector = new VectorAdapter();
+
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        vector.setSize(2);
+        vector.remove(1);
+
+        assertEquals("Size should be 1", 1, vector.size());
+        assertEquals("Only element should be '1'", "1", vector.get(0));
+    }
+
+    @Test
+    public void testSetSizeAfterSetOperation()
+    {
+        vector = new VectorAdapter();
+
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        vector.set(2, "0");
+        vector.set(3, "0");
+
+
+        vector.setSize(3);
+
+        assertEquals("Size should be 3", 3, vector.size());
+        assertEquals("First element should be '1'", "1", vector.get(0));
+        assertEquals("Second element should be '2'", "2", vector.get(1));
+        assertEquals("Third element should be '0'", "0", vector.get(2));
+    }
+
+    @Test
+    public void testSetSizeWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        vector.setSize(2);
+        vector.setSize(6);
+
+        assertEquals("Size should be 6", 6, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "1", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+        assertNull("Fifth element should be null", vector.get(4));
+        assertNull("Sixth element should be null", vector.get(5));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSetSizeThenIndexOutOfBounds()
+    {
+        vector = new VectorAdapter();
+
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        assertEquals("Fourth element should be accessible", "4", vector.get(3));
+
+        vector.setSize(2);
+
+        vector.get(3);
+    }
+
+    @Test
+    public void testCapacityEmptyVector()
+    {
+        vector = new VectorAdapter();
+        assertEquals("Capacity should be 10 for default constructor", 10, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityWithInitialCapacity()
+    {
+        vector = new VectorAdapter(15);
+        assertEquals("Capacity should match initial capacity", 15, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityAfterAddingElements()
+    {
+        vector = new VectorAdapter(5);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Capacity should remain unchanged after adding elements", 5, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityAfterEnsureCapacity()
+    {
+        vector = new VectorAdapter(5);
+        vector.ensureCapacity(20);
+        assertEquals("Capacity should increase after ensureCapacity", 20, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.trimToSize();
+        assertEquals("Capacity should equal size after trimToSize", 2, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityAfterSetSizeIncrease()
+    {
+        vector = new VectorAdapter(5);
+        vector.setSize(10);
+        assertEquals("Capacity should grow to accommodate larger size", 10, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityAfterSetSizeDecrease()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.setSize(1);
+        assertEquals("Capacity should remain unchanged after decreasing size", 10, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityWithCapacityIncrement()
+    {
+        vector = new VectorAdapter(5, 3);
+        vector.ensureCapacity(9);
+        assertEquals("Capacity should grow by capacity increment", 9, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityWithZeroCapacityIncrement()
+    {
+        vector = new VectorAdapter(5, 0);
+        vector.ensureCapacity(9);
+        assertEquals("Capacity should double when increment is zero", 10, vector.capacity());
+    }
+
+    @Test
+    public void testCapacityExtremeGrowth()
+    {
+        vector = new VectorAdapter(1);
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertTrue("Capacity should grow to accommodate many elements", vector.capacity() >= 1000);
+    }
+
+    @Test
+    public void testSizeEmptyVector()
+    {
+        vector = new VectorAdapter();
+        assertEquals("Size should be 0 for empty vector", 0, vector.size());
+    }
+
+    @Test
+    public void testSizeAfterAddingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        assertEquals("Size should be 3 after adding three elements", 3, vector.size());
+    }
+
+    @Test
+    public void testSizeAfterRemovingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.remove(1);
+
+        assertEquals("Size should be 2 after removing one element", 2, vector.size());
+    }
+
+    @Test
+    public void testSizeAfterClear()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.clear();
+        assertEquals("Size should be 0 after clear", 0, vector.size());
+    }
+
+    @Test
+    public void testSizeAfterSetSizeIncrease()
+    {
+        vector = new VectorAdapter();
+        vector.setSize(5);
+        assertEquals("Size should be 5 after setSize increase", 5, vector.size());
+    }
+
+    @Test
+    public void testSizeAfterSetSizeDecrease()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.setSize(1);
+
+        assertEquals("Size should be 1 after setSize decrease", 1, vector.size());
+    }
+
+    @Test
+    public void testSizeWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(null);
+        vector.add(null);
+        vector.add(null);
+
+        assertEquals("Size should count null elements", 3, vector.size());
+    }
+
+    @Test
+    public void testSizeWithMixedElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+
+        assertEquals("Size should count mixed type elements", 3, vector.size());
+    }
+
+    @Test
+    public void testSizeAfterMultipleOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.remove(0);
+
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove(1);
+
+        assertEquals("Size should reflect all operations", 2, vector.size());
+    }
+
+    @Test
+    public void testIsEmptyNewVector()
+    {
+        vector = new VectorAdapter();
+        assertTrue("New vector should be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyAfterAddingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        assertFalse("Vector should not be empty after adding element", vector.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyAfterRemovingAllElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.clear();
+
+        assertTrue("Vector should be empty after clear", vector.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyAfterSetSizeZero()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.setSize(0);
+
+        assertTrue("Vector should be empty after setSize(0)", vector.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyAfterRemoveOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.remove(0);
+        vector.remove(0);
+
+        assertTrue("Vector should be empty after removing all elements", vector.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyWithNullElements()
+    {
+        vector = new VectorAdapter();
+
+        vector.add(null);
+
+        assertFalse("Vector with null element should not be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyAfterSetSizeWithNulls()
+    {
+        vector = new VectorAdapter();
+
+        vector.setSize(3);
+
+        assertFalse("Vector with null elements from setSize should not be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testCapacitySizeRelationship()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertTrue("Capacity should always be >= size", vector.capacity() >= vector.size());
+    }
+
+    @Test
+    public void testIsEmptySizeConsistency()
+    {
+        vector = new VectorAdapter();
+        assertEquals("isEmpty should be true when size is 0", vector.isEmpty(), vector.size() == 0);
+
+        vector.add("1");
+        assertEquals("isEmpty should be false when size > 0", vector.isEmpty(), vector.size() == 0);
+    }
+
+    @Test
+    public void testCapacityAfterConstructorWithCollection()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("1");
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter(vec);
+        assertEquals("Capacity should match source size", 3, vector.capacity());
+    }
+
+    @Test
+    public void testSizeAfterConstructorWithCollection()
+    {
+        VectorAdapter vec = new VectorAdapter();
+
+        vec.add("1");
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter(vec);
+        assertEquals("Size should match source size", 3, vector.size());
+    }
+
+    @Test
+    public void testIsEmptyAfterConstructorWithEmptyCollection()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vector = new VectorAdapter(vec);
+        assertTrue("Vector from empty collection should be empty", vector.isEmpty());
+    }
 }
