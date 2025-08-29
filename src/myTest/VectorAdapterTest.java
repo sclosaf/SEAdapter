@@ -2015,4 +2015,1541 @@ public class VectorAdapterTest
         vector = new VectorAdapter(vec);
         assertTrue("Vector from empty collection should be empty", vector.isEmpty());
     }
+
+    @Test
+    public void testContainsExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertTrue("Should contain element '1'", vector.contains("1"));
+        assertTrue("Should contain element '2'", vector.contains("2"));
+        assertTrue("Should contain element '3'", vector.contains("3"));
+    }
+
+    @Test
+    public void testContainsNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        assertFalse("Should not contain element '3'", vector.contains("3"));
+        assertFalse("Should not contain element '4'", vector.contains("4"));
+    }
+
+    @Test
+    public void testContainsNullElementWhenPresent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        assertTrue("Should contain null element", vector.contains(null));
+    }
+
+    @Test
+    public void testContainsNullElementWhenAbsent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertFalse("Should not contain null when not present", vector.contains(null));
+    }
+
+    @Test
+    public void testContainsOnEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        assertFalse("Empty vector should not contain any element", vector.contains("1"));
+        assertFalse("Empty vector should not contain any element", vector.contains("2"));
+        assertFalse("Empty vector should not contain any element", vector.contains("3"));
+        assertFalse("Empty vector should not contain any element", vector.contains("4"));
+        assertFalse("Empty vector should not contain any element", vector.contains("5"));
+        assertFalse("Empty vector should not contain null", vector.contains(null));
+    }
+
+    @Test
+    public void testContainsWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        assertTrue("Should contain duplicate element", vector.contains("1"));
+    }
+
+    @Test
+    public void testContainsAfterElementRemoval()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.remove("2");
+
+        assertTrue("Should still contain '1'", vector.contains("1"));
+        assertFalse("Should not contain removed element '2'", vector.contains("2"));
+        assertTrue("Should still contain '3'", vector.contains("3"));
+    }
+
+    @Test
+    public void testContainsAfterClear()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.clear();
+
+        assertFalse("Should not contain any element after clear", vector.contains("1"));
+        assertFalse("Should not contain any element after clear", vector.contains("2"));
+        assertFalse("Should not contain any element after clear", vector.contains("3"));
+    }
+
+    @Test
+    public void testContainsWithDifferentObjectTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+
+        assertTrue("Should contain string '1'", vector.contains("1"));
+        assertTrue("Should contain integer 2", vector.contains(2));
+        assertTrue("Should contain double 3.0", vector.contains(3.0));
+        assertFalse("Should not contain mismatched types", vector.contains(1));
+    }
+
+    @Test
+    public void testContainsAfterSetOperation()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.set(1, "4");
+
+        assertFalse("Should not contain replaced element", vector.contains("2"));
+        assertTrue("Should contain new element", vector.contains("4"));
+    }
+
+    @Test
+    public void testContainsWithLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertTrue("Should contain element at beginning", vector.contains("0"));
+        assertTrue("Should contain element in middle", vector.contains("500"));
+        assertTrue("Should contain element at end", vector.contains("999"));
+        assertFalse("Should not contain non-existent element", vector.contains("1000"));
+    }
+
+    @Test
+    public void testContainsWithObjectIdentity()
+    {
+        vector = new VectorAdapter();
+
+        String str1 = new String("0");
+        String str2 = new String("0");
+
+        vector.add(str1);
+
+        assertTrue("Should contain equal string", vector.contains(str2));
+    }
+
+    @Test
+    public void testContainsAfterAddAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("4");
+        vec.add("5");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.addAll(vec);
+
+        assertTrue("Should contain original elements", vector.contains("1"));
+        assertTrue("Should contain added elements", vector.contains("4"));
+        assertTrue("Should contain added elements", vector.contains("5"));
+    }
+
+    @Test
+    public void testContainsAfterRemoveAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.removeAll(vec);
+
+        assertTrue("Should contain remaining elements", vector.contains("1"));
+        assertFalse("Should not contain removed elements", vector.contains("2"));
+        assertFalse("Should not contain removed elements", vector.contains("3"));
+        assertTrue("Should contain remaining elements", vector.contains("4"));
+    }
+
+    @Test
+    public void testContainsAfterRetainAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.retainAll(vec);
+
+        assertFalse("Should not contain non-retained elements", vector.contains("1"));
+        assertTrue("Should contain retained elements", vector.contains("2"));
+        assertTrue("Should contain retained elements", vector.contains("3"));
+        assertFalse("Should not contain non-retained elements", vector.contains("4"));
+    }
+
+    @Test
+    public void testIndexOfExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return correct index for first element", 0, vector.indexOf("1"));
+        assertEquals("Should return correct index for second element", 1, vector.indexOf("2"));
+        assertEquals("Should return correct index for third element", 2, vector.indexOf("3"));
+    }
+
+    @Test
+    public void testIndexOfNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for non-existing element", -1, vector.indexOf("4"));
+        assertEquals("Should return -1 for non-existing element", -1, vector.indexOf("0"));
+    }
+
+    @Test
+    public void testIndexOfNullElementWhenPresent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        assertEquals("Should return correct index for null element", 1, vector.indexOf(null));
+    }
+
+    @Test
+    public void testIndexOfNullElementWhenAbsent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for null when not present", -1, vector.indexOf(null));
+    }
+
+    @Test
+    public void testIndexOfOnEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        assertEquals("Should return -1 for any element in empty vector", -1, vector.indexOf("1"));
+        assertEquals("Should return -1 for null in empty vector", -1, vector.indexOf(null));
+    }
+
+    @Test
+    public void testIndexOfWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        assertEquals("Should return first occurrence index for duplicate elements", 0, vector.indexOf("1"));
+    }
+
+    @Test
+    public void testIndexOfAfterElementRemoval()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.remove("2");
+
+        assertEquals("Should still find remaining elements", 0, vector.indexOf("1"));
+        assertEquals("Should not find removed element", -1, vector.indexOf("2"));
+        assertEquals("Should still find remaining elements", 1, vector.indexOf("3"));
+    }
+
+    @Test
+    public void testIndexOfAfterClear()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.clear();
+
+        assertEquals("Should not find any element after clear", -1, vector.indexOf("1"));
+        assertEquals("Should not find any element after clear", -1, vector.indexOf("2"));
+        assertEquals("Should not find any element after clear", -1, vector.indexOf("3"));
+    }
+
+    @Test
+    public void testIndexOfWithDifferentObjectTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+
+        assertEquals("Should find string element", 0, vector.indexOf("1"));
+        assertEquals("Should find integer element", 1, vector.indexOf(2));
+        assertEquals("Should find double element", 2, vector.indexOf(3.0));
+        assertEquals("Should not find mismatched types", -1, vector.indexOf(1));
+    }
+
+    @Test
+    public void testIndexOfAfterSetOperation()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.set(1, "4");
+
+        assertEquals("Should not find replaced element", -1, vector.indexOf("2"));
+        assertEquals("Should find new element", 1, vector.indexOf("4"));
+    }
+
+    @Test
+    public void testIndexOfWithLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertEquals("Should find element at beginning", 0, vector.indexOf("0"));
+        assertEquals("Should find element in middle", 500, vector.indexOf("500"));
+        assertEquals("Should find element at end", 999, vector.indexOf("999"));
+        assertEquals("Should not find non-existent element", -1, vector.indexOf("1000"));
+    }
+
+    @Test
+    public void testIndexOfAfterAddAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+
+        vec.add("4");
+        vec.add("5");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.addAll(vec);
+
+        assertEquals("Should find original elements", 0, vector.indexOf("1"));
+        assertEquals("Should find added elements", 3, vector.indexOf("4"));
+        assertEquals("Should find added elements", 4, vector.indexOf("5"));
+    }
+
+    @Test
+    public void testIndexOfAfterRemoveAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.removeAll(vec);
+
+        assertEquals("Should find remaining elements", 0, vector.indexOf("1"));
+        assertEquals("Should not find removed elements", -1, vector.indexOf("2"));
+        assertEquals("Should not find removed elements", -1, vector.indexOf("3"));
+        assertEquals("Should find remaining elements", 1, vector.indexOf("4"));
+    }
+
+    @Test
+    public void testIndexOfAfterRetainAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.retainAll(vec);
+
+        assertEquals("Should not find non-retained elements", -1, vector.indexOf("1"));
+        assertEquals("Should find retained elements", 0, vector.indexOf("2"));
+        assertEquals("Should find retained elements", 1, vector.indexOf("3"));
+        assertEquals("Should not find non-retained elements", -1, vector.indexOf("4"));
+    }
+
+    @Test
+    public void testIndexOfWithMixedNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("2");
+        vector.add(null);
+        vector.add("3");
+
+        assertEquals("Should find first occurrence of null", 1, vector.indexOf(null));
+        assertEquals("Should find string elements correctly", 0, vector.indexOf("1"));
+        assertEquals("Should find string elements correctly", 2, vector.indexOf("2"));
+        assertEquals("Should find string elements correctly", 4, vector.indexOf("3"));
+    }
+
+    @Test
+    public void testIndexOfWithEmptyString()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("");
+
+        assertEquals("Should find empty string at first occurrence", 1, vector.indexOf(""));
+    }
+
+    @Test
+    public void testIndexOfWithSameObjectMultipleTimes()
+    {
+        Object obj = new Object();
+        vector = new VectorAdapter();
+        vector.add(obj);
+        vector.add("1");
+        vector.add(obj);
+
+        assertEquals("Should find first occurrence of object", 0, vector.indexOf(obj));
+    }
+
+    @Test
+    public void testIndexOfAfterMultipleOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.remove(1);
+        vector.add("4");
+        vector.set(0, "5");
+
+        assertEquals("Should find correct index after multiple operations", 0, vector.indexOf("5"));
+        assertEquals("Should find correct index after multiple operations", 1, vector.indexOf("3"));
+        assertEquals("Should find correct index after multiple operations", 2, vector.indexOf("4"));
+        assertEquals("Should not find removed element", -1, vector.indexOf("2"));
+    }
+
+    @Test
+    public void testIndexOfAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.trimToSize();
+
+        assertEquals("Should find elements correctly after trim", 0, vector.indexOf("1"));
+        assertEquals("Should find elements correctly after trim", 1, vector.indexOf("2"));
+        assertEquals("Should find elements correctly after trim", 2, vector.indexOf("3"));
+    }
+
+    @Test
+    public void testIndexOfAfterSetSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.setSize(5);
+        vector.setSize(2);
+
+        assertEquals("Should find elements correctly after setSize", 0, vector.indexOf("1"));
+        assertEquals("Should find elements correctly after setSize", 1, vector.indexOf("2"));
+        assertEquals("Should not find elements beyond new size", -1, vector.indexOf("3"));
+    }
+
+    @Test
+    public void testIndexOfWithBooleanElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(true);
+        vector.add(false);
+        vector.add(true);
+
+        assertEquals("Should find boolean elements correctly", 0, vector.indexOf(true));
+        assertEquals("Should find boolean elements correctly", 1, vector.indexOf(false));
+    }
+
+    @Test
+    public void testIndexOfWithIndexExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        assertEquals("Should find element starting from index 0", 2, vector.indexOf("3", 0));
+        assertEquals("Should find element starting from index 2", 2, vector.indexOf("3", 2));
+        assertEquals("Should find element starting from index 3", -1, vector.indexOf("3", 3));
+        assertEquals("Should find element starting from index 4", -1, vector.indexOf("3", 4));
+    }
+
+    @Test
+    public void testIndexOfWithIndexNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for non-existing element", -1, vector.indexOf("4", 0));
+        assertEquals("Should return -1 for non-existing element", -1, vector.indexOf("4", 1));
+        assertEquals("Should return -1 for non-existing element", -1, vector.indexOf("4", 2));
+    }
+
+    @Test
+    public void testIndexOfWithIndexNullElementWhenPresent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+        vector.add(null);
+        vector.add("5");
+
+        assertEquals("Should find first null starting from index 0", 1, vector.indexOf(null, 0));
+        assertEquals("Should find second null starting from index 2", 3, vector.indexOf(null, 2));
+        assertEquals("Should not find null starting from index 4", -1, vector.indexOf(null, 4));
+    }
+
+    @Test
+    public void testIndexOfWithIndexNullElementWhenAbsent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for null when not present", -1, vector.indexOf(null, 0));
+        assertEquals("Should return -1 for null when not present", -1, vector.indexOf(null, 1));
+        assertEquals("Should return -1 for null when not present", -1, vector.indexOf(null, 2));
+    }
+
+    @Test
+    public void testIndexOfWithIndexOnEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        assertEquals("Should return -1 for any element in empty vector", -1, vector.indexOf("1", 0));
+        assertEquals("Should return -1 for null in empty vector", -1, vector.indexOf(null, 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+        vector.add("2");
+        vector.add("1");
+
+        assertEquals("Should find first occurrence starting from index 0", 0, vector.indexOf("1", 0));
+        assertEquals("Should find second occurrence starting from index 1", 1, vector.indexOf("1", 1));
+        assertEquals("Should find third occurrence starting from index 2", 2, vector.indexOf("1", 2));
+        assertEquals("Should find fourth occurrence starting from index 3", 4, vector.indexOf("1", 3));
+        assertEquals("Should find fourth occurrence starting from index 4", 4, vector.indexOf("1", 4));
+        assertEquals("Should not find occurrence starting from index 5", -1, vector.indexOf("1", 5));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterElementRemoval()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove("2");
+
+        assertEquals("Should find remaining elements starting from index 0", 0, vector.indexOf("1", 0));
+        assertEquals("Should find remaining elements starting from index 1", 1, vector.indexOf("3", 1));
+        assertEquals("Should not find removed element", -1, vector.indexOf("2", 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterClear()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.clear();
+
+        assertEquals("Should not find any element after clear", -1, vector.indexOf("1", 0));
+        assertEquals("Should not find any element after clear", -1, vector.indexOf("2", 0));
+        assertEquals("Should not find any element after clear", -1, vector.indexOf("3", 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithDifferentObjectTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+        vector.add("4");
+        vector.add(5);
+
+        assertEquals("Should find string element starting from index 0", 0, vector.indexOf("1", 0));
+        assertEquals("Should find integer element starting from index 1", 1, vector.indexOf(2, 1));
+        assertEquals("Should find double element starting from index 2", 2, vector.indexOf(3.0, 2));
+        assertEquals("Should not find mismatched types", -1, vector.indexOf(1, 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterSetOperation()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.set(1, "5");
+
+        assertEquals("Should not find replaced element", -1, vector.indexOf("2", 0));
+        assertEquals("Should find new element starting from index 0", 1, vector.indexOf("5", 0));
+        assertEquals("Should find new element starting from index 1", 1, vector.indexOf("5", 1));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertEquals("Should find element at beginning starting from index 0", 0, vector.indexOf("0", 0));
+        assertEquals("Should find element in middle starting from index 500", 500, vector.indexOf("500", 500));
+        assertEquals("Should find element in middle starting from lower index", 500, vector.indexOf("500", 400));
+        assertEquals("Should find element at end starting from index 999", 999, vector.indexOf("999", 999));
+        assertEquals("Should not find element starting beyond its position", -1, vector.indexOf("500", 501));
+        assertEquals("Should not find non-existent element", -1, vector.indexOf("1000", 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterAddAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("4");
+        vec.add("5");
+        vec.add("6");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.addAll(vec);
+
+        assertEquals("Should find added elements starting from index 3", 3, vector.indexOf("4", 3));
+        assertEquals("Should find added elements starting from index 4", 4, vector.indexOf("5", 4));
+        assertEquals("Should not find added elements before their position", -1, vector.indexOf("4", 4));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterRemoveAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.removeAll(vec);
+
+        assertEquals("Should find remaining elements starting from index 0", 0, vector.indexOf("1", 0));
+        assertEquals("Should find remaining elements starting from index 1", 1, vector.indexOf("4", 1));
+        assertEquals("Should not find removed elements", -1, vector.indexOf("2", 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithMixedNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("2");
+        vector.add(null);
+        vector.add("3");
+
+        assertEquals("Should find first null starting from index 0", 1, vector.indexOf(null, 0));
+        assertEquals("Should find second null starting from index 2", 3, vector.indexOf(null, 2));
+        assertEquals("Should not find null starting from index 4", -1, vector.indexOf(null, 4));
+        assertEquals("Should find string elements correctly", 0, vector.indexOf("1", 0));
+        assertEquals("Should find string elements correctly", 2, vector.indexOf("2", 2));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithEmptyString()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("");
+        vector.add("2");
+        vector.add("");
+
+        assertEquals("Should find empty string starting from index 0", 1, vector.indexOf("", 0));
+        assertEquals("Should find second empty string starting from index 2", 3, vector.indexOf("", 2));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithSameObjectMultipleTimes()
+    {
+        Object obj = new Object();
+        vector = new VectorAdapter();
+        vector.add(obj);
+        vector.add("1");
+        vector.add(obj);
+        vector.add("2");
+        vector.add(obj);
+
+        assertEquals("Should find first occurrence starting from index 0", 0, vector.indexOf(obj, 0));
+        assertEquals("Should find second occurrence starting from index 1", 2, vector.indexOf(obj, 1));
+        assertEquals("Should find third occurrence starting from index 3", 4, vector.indexOf(obj, 3));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterMultipleOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove(1);
+        vector.add("5");
+        vector.set(0, "6");
+
+        assertEquals("Should find correct index after multiple operations", 0, vector.indexOf("6", 0));
+        assertEquals("Should find correct index after multiple operations", 2, vector.indexOf("4", 1));
+        assertEquals("Should find correct index after multiple operations", 3, vector.indexOf("5", 3));
+        assertEquals("Should not find removed element", -1, vector.indexOf("2", 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.trimToSize();
+
+        assertEquals("Should find elements correctly after trim", 0, vector.indexOf("1", 0));
+        assertEquals("Should find elements correctly after trim", 2, vector.indexOf("3", 2));
+        assertEquals("Should not find elements beyond range", -1, vector.indexOf("1", 4));
+    }
+
+    @Test
+    public void testIndexOfWithIndexAfterSetSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.setSize(6);
+        vector.setSize(2);
+
+        assertEquals("Should find elements correctly after setSize", 0, vector.indexOf("1", 0));
+        assertEquals("Should find elements correctly after setSize", 1, vector.indexOf("2", 1));
+        assertEquals("Should not find elements beyond new size", -1, vector.indexOf("3", 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexWithBooleanElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(true);
+        vector.add(false);
+        vector.add(true);
+        vector.add(false);
+
+        assertEquals("Should find boolean elements correctly", 0, vector.indexOf(true, 0));
+        assertEquals("Should find boolean elements correctly", 1, vector.indexOf(false, 0));
+        assertEquals("Should find second occurrence of boolean", 2, vector.indexOf(true, 1));
+        assertEquals("Should find second occurrence of boolean", 3, vector.indexOf(false, 2));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testIndexOfWithIndexNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.indexOf("1", -1);
+    }
+
+    @Test
+    public void testIndexOfWithIndexEqualToSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 when index equals size", -1, vector.indexOf("1", 3));
+        assertEquals("Should return -1 when index equals size", -1, vector.indexOf("2", 3));
+        assertEquals("Should return -1 when index equals size", -1, vector.indexOf("3", 3));
+    }
+
+    @Test
+    public void testIndexOfWithIndexGreaterThanSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 when index greater than size", -1, vector.indexOf("1", 4));
+        assertEquals("Should return -1 when index greater than size", -1, vector.indexOf("2", 5));
+        assertEquals("Should return -1 when index greater than size", -1, vector.indexOf("3", 10));
+    }
+
+    @Test
+    public void testIndexOfWithIndexZeroOnEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        assertEquals("Should return -1 for any element when vector is empty", -1, vector.indexOf("1", 0));
+        assertEquals("Should return -1 for null when vector is empty", -1, vector.indexOf(null, 0));
+    }
+
+    @Test
+    public void testIndexOfWithIndexEdgeCases()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        assertEquals("Should find element at exact start index", 2, vector.indexOf("3", 2));
+        assertEquals("Should find element after start index", 3, vector.indexOf("4", 2));
+        assertEquals("Should not find element when start index is too high", -1, vector.indexOf("2", 3));
+        assertEquals("Should find last element with max valid index", 4, vector.indexOf("5", 4));
+    }
+
+    @Test
+    public void testLastIndexOfExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return correct last index for first element", 0, vector.lastIndexOf("1"));
+        assertEquals("Should return correct last index for second element", 1, vector.lastIndexOf("2"));
+        assertEquals("Should return correct last index for third element", 2, vector.lastIndexOf("3"));
+    }
+
+    @Test
+    public void testLastIndexOfNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for non-existing element", -1, vector.lastIndexOf("4"));
+        assertEquals("Should return -1 for non-existing element", -1, vector.lastIndexOf("0"));
+    }
+
+    @Test
+    public void testLastIndexOfNullElementWhenPresent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        assertEquals("Should return correct last index for null element", 1, vector.lastIndexOf(null));
+    }
+
+    @Test
+    public void testLastIndexOfNullElementWhenAbsent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for null when not present", -1, vector.lastIndexOf(null));
+    }
+
+    @Test
+    public void testLastIndexOfOnEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        assertEquals("Should return -1 for any element in empty vector", -1, vector.lastIndexOf("1"));
+        assertEquals("Should return -1 for null in empty vector", -1, vector.lastIndexOf(null));
+    }
+
+    @Test
+    public void testLastIndexOfWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        assertEquals("Should return last occurrence index for duplicate elements", 2, vector.lastIndexOf("1"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterElementRemoval()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.remove("2");
+
+        assertEquals("Should still find remaining elements", 0, vector.lastIndexOf("1"));
+        assertEquals("Should not find removed element", -1, vector.lastIndexOf("2"));
+        assertEquals("Should still find remaining elements", 1, vector.lastIndexOf("3"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterClear()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.clear();
+
+        assertEquals("Should not find any element after clear", -1, vector.lastIndexOf("1"));
+        assertEquals("Should not find any element after clear", -1, vector.lastIndexOf("2"));
+        assertEquals("Should not find any element after clear", -1, vector.lastIndexOf("3"));
+    }
+
+    @Test
+    public void testLastIndexOfWithDifferentObjectTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+
+        assertEquals("Should find string element", 0, vector.lastIndexOf("1"));
+        assertEquals("Should find integer element", 1, vector.lastIndexOf(2));
+        assertEquals("Should find double element", 2, vector.lastIndexOf(3.0));
+        assertEquals("Should not find mismatched types", -1, vector.lastIndexOf(1));
+    }
+
+    @Test
+    public void testLastIndexOfAfterSetOperation()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.set(1, "4");
+
+        assertEquals("Should not find replaced element", -1, vector.lastIndexOf("2"));
+        assertEquals("Should find new element", 1, vector.lastIndexOf("4"));
+    }
+
+    @Test
+    public void testLastIndexOfWithLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertEquals("Should find element at beginning", 0, vector.lastIndexOf("0"));
+        assertEquals("Should find element in middle", 500, vector.lastIndexOf("500"));
+        assertEquals("Should find element at end", 999, vector.lastIndexOf("999"));
+        assertEquals("Should not find non-existent element", -1, vector.lastIndexOf("1000"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterAddAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+
+        vec.add("4");
+        vec.add("5");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.addAll(vec);
+
+        assertEquals("Should find original elements", 0, vector.lastIndexOf("1"));
+        assertEquals("Should find added elements", 3, vector.lastIndexOf("4"));
+        assertEquals("Should find added elements", 4, vector.lastIndexOf("5"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterRemoveAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.removeAll(vec);
+
+        assertEquals("Should find remaining elements", 0, vector.lastIndexOf("1"));
+        assertEquals("Should not find removed elements", -1, vector.lastIndexOf("2"));
+        assertEquals("Should not find removed elements", -1, vector.lastIndexOf("3"));
+        assertEquals("Should find remaining elements", 1, vector.lastIndexOf("4"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterRetainAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.retainAll(vec);
+
+        assertEquals("Should not find non-retained elements", -1, vector.lastIndexOf("1"));
+        assertEquals("Should find retained elements", 0, vector.lastIndexOf("2"));
+        assertEquals("Should find retained elements", 1, vector.lastIndexOf("3"));
+        assertEquals("Should not find non-retained elements", -1, vector.lastIndexOf("4"));
+    }
+
+    @Test
+    public void testLastIndexOfWithMixedNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("2");
+        vector.add(null);
+        vector.add("3");
+
+        assertEquals("Should find last occurrence of null", 3, vector.lastIndexOf(null));
+        assertEquals("Should find string elements correctly", 0, vector.lastIndexOf("1"));
+        assertEquals("Should find string elements correctly", 2, vector.lastIndexOf("2"));
+        assertEquals("Should find string elements correctly", 4, vector.lastIndexOf("3"));
+    }
+
+    @Test
+    public void testLastIndexOfWithEmptyString()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("");
+
+        assertEquals("Should find empty string at last occurrence", 1, vector.lastIndexOf(""));
+    }
+
+    @Test
+    public void testLastIndexOfWithSameObjectMultipleTimes()
+    {
+        Object obj = new Object();
+        vector = new VectorAdapter();
+        vector.add(obj);
+        vector.add("1");
+        vector.add(obj);
+
+        assertEquals("Should find last occurrence of object", 2, vector.lastIndexOf(obj));
+    }
+
+    @Test
+    public void testLastIndexOfAfterMultipleOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.remove(1);
+        vector.add("4");
+        vector.set(0, "5");
+
+        assertEquals("Should find correct last index after multiple operations", 0, vector.lastIndexOf("5"));
+        assertEquals("Should find correct last index after multiple operations", 1, vector.lastIndexOf("3"));
+        assertEquals("Should find correct last index after multiple operations", 2, vector.lastIndexOf("4"));
+        assertEquals("Should not find removed element", -1, vector.lastIndexOf("2"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.trimToSize();
+
+        assertEquals("Should find elements correctly after trim", 0, vector.lastIndexOf("1"));
+        assertEquals("Should find elements correctly after trim", 1, vector.lastIndexOf("2"));
+        assertEquals("Should find elements correctly after trim", 2, vector.lastIndexOf("3"));
+    }
+
+    @Test
+    public void testLastIndexOfAfterSetSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.setSize(5);
+        vector.setSize(2);
+
+        assertEquals("Should find elements correctly after setSize", 0, vector.lastIndexOf("1"));
+        assertEquals("Should find elements correctly after setSize", 1, vector.lastIndexOf("2"));
+        assertEquals("Should not find elements beyond new size", -1, vector.lastIndexOf("3"));
+    }
+
+    @Test
+    public void testLastIndexOfWithBooleanElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(true);
+        vector.add(false);
+        vector.add(true);
+
+        assertEquals("Should find boolean elements correctly", 2, vector.lastIndexOf(true));
+        assertEquals("Should find boolean elements correctly", 1, vector.lastIndexOf(false));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        assertEquals("Should find element ending at index 4", 2, vector.lastIndexOf("3", 4));
+        assertEquals("Should find element ending at index 2", 2, vector.lastIndexOf("3", 2));
+        assertEquals("Should not find element ending at index 1", -1, vector.lastIndexOf("3", 1));
+        assertEquals("Should not find element ending at index 0", -1, vector.lastIndexOf("3", 0));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for non-existing element", -1, vector.lastIndexOf("4", 2));
+        assertEquals("Should return -1 for non-existing element", -1, vector.lastIndexOf("4", 1));
+        assertEquals("Should return -1 for non-existing element", -1, vector.lastIndexOf("4", 0));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexNullElementWhenPresent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+        vector.add(null);
+        vector.add("5");
+
+        assertEquals("Should find last null ending at index 4", 3, vector.lastIndexOf(null, 4));
+        assertEquals("Should find first null ending at index 2", 1, vector.lastIndexOf(null, 2));
+        assertEquals("Should not find null ending at index 0", -1, vector.lastIndexOf(null, 0));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexNullElementWhenAbsent()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 for null when not present", -1, vector.lastIndexOf(null, 2));
+        assertEquals("Should return -1 for null when not present", -1, vector.lastIndexOf(null, 1));
+        assertEquals("Should return -1 for null when not present", -1, vector.lastIndexOf(null, 0));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+        vector.add("2");
+        vector.add("1");
+
+        assertEquals("Should find last occurrence ending at index 4", 4, vector.lastIndexOf("1", 4));
+        assertEquals("Should find third occurrence ending at index 3", 2, vector.lastIndexOf("1", 3));
+        assertEquals("Should find second occurrence ending at index 2", 2, vector.lastIndexOf("1", 2));
+        assertEquals("Should find first occurrence ending at index 1", 1, vector.lastIndexOf("1", 1));
+        assertEquals("Should find first occurrence ending at index 0", 0, vector.lastIndexOf("1", 0));
+        assertEquals("Should not find occurrence ending at negative index", -1, vector.lastIndexOf("1", -1));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexAfterElementRemoval()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove("2");
+
+        assertEquals("Should find remaining elements ending at index 2", 1, vector.lastIndexOf("3", 2));
+        assertEquals("Should find remaining elements ending at index 1", 0, vector.lastIndexOf("1", 1));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithDifferentObjectTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+        vector.add("4");
+        vector.add(5);
+
+        assertEquals("Should find integer element ending at index 4", 1, vector.lastIndexOf(2, 4));
+        assertEquals("Should find double element ending at index 3", 2, vector.lastIndexOf(3.0, 3));
+        assertEquals("Should find string element ending at index 0", 0, vector.lastIndexOf("1", 0));
+        assertEquals("Should not find mismatched types", -1, vector.lastIndexOf(1, 4));
+    }
+
+
+    @Test
+    public void testLastIndexOfWithIndexAfterSetOperation()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.set(1, "5");
+
+        assertEquals("Should not find replaced element", -1, vector.lastIndexOf("2", 3));
+        assertEquals("Should find new element ending at index 3", 1, vector.lastIndexOf("5", 3));
+        assertEquals("Should find new element ending at index 1", 1, vector.lastIndexOf("5", 1));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertEquals("Should find element at end ending at index 999", 999, vector.lastIndexOf("999", 999));
+        assertEquals("Should find element in middle ending at index 500", 500, vector.lastIndexOf("500", 500));
+        assertEquals("Should find element in middle ending at higher index", 500, vector.lastIndexOf("500", 600));
+        assertEquals("Should find element at beginning ending at index 0", 0, vector.lastIndexOf("0", 0));
+        assertEquals("Should not find element ending before its position", -1, vector.lastIndexOf("500", 499));
+        assertEquals("Should not find non-existent element", -1, vector.lastIndexOf("1000", 999));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexAfterAddAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("4");
+        vec.add("5");
+        vec.add("6");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.addAll(vec);
+
+        assertEquals("Should find added elements ending at index 5", 5, vector.lastIndexOf("6", 5));
+        assertEquals("Should find added elements ending at index 4", 4, vector.lastIndexOf("5", 4));
+        assertEquals("Should not find added elements after their position", -1, vector.lastIndexOf("6", 3));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexAfterRemoveAll()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("2");
+        vec.add("3");
+
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.removeAll(vec);
+
+        assertEquals("Should find remaining elements ending at index 1", 1, vector.lastIndexOf("4", 1));
+        assertEquals("Should find remaining elements ending at index 0", 0, vector.lastIndexOf("1", 0));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithMixedNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("2");
+        vector.add(null);
+        vector.add("3");
+
+        assertEquals("Should find last null ending at index 4", 3, vector.lastIndexOf(null, 4));
+        assertEquals("Should find first null ending at index 2", 1, vector.lastIndexOf(null, 2));
+        assertEquals("Should not find null ending at index 0", -1, vector.lastIndexOf(null, 0));
+        assertEquals("Should find string elements correctly", 4, vector.lastIndexOf("3", 4));
+        assertEquals("Should find string elements correctly", 2, vector.lastIndexOf("2", 3));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithEmptyString()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("");
+        vector.add("2");
+        vector.add("");
+
+        assertEquals("Should find last empty string ending at index 3", 3, vector.lastIndexOf("", 3));
+        assertEquals("Should find first empty string ending at index 2", 1, vector.lastIndexOf("", 2));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithSameObjectMultipleTimes()
+    {
+        Object obj = new Object();
+        vector = new VectorAdapter();
+        vector.add(obj);
+        vector.add("1");
+        vector.add(obj);
+        vector.add("2");
+        vector.add(obj);
+
+        assertEquals("Should find last occurrence ending at index 4", 4, vector.lastIndexOf(obj, 4));
+        assertEquals("Should find second occurrence ending at index 3", 2, vector.lastIndexOf(obj, 3));
+        assertEquals("Should find first occurrence ending at index 1", 0, vector.lastIndexOf(obj, 1));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexAfterMultipleOperations()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove(1);
+        vector.add("5");
+        vector.set(0, "6");
+
+        assertEquals("Should find correct last index after multiple operations", 3, vector.lastIndexOf("5", 3));
+        assertEquals("Should find correct last index after multiple operations", 2, vector.lastIndexOf("4", 2));
+        assertEquals("Should find correct last index after multiple operations", 0, vector.lastIndexOf("6", 1));
+        assertEquals("Should not find removed element", -1, vector.lastIndexOf("2", 3));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.trimToSize();
+
+        assertEquals("Should find elements correctly after trim", 3, vector.lastIndexOf("4", 3));
+        assertEquals("Should find elements correctly after trim", 2, vector.lastIndexOf("3", 3));
+        assertEquals("Should not find elements beyond range", -1, vector.lastIndexOf("1", -1));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexAfterSetSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.setSize(6);
+        vector.setSize(2);
+
+        assertEquals("Should find elements correctly after setSize", 1, vector.lastIndexOf("2", 1));
+        assertEquals("Should find elements correctly after setSize", 0, vector.lastIndexOf("1", 0));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexWithBooleanElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(true);
+        vector.add(false);
+        vector.add(true);
+        vector.add(false);
+
+        assertEquals("Should find boolean elements correctly", 3, vector.lastIndexOf(false, 3));
+        assertEquals("Should find boolean elements correctly", 2, vector.lastIndexOf(true, 3));
+        assertEquals("Should find first occurrence of boolean", 0, vector.lastIndexOf(true, 1));
+        assertEquals("Should find first occurrence of boolean", 1, vector.lastIndexOf(false, 2));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testLastIndexOfWithIndexGreaterThanSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.lastIndexOf("1", 4);
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should return -1 when index is negative", -1, vector.lastIndexOf("1", -1));
+        assertEquals("Should return -1 when index is negative", -1, vector.lastIndexOf("2", -2));
+        assertEquals("Should return -1 when index is negative", -1, vector.lastIndexOf("3", -3));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexEqualToSizeMinusOne()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        assertEquals("Should find element when index equals size-1", 2, vector.lastIndexOf("3", 2));
+        assertEquals("Should find element when index equals size-1", 1, vector.lastIndexOf("2", 2));
+        assertEquals("Should find element when index equals size-1", 0, vector.lastIndexOf("1", 2));
+    }
+
+    @Test
+    public void testLastIndexOfWithIndexEdgeCases()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        assertEquals("Should find element at exact end index", 2, vector.lastIndexOf("3", 2));
+        assertEquals("Should find element before end index", 1, vector.lastIndexOf("2", 2));
+        assertEquals("Should not find element when end index is too low", -1, vector.lastIndexOf("4", 2));
+        assertEquals("Should find first element with min valid index", 0, vector.lastIndexOf("1", 0));
+    }
 }
