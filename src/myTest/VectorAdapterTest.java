@@ -185,6 +185,21 @@ public class VectorAdapterTest
     }
 
     @Test
+    public void testConstructorWithCapacityAndIncrementExtremeGrowth()
+    {
+        vector = new VectorAdapter(1, 1);
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+
+        assertEquals("Should grow to accommodate 1000 elements", 1000, vector.size());
+        assertEquals("Element 0 should be correct", "0", vector.get(0));
+        assertEquals("Element 999 should be correct", "999", vector.get(999));
+        assertEquals("Capacity should be 1000", 1000, vector.capacity());
+    }
+
+    @Test
     public void testConstructorWithCapacityValidParameter()
     {
         vector = new VectorAdapter(8);
@@ -295,6 +310,21 @@ public class VectorAdapterTest
     }
 
     @Test
+    public void testConstructorWithCapacityExtremeGrowth()
+    {
+        vector = new VectorAdapter(1);
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+
+        assertEquals("Should grow to accommodate 1000 elements", 1000, vector.size());
+        assertEquals("Element 0 should be correct", "0", vector.get(0));
+        assertEquals("Element 999 should be correct", "999", vector.get(999));
+        assertEquals("Capacity should be 1024", 1024, vector.capacity());
+    }
+
+    @Test
     public void testDefaultConstructor()
     {
         vector = new VectorAdapter();
@@ -385,6 +415,20 @@ public class VectorAdapterTest
 
         assertEquals("Capacity should be 10", 10, vector.capacity());
         assertFalse("Should not be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testDefaultConstructorWithExtremeGrowth()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        assertEquals("Should grow to accommodate 1000 elements", 1000, vector.size());
+        assertEquals("Element 0 should be correct", "0", vector.get(0));
+        assertEquals("Element 999 should be correct", "999", vector.get(999));
+        assertEquals("Capacity should be 1080", 1280, vector.capacity());
     }
 
     @Test
@@ -528,5 +572,230 @@ public class VectorAdapterTest
         assertEquals("Should remain unchanged", 1, vector.size());
         assertEquals("Single element should remain unchanged", "0", vector.get(0));
         assertFalse("Should not contain the second added element", vector.contains(vec.get(1)));
+    }
+
+    @Test
+    public void testConstructorWithCollectionModificationAfterCreation()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("0");
+        vec.add("1");
+
+        vector = new VectorAdapter(vec);
+
+        vec.set(0, "2");
+
+        assertEquals("Should maintain original values", "0", vector.get(0));
+        assertEquals("Should maintain original values", "1", vector.get(1));
+        assertFalse("Should not contain the modified element", vector.contains(vec.get(0)));
+    }
+
+    @Test
+    public void testConstructorWithCOllectionRemovalAfterCreation()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("0");
+        vec.add("1");
+
+        vector = new VectorAdapter(vec);
+
+        vec.remove("0");
+
+        assertEquals("Should maintain original values", "0", vector.get(0));
+        assertEquals("Should maintain original values", "1", vector.get(1));
+        assertTrue("Should contain the removed element", vector.contains("0"));
+    }
+
+    @Test
+    public void testCopyIntoCorrectOrder()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+
+        Object[] array = new Object[3];
+        vector.copyInto(array);
+
+        assertEquals("First element should be '1'", "1", array[0]);
+        assertEquals("Second element should be '2'", "2", array[1]);
+        assertEquals("Third element should be '3'", "3", array[2]);
+    }
+
+    @Test
+    public void testCopyIntoEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        Object[] array = new Object[0];
+        vector.copyInto(array);
+
+        assertEquals("Array should remain empty", 0, array.length);
+    }
+
+    @Test
+    public void testCopyIntoEmptyVectorWiderArray()
+    {
+        vector = new VectorAdapter();
+
+        Object[] array = new Object[10];
+        vector.copyInto(array);
+
+        for(int i = 0; i < 10; i++)
+            assertNull("Element " + i + "-th should still be null", array[i]);
+
+        assertEquals("Array should be unmodified", 10, array.length);
+    }
+
+    @Test
+    public void testCopyIntoLargerArray()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        Object[] array = new Object[5];
+        array[2] = "0";
+        array[3] = "0";
+        array[4] = "0";
+
+        vector.copyInto(array);
+
+        assertEquals("First element should be '1'", "1", array[0]);
+        assertEquals("Second element should be '2'", "2", array[1]);
+        assertEquals("Existing elements should be preserved", "0", array[2]);
+        assertEquals("Existing elements should be preserved", "0", array[3]);
+        assertEquals("Existing elements should be preserved", "0", array[4]);
+    }
+
+    @Test
+    public void testCopyIntoWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(null);
+        vector.add(null);
+        vector.add(null);
+
+        Object[] array = new Object[3];
+        array[0] = "0";
+        array[1] = "0";
+        array[2] = "0";
+
+        vector.copyInto(array);
+
+        assertNull("First element should be null", array[0]);
+        assertNull("Second element should be null", array[1]);
+        assertNull("Third element should be null", array[2]);
+    }
+
+    @Test
+    public void testCopyIntoWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        Object[] array = new Object[3];
+        vector.copyInto(array);
+
+        assertEquals("All elements should be '1'", "1", array[0]);
+        assertEquals("All elements should be '1'", "1", array[1]);
+        assertEquals("All elements should be '1'", "1", array[2]);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testCopyIntoNullArray()
+    {
+        vector = new VectorAdapter();
+        vector.copyInto(null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testCopyIntoNullArrayWithElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+
+        vector.copyInto(null);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testCopyIntoSmallerArray()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        Object[] array = new Object[2];
+        vector.copyInto(array);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testCopyIntoZeroLengthArrayWithElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+
+        Object[] array = new Object[0];
+        vector.copyInto(array);
+    }
+
+    @Test
+    public void testCopyIntoAfterModifications()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+
+        Object[] array1 = new Object[1];
+        vector.copyInto(array1);
+
+        vector.add("2");
+        vector.set(0, "3");
+
+        Object[] array2 = new Object[2];
+        vector.copyInto(array2);
+
+        assertEquals("First copy should contain original value", "1", array1[0]);
+        assertEquals("Second copy should contain modified first element", "3", array2[0]);
+        assertEquals("Second copy should contain new second element", "2", array2[1]);
+    }
+
+    @Test
+    public void testCopyIntoLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("1");
+
+        Object[] array = new Object[1000];
+        vector.copyInto(array);
+
+        for(int i = 0; i < 1000; i++)
+            assertEquals("All elements should be '1'", "1", array[i]);
+    }
+
+    @Test
+    public void testCopyIntoArrayWithExistingData()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        Object[] array = new Object[4];
+        array[0] = "0";
+        array[1] = "0";
+        array[2] = "3";
+        array[3] = "4";
+
+        vector.copyInto(array);
+
+        assertEquals("First element should be '1'", "1", array[0]);
+        assertEquals("Second element should be '2'", "2", array[1]);
+        assertEquals("Existing elements should be preserved", "3", array[2]);
+        assertEquals("Existing elements should be preserved", "4", array[3]);
     }
 }
