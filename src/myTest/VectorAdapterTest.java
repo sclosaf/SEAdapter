@@ -798,4 +798,287 @@ public class VectorAdapterTest
         assertEquals("Existing elements should be preserved", "3", array[2]);
         assertEquals("Existing elements should be preserved", "4", array[3]);
     }
+
+
+    @Test
+    public void testTrimToSizeConstructorCapacityAndIncrement()
+    {
+        vector = new VectorAdapter(20, 50);
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size after trimming", 0, vector.capacity());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testTrimToSizeConstructorCapacity()
+    {
+        vector = new VectorAdapter(20);
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size after trimming", 0, vector.capacity());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testTrimToSizeDefaultConstructor()
+    {
+        vector = new VectorAdapter();
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size after trimming", 0, vector.capacity());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testTrimToSizeConstructorCollection()
+    {
+        VectorAdapter vec = new VectorAdapter(10, 20);
+
+        vector = new VectorAdapter(vec);
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size after trimming", 0, vector.capacity());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testTrimToSizeAfterAddingElements()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size after trimming", 3, vector.capacity());
+        assertEquals("Size should remain unchanged", 3, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+    }
+
+    @Test
+    public void testTrimToSizeAlreadyTrimmed()
+    {
+        vector = new VectorAdapter(3);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.trimToSize();
+
+        int capacityAfterFirstTrim = vector.capacity();
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should remain unchanged after second trim",
+            capacityAfterFirstTrim, vector.capacity());
+        assertEquals("Size should remain unchanged", 3, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+    }
+
+    @Test
+    public void testTrimToSizeAfterRemovingElements()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        vector.remove(2);
+        vector.remove(3);
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal reduced size", 3, vector.capacity());
+        assertEquals("Size should be 3", 3, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should be '4'", "4", vector.get(2));
+    }
+
+    @Test
+    public void testTrimToSizeWithNullElements()
+    {
+        vector = new VectorAdapter(5);
+        vector.add(null);
+        vector.add(null);
+        vector.add(null);
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size", 3, vector.capacity());
+        assertEquals("Size should remain 3", 3, vector.size());
+        assertNull("First element should remain null", vector.get(0));
+        assertNull("Second element should remain null", vector.get(1));
+        assertNull("Third element should remain null", vector.get(2));
+    }
+
+    @Test
+    public void testTrimToSizeAfterClear()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.clear();
+        vector.trimToSize();
+
+
+        assertEquals("Capacity should be 0 after clearing", 0, vector.capacity());
+        assertEquals("Size should be 0", 0, vector.size());
+        assertTrue("Vector should be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testTrimToSizeWithSingleElement()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should be 1", 1, vector.capacity());
+        assertEquals("Size should be 1", 1, vector.size());
+        assertEquals("Element should remain", "1", vector.get(0));
+    }
+
+    @Test
+    public void testTrimToSizeAfterMultipleOperations()
+    {
+        vector = new VectorAdapter(20);
+
+        for(int i = 0; i < 15; i++)
+            vector.add("" + i);
+
+        for(int i = 5; i < 10; i++)
+            vector.remove(i);
+
+        vector.trimToSize();
+        int capacityAfterFirstTrim = vector.capacity();
+
+        vector.add("15");
+        vector.add("16");
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal new size", 12, vector.capacity());
+        assertEquals("Size should be 12", 12, vector.size());
+        assertEquals("Last element should be '16'", "16", vector.get(11));
+    }
+
+    @Test
+    public void testTrimToSizeWithDuplicateElements()
+    {
+        vector = new VectorAdapter(8);
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size", 4, vector.capacity());
+        assertEquals("Size should remain 4", 4, vector.size());
+
+        for(int i = 0; i < 4; i++)
+            assertEquals("All elements should be '1'", "1", vector.get(i));
+    }
+
+    @Test
+    public void testTrimToSizeAfterSetSizeSmaller()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.setSize(2);
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal reduced size", 2, vector.capacity());
+        assertEquals("Size should be 2", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+    }
+
+    @Test
+    public void testTrimToSizeAfterSetSizeLarger()
+    {
+        vector = new VectorAdapter(5);
+        vector.add("1");
+        vector.add("2");
+
+        vector.setSize(4);
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal increased size", 4, vector.capacity());
+        assertEquals("Size should be 4", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+        assertNull("Fourth element should be null", vector.get(3));
+    }
+
+    @Test
+    public void testTrimToSizeWithMixedElementTypes()
+    {
+        vector = new VectorAdapter(6);
+        vector.add("str");
+        vector.add(2);
+        vector.add(3.0);
+
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size", 3, vector.capacity());
+        assertEquals("Size should remain 3", 3, vector.size());
+        assertEquals("First element should remain", "str", vector.get(0));
+        assertEquals("Second element should remain", 2, vector.get(1));
+        assertEquals("Third element should remain", 3.0, vector.get(2));
+    }
+
+    @Test
+    public void testTrimToSizeDoesNotAffectElementOrder()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        vector.trimToSize();
+
+        assertEquals("Element order should be preserved", "1", vector.get(0));
+        assertEquals("Element order should be preserved", "2", vector.get(1));
+        assertEquals("Element order should be preserved", "3", vector.get(2));
+        assertEquals("Element order should be preserved", "4", vector.get(3));
+        assertEquals("Element order should be preserved", "5", vector.get(4));
+    }
+
+    @Test
+    public void testTrimToSizeAfterEnsureCapacity()
+    {
+        vector = new VectorAdapter(5);
+        vector.add("1");
+        vector.add("2");
+
+        vector.ensureCapacity(20);
+        vector.trimToSize();
+
+        assertEquals("Capacity should equal size after trimming", 2, vector.capacity());
+        assertEquals("Size should remain unchanged", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+    }
+
 }
