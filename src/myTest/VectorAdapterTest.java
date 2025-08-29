@@ -1082,6 +1082,22 @@ public class VectorAdapterTest
     }
 
     @Test
+    public void testEnsureCapacityAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+
+        vector.trimToSize();
+        vector.ensureCapacity(15);
+
+        assertEquals("Capacity should increase after trimming", 15, vector.capacity());
+        assertEquals("Size should remain unchanged", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+    }
+
+    @Test
     public void testEnsureCapacityNoChange()
     {
         vector = new VectorAdapter(10);
@@ -1108,7 +1124,7 @@ public class VectorAdapterTest
     public void testEnsureCapacityWithCapacityIncrement()
     {
         vector = new VectorAdapter(5, 3);
-        vector.ensureCapacity(8);
+        vector.ensureCapacity(7);
 
         assertEquals("Capacity should increase using capacity increment", 8, vector.capacity());
         assertEquals("Size should remain 0", 0, vector.size());
@@ -1177,6 +1193,25 @@ public class VectorAdapterTest
     }
 
     @Test
+    public void testEnsureCapacityWithElementsAndCapacityIncrement()
+    {
+        vector = new VectorAdapter(3, 10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.ensureCapacity(15);
+
+        assertEquals("Capacity should increase to by capacity increment", 23, vector.capacity());
+        assertEquals("Size should remain unchanged", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+        assertEquals("Fourth element should remain", "4", vector.get(3));
+    }
+
+    @Test
     public void testEnsureCapacityMultipleCalls()
     {
         vector = new VectorAdapter(5);
@@ -1189,7 +1224,7 @@ public class VectorAdapterTest
 
         int capacityAfterSecondCall = vector.capacity();
 
-        vector.ensureCapacity(8);
+        vector.ensureCapacity(20);
 
         assertEquals("Second call should increase capacity further", 25, capacityAfterSecondCall);
         assertEquals("Third call should not reduce capacity", capacityAfterSecondCall, vector.capacity());
@@ -1201,29 +1236,15 @@ public class VectorAdapterTest
         vector = new VectorAdapter(3);
         vector.add(null);
         vector.add(null);
+        vector.add(null);
 
         vector.ensureCapacity(10);
 
         assertEquals("Capacity should increase", 10, vector.capacity());
-        assertEquals("Size should remain unchanged", 2, vector.size());
+        assertEquals("Size should remain unchanged",3, vector.size());
         assertNull("First element should remain null", vector.get(0));
         assertNull("Second element should remain null", vector.get(1));
-    }
-
-    @Test
-    public void testEnsureCapacityAfterTrimToSize()
-    {
-        vector = new VectorAdapter(10);
-        vector.add("1");
-        vector.add("2");
-
-        vector.trimToSize();
-        vector.ensureCapacity(15);
-
-        assertEquals("Capacity should increase after trimming", 15, vector.capacity());
-        assertEquals("Size should remain unchanged", 2, vector.size());
-        assertEquals("First element should remain", "1", vector.get(0));
-        assertEquals("Second element should remain", "2", vector.get(1));
+        assertNull("Third element should remain null", vector.get(2));
     }
 
     @Test
@@ -1266,13 +1287,15 @@ public class VectorAdapterTest
         vector = new VectorAdapter(2);
         vector.add("str");
         vector.add(123);
+        vector.add(3.12);
 
         vector.ensureCapacity(10);
 
         assertEquals("Capacity should increase", 10, vector.capacity());
-        assertEquals("Size should remain 2", 2, vector.size());
+        assertEquals("Size should remain 3", 3, vector.size());
         assertEquals("First element should remain", "str", vector.get(0));
         assertEquals("Second element should remain", 123, vector.get(1));
+        assertEquals("Third element should remain", 3.12, vector.get(2));
     }
 
     @Test
