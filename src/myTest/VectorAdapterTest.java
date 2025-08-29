@@ -1081,4 +1081,262 @@ public class VectorAdapterTest
         assertEquals("Second element should remain", "2", vector.get(1));
     }
 
+    @Test
+    public void testEnsureCapacityNoChange()
+    {
+        vector = new VectorAdapter(10);
+        vector.ensureCapacity(5);
+
+        assertEquals("Capacity should remain unchanged when minCapacity is smaller", 10, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityExactCurrentCapacity()
+    {
+        vector = new VectorAdapter(10);
+        vector.ensureCapacity(10);
+
+        assertEquals("Capacity should remain unchanged when minCapacity equals current capacity", 10, vector.capacity());
+
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityWithCapacityIncrement()
+    {
+        vector = new VectorAdapter(5, 3);
+        vector.ensureCapacity(8);
+
+        assertEquals("Capacity should increase using capacity increment", 8, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityWithMoreThanCapacityIncrement()
+    {
+        vector = new VectorAdapter(5, 3);
+        vector.ensureCapacity(10);
+
+        assertEquals("Capacity should increase using minCapacity", 10, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityWithZeroCapacityIncrement()
+    {
+        vector = new VectorAdapter(5, 0);
+        vector.ensureCapacity(9);
+
+        assertEquals("Capacity should double when capacity increment is zero", 10, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityWithNegativeCapacityIncrement()
+    {
+        vector = new VectorAdapter(5, -2);
+        vector.ensureCapacity(9);
+
+        assertEquals("Capacity should double when capacity increment is negative", 10, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityDoubleGrowthInsufficient()
+    {
+        vector = new VectorAdapter(5, 0);
+        vector.ensureCapacity(20);
+
+        assertEquals("Capacity should be set to minCapacity when double growth is insufficient", 20, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityWithElementsPresent()
+    {
+        vector = new VectorAdapter(3);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.ensureCapacity(10);
+
+        assertEquals("Capacity should increase to specified minimum", 10, vector.capacity());
+        assertEquals("Size should remain unchanged", 3, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+    }
+
+    @Test
+    public void testEnsureCapacityMultipleCalls()
+    {
+        vector = new VectorAdapter(5);
+
+        vector.ensureCapacity(10);
+
+        int capacityAfterFirstCall = vector.capacity();
+
+        vector.ensureCapacity(25);
+
+        int capacityAfterSecondCall = vector.capacity();
+
+        vector.ensureCapacity(8);
+
+        assertEquals("Second call should increase capacity further", 25, capacityAfterSecondCall);
+        assertEquals("Third call should not reduce capacity", capacityAfterSecondCall, vector.capacity());
+    }
+
+    @Test
+    public void testEnsureCapacityWithNullElements()
+    {
+        vector = new VectorAdapter(3);
+        vector.add(null);
+        vector.add(null);
+
+        vector.ensureCapacity(10);
+
+        assertEquals("Capacity should increase", 10, vector.capacity());
+        assertEquals("Size should remain unchanged", 2, vector.size());
+        assertNull("First element should remain null", vector.get(0));
+        assertNull("Second element should remain null", vector.get(1));
+    }
+
+    @Test
+    public void testEnsureCapacityAfterTrimToSize()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+
+        vector.trimToSize();
+        vector.ensureCapacity(15);
+
+        assertEquals("Capacity should increase after trimming", 15, vector.capacity());
+        assertEquals("Size should remain unchanged", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+    }
+
+    @Test
+    public void testEnsureCapacityAfterSetSize()
+    {
+        vector = new VectorAdapter(5);
+        vector.setSize(3);
+
+        vector.ensureCapacity(20);
+
+        assertEquals("Capacity should increase", 20, vector.capacity());
+        assertEquals("Size should remain 3", 3, vector.size());
+        assertNull("First element should be null", vector.get(0));
+        assertNull("Second element should be null", vector.get(1));
+        assertNull("Third element should be null", vector.get(2));
+    }
+
+    @Test
+    public void testEnsureCapacityAfterRemoveOperations()
+    {
+        vector = new VectorAdapter(10);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        vector.remove(2);
+        vector.remove(1);
+        vector.ensureCapacity(20);
+
+        assertEquals("Capacity should increase", 20, vector.capacity());
+        assertEquals("Size should be 2", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should be '4'", "4", vector.get(1));
+    }
+
+    @Test
+    public void testEnsureCapacityWithMixedElementTypes()
+    {
+        vector = new VectorAdapter(2);
+        vector.add("str");
+        vector.add(123);
+
+        vector.ensureCapacity(10);
+
+        assertEquals("Capacity should increase", 10, vector.capacity());
+        assertEquals("Size should remain 2", 2, vector.size());
+        assertEquals("First element should remain", "str", vector.get(0));
+        assertEquals("Second element should remain", 123, vector.get(1));
+    }
+
+    @Test
+    public void testEnsureCapacityZeroMinCapacity()
+    {
+        vector = new VectorAdapter(10);
+        vector.ensureCapacity(0);
+
+        assertEquals("Capacity should remain unchanged for zero minCapacity", 10, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityNegativeMinCapacity()
+    {
+        vector = new VectorAdapter(10);
+        vector.ensureCapacity(-5);
+
+        assertEquals("Capacity should remain unchanged for negative minCapacity", 10, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityExtremeValue()
+    {
+        vector = new VectorAdapter();
+        vector.ensureCapacity(100000);
+
+        assertEquals("Capacity should handle extreme values", 100000, vector.capacity());
+        assertEquals("Size should remain 0", 0, vector.size());
+        assertTrue("Should still be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testEnsureCapacityDoesNotAffectElementOrder()
+    {
+        vector = new VectorAdapter(3);
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        vector.ensureCapacity(20);
+
+        assertEquals("Element order should be preserved", "1", vector.get(0));
+        assertEquals("Element order should be preserved", "2", vector.get(1));
+        assertEquals("Element order should be preserved", "3", vector.get(2));
+    }
+
+    @Test
+    public void testEnsureCapacityWithDuplicateElements()
+    {
+        vector = new VectorAdapter(2);
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+
+        vector.ensureCapacity(15);
+
+        assertEquals("Capacity should increase", 15, vector.capacity());
+        assertEquals("Size should remain 3", 3, vector.size());
+
+        for(int i = 0; i < 3; i++)
+            assertEquals("All elements should remain '1'", "1", vector.get(i));
+    }
 }
