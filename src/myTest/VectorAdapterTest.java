@@ -7253,4 +7253,893 @@ public class VectorAdapterTest
         assertTrue("Should return true after add", resultAfter);
         assertEquals("Size should be 2 after operations", 2, vector.size());
     }
+
+    @Test
+    public void testRetainAllEmptyCollection()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter emptyCollection = new VectorAdapter();
+        boolean result = vector.retainAll(emptyCollection);
+
+        assertTrue("Should return true when retaining empty collection", result);
+        assertEquals("Size should be 0 after retaining empty collection", 0, vector.size());
+        assertTrue("Vector should be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testRetainAllNoElementsInCommon()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("4");
+        collection.add("5");
+
+        boolean result = vector.retainAll(collection);
+
+        assertTrue("Should return true when no elements in common", result);
+        assertEquals("Size should be 0", 0, vector.size());
+        assertTrue("Vector should be empty", vector.isEmpty());
+    }
+
+    @Test
+    public void testRetainAllAllElementsInCommon()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("1");
+        collection.add("2");
+        collection.add("3");
+
+        boolean result = vector.retainAll(collection);
+
+        assertFalse("Should return false when all elements are retained", result);
+        assertEquals("Size should remain unchanged", 3, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should remain", "3", vector.get(2));
+    }
+
+    @Test
+    public void testRetainAllSomeElementsInCommon()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("2");
+        collection.add("3");
+
+        boolean result = vector.retainAll(collection);
+
+        assertTrue("Should return true when some elements are retained", result);
+        assertEquals("Size should be decreased", 2, vector.size());
+        assertEquals("First retained element should be '2'", "2", vector.get(0));
+        assertEquals("Second retained element should be '3'", "3", vector.get(1));
+    }
+
+    @Test
+    public void testRetainAllWithDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("2");
+
+        boolean result = vector.retainAll(collection);
+
+        assertTrue("Should return true when retaining duplicates", result);
+        assertEquals("Size should be 2", 2, vector.size());
+        assertEquals("First element should be '2'", "2", vector.get(0));
+        assertEquals("Second element should be '2'", "2", vector.get(1));
+    }
+
+    @Test
+    public void testRetainAllWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add(null);
+
+        boolean result = vector.retainAll(collection);
+
+        assertTrue("Should return true when retaining null elements", result);
+        assertEquals("Size should be 1", 1, vector.size());
+        assertNull("Only null element should remain", vector.get(0));
+    }
+
+    @Test
+    public void testRetainAllEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("1");
+        collection.add("2");
+
+        boolean result = vector.retainAll(collection);
+
+        assertFalse("Should return false for empty vector", result);
+        assertEquals("Size should remain 0", 0, vector.size());
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testRetainAllNullCollection()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.retainAll(null);
+    }
+
+    @Test
+    public void testRetainAllSelf()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        boolean result = vector.retainAll(vector);
+
+        assertFalse("Should return false when retaining itself", result);
+        assertEquals("Size should remain unchanged", 3, vector.size());
+    }
+
+    @Test
+    public void testRetainAllLargeCollection()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        VectorAdapter collection = new VectorAdapter();
+
+        for(int i = 500; i < 1000; i++)
+            collection.add("" + i);
+
+        boolean result = vector.retainAll(collection);
+
+        assertTrue("Should return true for large collection", result);
+        assertEquals("Size should be 500", 500, vector.size());
+
+        for(int i = 0; i < 500; i++)
+            assertEquals("Element " + (i + 500) + " should be retained", "" + (i + 500), vector.get(i));
+    }
+
+    @Test
+    public void testAddAllAtIndexEmptyCollection()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        VectorAdapter emptyCollection = new VectorAdapter();
+        boolean result = vector.addAll(1, emptyCollection);
+
+        assertFalse("Should return false for empty collection", result);
+        assertEquals("Size should remain unchanged", 2, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+    }
+
+    @Test
+    public void testAddAllAtIndexNonEmptyCollection()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("4");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("2");
+        collection.add("3");
+
+        boolean result = vector.addAll(1, collection);
+
+        assertTrue("Should return true for non-empty collection", result);
+        assertEquals("Size should be increased", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should be added", "2", vector.get(1));
+        assertEquals("Third element should be added", "3", vector.get(2));
+        assertEquals("Fourth element should be shifted", "4", vector.get(3));
+    }
+
+    @Test
+    public void testAddAllAtIndexBeginning()
+    {
+        vector = new VectorAdapter();
+        vector.add("3");
+        vector.add("4");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("1");
+        collection.add("2");
+
+        boolean result = vector.addAll(0, collection);
+
+        assertTrue("Should return true", result);
+        assertEquals("Size should be increased", 4, vector.size());
+        assertEquals("First element should be added", "1", vector.get(0));
+        assertEquals("Second element should be added", "2", vector.get(1));
+        assertEquals("Third element should be shifted", "3", vector.get(2));
+        assertEquals("Fourth element should be shifted", "4", vector.get(3));
+    }
+
+    @Test
+    public void testAddAllAtIndexEnd()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("3");
+        collection.add("4");
+
+        boolean result = vector.addAll(2, collection);
+
+        assertTrue("Should return true", result);
+        assertEquals("Size should be increased", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should remain", "2", vector.get(1));
+        assertEquals("Third element should be added", "3", vector.get(2));
+        assertEquals("Fourth element should be added", "4", vector.get(3));
+    }
+
+    @Test
+    public void testAddAllAtIndexEmptyVector()
+    {
+        vector = new VectorAdapter();
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("1");
+        collection.add("2");
+        collection.add("3");
+
+        boolean result = vector.addAll(0, collection);
+
+        assertTrue("Should return true", result);
+        assertEquals("Size should match collection size", 3, vector.size());
+        assertEquals("First element should be added", "1", vector.get(0));
+        assertEquals("Second element should be added", "2", vector.get(1));
+        assertEquals("Third element should be added", "3", vector.get(2));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testAddAllAtIndexNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("3");
+
+        vector.addAll(-1, collection);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testAddAllAtIndexGreaterThanSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add("3");
+
+        vector.addAll(3, collection);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testAddAllAtIndexNullCollection()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        vector.addAll(1, null);
+    }
+
+    @Test
+    public void testAddAllAtIndexWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("3");
+
+        VectorAdapter collection = new VectorAdapter();
+        collection.add(null);
+        collection.add("2");
+
+        boolean result = vector.addAll(1, collection);
+
+        assertTrue("Should return true", result);
+        assertEquals("Size should be increased", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertNull("Second element should be null", vector.get(1));
+        assertEquals("Third element should be added", "2", vector.get(2));
+        assertEquals("Fourth element should be shifted", "3", vector.get(3));
+    }
+
+    @Test
+    public void testAddAllAtIndexSelf()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        System.out.println(vector);
+        boolean result = vector.addAll(1, vector);
+
+        System.out.println(vector);
+
+        assertTrue("Should return true when adding itself", result);
+        assertEquals("Size should be doubled", 4, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should be added", "1", vector.get(1));
+        assertEquals("Third element should be added", "2", vector.get(2));
+        assertEquals("Fourth element should be shifted", "2", vector.get(3));
+    }
+
+    @Test
+    public void testAddAllAtIndexLargeCollection()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("5");
+
+        VectorAdapter collection = new VectorAdapter();
+
+        for(int i = 2; i < 5; i++)
+            collection.add("" + i);
+
+        boolean result = vector.addAll(1, collection);
+
+        assertTrue("Should return true", result);
+        assertEquals("Size should be increased", 5, vector.size());
+        assertEquals("First element should remain", "1", vector.get(0));
+        assertEquals("Second element should be added", "2", vector.get(1));
+        assertEquals("Third element should be added", "3", vector.get(2));
+        assertEquals("Fourth element should be added", "4", vector.get(3));
+        assertEquals("Fifth element should be shifted", "5", vector.get(4));
+    }
+
+    @Test
+    public void testEqualsSameObject()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        boolean result = vector.equals(vector);
+
+        assertTrue("Should return true for same object", result);
+    }
+
+    @Test
+    public void testEqualsEqualLists()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("2");
+        other.add("3");
+
+        boolean result = vector.equals(other);
+
+        assertTrue("Should return true for equal lists", result);
+    }
+
+    @Test
+    public void testEqualsDifferentSizes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("2");
+
+        boolean result = vector.equals(other);
+
+        assertFalse("Should return false for different sizes", result);
+    }
+
+    @Test
+    public void testEqualsDifferentElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("4");
+        other.add("3");
+
+        boolean result = vector.equals(other);
+
+        assertFalse("Should return false for different elements", result);
+    }
+
+    @Test
+    public void testEqualsDifferentOrder()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("3");
+        other.add("2");
+
+        boolean result = vector.equals(other);
+
+        assertFalse("Should return false for different order", result);
+    }
+
+    @Test
+    public void testEqualsWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add(null);
+        other.add("3");
+
+        boolean result = vector.equals(other);
+
+        assertTrue("Should return true for lists with null elements", result);
+    }
+
+    @Test
+    public void testEqualsDifferentNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("2");
+        other.add("3");
+
+        boolean result = vector.equals(other);
+
+        assertFalse("Should return false for different null elements", result);
+    }
+
+    @Test
+    public void testEqualsEmptyLists()
+    {
+        vector = new VectorAdapter();
+        VectorAdapter other = new VectorAdapter();
+
+        boolean result = vector.equals(other);
+
+        assertTrue("Should return true for empty lists", result);
+    }
+
+    @Test
+    public void testEqualsNonListObject()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        String notAList = "not a list";
+
+        boolean result = vector.equals(notAList);
+
+        assertFalse("Should return false for non-list object", result);
+    }
+
+    @Test
+    public void testEqualsMixedElementTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add(2);
+        other.add(3.0);
+
+        boolean result = vector.equals(other);
+
+        assertTrue("Should return true for mixed element types", result);
+    }
+
+    @Test
+    public void testEqualsDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("2");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("1");
+        other.add("2");
+
+        boolean result = vector.equals(other);
+
+        assertTrue("Should return true for duplicate elements", result);
+    }
+
+    @Test
+    public void testEqualsLargeLists()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        VectorAdapter other = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            other.add("" + i);
+
+        boolean result = vector.equals(other);
+
+        assertTrue("Should return true for large equal lists", result);
+    }
+
+    @Test
+    public void testEqualsAfterModifications()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("2");
+        other.add("3");
+
+        boolean resultBefore = vector.equals(other);
+
+        vector.set(1, "4");
+        boolean resultAfter = vector.equals(other);
+
+        assertTrue("Should return true before modification", resultBefore);
+        assertFalse("Should return false after modification", resultAfter);
+    }
+
+    @Test
+    public void testHashCodeEmptyVector()
+    {
+        vector = new VectorAdapter();
+        int hashCode = vector.hashCode();
+
+        assertEquals("Hash code of empty vector should match empty vector", new VectorAdapter().hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeSingleElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        int hashCode = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+        expected.add("1");
+
+        assertEquals("Hash code should match for single element", expected.hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeMultipleElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        int hashCode = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+        expected.add("1");
+        expected.add("2");
+        expected.add("3");
+
+        assertEquals("Hash code should match for multiple elements", expected.hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+        int hashCode = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+        expected.add("1");
+        expected.add(null);
+        expected.add("3");
+
+        assertEquals("Hash code should match for null elements", expected.hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeMixedElementTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+        int hashCode = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+        expected.add("1");
+        expected.add(2);
+        expected.add(3.0);
+
+        assertEquals("Hash code should match for mixed element types", expected.hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+        int hashCode = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+        expected.add("1");
+        expected.add("1");
+        expected.add("1");
+
+        assertEquals("Hash code should match for duplicate elements", expected.hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            vector.add("" + i);
+
+        int hashCode = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+
+        for(int i = 0; i < 1000; i++)
+            expected.add("" + i);
+
+        assertEquals("Hash code should match for large vector", expected.hashCode(), hashCode);
+    }
+
+    @Test
+    public void testHashCodeAfterModifications()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        int hashCodeBefore = vector.hashCode();
+
+        vector.set(1, "4");
+        vector.remove(2);
+        vector.add("5");
+
+        int hashCodeAfter = vector.hashCode();
+
+        VectorAdapter expected = new VectorAdapter();
+        expected.add("1");
+        expected.add("4");
+        expected.add("5");
+
+        assertEquals("Hash code should match after modifications", expected.hashCode(), hashCodeAfter);
+        assertNotEquals("Hash code should change after modifications", hashCodeBefore, hashCodeAfter);
+    }
+
+    @Test
+    public void testHashCodeConsistency()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        int firstHash = vector.hashCode();
+        int secondHash = vector.hashCode();
+
+        assertEquals("Hash code should be consistent across calls", firstHash, secondHash);
+    }
+
+    @Test
+    public void testHashCodeEqualVectorsHaveEqualHashCodes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        VectorAdapter other = new VectorAdapter();
+        other.add("1");
+        other.add("2");
+        other.add("3");
+
+        assertTrue("Equal vectors should have equal hash codes", vector.equals(other) && vector.hashCode() == other.hashCode());
+    }
+
+    @Test
+    public void testToStringEmptyVector()
+    {
+        vector = new VectorAdapter();
+        String result = vector.toString();
+
+        assertEquals("String representation of empty vector should match", "[]", result);
+    }
+
+    @Test
+    public void testToStringSingleElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        String result = vector.toString();
+
+        assertEquals("String representation of single element should match", "[1]", result);
+    }
+
+    @Test
+    public void testToStringMultipleElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        String result = vector.toString();
+
+        assertEquals("String representation of multiple elements should match", "[1, 2, 3]", result);
+    }
+
+    @Test
+    public void testToStringWithNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+        String result = vector.toString();
+
+        assertEquals("String representation with null elements should match", "[1, null, 3]", result);
+    }
+
+    @Test
+    public void testToStringMixedElementTypes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(2);
+        vector.add(3.0);
+        String result = vector.toString();
+
+        assertEquals("String representation with mixed types should match", "[1, 2, 3.0]", result);
+    }
+
+    @Test
+    public void testToStringDuplicateElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("1");
+        vector.add("1");
+        String result = vector.toString();
+
+        assertEquals("String representation with duplicate elements should match", "[1, 1, 1]", result);
+    }
+
+    @Test
+    public void testToStringLargeVector()
+    {
+        vector = new VectorAdapter();
+
+        for(int i = 0; i < 5; i++)
+            vector.add("" + i);
+
+        String result = vector.toString();
+
+        assertEquals("String representation of large vector should match", "[0, 1, 2, 3, 4]", result);
+    }
+
+    @Test
+    public void testToStringAfterModifications()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        String before = vector.toString();
+
+        vector.set(1, "4");
+        vector.remove(2);
+        vector.add("5");
+
+        String after = vector.toString();
+
+        assertEquals("String representation should change after modifications", "[1, 4, 5]", after);
+        assertNotEquals("String representation should not match previous state", before, after);
+    }
+
+    @Test
+    public void testToStringConsistency()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        String firstString = vector.toString();
+        String secondString = vector.toString();
+
+        assertEquals("String representation should be consistent across calls", firstString, secondString);
+    }
+
+    @Test
+    public void testToStringFormat()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        String result = vector.toString();
+
+        assertTrue("String should start with '['", result.startsWith("["));
+        assertTrue("String should end with ']'", result.endsWith("]"));
+        assertTrue("String should contain commas between elements", result.contains(", "));
+    }
 }
