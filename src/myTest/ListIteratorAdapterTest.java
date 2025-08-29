@@ -3,7 +3,6 @@ package myTest;
 import myAdapter.VectorAdapter;
 import myAdapter.SubListAdapter;
 import myAdapter.HListIterator;
-import myAdapter.ListIteratorAdapter;
 
 import myException.IllegalStateException;
 
