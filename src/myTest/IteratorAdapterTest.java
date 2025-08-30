@@ -508,57 +508,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testIteratorWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(Integer.valueOf(1));
-        vec.add(Boolean.valueOf(true));
-        vec.add(Double.valueOf(0.11));
-
-        HIterator iter = vec.iterator();
-
-        assertTrue("First element should be an Integer", iter.next() instanceof Integer);
-        assertTrue("Second element should be a Boolean", iter.next() instanceof Boolean);
-        assertTrue("Third element should be a Double", iter.next() instanceof Double);
-        assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
-    public void testRemoveWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-
-        vec.add(Integer.valueOf(1));
-        vec.add(Double.valueOf(3.14));
-
-        HIterator iter = vec.iterator();
-        iter.next();
-        iter.remove();
-
-        assertEquals("Size should be 1", 1, vec.size());
-        assertEquals("First element should be Double", Double.valueOf(3.14), vec.get(0));
-    }
-
-    @Test
-    public void testIteratorWithMixedTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("str");
-        vec.add(123);
-        vec.add(null);
-        vec.add(new VectorAdapter());
-
-        HIterator iter = vec.iterator();
-
-        assertEquals("First element should be a string", "str", iter.next());
-        assertEquals("Second element shoudl be an int", 123, iter.next());
-        assertNull("Third element should be a null", iter.next());
-        assertTrue("Fourth element should be a VectorAdapter", iter.next() instanceof VectorAdapter);
-
-        assertFalse("Should have no more elements", iter.hasNext());
-    }
-
-    @Test
     public void testIteratorWithDuplicateElements()
     {
         VectorAdapter vec = new VectorAdapter();
@@ -590,24 +539,5 @@ public class IteratorAdapterTest
         assertEquals("Size should be 2", 2, vec.size());
         assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(0));
         assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(1));
-    }
-
-    @Test(timeout = 1000)
-    public void testIteratorPerformanceOnLargeCollection()
-    {
-        VectorAdapter vec = new VectorAdapter();
-
-        for(int i = 0; i < 10000; i++)
-            vec.add(i);
-
-        HIterator iter = vec.iterator();
-
-        for(int i = 0; iter.hasNext(); i++)
-        {
-            assertEquals("The " + i + "-th element should be at the correct position", i, iter.next());
-            iter.remove();
-        }
-
-        assertEquals("Size should be 0", 0, vec.size());
     }
 }

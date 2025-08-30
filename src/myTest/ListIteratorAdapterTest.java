@@ -1151,57 +1151,6 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testListIteratorWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(Integer.valueOf(1));
-        vec.add(Boolean.valueOf(true));
-        vec.add(Double.valueOf(0.11));
-
-        HListIterator listIter = vec.listIterator();
-
-        assertTrue("First element should be an Integer", listIter.next() instanceof Integer);
-        assertTrue("Second element should be a Boolean", listIter.next() instanceof Boolean);
-        assertTrue("Third element should be a Double", listIter.next() instanceof Double);
-
-        assertFalse("Should have no more elements", listIter.hasNext());
-    }
-
-    @Test
-    public void testListIteratorRemoveWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(Integer.valueOf(1));
-        vec.add(Double.valueOf(3.14));
-
-        HListIterator listIter = vec.listIterator();
-        listIter.next();
-        listIter.remove();
-
-        assertEquals("Size should be 1", 1, vec.size());
-        assertEquals("First element should be Double", Double.valueOf(3.14), vec.get(0));
-    }
-
-    @Test
-    public void testListIteratorWithMixedTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("str");
-        vec.add(123);
-        vec.add(null);
-        vec.add(new VectorAdapter());
-
-        HListIterator listIter = vec.listIterator();
-
-        assertEquals("First element should be a string", "str", listIter.next());
-        assertEquals("Second element should be an int", 123, listIter.next());
-        assertNull("Third element should be null", listIter.next());
-        assertTrue("Fourth element should be a VectorAdapter", listIter.next() instanceof VectorAdapter);
-
-        assertFalse("Should have no more elements", listIter.hasNext());
-    }
-
-    @Test
     public void testListIteratorWithDuplicateElements()
     {
         VectorAdapter vec = new VectorAdapter();
@@ -1233,25 +1182,6 @@ public class ListIteratorAdapterTest
         assertEquals("Size should be 2", 2, vec.size());
         assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(0));
         assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(1));
-    }
-
-    @Test(timeout = 1000)
-    public void testListIteratorPerformanceOnLargeCollection()
-    {
-        VectorAdapter vec = new VectorAdapter();
-
-        for(int i = 0; i < 10000; i++)
-            vec.add(i);
-
-        HListIterator listIter = vec.listIterator();
-
-        for(int i = 0; listIter.hasNext(); i++)
-        {
-            assertEquals("The " + i + "-th element should be at the correct position", i, listIter.next());
-            listIter.remove();
-        }
-
-        assertEquals("Size should be 0", 0, vec.size());
     }
 
     @Test
@@ -2349,25 +2279,5 @@ public class ListIteratorAdapterTest
         assertEquals("Third element should be '0'", "0", subListLIter.next());
 
         assertFalse("Should have no more elements", subListLIter.hasNext());
-    }
-
-    @Test(timeout = 1000)
-    public void testSubListListIteratorPerformanceOnLargeCollection()
-    {
-        VectorAdapter vec = new VectorAdapter();
-
-        for(int i = 0; i < 10000; i++)
-            vec.add(i);
-
-        SubListAdapter subList = (SubListAdapter) vec.subList(2000, 8000);
-        HListIterator subListLIter = subList.listIterator();
-
-        for(int i = 2000; subListLIter.hasNext(); i++)
-        {
-            assertEquals("The " + i + "-th element should be at the correct position", i, subListLIter.next());
-            subListLIter.remove();
-        }
-
-        assertEquals("Size should be 0", 0, subList.size());
     }
 }

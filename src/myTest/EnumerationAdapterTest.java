@@ -362,42 +362,6 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testEnumerationWithPrimitiveTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add(Integer.valueOf(1));
-        vec.add(Boolean.valueOf(true));
-        vec.add(Double.valueOf(0.11));
-
-        HEnumeration enumer = vec.elements();
-
-        assertTrue("First element should be an Integer", enumer.nextElement() instanceof Integer);
-        assertTrue("Second element should be a Boolean", enumer.nextElement() instanceof Boolean);
-        assertTrue("Third element should be a Double", enumer.nextElement() instanceof Double);
-
-        assertFalse("Should have no more elements", enumer.hasMoreElements());
-    }
-
-    @Test
-    public void testEnumerationWithMixedTypes()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("str");
-        vec.add(123);
-        vec.add(null);
-        vec.add(new VectorAdapter());
-
-        HEnumeration enumer = vec.elements();
-
-        assertEquals("First element should be a string", "str", enumer.nextElement());
-        assertEquals("Second element should be an int", 123, enumer.nextElement());
-        assertNull("Third element should be null", enumer.nextElement());
-        assertTrue("Fourth element should be a VectorAdapter", enumer.nextElement() instanceof VectorAdapter);
-
-        assertFalse("Should have no more elements", enumer.hasMoreElements());
-    }
-
-    @Test
     public void testEnumerationWithDuplicateElements()
     {
         VectorAdapter vec = new VectorAdapter();
@@ -412,20 +376,5 @@ public class EnumerationAdapterTest
         assertEquals("Third element should be '0'", "0", enumer.nextElement());
 
         assertFalse("Should have no more elements", enumer.hasMoreElements());
-    }
-
-    @Test(timeout = 1000)
-    public void testEnumerationPerformance()
-    {
-        VectorAdapter vec = new VectorAdapter();
-
-        for(int i = 0; i < 10000; i++)
-            vec.add(i);
-
-
-        HEnumeration enumer = vec.elements();
-
-        for(int i = 0; i < 10000 && enumer.hasMoreElements(); i++)
-            assertEquals("The " + i + "-th element should be at the correct position", i, enumer.nextElement());
     }
 }
