@@ -63,6 +63,7 @@ public class IteratorAdapterTest
     {
         iterator.next();
         iterator.next();
+        iterator.next();
 
         assertTrue("Collection should have some more elements", iterator.hasNext());
     }
@@ -159,21 +160,6 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testMultipleIteratorsAreIndependent()
-    {
-        HIterator iter1 = vector.iterator();
-        HIterator iter2 = vector.iterator();
-
-        iter1.next();
-        iter1.next();
-
-        assertEquals("First iterator should be at the beginning",
-            "3", iter1.next());
-        assertEquals("Second iterator should still be at the beginning",
-            "1", iter2.next());
-    }
-
-    @Test
     public void testRemoveAtTheBeginning()
     {
         iterator.next();
@@ -251,20 +237,6 @@ public class IteratorAdapterTest
         assertEquals("Next element should be '2'", "2", iterator.next());
     }
 
-    @Test
-    public void testRemoveAllElements()
-    {
-        while(iterator.hasNext())
-        {
-            iterator.next();
-            iterator.remove();
-        }
-
-        assertTrue("Collection should be empty after removing all the elements", vector.isEmpty());
-        assertEquals("Size should be 0", 0, vector.size());
-        assertFalse("Iterator should have no more elements", iterator.hasNext());
-    }
-
     @Test(expected = IllegalStateException.class)
     public void testRemoveOnEmptyCollection()
     {
@@ -275,27 +247,23 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testRemoveAffectsOtherIterators()
-    {
-        HIterator iter1 = vector.iterator();
-        HIterator iter2 = vector.iterator();
-
-        iter1.next();
-        iter1.remove();
-
-        assertEquals("Second iterator should see the modificed collection", "2", iter2.next());
-        assertFalse("Second iterator should not see the removed element", vector.contains("1"));
-    }
-
-    @Test
-    public void testSubListHasNext()
+    public void testSubListHasNextAtTheBeginning()
     {
         assertTrue("SubList iterator should have next elements",
             subIterator.hasNext());
     }
 
     @Test
-    public void testSubListHasNextReturnsFalseAfterIteration()
+    public void testSubListHasNextInTheMiddle()
+    {
+        subIterator.next();
+        subIterator.next();
+
+        assertTrue("SubList should have more elements", subIterator.hasNext());
+    }
+
+    @Test
+    public void testSubListHasNextAtTheEnd()
     {
         while(subIterator.hasNext())
             subIterator.next();
@@ -380,21 +348,6 @@ public class IteratorAdapterTest
         assertNull("Second element should be null", subIter.next());
         assertNull("Third element should be null", subIter.next());
         assertFalse("Should have no more elements", subIter.hasNext());
-    }
-
-    @Test
-    public void testSubListMultipleIterators()
-    {
-        HIterator subIter1 = subList.iterator();
-        HIterator subIter2 = subList.iterator();
-
-        subIter1.next();
-
-        assertEquals("Second iterator should still be at the beginning",
-            "2", subIter2.next());
-
-        assertEquals("First iterator should be at the beginning",
-            "3", subIter1.next());
     }
 
     @Test

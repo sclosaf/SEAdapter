@@ -319,6 +319,9 @@ public class VectorAdapter implements HList
         if(c == null)
             throw new NullPointerException();
 
+        if(c == this)
+            return true;
+
         HIterator iter = c.iterator();
 
         while(iter.hasNext())
@@ -337,6 +340,12 @@ public class VectorAdapter implements HList
     {
         if(c == null)
             throw new NullPointerException();
+
+        if(c == this)
+        {
+            this.removeAllElements();
+            return true;
+        }
 
         HIterator iter = c.iterator();
 
@@ -361,6 +370,9 @@ public class VectorAdapter implements HList
         if(c == null)
             throw new NullPointerException();
 
+        if(c == this)
+            return false;
+
         HIterator iter = iterator();
         boolean changed = false;
 
@@ -383,6 +395,20 @@ public class VectorAdapter implements HList
 
         if(c == null)
             throw new NullPointerException();
+
+        if(c.isEmpty())
+            return false;
+
+        if(c == this)
+        {
+            int size = this.size();
+            VectorAdapter clone = (VectorAdapter) this.clone();
+
+            for(int i = 0; i < size; i++)
+                insertElementAt(clone.elementAt(i), index + i);
+
+            return true;
+        }
 
         HIterator iter = c.iterator();
 

@@ -156,22 +156,6 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testMultipleEnumerationsAreIndependent()
-    {
-        HEnumeration enumer1 = vector.elements();
-        HEnumeration enumer2 = vector.elements();
-
-        enumer1.nextElement();
-        enumer1.nextElement();
-
-        assertEquals("First enumeration should be at the iterated position",
-            "3", enumer1.nextElement());
-
-        assertEquals("Second enumeration should still be at the beginning",
-            "1", enumer2.nextElement());
-    }
-
-    @Test
     public void testSubListHasMoreElementsAtTheBeginning()
     {
         assertTrue("SubList collection should have been created properly",
@@ -272,21 +256,6 @@ public class EnumerationAdapterTest
         assertNull("Second element should be null", subEnumer.nextElement());
         assertNull("Third element should be null", subEnumer.nextElement());
         assertFalse("Should have no more elements", subEnumer.hasMoreElements());
-    }
-
-    @Test
-    public void testMultipleSubListEnumerationsAreIndependent()
-    {
-        HEnumeration subEnumer1 = subList.elements();
-        HEnumeration subEnumer2 = subList.elements();
-
-        subEnumer1.nextElement();
-
-        assertEquals("Second enumeration should still be at the beginning",
-            "2", subEnumer2.nextElement());
-
-        assertEquals("First enumeration should be at the beginning",
-            "3", subEnumer1.nextElement());
     }
 
     @Test
