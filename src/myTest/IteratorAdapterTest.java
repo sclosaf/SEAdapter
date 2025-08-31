@@ -295,10 +295,10 @@ public class IteratorAdapterTest
     public void testSubListHasNextOnEmptyCollection()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(0, 0);
-        HIterator iter = sub.iterator();
+        HIterator subIter = sub.iterator();
 
         assertFalse("Empty subList should have no elements",
-            iter.hasNext());
+            subIter.hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -385,10 +385,10 @@ public class IteratorAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 3);
-        HIterator iter = subSub.iterator();
+        HIterator subIter = subSub.iterator();
 
-        iter.next();
-        iter.remove();
+        subIter.next();
+        subIter.remove();
 
         assertEquals("Nested sublist size should be 1", 1, subSub.size());
         assertEquals("Parent sublist size should be 3", 3, sub.size());
@@ -401,11 +401,11 @@ public class IteratorAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 5);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 3);
-        HIterator iter = subSub.iterator();
+        HIterator subIter = subSub.iterator();
 
-        assertEquals("First element should be 3", "3", iter.next());
-        assertNull("Second element should be null", iter.next());
-        assertFalse("Should have no more elements", iter.hasNext());
+        assertEquals("First element should be 3", "3", subIter.next());
+        assertNull("Second element should be null", subIter.next());
+        assertFalse("Should have no more elements", subIter.hasNext());
     }
 
     @Test
@@ -413,9 +413,9 @@ public class IteratorAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
-        HIterator iter = subSub.iterator();
+        HIterator subIter = subSub.iterator();
 
-        assertFalse("Empty sub-subList should have no elements", iter.hasNext());
+        assertFalse("Empty sub-subList should have no elements", subIter.hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -423,9 +423,9 @@ public class IteratorAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
-        HIterator iter = subSub.iterator();
+        HIterator subIter = subSub.iterator();
 
-        iter.next();
+        subIter.next();
     }
 
     @Test
@@ -434,10 +434,10 @@ public class IteratorAdapterTest
         SubListAdapter sub = (SubListAdapter) vector.subList(0, 5);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 4);
         SubListAdapter subSubSub = (SubListAdapter) subSub.subList(1, 3);
-        HIterator iter = subSubSub.iterator();
+        HIterator subIter = subSubSub.iterator();
 
-        assertEquals("First element should be 3", "3", iter.next());
-        assertNull("Second element should be null", iter.next());
-        assertFalse("Should have no more elements", iter.hasNext());
+        assertEquals("First element should be 3", "3", subIter.next());
+        assertNull("Second element should be null", subIter.next());
+        assertFalse("Should have no more elements", subIter.hasNext());
     }
 }

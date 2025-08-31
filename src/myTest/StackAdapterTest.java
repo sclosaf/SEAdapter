@@ -4,7 +4,7 @@ import myAdapter.StackAdapter;
 import java.util.EmptyStackException;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.After;
+import org.junit.Afters;
 import static org.junit.Assert.*;
 
 /*
@@ -63,7 +63,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPushMaintainsOrder()
+    public void testPushProperOrder()
     {
         stack = new StackAdapter();
 
@@ -80,9 +80,8 @@ public class StackAdapterTest
     public void testPushNullElement()
     {
         stack = new StackAdapter();
-        Object result = stack.push(null);
 
-        assertNull("Should return null", result);
+        assertNull("Should return null", stack.push(null));
         assertEquals("Stack size should be 1", 1, stack.size());
         assertNull("Null element should be at top", stack.peek());
     }
@@ -93,9 +92,8 @@ public class StackAdapterTest
         stack = new StackAdapter();
         stack.push("1");
         stack.pop();
-        Object result = stack.push("2");
 
-        assertEquals("Should return the pushed item", "2", result);
+        assertEquals("Should return the pushed item", "2", stack.push("2"));
         assertEquals("Stack size should be 1", 1, stack.size());
         assertEquals("Pushed element should be at top", "2", stack.peek());
     }
@@ -104,15 +102,14 @@ public class StackAdapterTest
     public void testPushToEmptyStack()
     {
         stack = new StackAdapter();
-        Object result = stack.push("1");
 
-        assertEquals("Should return the pushed item", "1", result);
+        assertEquals("Should return the pushed item", "1", stack.push("1"));
         assertEquals("Stack size should be 1", 1, stack.size());
         assertFalse("Stack should not be empty", stack.empty());
     }
 
     @Test
-    public void testPushSameElementMultipleTimes()
+    public void testPushMultipleSameElements()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -125,16 +122,14 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPopRemovesTopElement()
+    public void testPopProperOrder()
     {
         stack = new StackAdapter();
         stack.push("1");
         stack.push("2");
         stack.push("3");
 
-        Object result = stack.pop();
-
-        assertEquals("Should return the top element", "3", result);
+        assertEquals("Should return the top element", "3", stack.pop());
         assertEquals("Stack size should be 2 after pop", 2, stack.size());
         assertEquals("New top element should be second element", "2", stack.peek());
     }
@@ -161,7 +156,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPopAfterPushMaintainsOrder()
+    public void testPopAfterPush()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -180,9 +175,7 @@ public class StackAdapterTest
         stack = new StackAdapter();
         stack.push(null);
 
-        Object result = stack.pop();
-
-        assertNull("Should return null", result);
+        assertNull("Should return null", stack.pop());
         assertTrue("Stack should be empty after pop", stack.empty());
     }
 
@@ -201,16 +194,14 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPeekReturnsTopElementWithoutRemoving()
+    public void testPeekReturnsElementWithoutRemoving()
     {
         stack = new StackAdapter();
         stack.push("1");
         stack.push("2");
         stack.push("3");
 
-        Object result = stack.peek();
-
-        assertEquals("Peek should return top element without removing", "3", result);
+        assertEquals("Peek should return top element without removing", "3", stack.peek());
         assertEquals("Stack size should remain unchanged after peek", 3, stack.size());
         assertEquals("Top element should still be present after peek", "3", stack.peek());
     }
@@ -223,18 +214,30 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPeekAfterPushOperation()
+    public void testPeekAfterPush()
     {
         stack = new StackAdapter();
         stack.push("1");
         stack.push("2");
 
-        Object result = stack.peek();
+        assertEquals("Peek should return last pushed element", "2", stack.peek());
 
-        assertEquals("Peek should return last pushed element", "2", result);
         stack.push("3");
-        result = stack.peek();
-        assertEquals("Peek should return new top element after push", "3", result);
+
+        assertEquals("Peek should return new top element after push", "3", stack.peek());
+    }
+
+    @Test
+    public void testPeekAfterPop()
+    {
+        stack = new StackAdapter();
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+
+        stack.pop();
+
+        assertEquals("Peek should return the second-last pushed element", "2", stack.peek());
     }
 
     @Test
@@ -243,27 +246,8 @@ public class StackAdapterTest
         stack = new StackAdapter();
         stack.push(null);
 
-        Object result = stack.peek();
-
-        assertNull("Peek should return null for null element", result);
+        assertNull("Peek should return null for null element", stack.peek());
         assertEquals("Stack size should be 1", 1, stack.size());
-    }
-
-    @Test
-    public void testMultiplePeekCallsReturnSameElement()
-    {
-        stack = new StackAdapter();
-        stack.push("1");
-        stack.push("2");
-
-        Object result1 = stack.peek();
-        Object result2 = stack.peek();
-        Object result3 = stack.peek();
-
-        assertEquals("First peek should return top element", "2", result1);
-        assertEquals("Second peek should return same element", "2", result2);
-        assertEquals("Third peek should return same element", "2", result3);
-        assertEquals("Stack size should remain unchanged after multiple peeks", 2, stack.size());
     }
 
     @Test
@@ -274,9 +258,7 @@ public class StackAdapterTest
         stack.push("1");
         stack.push("1");
 
-        Object result = stack.peek();
-
-        assertEquals("Peek should return top duplicate element", "1", result);
+        assertEquals("Peek should return top duplicate element", "1", stack.peek());
         assertEquals("Stack size should be 3", 3, stack.size());
     }
 
@@ -288,7 +270,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testEmptyAfterPushingElement()
+    public void testEmptyAfterPush()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -297,7 +279,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testEmptyAfterRemovingAllElements()
+    public void testEmptyAfterPop()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -329,9 +311,7 @@ public class StackAdapterTest
         stack.push("2");
         stack.push("3");
 
-        int position = stack.search("3");
-
-        assertEquals("Top element should be at position 1", 1, position);
+        assertEquals("Top element should be at position 1", 1, stack.search("3"));
     }
 
     @Test
@@ -342,9 +322,7 @@ public class StackAdapterTest
         stack.push("2");
         stack.push("3");
 
-        int position = stack.search("2");
-
-        assertEquals("Middle element should be at position 2", 2, position);
+        assertEquals("Middle element should be at position 2", 2, stack.search("2"));
     }
 
     @Test
@@ -355,9 +333,7 @@ public class StackAdapterTest
         stack.push("2");
         stack.push("3");
 
-        int position = stack.search("1");
-
-        assertEquals("Bottom element should be at position 3", 3, position);
+        assertEquals("Bottom element should be at position 3", 3, stack.search("1"));
     }
 
     @Test
@@ -368,9 +344,7 @@ public class StackAdapterTest
         stack.push("2");
         stack.push("3");
 
-        int position = stack.search("4");
-
-        assertEquals("Non-existent element should return -1", -1, position);
+        assertEquals("Non-existent element should return -1", -1, stack.search("4"));
     }
 
     @Test
@@ -378,9 +352,7 @@ public class StackAdapterTest
     {
         stack = new StackAdapter();
 
-        int position = stack.search("1");
-
-        assertEquals("Search on empty stack should return -1", -1, position);
+        assertEquals("Search on empty stack should return -1", -1, stack.search("1"));
     }
 
     @Test
@@ -391,9 +363,7 @@ public class StackAdapterTest
         stack.push(null);
         stack.push("3");
 
-        int position = stack.search(null);
-
-        assertEquals("Null element should be found at position 1", 2, position);
+        assertEquals("Null element should be found at position 1", 2, stack.search(null));
     }
 
     @Test
@@ -405,13 +375,11 @@ public class StackAdapterTest
         stack.push("1");
         stack.push("3");
 
-        int position = stack.search("1");
-
-        assertEquals("Should return position of topmost duplicate element", 2, position);
+        assertEquals("Should return position of topmost duplicate element", 2, stack.search("1"));
     }
 
     @Test
-    public void testSearchAfterPopOperations()
+    public void testSearchAfterPop()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -419,22 +387,20 @@ public class StackAdapterTest
         stack.push("3");
         stack.pop();
 
-        int position = stack.search("2");
-
-        assertEquals("After pop, element should be at position 1", 1, position);
+        assertEquals("After pop, element should be at position 1", 1, stack.search("2"));
     }
 
     @Test
-    public void testSearchAfterPushOperations()
+    public void testSearchAfterPush()
     {
         stack = new StackAdapter();
         stack.push("1");
         stack.push("2");
-        int position1 = stack.search("2");
-        stack.push("3");
-        int position2 = stack.search("2");
 
-        assertEquals("Element position should change after push", 2, position2);
-        assertEquals("Original position should be 1", 1, position1);
+        assertEquals("Element position should be 1", 1, stack.search("2"));
+
+        stack.push("3");
+
+        assertEquals("Element position should change after push", 2, stack.search("2"));
     }
 }

@@ -1061,7 +1061,6 @@ public class ListIteratorAdapterTest
     @Test
     public void testSubListNextProperIterationForwardAndBackward()
     {
-
         assertEquals("First element should match", "2", subListLIterator.next());
         assertEquals("Second element should match", "3", subListLIterator.next());
         assertNull("Third element should be null", subListLIterator.next());
@@ -1454,7 +1453,6 @@ public class ListIteratorAdapterTest
     @Test
     public void testSubListListIteratorFromIndexAtBeginning()
     {
-
         HListIterator subListLIter = subList.listIterator(0);
 
         assertTrue("Should have next at beginning", subListLIter.hasNext());
