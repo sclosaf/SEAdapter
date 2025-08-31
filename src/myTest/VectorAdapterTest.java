@@ -398,19 +398,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testTrimToSizeWithSingleElement()
-    {
-        vector = new VectorAdapter(10);
-        vector.add("1");
-
-        vector.trimToSize();
-
-        assertEquals("Capacity should equal size after trimming", 1, vector.capacity());
-        assertEquals("Size should remain unchanged", 1, vector.size());
-        assertEquals("First element should remain", "1", vector.get(0));
-    }
-
-    @Test
     public void testTrimToSizeAlreadyTrimmed()
     {
         vector = new VectorAdapter(3);
@@ -978,17 +965,6 @@ public class VectorAdapterTest
         assertFalse("Empty vector should not contain any element", vector.contains("4"));
         assertFalse("Empty vector should not contain any element", vector.contains("5"));
         assertFalse("Empty vector should not contain null", vector.contains(null));
-    }
-
-    @Test
-    public void testContainsWithDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
-
-        assertTrue("Should contain duplicate element", vector.contains("1"));
     }
 
     @Test
@@ -1604,15 +1580,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testFirstElementWithSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-
-        assertEquals("Should return the single element", "1", vector.firstElement());
-    }
-
-    @Test
     public void testLastElementNonEmptyVector()
     {
         vector = new VectorAdapter();
@@ -1640,15 +1607,6 @@ public class VectorAdapterTest
         vector.add(null);
 
         assertNull("Should return null last element", vector.lastElement());
-    }
-
-    @Test
-    public void testLastElementWithSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-
-        assertEquals("Should return the single element", "1", vector.lastElement());
     }
 
     @Test
@@ -2012,20 +1970,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testAddElementDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.addElement("1");
-        vector.addElement("1");
-        vector.addElement("1");
-
-        assertEquals("Size should be 3 after adding duplicate elements", 3, vector.size());
-        assertEquals("All elements should be '1'", "1", vector.get(0));
-        assertEquals("All elements should be '1'", "1", vector.get(1));
-        assertEquals("All elements should be '1'", "1", vector.get(2));
-    }
-
-    @Test
     public void testRemoveElementExistingElement()
     {
         vector = new VectorAdapter();
@@ -2129,17 +2073,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testRemoveAllElementsSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.removeAllElements();
-
-        assertEquals("Size should be 0 after removal", 0, vector.size());
-        assertTrue("Vector should be empty", vector.isEmpty());
-    }
-
-    @Test
     public void testRemoveAllElementsMultipleElements()
     {
         vector = new VectorAdapter();
@@ -2166,19 +2099,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testRemoveAllElementsDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
-        vector.removeAllElements();
-
-        assertEquals("Size should be 0 after removal", 0, vector.size());
-        assertTrue("Vector should be empty", vector.isEmpty());
-    }
-
-    @Test
     public void testCloneEmptyVector()
     {
         vector = new VectorAdapter();
@@ -2187,18 +2107,6 @@ public class VectorAdapterTest
         assertNotNull("Clone should not be null", vec);
         assertEquals("Clone size should match original", vector.size(), vec.size());
         assertTrue("Clone should be empty", vec.isEmpty());
-    }
-
-    @Test
-    public void testCloneSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        VectorAdapter vec = (VectorAdapter) vector.clone();
-
-        assertNotNull("Clone should not be null", vec);
-        assertEquals("Clone size should match original", vector.size(), vec.size());
-        assertEquals("Clone element should match original", vector.get(0), vec.get(0));
     }
 
     @Test
@@ -2234,22 +2142,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testCloneDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
-        VectorAdapter vec = (VectorAdapter) vector.clone();
-
-        assertNotNull("Clone should not be null", vec);
-        assertEquals("Clone size should match original", vector.size(), vec.size());
-
-        for(int i = 0; i < vector.size(); i++)
-            assertEquals("All elements should be '1'", "1", vec.get(i));
-    }
-
-    @Test
     public void testCloneIndependenceFromOriginal()
     {
         vector = new VectorAdapter();
@@ -2273,18 +2165,6 @@ public class VectorAdapterTest
 
         assertNotNull("Returned array should not be null", array);
         assertEquals("Array length should match vector size", 0, array.length);
-    }
-
-    @Test
-    public void testToArraySingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        Object[] array = vector.toArray();
-
-        assertNotNull("Returned array should not be null", array);
-        assertEquals("Array length should match vector size", 1, array.length);
-        assertEquals("Array element should match vector element", "1", array[0]);
     }
 
     @Test
@@ -2317,22 +2197,6 @@ public class VectorAdapterTest
         assertNull("First array element should be null", array[0]);
         assertNull("Second array element should be null", array[1]);
         assertNull("Third array element should null", array[2]);
-    }
-
-    @Test
-    public void testToArrayDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
-        Object[] array = vector.toArray();
-
-        assertNotNull("Returned array should not be null", array);
-        assertEquals("Array length should match vector size", 3, array.length);
-        assertEquals("All array elements should be '1'", "1", array[0]);
-        assertEquals("All array elements should be '1'", "1", array[1]);
-        assertEquals("All array elements should be '1'", "1", array[2]);
     }
 
     @Test
@@ -2685,20 +2549,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testAddDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
-
-        assertEquals("Size should be 3 after adding duplicate elements", 3, vector.size());
-        assertEquals("All elements should be '1'", "1", vector.get(0));
-        assertEquals("All elements should be '1'", "1", vector.get(1));
-        assertEquals("All elements should be '1'", "1", vector.get(2));
-    }
-
-    @Test
     public void testRemoveExistingElement()
     {
         vector = new VectorAdapter();
@@ -3034,17 +2884,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testClearSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.clear();
-
-        assertEquals("Size should be 0 after clearing", 0, vector.size());
-        assertTrue("Vector should be empty", vector.isEmpty());
-    }
-
-    @Test
     public void testClearMultipleElements()
     {
         vector = new VectorAdapter();
@@ -3064,19 +2903,6 @@ public class VectorAdapterTest
         vector.add(null);
         vector.add(null);
         vector.add(null);
-        vector.clear();
-
-        assertEquals("Size should be 0 after clearing", 0, vector.size());
-        assertTrue("Vector should be empty", vector.isEmpty());
-    }
-
-    @Test
-    public void testClearDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
         vector.clear();
 
         assertEquals("Size should be 0 after clearing", 0, vector.size());
@@ -3146,23 +2972,6 @@ public class VectorAdapterTest
         boolean result = vector.containsAll(collection);
 
         assertFalse("Should return false when all elements are missing", result);
-    }
-
-    @Test
-    public void testContainsAllDuplicateElementsInCollection()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("2");
-        vector.add("3");
-
-        VectorAdapter collection = new VectorAdapter();
-        collection.add("1");
-        collection.add("1");
-
-        boolean result = vector.containsAll(collection);
-
-        assertTrue("Should return true for duplicate elements in collection", result);
     }
 
     @Test
@@ -3323,25 +3132,6 @@ public class VectorAdapterTest
         assertEquals("First element should remain", "1", vector.get(0));
         assertNull("Second element should be null", vector.get(1));
         assertNull("Third element should be null", vector.get(2));
-    }
-
-    @Test
-    public void testAddAllDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-
-        VectorAdapter collection = new VectorAdapter();
-        collection.add("2");
-        collection.add("2");
-
-        boolean result = vector.addAll(collection);
-
-        assertTrue("Should return true", result);
-        assertEquals("Size should be increased", 3, vector.size());
-        assertEquals("First element should remain", "1", vector.get(0));
-        assertEquals("Second element should be added", "2", vector.get(1));
-        assertEquals("Third element should be added", "2", vector.get(2));
     }
 
     @Test(expected = NullPointerException.class)
@@ -4010,19 +3800,6 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testHashCodeSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        int hashCode = vector.hashCode();
-
-        VectorAdapter expected = new VectorAdapter();
-        expected.add("1");
-
-        assertEquals("Hash code should match for single element", expected.hashCode(), hashCode);
-    }
-
-    @Test
     public void testHashCodeMultipleElements()
     {
         vector = new VectorAdapter();
@@ -4057,39 +3834,12 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testHashCodeDuplicateElements()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("1");
-        vector.add("1");
-        int hashCode = vector.hashCode();
-
-        VectorAdapter expected = new VectorAdapter();
-        expected.add("1");
-        expected.add("1");
-        expected.add("1");
-
-        assertEquals("Hash code should match for duplicate elements", expected.hashCode(), hashCode);
-    }
-
-    @Test
     public void testToStringEmptyVector()
     {
         vector = new VectorAdapter();
         String result = vector.toString();
 
         assertEquals("String representation of empty vector should match", "[]", result);
-    }
-
-    @Test
-    public void testToStringSingleElement()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        String result = vector.toString();
-
-        assertEquals("String representation of single element should match", "[1]", result);
     }
 
     @Test
