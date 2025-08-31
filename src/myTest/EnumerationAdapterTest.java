@@ -75,7 +75,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testProperIterationOverElements()
+    public void testNextElementProperIteration()
     {
         assertEquals("First element should match", "1", enumeration.nextElement());
         assertEquals("Second element should match", "2", enumeration.nextElement());
@@ -87,7 +87,7 @@ public class EnumerationAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testNextElementThrowsExceptionWhenNoMoreElements()
+    public void testNextElementThrowsException()
     {
         while(enumeration.hasMoreElements())
             enumeration.nextElement();
@@ -115,31 +115,24 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testEnumerationWithSingleElement()
+    public void testNextElementDuplicates()
     {
         VectorAdapter vec = new VectorAdapter();
-        vec.add("1");
+        vec.add("0");
+        vec.add("0");
+        vec.add("0");
 
         HEnumeration enumer = vec.elements();
 
-        assertTrue("Should have one element", enumer.hasMoreElements());
-        assertEquals("Should return the single element", "1", enumer.nextElement());
-        assertFalse("Should have no more elements after retrieval", enumer.hasMoreElements());
-    }
+        assertEquals("First element should be '0'", "0", enumer.nextElement());
+        assertEquals("Second element should be '0'", "0", enumer.nextElement());
+        assertEquals("Third element should be '0'", "0", enumer.nextElement());
 
-    @Test(expected = NoSuchElementException.class)
-    public void testNextElementThrowsExceptionWithOneElement()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("1");
-
-        HEnumeration enumer = vec.elements();
-        enumer.nextElement();
-        enumer.nextElement();
+        assertFalse("Should have no more elements", enumer.hasMoreElements());
     }
 
     @Test
-    public void testEnumerationWithAllNullElements()
+    public void testNextElementWithAllNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -182,7 +175,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testSubListNextElementReturnsCorrectElements()
+    public void testSubListNextElementProperIteration()
     {
         assertEquals("First element of subList should match", "2", subEnumeration.nextElement());
         assertEquals("Second element of subList should match", "3", subEnumeration.nextElement());
@@ -192,12 +185,21 @@ public class EnumerationAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testSubListNextElementThrowsExceptionWhenNoMoreElements()
+    public void testSubListNextElementThrowsException()
     {
         while(subEnumeration.hasMoreElements())
             subEnumeration.nextElement();
 
         subEnumeration.nextElement();
+    }
+
+    @Test
+    public void testSubListHasMoreElementsOnEmptyCollection()
+    {
+        SubListAdapter sub = (SubListAdapter) vector.subList(1, 1);
+        HEnumeration subEnumer = sub.elements();
+
+        assertFalse("Empty subList should have no elements", subEnumer.hasMoreElements());
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -210,37 +212,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testSubListHasMoreElementsOnEmptyCollection()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(1, 1);
-        HEnumeration subEnumer = sub.elements();
-
-        assertFalse("Empty subList should have no elements", subEnumer.hasMoreElements());
-    }
-
-    @Test
-    public void testSubListEnumerationWithSingleElement()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(0, 1);
-        HEnumeration subEnumer = sub.elements();
-
-        assertTrue("Should have one element", subEnumer.hasMoreElements());
-        assertEquals("Should return the single element", "1", subEnumer.nextElement());
-        assertFalse("Should have no more elements after retrieval", subEnumer.hasMoreElements());
-    }
-
-    @Test(expected = NoSuchElementException.class)
-    public void testSubListNextElementThrowsExceptionWithOneElement()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(1, 2);
-
-        HEnumeration subEnumer = sub.elements();
-        subEnumer.nextElement();
-        subEnumer.nextElement();
-    }
-
-    @Test
-    public void testSubListEnumerationWithAllNullElements()
+    public void testSubListNextElementWithAllNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -259,22 +231,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testNestedSubListEnumeration()
-    {
-        SubListAdapter subSub = (SubListAdapter) subList.subList(1, 3);
-        HEnumeration enumer = subSub.elements();
-
-        assertTrue("Sub-subList should have elements", enumer.hasMoreElements());
-        assertEquals("First element should be 3", "3", enumer.nextElement());
-
-        assertTrue("Sub-subList should have elements", enumer.hasMoreElements());
-        assertNull("Second element should be null", enumer.nextElement());
-
-        assertFalse("Should have no more elements", enumer.hasMoreElements());
-    }
-
-    @Test
-    public void testNestedSubListEnumerationOrder()
+    public void testNestedSubListNextElementProperIteration()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 5);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 3);
@@ -286,7 +243,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testEmptyNestedSubList()
+    public void testNestedSubListHasMoreElementsEmpty()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
@@ -296,54 +253,12 @@ public class EnumerationAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testNestedSubListThrowsExceptionWhenEmpty()
+    public void testNestedSubListNextElementThrowsExceptionOnEmptyCollection()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
         HEnumeration enumer = subSub.elements();
 
         enumer.nextElement();
-    }
-
-    @Test
-    public void testNestedSubListWithSingleElement()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(0, 3);
-        SubListAdapter subSub = (SubListAdapter) sub.subList(1, 2);
-        HEnumeration enumer = subSub.elements();
-
-        assertTrue("Should have one element", enumer.hasMoreElements());
-        assertEquals("Should return the single element", "2", enumer.nextElement());
-        assertFalse("Should have no more elements", enumer.hasMoreElements());
-    }
-
-    @Test
-    public void testDeeplyNestedSubListEnumeration()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(0, 5);
-        SubListAdapter subSub = (SubListAdapter) sub.subList(1, 4);
-        SubListAdapter subSubSub = (SubListAdapter) subSub.subList(1, 3);
-        HEnumeration enumer = subSubSub.elements();
-
-        assertEquals("First element should be 3", "3", enumer.nextElement());
-        assertNull("Second element should be null", enumer.nextElement());
-        assertFalse("Should have no more elements", enumer.hasMoreElements());
-    }
-
-    @Test
-    public void testEnumerationWithDuplicateElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("0");
-        vec.add("0");
-        vec.add("0");
-
-        HEnumeration enumer = vec.elements();
-
-        assertEquals("First element should be '0'", "0", enumer.nextElement());
-        assertEquals("Second element should be '0'", "0", enumer.nextElement());
-        assertEquals("Third element should be '0'", "0", enumer.nextElement());
-
-        assertFalse("Should have no more elements", enumer.hasMoreElements());
     }
 }

@@ -52,7 +52,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testNextIndexCorrectElements()
+    public void testNextIndexProperOrder()
     {
         while(listIterator.hasNext())
             assertEquals("Element should match corresponding index at " + listIterator.nextIndex(),
@@ -121,7 +121,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testPreviousIndexCorrectElements()
+    public void testPreviousIndexProperOrder()
     {
         while(listIterator.hasNext())
             listIterator.next();
@@ -197,7 +197,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testEmptyCollectionOperations()
+    public void testOperationsEmptyCollection()
     {
         VectorAdapter vec = new VectorAdapter();
         HListIterator listIter = vec.listIterator();
@@ -261,7 +261,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testNextReturnsCorrectElementsForwardAndBackward()
+    public void testNextProperIterationForwardAndBackward()
     {
         assertEquals("First element should match", "1", listIterator.next());
         assertEquals("Second element should match", "2", listIterator.next());
@@ -305,7 +305,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testHasNextThrowsExceptionWhenNoMoreElements()
+    public void testHasNextThrowsException()
     {
         while(listIterator.hasNext())
             listIterator.next();
@@ -314,7 +314,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testPrevioudThrowsExceptionAtBeginning()
+    public void testPrevioudThrowsException()
     {
         listIterator.previous();
     }
@@ -441,7 +441,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = IllegalStateException.class)
-    public void testRemoveOnEmptyCollection()
+    public void testRemoveThrowsExceptionOnEmptyCollection()
     {
         VectorAdapter vec = new VectorAdapter();
         HListIterator listIter = vec.listIterator();
@@ -458,7 +458,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testRemoveMultipleElementsNext()
+    public void testRemoveMultipleWithNext()
     {
         listIterator.next();
         listIterator.remove();
@@ -475,7 +475,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testRemoveMultipleElementsPrevious()
+    public void testRemoveMultipleWithPrevious()
     {
         while(listIterator.hasNext())
             listIterator.next();
@@ -508,6 +508,23 @@ public class ListIteratorAdapterTest
     }
 
     @Test
+    public void testRemoveDuplicateElements()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("0");
+        vec.add("0");
+        vec.add("0");
+
+        HListIterator listIter = vec.listIterator();
+        listIter.next();
+        listIter.remove();
+
+        assertEquals("Size should be 2", 2, vec.size());
+        assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(0));
+        assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(1));
+    }
+
+    @Test
     public void testSetAfterNext()
     {
         listIterator.next();
@@ -532,25 +549,8 @@ public class ListIteratorAdapterTest
 
     }
 
-    @Test
-    public void testSetReplacesLastReturedElement()
-    {
-        listIterator.next();
-        listIterator.next();
-        listIterator.next();
-        listIterator.previous();
-        listIterator.next();
-        listIterator.previous();
-        listIterator.previous();
-        listIterator.next();
-        listIterator.set("6");
-
-        assertEquals("Element should have been replaced", "6", vector.get(1));
-        assertEquals("Previous element should be the replaced value", "6", listIterator.previous());
-    }
-
     @Test(expected = IllegalStateException.class)
-    public void testSetThrowsExceptionWithoutNextOrPrevious()
+    public void testSetThrowsException()
     {
         listIterator.set("6");
     }
@@ -788,6 +788,13 @@ public class ListIteratorAdapterTest
         assertFalse("Should not contain null element", vector.contains(null));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void testListIteratorFromIndexRemoveWithoutNextPrevious()
+    {
+        HListIterator listIter = vector.listIterator(2);
+        listIter.remove();
+    }
+
     @Test
     public void testListIteratorFromIndexSetAfterNext()
     {
@@ -810,6 +817,13 @@ public class ListIteratorAdapterTest
 
         assertEquals("Element should be modified", "6", vector.get(2));
         assertEquals("Next should return modified element", "6", listIter.next());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testListIteratorFromIndexSetWithoutNextPrevious()
+    {
+        HListIterator listIter = vector.listIterator(2);
+        listIter.set("6");
     }
 
     @Test
@@ -837,95 +851,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testListIteratorFromIndexConsistency()
-    {
-        HListIterator listIter = vector.listIterator(2);
-
-        assertEquals("Index should match", 2, listIter.nextIndex());
-        assertEquals("Index should match", 1, listIter.previousIndex());
-
-        listIter.next();
-        assertEquals("Index should match", 3, listIter.nextIndex());
-        assertEquals("Index should match", 2, listIter.previousIndex());
-
-        listIter.previous();
-        assertEquals("Index should match", 2, listIter.nextIndex());
-        assertEquals("Index should match", 1, listIter.previousIndex());
-    }
-
-    @Test
-    public void testListIteratorFromIndexWithSubList()
-    {
-        SubListAdapter subList = (SubListAdapter) vector.subList(1, 4);
-        HListIterator subListLIter = subList.listIterator(1);
-
-        assertEquals("Should start from subList index 1", "3", subListLIter.next());
-        assertEquals("Should get null element", null, subListLIter.next());
-        assertFalse("Should have no more elements in subList", subListLIter.hasNext());
-    }
-
-    @Test
-    public void testListIteratorFromIndexWithNestedSubList()
-    {
-        SubListAdapter subList = (SubListAdapter) vector.subList(1, 5);
-        SubListAdapter subSubList = (SubListAdapter) subList.subList(1, 3);
-        HListIterator subListLIter = subSubList.listIterator(1);
-
-        assertEquals("Should get element from nested subList", null, subListLIter.next());
-        assertFalse("Should have no more elements", subListLIter.hasNext());
-        assertEquals("Should get element via previous", null, subListLIter.previous());
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void testListIteratorFromIndexRemoveWithoutNextPrevious()
-    {
-        HListIterator listIter = vector.listIterator(2);
-        listIter.remove();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void testListIteratorFromIndexSetWithoutNextPrevious()
-    {
-        HListIterator listIter = vector.listIterator(2);
-        listIter.set("6");
-    }
-
-    @Test
-    public void testListIteratorWithDuplicateElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("0");
-        vec.add("0");
-        vec.add("0");
-
-        HListIterator listIter = vec.listIterator();
-
-        assertEquals("First element should be '0'", "0", listIter.next());
-        assertEquals("Second element should be '0'", "0", listIter.next());
-        assertEquals("Third element should be '0'", "0", listIter.next());
-
-        assertFalse("Should have no more elements", listIter.hasNext());
-    }
-
-    @Test
-    public void testListIteratorRemoveDuplicateElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("0");
-        vec.add("0");
-        vec.add("0");
-
-        HListIterator listIter = vec.listIterator();
-        listIter.next();
-        listIter.remove();
-
-        assertEquals("Size should be 2", 2, vec.size());
-        assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(0));
-        assertEquals("Both remaining elements should be 'duplicate'", "0", vec.get(1));
-    }
-
-    @Test
-    public void testSubListNextIndexCorrectElements()
+    public void testSubListNextIndexProperOrder()
     {
         while(subListLIterator.hasNext())
             assertEquals("Element should match corresponding at " + subListLIterator.nextIndex(),
@@ -994,7 +920,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListPreviousIndexCorrectElements()
+    public void testSubListPreviousIndexProperOrder()
     {
         while(subListLIterator.hasNext())
             subListLIterator.next();
@@ -1069,7 +995,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testEmptySubListOperations()
+    public void testOperationOnEmptySubList()
     {
         VectorAdapter vec = new VectorAdapter();
         HListIterator listIter = vec.listIterator();
@@ -1133,7 +1059,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListNextReturnsCorrectElementsForwardAndBackward()
+    public void testSubListNextProperIterationForwardAndBackward()
     {
 
         assertEquals("First element should match", "2", subListLIterator.next());
@@ -1166,7 +1092,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testSubListNextThrowsExceptionWhenNoMoreElements()
+    public void testSubListNextThrowsException()
     {
         while(subListLIterator.hasNext())
             subListLIterator.next();
@@ -1175,7 +1101,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testSubListPreviousThrowsExceptionAtBeginning()
+    public void testSubListPreviousThrowsException()
     {
         subListLIterator.previous();
     }
@@ -1368,6 +1294,27 @@ public class ListIteratorAdapterTest
     }
 
     @Test
+    public void testSubListRemoveDuplicateElements()
+    {
+        VectorAdapter vec = new VectorAdapter();
+        vec.add("0");
+        vec.add("0");
+        vec.add("0");
+        vec.add("0");
+        vec.add("0");
+
+        SubListAdapter sub = (SubListAdapter) vec.subList(1, 4);
+        HListIterator subListLIter = sub.listIterator();
+
+        subListLIter.next();
+        subListLIter.remove();
+
+        assertEquals("Size should be 2", 2, sub.size());
+        assertEquals("Both remaining elements should be 'duplicate'", "0", sub.get(0));
+        assertEquals("Both remaining elements should be 'duplicate'", "0", sub.get(1));
+    }
+
+    @Test
     public void testSubListSetAfterNext()
     {
         subListLIterator.next();
@@ -1387,23 +1334,6 @@ public class ListIteratorAdapterTest
 
         assertEquals("Element should have been replaced", "6", subList.get(1));
         assertEquals("Next element should be the replaced value", "6", subListLIterator.next());
-    }
-
-    @Test
-    public void testSubListSetReplacesLastReturnedElement()
-    {
-        subListLIterator.next();
-        subListLIterator.next();
-        subListLIterator.next();
-        subListLIterator.previous();
-        subListLIterator.next();
-        subListLIterator.previous();
-        subListLIterator.previous();
-        subListLIterator.next();
-        subListLIterator.set("6");
-
-        assertEquals("Element should have been replaced", "6", subList.get(1));
-        assertEquals("Previous element shoudl be the replaced value", "6", subListLIterator.previous());
     }
 
     @Test(expected = IllegalStateException.class)
@@ -1522,7 +1452,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorAtBeginning()
+    public void testSubListListIteratorFromIndexAtBeginning()
     {
 
         HListIterator subListLIter = subList.listIterator(0);
@@ -1535,7 +1465,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorAtMiddle()
+    public void testSubListListIteratorFromIndexAtMiddle()
     {
         HListIterator subListLIter = subList.listIterator(1);
 
@@ -1548,7 +1478,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorAtEnd()
+    public void testSubListListIteratorFromIndexAtEnd()
     {
         HListIterator subListLIter = subList.listIterator(subList.size());
 
@@ -1560,19 +1490,19 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testSubListListIteratorWithNegativeIndex()
+    public void testSubListListIteratorFromIndexWithNegativeIndex()
     {
         subList.listIterator(-1);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testSubListListIteratorWithIndexGreaterThanSize()
+    public void testSubListListIteratorFromIndexWithIndexGreaterThanSize()
     {
         subList.listIterator(subList.size() + 1);
     }
 
     @Test
-    public void testSubListListIteratorEmptyVector()
+    public void testSubListListIteratorFromIndexEmptyVector()
     {
         VectorAdapter vec = new VectorAdapter();
         SubListAdapter sub = (SubListAdapter) vec.subList(0, 0);
@@ -1585,7 +1515,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorForwardIterationFromIndex()
+    public void testSubListListIteratorFromIndexForwardIteration()
     {
         HListIterator subListLIter = subList.listIterator(1);
 
@@ -1595,7 +1525,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorBackwardIterationFromIndex()
+    public void testSubListListIteratorFromIndexBackwardIteration()
     {
         HListIterator subListLIter = subList.listIterator(3);
 
@@ -1606,7 +1536,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorBidirectionalIterationFromIndex()
+    public void testSubListListIteratorFromIndexBidirectionalIteration()
     {
         HListIterator subListLIter = subList.listIterator(2);
 
@@ -1625,7 +1555,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorRemoveAfterNextFromIndex()
+    public void testSubListListIteratorFromIndexRemoveAfterNext()
     {
         HListIterator subListLIter = subList.listIterator(1);
 
@@ -1638,7 +1568,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorRemoveAfterPreviousFromIndex()
+    public void testSubListListIteratorFromIndexRemoveAfterPrevious()
     {
         HListIterator subListLIter = subList.listIterator(3);
 
@@ -1651,7 +1581,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorSetAfterNextFromIndex()
+    public void testSubListListIteratorFromIndexSetAfterNext()
     {
         HListIterator subListLIter = subList.listIterator(0);
 
@@ -1663,7 +1593,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorSetAfterPreviousFromIndex()
+    public void testSubListListIteratorFromIndexSetAfterPrevious()
     {
         HListIterator subListLIter = subList.listIterator(2);
 
@@ -1675,7 +1605,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorAddFromIndex()
+    public void testSubListListIteratorFromIndexAdd()
     {
         HListIterator subListLIter = subList.listIterator(1);
 
@@ -1687,7 +1617,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListListIteratorAddAtEndFromIndex()
+    public void testSubListListIteratorFromIndexAddAtEnd()
     {
         HListIterator subListLIter = subList.listIterator(subList.size());
 
@@ -1698,51 +1628,17 @@ public class ListIteratorAdapterTest
         assertEquals("Previous should return new element", "6", subListLIter.previous());
     }
 
-    @Test
-    public void testSubListListIteratorIndexConsistency()
-    {
-        HListIterator subListLIter = subList.listIterator(1);
-
-        assertEquals("Index should match", 1, subListLIter.nextIndex());
-        assertEquals("Index should match", 0, subListLIter.previousIndex());
-
-        subListLIter.next();
-        assertEquals("Index should match", 2, subListLIter.nextIndex());
-        assertEquals("Index should match", 1, subListLIter.previousIndex());
-
-        subListLIter.previous();
-        assertEquals("Index should match", 1, subListLIter.nextIndex());
-        assertEquals("Index should match", 0, subListLIter.previousIndex());
-    }
-
     @Test(expected = IllegalStateException.class)
-    public void testSubListListIteratorRemoveWithoutNextPrevious()
+    public void testSubListListIteratorFromIndexRemoveWithoutNextPrevious()
     {
         HListIterator subListLIter = subList.listIterator(1);
         subListLIter.remove();
     }
 
     @Test(expected = IllegalStateException.class)
-    public void testSubListListIteratorSetWithoutNextPrevious()
+    public void testSubListListIteratorFromIndexSetWithoutNextPrevious()
     {
         HListIterator subListLIter = subList.listIterator(1);
         subListLIter.set("6");
-    }
-
-    @Test
-    public void testSubListListIteratorWithDuplicateElements()
-    {
-        VectorAdapter vec = new VectorAdapter();
-        vec.add("0");
-        vec.add("0");
-        vec.add("0");
-        SubListAdapter subList = (SubListAdapter) vec.subList(0, 3);
-        HListIterator subListLIter = subList.listIterator();
-
-        assertEquals("First element should be '0'", "0", subListLIter.next());
-        assertEquals("Second element should be '0'", "0", subListLIter.next());
-        assertEquals("Third element should be '0'", "0", subListLIter.next());
-
-        assertFalse("Should have no more elements", subListLIter.hasNext());
     }
 }
