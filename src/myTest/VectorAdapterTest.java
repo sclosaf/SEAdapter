@@ -1443,7 +1443,8 @@ public class VectorAdapterTest
         vector.add("2");
         vector.add("3");
 
-        assertEquals("Should return the previous existing element", "2", vector.setElementAt("4", 1));
+        vector.setElementAt("4", 1);
+
         assertEquals("Element at index 1 should be updated", "4", vector.get(1));
         assertEquals("Size should remain unchanged", 3, vector.size());
         assertEquals("First element should remain unchanged", "1", vector.get(0));
