@@ -69,14 +69,12 @@ public class SubListAdapter extends VectorAdapter
 
     public synchronized Object clone()
     {
-        SubListAdapter cloned = new SubListAdapter(vec, offset, offset + size());
+        Vector vector = new Vector(vec.size());
 
-        HIterator iter = iterator();
+        for(int i = 0; i < vec.size(); i++)
+            vector.insertElementAt(vec.elementAt(i), i);
 
-        while(iter.hasNext())
-            cloned.addElement(iter.next());
-
-        return cloned;
+        return new SubListAdapter(vector, beginIndex(), beginIndex() + size());
     }
 
     protected int beginIndex()

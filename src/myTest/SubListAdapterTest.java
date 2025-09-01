@@ -2197,4 +2197,1119 @@ public class SubListAdapterTest
         assertEquals("Element after sublist should be shifted", "3", vector.get(3));
         assertEquals("New element should be at correct position", "4", vector.get(4));
     }
+
+    @Test
+    public void testSubListRemoveElementExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        assertTrue("Should return true for existing element", subList.removeElement("2"));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First element should remain", "3", subList.get(0));
+        assertEquals("Second element should be shifted", "4", subList.get(1));
+        assertEquals("Vector size should be decreased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveElementNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        assertFalse("Should return false for non-existing element", subList.removeElement("1"));
+        assertEquals("Size should remain unchanged", 2, subList.size());
+        assertEquals("First element should remain", "2", subList.get(0));
+        assertEquals("Second element should remain", "3", subList.get(1));
+        assertEquals("Vector size should remain unchanged", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveElementNullElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 2);
+        assertTrue("Should return true for null element", subList.removeElement(null));
+        assertEquals("Size should be decreased", 0, subList.size());
+        assertEquals("Vector size should be decreased", 2, vector.size());
+        assertEquals("Element before subList should remain", "1", vector.get(0));
+        assertEquals("Element after subList should be shifted", "3", vector.get(1));
+    }
+
+    @Test
+    public void testSubListRemoveElementFromEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        assertFalse("Should return false for empty subList", subList.removeElement("2"));
+        assertEquals("Size should remain 0", 0, subList.size());
+        assertEquals("Vector size should remain unchanged", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveElementFirstOccurrenceOnly()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        assertTrue("Should return true for existing element", subList.removeElement("2"));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First occurrence should be removed", "2", subList.get(0));
+        assertEquals("Second element should be shifted", "3", subList.get(1));
+        assertEquals("Vector size should be decreased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveElementWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(3, 4);
+        assertTrue("Should return true for existing element", subList.removeElement("3"));
+        assertEquals("Size should be decreased", 0, subList.size());
+        assertEquals("Vector size should be decreased", 3, vector.size());
+        assertEquals("Element before subList should remain", "0", vector.get(0));
+        assertEquals("Element in subList range should be shifted", "1", vector.get(1));
+        assertEquals("Element after subList should be shifted", "2", vector.get(2));
+    }
+
+    @Test
+    public void testSubListRemoveAllElementsEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        subList.removeAllElements();
+
+        assertEquals("Size should remain 0", 0, subList.size());
+        assertTrue("SubList should remain empty", subList.isEmpty());
+        assertEquals("Vector size should remain unchanged", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveAllElementsMultipleElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        subList.removeAllElements();
+
+        assertEquals("Size should be 0 after removal", 0, subList.size());
+        assertTrue("SubList should be empty", subList.isEmpty());
+        assertEquals("Vector size should be decreased", 1, vector.size());
+        assertEquals("Element before subList should remain", "1", vector.get(0));
+    }
+
+    @Test
+    public void testSubListRemoveAllElementsNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+        vector.add(null);
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        subList.removeAllElements();
+
+        assertEquals("Size should be 0 after removal", 0, subList.size());
+        assertTrue("SubList should be empty", subList.isEmpty());
+        assertEquals("Vector size should be decreased", 1, vector.size());
+        assertEquals("Element before subList should remain", "1", vector.get(0));
+    }
+
+    @Test
+    public void testSubListCloneEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        SubListAdapter cloned = (SubListAdapter) subList.clone();
+
+        assertNotNull("Clone should not be null", cloned);
+        assertEquals("Clone size should match original", subList.size(), cloned.size());
+        assertTrue("Clone should be empty", cloned.isEmpty());
+    }
+
+    @Test
+    public void testSubListCloneMultipleElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        SubListAdapter cloned = (SubListAdapter) subList.clone();
+
+        assertNotNull("Clone should not be null", cloned);
+        assertEquals("Clone size should match original", subList.size(), cloned.size());
+
+        for(int i = 0; i < subList.size(); i++)
+            assertEquals("Element " + i + " should match", subList.get(i), cloned.get(i));
+    }
+
+    @Test
+    public void testSubListCloneNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(null);
+        vector.add(null);
+        vector.add(null);
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        SubListAdapter cloned = (SubListAdapter) subList.clone();
+
+        assertNotNull("Clone should not be null", cloned);
+        assertEquals("Clone size should match original", subList.size(), cloned.size());
+        assertNull("Null element should be preserved", cloned.get(0));
+        assertNull("Null element should be preserved", cloned.get(1));
+        assertNull("Null element should be preserved", cloned.get(2));
+    }
+
+    @Test
+    public void testSubListCloneIndependence()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        SubListAdapter cloned = (SubListAdapter) subList.clone();
+
+        subList.set(0, "4");
+        cloned.set(0, "5");
+
+        assertEquals("Clone should not be affected by original modification", "5", cloned.get(0));
+        assertEquals("Original should be modified", "4", subList.get(0));
+    }
+
+    @Test
+    public void testSubListCloneWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(2, 4);
+        SubListAdapter cloned = (SubListAdapter) subList.clone();
+
+        assertNotNull("Clone should not be null", cloned);
+        assertEquals("Clone size should match original", subList.size(), cloned.size());
+        assertEquals("First element should match with offset", "2", cloned.get(0));
+        assertEquals("Second element should match with offset", "3", cloned.get(1));
+    }
+
+    @Test
+    public void testSubListToArrayEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        Object[] arr = subList.toArray();
+
+        assertNotNull("Returned array should not be null", arr);
+        assertEquals("Array length should match subList size", 0, arr.length);
+    }
+
+    @Test
+    public void testSubListToArrayMultipleElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        Object[] arr = subList.toArray();
+
+        assertNotNull("Returned array should not be null", arr);
+        assertEquals("Array length should match subList size", 2, arr.length);
+        assertEquals("First array element should match", "1", arr[0]);
+        assertEquals("Second array element should match", "2", arr[1]);
+    }
+
+    @Test
+    public void testSubListToArrayNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        Object[] arr = subList.toArray();
+
+        assertNotNull("Returned array should not be null", arr);
+        assertEquals("Array length should match subList size", 2, arr.length);
+        assertEquals("Array element should be '1'", "1", arr[0]);
+        assertNull("Array element should be null", arr[1]);
+    }
+
+    @Test
+    public void testSubListToArrayWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(2, 4);
+        Object[] arr = subList.toArray();
+
+        assertNotNull("Returned array should not be null", arr);
+        assertEquals("Array length should match subList size", 2, arr.length);
+        assertEquals("First array element should match with offset", "2", arr[0]);
+        assertEquals("Second array element should match with offset", "3", arr[1]);
+    }
+
+        @Test
+    public void testSubListToArrayWithReferenceEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        Object[] array = new Object[0];
+        Object[] arr = subList.toArray(array);
+
+        assertSame("Should return the same array", array, arr);
+        assertEquals("Array length should be 0", 0, arr.length);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceExactSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        Object[] array = new Object[2];
+        Object[] arr = subList.toArray(array);
+
+        assertSame("Should return the same array", array, arr);
+        assertEquals("First array element should match", "1", arr[0]);
+        assertEquals("Second array element should match", "2", arr[1]);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceLargerArray()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        Object[] array = new Object[5];
+        array[2] = "0";
+        array[3] = "0";
+        array[4] = "0";
+
+        Object[] arr = subList.toArray(array);
+
+        assertSame("Should return the same array", array, arr);
+        assertEquals("First array element should match", "2", arr[0]);
+        assertEquals("Second array element should match", "3", arr[1]);
+        assertNull("Element after subList content should be null", arr[2]);
+        assertEquals("Existing elements should be preserved", "0", arr[3]);
+        assertEquals("Existing elements should be preserved", "0", arr[4]);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceSmallerArray()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        Object[] array = new Object[2];
+        Object[] arr = subList.toArray(array);
+
+        assertNotSame("Should return a different array", array, arr);
+        assertEquals("New array length should match subList size", 3, arr.length);
+        assertEquals("First array element should match", "1", arr[0]);
+        assertEquals("Second array element should match", "2", arr[1]);
+        assertEquals("Third array element should match", "3", arr[2]);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        Object[] array = new Object[5];
+        Object[] arr = subList.toArray(array);
+
+        assertSame("Should return the same array", array, arr);
+        assertEquals("First array element should match", "1", arr[0]);
+        assertNull("Second array element should be null", arr[1]);
+        assertEquals("Third array element should match", "3", arr[2]);
+        assertNull("Element after subList content should be null", arr[3]);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testSubListToArrayWithReferenceNullArray()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.toArray(null);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceEmptySubListNullTermination()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        Object[] array = new Object[3];
+        array[0] = "0";
+        array[1] = "0";
+        array[2] = "0";
+
+        Object[] arr = subList.toArray(array);
+
+        assertSame("Should return the same array", array, arr);
+        assertNull("First element should be null for empty subList", arr[0]);
+        assertEquals("Second element should remain unchanged", "0", arr[1]);
+        assertEquals("Third element should remain unchanged", "0", arr[2]);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceZeroLengthArray()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        Object[] array = new Object[0];
+        Object[] arr = subList.toArray(array);
+
+        assertNotSame("Should return a different array", array, arr);
+        assertEquals("New array length should match subList size", 2, arr.length);
+        assertEquals("First array element should match", "2", arr[0]);
+        assertEquals("Second array element should match", "3", arr[1]);
+    }
+
+    @Test
+    public void testSubListToArrayWithReferenceWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(2, 4);
+        Object[] array = new Object[3];
+        Object[] arr = subList.toArray(array);
+
+        assertSame("Should return the same array", array, arr);
+        assertEquals("First array element should match with offset", "2", arr[0]);
+        assertEquals("Second array element should match with offset", "3", arr[1]);
+        assertNull("Element after subList content should be null", arr[2]);
+    }
+
+    @Test
+    public void testSubListGetValidIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        assertEquals("Should return element at index 0", "2", subList.get(0));
+        assertEquals("Should return element at index 1", "3", subList.get(1));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListGetNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        subList.get(-1);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListGetIndexEqualToSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        subList.get(2);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListGetOnEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        subList.get(0);
+    }
+
+    @Test
+    public void testSubListGetNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 2);
+        assertNull("Should return null element at index 0", subList.get(0));
+    }
+
+    @Test
+    public void testSubListGetWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(3, 4);
+        assertEquals("Should return correct element with offset", "3", subList.get(0));
+    }
+
+    @Test
+    public void testSubListSetValidIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        assertEquals("Should return previous element at index 1", "2", subList.set(0, "4"));
+        assertEquals("Element at index 0 should be updated", "4", subList.get(0));
+        assertEquals("Size should remain unchanged", 2, subList.size());
+        assertEquals("Second element should remain unchanged", "3", subList.get(1));
+        assertEquals("Original vector should be updated", "4", vector.get(1));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListSetNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.set(-1, "3");
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListSetIndexEqualToSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.set(2, "3");
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListSetOnEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        subList.set(0, "1");
+    }
+
+    @Test
+    public void testSubListSetAtTheBeginning()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Should return previous first element", "1", subList.set(0, "0"));
+        assertEquals("First element should be updated", "0", subList.get(0));
+        assertEquals("Second element should remain unchanged", "2", subList.get(1));
+        assertEquals("Third element should remain unchanged", "3", subList.get(2));
+        assertEquals("Original vector should be updated", "0", vector.get(0));
+    }
+
+    @Test
+    public void testSubListSetAtTheEnd()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Should return previous last element", "3", subList.set(2, "4"));
+        assertEquals("Last element should be updated", "4", subList.get(2));
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Second element should remain unchanged", "2", subList.get(1));
+        assertEquals("Original vector should be updated", "4", vector.get(2));
+    }
+
+    @Test
+    public void testSubListSetNull()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Should return previous element", "2", subList.set(1, null));
+        assertNull("Element at index 1 should be null", subList.get(1));
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Third element should remain unchanged", "3", subList.get(2));
+        assertNull("Original vector should be updated to null", vector.get(1));
+    }
+
+    @Test
+    public void testSubListSetMultipleTimes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        subList.set(1, "4");
+        subList.set(1, "5");
+        subList.set(1, "6");
+
+        assertEquals("Element at index 1 should be last set value", "6", subList.get(1));
+        assertEquals("Size should remain unchanged", 3, subList.size());
+        assertEquals("Original vector should be updated", "6", vector.get(1));
+    }
+
+    @Test
+    public void testSubListSetWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(2, 4);
+        assertEquals("Should return previous element with offset", "2", subList.set(0, "4"));
+        assertEquals("First element should be updated with offset", "4", subList.get(0));
+        assertEquals("Second element should remain unchanged", "3", subList.get(1));
+        assertEquals("Original vector should be updated", "4", vector.get(2));
+    }
+
+    @Test
+    public void testSubListAddToNonEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        assertTrue("Should return true", subList.add("3"));
+        assertEquals("Size should be 3 after adding elements", 3, subList.size());
+        assertEquals("First element should remain", "1", subList.get(0));
+        assertEquals("Second element should remain", "2", subList.get(1));
+        assertEquals("Third element should be added", "3", subList.get(2));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddToEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        assertTrue("Should return true", subList.add("3"));
+        assertEquals("Size should be 1 after adding element", 1, subList.size());
+        assertEquals("Element should be added at index 0", "3", subList.get(0));
+        assertFalse("SubList should not be empty", subList.isEmpty());
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddNullElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        assertTrue("Should return true", subList.add(null));
+        assertEquals("Size should be 3 after adding null", 3, subList.size());
+        assertNull("Element should be null", subList.get(2));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(2, 4);
+        assertTrue("Should return true", subList.add("4"));
+        assertEquals("Size should be 3 after adding element", 3, subList.size());
+        assertEquals("First element should remain", "2", subList.get(0));
+        assertEquals("Second element should remain", "3", subList.get(1));
+        assertEquals("Third element should be added", "4", subList.get(2));
+        assertEquals("Vector size should be increased", 5, vector.size());
+        assertEquals("Element after sublist should be shifted", "3", vector.get(3));
+        assertEquals("New element should be at correct position", "4", vector.get(4));
+    }
+
+    @Test
+    public void testSubListAddToEmptyVectorSubList()
+    {
+        vector = new VectorAdapter();
+
+        subList = (SubListAdapter) vector.subList(0, 0);
+        assertTrue("Should return true", subList.add("1"));
+
+        assertEquals("Size should be 1 after addition", 1, subList.size());
+        assertEquals("Element should be added", "1", subList.get(0));
+        assertEquals("Vector size should be 1", 1, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        assertTrue("Should return true for existing element", subList.remove("2"));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First element should remain", "3", subList.get(0));
+        assertEquals("Second element should be shifted", "4", subList.get(1));
+        assertEquals("Vector size should be decreased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveNonExistingElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        assertFalse("Should return false for non-existing element", subList.remove("1"));
+        assertEquals("Size should remain unchanged", 2, subList.size());
+        assertEquals("First element should remain", "2", subList.get(0));
+        assertEquals("Second element should remain", "3", subList.get(1));
+        assertEquals("Vector size should remain unchanged", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveNullElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 2);
+        assertTrue("Should return true for null element", subList.remove(null));
+        assertEquals("Size should be decreased", 0, subList.size());
+        assertEquals("Vector size should be decreased", 2, vector.size());
+        assertEquals("Element before subList should remain", "1", vector.get(0));
+        assertEquals("Element after subList should be shifted", "3", vector.get(1));
+    }
+
+    @Test
+    public void testSubListRemoveFromEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        assertFalse("Should return false for empty subList", subList.remove("2"));
+        assertEquals("Size should remain 0", 0, subList.size());
+        assertEquals("Vector size should remain unchanged", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveFirstOccurrenceOnly()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        assertTrue("Should return true for existing element", subList.remove("2"));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First occurrence should be removed", "2", subList.get(0));
+        assertEquals("Second element should be shifted", "3", subList.get(1));
+        assertEquals("Vector size should be decreased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(3, 4);
+        assertTrue("Should return true for existing element", subList.remove("3"));
+        assertEquals("Size should be decreased", 0, subList.size());
+        assertEquals("Vector size should be decreased", 3, vector.size());
+        assertEquals("Element before subList should remain", "0", vector.get(0));
+        assertEquals("Element in subList range should be shifted", "1", vector.get(1));
+        assertEquals("Element after subList should be shifted", "2", vector.get(2));
+    }
+
+    @Test
+    public void testSubListAddAtIndexValidPosition()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add(1, "2");
+
+        assertEquals("Size should be 3 after insertion", 3, subList.size());
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Inserted element should be at index 1", "2", subList.get(1));
+        assertEquals("Third element should be shifted right", "3", subList.get(2));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddAtIndexAtTheBeginning()
+    {
+        vector = new VectorAdapter();
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add(0, "1");
+
+        assertEquals("Size should be 3 after insertion", 3, subList.size());
+        assertEquals("Inserted element should be at beginning", "1", subList.get(0));
+        assertEquals("First element should be shifted right", "2", subList.get(1));
+        assertEquals("Second element should be shifted right", "3", subList.get(2));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddAtIndexAtTheEnd()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add(2, "3");
+
+        assertEquals("Size should be 3 after insertion", 3, subList.size());
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Second element should remain unchanged", "2", subList.get(1));
+        assertEquals("Inserted element should be at end", "3", subList.get(2));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddAtIndexEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        subList.add(0, "3");
+
+        assertEquals("Size should be 1 after insertion", 1, subList.size());
+        assertEquals("Inserted element should be at index 0", "3", subList.get(0));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListAddAtIndexNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add(-1, "3");
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListAddAtIndexGreaterThanSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add(3, "3");
+    }
+
+    @Test
+    public void testSubListAddAtIndexNullElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add(1, null);
+
+        assertEquals("Size should be 3 after insertion", 3, subList.size());
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertNull("Inserted element should be null", subList.get(1));
+        assertEquals("Third element should be shifted right", "3", subList.get(2));
+        assertEquals("Vector size should be increased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListAddAtIndexWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("4");
+        vector.add("5");
+
+        subList = (SubListAdapter) vector.subList(1, 3);
+        subList.add(1, "2");
+        subList.add(2, "3");
+
+        assertEquals("Size should be 4 after insertions", 4, subList.size());
+        assertEquals("First element should remain", "1", subList.get(0));
+        assertEquals("First inserted element should be at index 1", "2", subList.get(1));
+        assertEquals("Second inserted element should be at index 2", "3", subList.get(2));
+        assertEquals("Original element should be shifted", "4", subList.get(3));
+        assertEquals("Vector size should be increased", 6, vector.size());
+        assertEquals("Element before sublist should remain", "0", vector.get(0));
+        assertEquals("Element after sublist should be shifted", "5", vector.get(5));
+    }
+
+    @Test
+    public void testSubListRemoveAtIndexValidPosition()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Should return removed element", "2", subList.remove(1));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Third element should be shifted left", "3", subList.get(1));
+        assertEquals("Vector size should be decreased", 2, vector.size());
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListRemoveAtIndexNegativeIndex()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.remove(-1);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListRemoveAtIndexEqualToSize()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        subList.remove(3);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testSubListRemoveAtIndexOnEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        subList.remove(0);
+    }
+
+    @Test
+    public void testSubListRemoveAtIndexAtTheBeginning()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Should return first element", "1", subList.remove(0));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("Second element should become first", "2", subList.get(0));
+        assertEquals("Third element should become second", "3", subList.get(1));
+        assertEquals("Vector size should be decreased", 2, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveAtIndexAtTheEnd()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Should return last element", "3", subList.remove(2));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Second element should remain unchanged", "2", subList.get(1));
+        assertEquals("Vector size should be decreased", 2, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveAtIndexNullElement()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add(null);
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertNull("Should return null element", subList.remove(1));
+        assertEquals("Size should be decreased", 2, subList.size());
+        assertEquals("First element should remain unchanged", "1", subList.get(0));
+        assertEquals("Third element should be shifted left", "3", subList.get(1));
+        assertEquals("Vector size should be decreased", 2, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveAtIndexMultipleTimes()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+        vector.add("5");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        subList.remove(1);
+        subList.remove(1);
+
+        assertEquals("Size should be decreased to 1", 1, subList.size());
+        assertEquals("First element should remain", "2", subList.get(0));
+        assertEquals("Vector size should be decreased", 3, vector.size());
+    }
+
+    @Test
+    public void testSubListRemoveAtIndexWithOffset()
+    {
+        vector = new VectorAdapter();
+        vector.add("0");
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(2, 4);
+        assertEquals("Should return element with offset", "2", subList.remove(0));
+        assertEquals("Size should be decreased", 1, subList.size());
+        assertEquals("First element should be shifted", "3", subList.get(0));
+        assertEquals("Vector size should be decreased", 3, vector.size());
+    }
+
+    // CONTINUARE DA CLEAR
 }
