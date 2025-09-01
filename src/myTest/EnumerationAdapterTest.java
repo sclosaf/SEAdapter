@@ -132,7 +132,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testNextElementWithAllNull()
+    public void testNextElementNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -212,7 +212,7 @@ public class EnumerationAdapterTest
     }
 
     @Test
-    public void testSubListNextElementWithAllNull()
+    public void testSubListNextElementNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);

@@ -161,7 +161,7 @@ public class VectorAdapter implements HList
 
     public synchronized Object elementAt(int index)
     {
-        if (index < 0 || index >= size())
+        if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
 
         return vec.elementAt(beginIndex() + index);
@@ -266,7 +266,7 @@ public class VectorAdapter implements HList
 
         System.arraycopy(vec.toArray(), beginIndex(), a, 0, size());
 
-        if (a.length > size())
+        if(a.length > size())
             a[size()] = null;
 
         return a;
@@ -343,12 +343,14 @@ public class VectorAdapter implements HList
 
         if(c == this)
         {
+            if(this.isEmpty())
+                return false;
+
             this.removeAllElements();
             return true;
         }
 
         HIterator iter = c.iterator();
-
         boolean changed = false;
 
         while(iter.hasNext())
@@ -396,9 +398,6 @@ public class VectorAdapter implements HList
         if(c == null)
             throw new NullPointerException();
 
-        if(c.isEmpty())
-            return false;
-
         if(c == this)
         {
             int size = this.size();
@@ -411,20 +410,27 @@ public class VectorAdapter implements HList
         }
 
         HIterator iter = c.iterator();
+        boolean changed = false;
 
         for(int i = 0; i < c.size(); i++)
+        {
             insertElementAt(iter.next(), index + i);
+            changed = true;
+        }
 
-        return true;
+        return changed;
     }
 
     public synchronized boolean equals(Object o)
     {
-        if(o == this) return true;
+        if(o == this)
+            return true;
 
-        if(!(o instanceof HList)) return false;
+        if(!(o instanceof HList))
+            return false;
 
-        if(this.size() != ((HList) o).size()) return false;
+        if(this.size() != ((HList) o).size())
+            return false;
 
         HIterator it1 = this.listIterator();
         HIterator it2 = ((HList) o).listIterator();

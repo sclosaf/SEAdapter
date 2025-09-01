@@ -358,7 +358,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testNextWithAllNull()
+    public void testNextNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -375,7 +375,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testPreviousWithAllNull()
+    public void testPreviousNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -458,7 +458,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testRemoveMultipleWithNext()
+    public void testRemoveMultipleNext()
     {
         listIterator.next();
         listIterator.remove();
@@ -475,7 +475,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testRemoveMultipleWithPrevious()
+    public void testRemoveMultiplePrevious()
     {
         while(listIterator.hasNext())
             listIterator.next();
@@ -700,13 +700,13 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testListIteratorFromIndexWithNegativeIndex()
+    public void testListIteratorFromIndexNegativeIndex()
     {
         vector.listIterator(-1);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testListIteratorFromIndexWithIndexGreaterThanSize()
+    public void testListIteratorFromIndexIndexGreaterThanSize()
     {
         vector.listIterator(vector.size() + 1);
     }
@@ -1148,7 +1148,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListNextWithAllNull()
+    public void testSubListNextNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -1166,7 +1166,7 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListPreviousWithAllNull()
+    public void testSubListPreviousNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -1488,13 +1488,13 @@ public class ListIteratorAdapterTest
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testSubListListIteratorFromIndexWithNegativeIndex()
+    public void testSubListListIteratorFromIndexNegativeIndex()
     {
         subList.listIterator(-1);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testSubListListIteratorFromIndexWithIndexGreaterThanSize()
+    public void testSubListListIteratorFromIndexIndexGreaterThanSize()
     {
         subList.listIterator(subList.size() + 1);
     }

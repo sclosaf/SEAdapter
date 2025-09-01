@@ -119,7 +119,7 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testIteratorWithDuplicateElements()
+    public void testIteratorDuplicateElements()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add("0");
@@ -136,7 +136,7 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testNextWithAllNull()
+    public void testNextNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);
@@ -311,7 +311,7 @@ public class IteratorAdapterTest
     }
 
     @Test
-    public void testSubListWithAllNull()
+    public void testSubListNull()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add(null);

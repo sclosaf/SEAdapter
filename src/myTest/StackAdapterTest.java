@@ -4,7 +4,7 @@ import myAdapter.StackAdapter;
 import java.util.EmptyStackException;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.Afters;
+import org.junit.After;
 import static org.junit.Assert.*;
 
 /*
@@ -180,7 +180,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPopOnStackWithDuplicateElements()
+    public void testPopOnStackDuplicateElements()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -251,7 +251,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testPeekWithDuplicateElements()
+    public void testPeekDuplicateElements()
     {
         stack = new StackAdapter();
         stack.push("1");
@@ -294,7 +294,7 @@ public class StackAdapterTest
     }
 
     @Test
-    public void testEmptyWithNullElements()
+    public void testEmptyNullElements()
     {
         stack = new StackAdapter();
         stack.push(null);
