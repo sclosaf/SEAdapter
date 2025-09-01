@@ -146,13 +146,13 @@ public class VectorAdapter implements HList
         if(elem == null)
         {
             for(int i = beginIndex() + index; i >= beginIndex(); i--)
-                if(elementAt(i) == null)
+                if(elementAt(i - beginIndex()) == null)
                     return i - beginIndex();
         }
         else
         {
             for(int i = beginIndex() + index; i >= beginIndex(); i--)
-                if(elem.equals(elementAt(i)))
+                if(elem.equals(elementAt(i - beginIndex())))
                     return i - beginIndex();
         }
 
@@ -209,7 +209,7 @@ public class VectorAdapter implements HList
 
     public synchronized void addElement(Object obj)
     {
-        insertElementAt(obj, beginIndex() + size());
+        insertElementAt(obj, size());
     }
 
     public synchronized boolean removeElement(Object obj)

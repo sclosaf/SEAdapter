@@ -34,15 +34,11 @@ public class SubListAdapter extends VectorAdapter
             throw new ArrayIndexOutOfBoundsException();
 
         if(newSize > subListSize)
-        {
             for(int i = subListSize; i < newSize; i++)
                 vec.insertElementAt(null, beginIndex() + subListSize);
-        }
         else
-        {
             for(int i = subListSize - 1; i >= newSize; i--)
                 vec.removeElementAt(beginIndex() + newSize);
-        }
 
         subListSize = newSize;
     }
@@ -58,6 +54,7 @@ public class SubListAdapter extends VectorAdapter
             throw new ArrayIndexOutOfBoundsException();
 
         vec.removeElementAt(beginIndex() + index);
+
         subListSize--;
     }
 
@@ -81,8 +78,6 @@ public class SubListAdapter extends VectorAdapter
 
         return cloned;
     }
-
-
 
     protected int beginIndex()
     {

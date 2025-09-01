@@ -1285,7 +1285,7 @@ public class VectorAdapterTest
     }
 
     @Test
-    public void testLastIndexOfWithIndexNullOrNegativeIndex()
+    public void testLastIndexOfWithIndexNegativeIndex()
     {
         vector = new VectorAdapter();
         vector.add("1");
