@@ -36,12 +36,12 @@ public class SubListAdapter extends VectorAdapter
         if(newSize > subListSize)
         {
             for(int i = subListSize; i < newSize; i++)
-                vec.insertElementAt(null, beginIndex() + i);
+                vec.insertElementAt(null, beginIndex() + subListSize);
         }
         else
         {
             for(int i = subListSize - 1; i >= newSize; i--)
-                vec.removeElementAt(beginIndex() + i);
+                vec.removeElementAt(beginIndex() + newSize);
         }
 
         subListSize = newSize;
@@ -50,6 +50,24 @@ public class SubListAdapter extends VectorAdapter
     public synchronized int size()
     {
         return subListSize;
+    }
+
+    public synchronized void removeElementAt(int index)
+    {
+        if(index < 0 || index >= size())
+            throw new ArrayIndexOutOfBoundsException();
+
+        vec.removeElementAt(beginIndex() + index);
+        subListSize--;
+    }
+
+    public synchronized void insertElementAt(Object obj, int index)
+    {
+        if(index < 0 || index > size())
+            throw new ArrayIndexOutOfBoundsException();
+
+        vec.insertElementAt(obj, beginIndex() + index);
+        subListSize++;
     }
 
     public synchronized Object clone()
@@ -63,6 +81,8 @@ public class SubListAdapter extends VectorAdapter
 
         return cloned;
     }
+
+
 
     protected int beginIndex()
     {

@@ -763,4 +763,69 @@ public class SubListAdapterTest
 
         assertEquals("Capacity should be 15", 15, subList.capacity());
     }
+
+    @Test
+    public void testSubListSizeEmptySubList()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(1, 1);
+        assertEquals("Size should be 0 for empty subList", 0, subList.size());
+    }
+
+    @Test
+    public void testSubListSizeAfterAddingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 2);
+        subList.add("4");
+        assertEquals("Size should be 3 after adding one element", 3, subList.size());
+    }
+
+    @Test
+    public void testSubListSizeAfterRemovingElements()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+        vector.add("4");
+
+        subList = (SubListAdapter) vector.subList(1, 4);
+        subList.remove(1);
+        assertEquals("Size should be 2 after removing one element", 2, subList.size());
+    }
+
+    @Test
+    public void testSubListSizeAfterClear()
+    {
+        vector = new VectorAdapter();
+        vector.add("1");
+        vector.add("2");
+        vector.add("3");
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        subList.clear();
+        assertEquals("Size should be 0 after clear", 0, subList.size());
+    }
+
+    @Test
+    public void testSubListSizeNullElements()
+    {
+        vector = new VectorAdapter();
+        vector.add(null);
+        vector.add(null);
+        vector.add(null);
+
+        subList = (SubListAdapter) vector.subList(0, 3);
+        assertEquals("Size should count null elements", 3, subList.size());
+    }
+
 }
