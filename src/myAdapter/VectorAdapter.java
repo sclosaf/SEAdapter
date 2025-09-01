@@ -207,10 +207,10 @@ public class VectorAdapter implements HList
         if(index < 0 || index > size())
             throw new ArrayIndexOutOfBoundsException();
 
-        vec.insertElementAt(obj, beginIndex() + index);
-
         if(this instanceof SubListAdapter)
             setSize(size() + 1);
+
+        vec.insertElementAt(obj, beginIndex() + index);
     }
 
     public synchronized void addElement(Object obj)

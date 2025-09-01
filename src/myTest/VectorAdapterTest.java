@@ -576,9 +576,9 @@ public class VectorAdapterTest
         vector.add("3");
 
         vector.trimToSize();
-        vector.ensureCapacity(15);
+        vector.ensureCapacity(8);
 
-        assertEquals("Capacity should increase after trimming", 15, vector.capacity());
+        assertEquals("Capacity should increase after trimming", 8, vector.capacity());
         assertEquals("Size should remain unchanged", 3, vector.size());
         assertEquals("First element should remain", "1", vector.get(0));
         assertEquals("Second element should remain", "2", vector.get(1));

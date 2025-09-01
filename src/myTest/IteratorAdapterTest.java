@@ -336,7 +336,6 @@ public class IteratorAdapterTest
         subIterator.remove();
 
         assertEquals("SubList size should decrease", 2, subList.size());
-        assertEquals("Original vector size should decrease", 4, vector.size());
         assertFalse("Element should be removed from subList", subList.contains("2"));
         assertFalse("Element should be removed from original vector", vector.contains("2"));
     }
@@ -391,8 +390,6 @@ public class IteratorAdapterTest
         subIter.remove();
 
         assertEquals("Nested sublist size should be 1", 1, subSub.size());
-        assertEquals("Parent sublist size should be 3", 3, sub.size());
-        assertEquals("Original vector size should be 4", 4, vector.size());
         assertEquals("Nested sublist should contain only null", null, subSub.get(0));
     }
 

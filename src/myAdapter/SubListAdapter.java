@@ -33,6 +33,17 @@ public class SubListAdapter extends VectorAdapter
         if(newSize < 0)
             throw new ArrayIndexOutOfBoundsException();
 
+        if(newSize > subListSize)
+        {
+            for(int i = subListSize; i < newSize; i++)
+                vec.insertElementAt(null, beginIndex() + i);
+        }
+        else
+        {
+            for(int i = subListSize - 1; i >= newSize; i--)
+                vec.removeElementAt(beginIndex() + i);
+        }
+
         subListSize = newSize;
     }
 

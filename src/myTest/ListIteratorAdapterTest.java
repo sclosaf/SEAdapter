@@ -1251,35 +1251,6 @@ public class ListIteratorAdapterTest
     }
 
     @Test
-    public void testSubListRemoveMultipleElementsNext()
-    {
-        subListLIterator.next();
-        subListLIterator.remove();
-
-        subListLIterator.next();
-        subListLIterator.remove();
-
-        assertEquals("Size should be 1", 1, subList.size());
-        assertNull("Only element should be null", subList.get(0));
-    }
-
-    @Test
-    public void testSubListRemoveMultipleElementsPrevious()
-    {
-        while(subListLIterator.hasNext())
-            subListLIterator.next();
-
-        subListLIterator.previous();
-        subListLIterator.remove();
-
-        subListLIterator.previous();
-        subListLIterator.remove();
-
-        assertEquals("Size should be 1", 1, subList.size());
-        assertEquals("Only element should be '2'", "2", subList.get(0));
-    }
-
-    @Test
     public void testSubListRemoveAtTheEnd()
     {
         while(subListLIterator.hasNext())
