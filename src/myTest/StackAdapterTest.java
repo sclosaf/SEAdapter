@@ -1,7 +1,12 @@
 package myTest;
 
+import myAdapter.VectorAdapter;
 import myAdapter.StackAdapter;
+import myAdapter.HCollection;
+import myAdapter.HList;
+
 import java.util.EmptyStackException;
+
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -22,7 +27,7 @@ import static org.junit.Assert.*;
  * includes categories for basic functionality, edge cases, error conditions,
  * and compliance with the LIFO principle.</p>
  *
- * <p>Categories:
+ * <p>Categories:</p>
  * <ul>
  *   <li>Constructor tests</li>
  *   <li>Push operation tests</li>
@@ -32,7 +37,6 @@ import static org.junit.Assert.*;
  *   <li>Search operation tests</li>
  *   <li>Exception handling tests</li>
  * </ul>
- * </p>
  *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see      HCollection

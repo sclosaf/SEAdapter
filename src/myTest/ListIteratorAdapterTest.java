@@ -2,7 +2,9 @@ package myTest;
 
 import myAdapter.VectorAdapter;
 import myAdapter.SubListAdapter;
+import myAdapter.HIterator;
 import myAdapter.HListIterator;
+import myAdapter.ListIteratorAdapter;
 
 import myException.IllegalStateException;
 
@@ -28,7 +30,7 @@ import static org.junit.Assert.*;
  * includes categories for basic functionality, edge cases, error conditions,
  * and sublist-specific behavior.</p>
  *
- * <p>Categories:
+ * <p>Categories:</p>
  * <ul>
  *   <li>Basic bidirectional iteration tests</li>
  *   <li>Index position tracking tests</li>
@@ -39,7 +41,6 @@ import static org.junit.Assert.*;
  *   <li>Exception handling tests</li>
  *   <li>ListIterator with specific starting index tests</li>
  * </ul>
- * </p>
  *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see      ListIteratorAdapter

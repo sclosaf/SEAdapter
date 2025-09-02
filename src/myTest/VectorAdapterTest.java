@@ -5,6 +5,7 @@ import myAdapter.HCollection;
 import myAdapter.HEnumeration;
 import myAdapter.HIterator;
 import myAdapter.HListIterator;
+import myAdapter.HList;
 
 import java.util.NoSuchElementException;
 
@@ -28,7 +29,7 @@ import static org.junit.Assert.*;
  * includes categories for basic functionality, edge cases, error conditions,
  * and compliance with the HList and HCollection interfaces.</p>
  *
- * <p>Categories:
+ * <p>Categories:</p>
  * <ul>
  *   <li>Constructor tests</li>
  *   <li>Capacity and size management tests</li>
@@ -37,7 +38,6 @@ import static org.junit.Assert.*;
  *   <li>Iterator and enumeration tests</li>
  *   <li>Edge case and exception handling tests</li>
  * </ul>
- * </p>
  *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see      HCollection

@@ -2,6 +2,8 @@ package myTest;
 
 import myAdapter.SubListAdapter;
 import myAdapter.VectorAdapter;
+import myAdapter.HCollection;
+import myAdapter.HList;
 
 import java.util.NoSuchElementException;
 
@@ -24,7 +26,7 @@ import static org.junit.Assert.*;
  * The test design includes categories for basic functionality, edge cases,
  * error conditions, and interaction with the backing vector.</p>
  *
- * <p>Categories:
+ * <p>Categories:</p>
  * <ul>
  *   <li>Constructor and initialization tests</li>
  *   <li>Element access and modification tests</li>
@@ -33,7 +35,6 @@ import static org.junit.Assert.*;
  *   <li>Iterator functionality tests</li>
  *   <li>Edge case and exception handling tests</li>
  * </ul>
- * </p>
  *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see      HCollection
