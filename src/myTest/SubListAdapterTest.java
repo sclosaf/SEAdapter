@@ -10,19 +10,55 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
 
-/*
- * RIVEDERE BENE
- * CONTROLLA DOCUMENTAZIONE
- * CONFRONTA CON VECTOR
- * DA ESTENDERE
- * RICONTROLLA COERENZA
- * NOMI METODI
- * */
+/**
+ * Test suite for the SubListAdapter class.
+ *
+ * <p>This test suite verifies the functionality of the SubListAdapter class,
+ * which provides a view of a portion of a VectorAdapter or another SubListAdapter.
+ * The tests cover various scenarios including construction, element access,
+ * modification, and compliance with the HList and HCollection interfaces.</p>
+ *
+ * <h2>Test Case Design</h2>
+ * <p>The test cases are designed to validate the behavior of SubListAdapter
+ * against the specifications of Java 1.4.2 Vector class subList functionality.
+ * The test design includes categories for basic functionality, edge cases,
+ * error conditions, and interaction with the backing vector.</p>
+ *
+ * <p>Categories:
+ * <ul>
+ *   <li>Constructor and initialization tests</li>
+ *   <li>Element access and modification tests</li>
+ *   <li>Size and capacity management tests</li>
+ *   <li>Collection operation tests</li>
+ *   <li>Iterator functionality tests</li>
+ *   <li>Edge case and exception handling tests</li>
+ * </ul>
+ * </p>
+ *
+ * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see      HCollection
+ * @see      HList
+ * @see      VectorAdapter
+ * @see      SubListAdapter
+ */
 public class SubListAdapterTest
 {
+    /**
+     * The main VectorAdapter instance used as backing vector for testing.
+     * Initialized before each test method execution.
+     */
     private VectorAdapter vector;
+
+    /**
+     * The SubListAdapter instance being tested.
+     * Initialized before each test method execution.
+     */
     private SubListAdapter subList;
 
+    /**
+     * Sets up the testing environment before each test method execution.
+     * Initializes the vector and subList instances to null to ensure the use of a clean state.
+     */
     @Before
     public void setUp()
     {
@@ -30,6 +66,10 @@ public class SubListAdapterTest
         subList = null;
     }
 
+    /**
+     * Cleans up test environment after each test method execution.
+     * Sets the vector and subList instances to null to assist garbage collection.
+     */
     @After
     public void tearDown()
     {
