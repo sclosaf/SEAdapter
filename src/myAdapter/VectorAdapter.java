@@ -57,6 +57,8 @@ public class VectorAdapter implements HList
 {
     /**
      * The Vector adaptee into which the components of the adapter are stored.
+     * Each adapted operation is applied directly to this Vector, in order to
+     * conform the interface.
      * */
     protected Vector vec;
 
