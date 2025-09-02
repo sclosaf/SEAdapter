@@ -13,18 +13,70 @@ import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/*
- * RICONTROLLA COERENZA
- * NOMI METODI
- * */
-
+/**
+ * Test suite for the ListIteratorAdapter class.
+ *
+ * <p>This test suite validates the functionality of the ListIteratorAdapter class,
+ * which implements the HListIterator interface to provide bidirectional iteration
+ * over elements of a VectorAdapter or SubListAdapter. The tests cover various
+ * scenarios including forward and backward traversal, element modification,
+ * insertion, removal, and edge cases.</p>
+ *
+ * <h2>Test Case Design</h2>
+ * <p>The test cases are designed to validate the behavior of ListIteratorAdapter
+ * against the specifications of Java 1.4.2 ListIterator interface. The test design
+ * includes categories for basic functionality, edge cases, error conditions,
+ * and sublist-specific behavior.</p>
+ *
+ * <p>Categories:
+ * <ul>
+ *   <li>Basic bidirectional iteration tests</li>
+ *   <li>Index position tracking tests</li>
+ *   <li>Element modification tests (set, add, remove)</li>
+ *   <li>Empty collection tests</li>
+ *   <li>Null element handling tests</li>
+ *   <li>SubList iterator tests</li>
+ *   <li>Exception handling tests</li>
+ *   <li>ListIterator with specific starting index tests</li>
+ * </ul>
+ * </p>
+ *
+ * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see      ListIteratorAdapter
+ * @see      HIterator
+ * @see      HListIterator
+ */
 public class ListIteratorAdapterTest
 {
+    /**
+     * The main VectorAdapter instance used for testing.
+     * By default contains: ["1", "2", "3", null, "5"]
+     */
     private VectorAdapter vector;
+
+    /**
+     * A SubListAdapter instance created from the main vector.
+     * By default represents a sublist from index 1 to 4 (exclusive)
+     * of the main vector.
+     */
     private SubListAdapter subList;
+
+    /**
+     * HListIterator instance for iterating over the main vector.
+     * Created from the vector.listIterator() method.
+     */
     private HListIterator listIterator;
+
+    /**
+     * HListIterator instance for iterating over the sublist.
+     * Created from the subList.listIterator() method.
+     */
     private HListIterator subListLIterator;
 
+    /**
+     * Sets up the testing environment before each test method execution.
+     * Initializes the vector and sublist with test data and creates iterator instances.
+     */
     @Before
     public void setUp()
     {
@@ -42,6 +94,10 @@ public class ListIteratorAdapterTest
         subListLIterator = subList.listIterator();
     }
 
+    /**
+     * Cleans up test environment after each test method execution.
+     * Sets all instance variables to null to assist garbage collection.
+     */
     @After
     public void tearDown()
     {

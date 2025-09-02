@@ -7,24 +7,61 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
 
-/*
- * RIVEDERE BENE
- * CONTROLLA DOCUMENTAZIONE
- * CONFRONTA CON VECTOR
- * DA ESTENDERE
- * RICONTROLLA COERENZA
- * NOMI METODI
- * */
+
+/**
+ * Test suite for the StackAdapter class.
+ *
+ * <p>This test suite verifies the functionality of the StackAdapter class,
+ * which provides a last-in-first-out (LIFO) stack of objects. The adapter
+ * uses a Vector as its underlying data structure and implements the standard
+ * stack operations: push, pop, peek, empty, and search.</p>
+ *
+ * <h2>Test Case Design</h2>
+ * <p>The test cases are designed to validate the behavior of StackAdapter
+ * against the specifications of Java 1.4.2 Stack class. The test design
+ * includes categories for basic functionality, edge cases, error conditions,
+ * and compliance with the LIFO principle.</p>
+ *
+ * <p>Categories:
+ * <ul>
+ *   <li>Constructor tests</li>
+ *   <li>Push operation tests</li>
+ *   <li>Pop operation tests</li>
+ *   <li>Peek operation tests</li>
+ *   <li>Empty operation tests</li>
+ *   <li>Search operation tests</li>
+ *   <li>Exception handling tests</li>
+ * </ul>
+ * </p>
+ *
+ * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see      HCollection
+ * @see      HList
+ * @see      VectorAdapter
+ * @see      StackAdapter
+ */
 public class StackAdapterTest
 {
+    /**
+     * The main StackAdapter instance used for testing.
+     * Initialized before each test method execution.
+     */
     private StackAdapter stack;
 
+    /**
+     * Sets up the testing environment before each test method execution.
+     * Initializes the stack instance to null to ensure the use of a clean state.
+     */
     @Before
     public void setUp()
     {
         stack = null;
     }
 
+    /**
+     * Cleans up test environment after each test method execution.
+     * Sets the stack instance to null to assist garbage collection.
+     */
     @After
     public void tearDown()
     {

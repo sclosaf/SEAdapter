@@ -13,18 +13,68 @@ import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/*
- * NOMI METODI
- * RICONTROLLA COERENZA
- * */
-
+/**
+ * Test suite for the IteratorAdapter class.
+ *
+ * <p>This test suite verifies the functionality of the IteratorAdapter class,
+ * which implements the HIterator interface to iterate over elements of a
+ * VectorAdapter or SubListAdapter. The tests cover various scenarios including
+ * normal iteration, element removal, edge cases, and error conditions.</p>
+ *
+ * <h2>Test Case Design</h2>
+ * <p>The test cases are designed to validate the behavior of IteratorAdapter
+ * against the specifications of Java 1.4.2 Iterator interface. The test design
+ * includes categories for basic functionality, edge cases, error conditions,
+ * and sublist-specific behavior.</p>
+ *
+ * <p>Categories:
+ * <ul>
+ *   <li>Basic functionality tests</li>
+ *   <li>Empty collection tests</li>
+ *   <li>Null element tests</li>
+ *   <li>Duplicate element tests</li>
+ *   <li>Element removal tests</li>
+ *   <li>SubList iterator tests</li>
+ *   <li>Nested SubList iterator tests</li>
+ *   <li>Exception handling tests</li>
+ * </ul>
+ * </p>
+ *
+ * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see      IteratorAdapter
+ * @see      HIterator
+ */
 public class IteratorAdapterTest
 {
+    /**
+     * The main VectorAdapter instance used for testing.
+     * By default contains: ["1", "2", "3", null, "5"]
+     */
     private VectorAdapter vector;
+
+    /**
+     * A SubListAdapter instance created from the main vector.
+     * By default represents a sublist from index 1 to 4 (exclusive)
+     * of the main vector.
+     */
     private SubListAdapter subList;
+
+    /**
+     * HIterator instance for iterating over the main vector.
+     * Created from the vector.iterator() method.
+     */
     private HIterator iterator;
+
+    /**
+     * HIterator instance for iterating over the sublist.
+     * Created from the subList.iterator() method.
+     */
     private HIterator subIterator;
 
+    /**
+     * Sets up the testing environment before each test method execution.
+     * Initializes the vector and sublist with test data and creates iterator instances.
+     */
     @Before
     public void setUp()
     {
@@ -42,6 +92,10 @@ public class IteratorAdapterTest
         subIterator = subList.iterator();
     }
 
+    /**
+     * Cleans up test environment after each test method execution.
+     * Sets all instance variables to null to assist garbage collection.
+     */
     @After
     public void tearDown()
     {

@@ -13,23 +13,59 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
 
-/*
- * RIVEDERE BENE
- * CONTROLLA DOCUMENTAZIONE
- * DA ESTENDERE
- * RICONTROLLA COERENZA
- * NOMI METODI
- * */
+/**
+ * Test suite for the VectorAdapter class.
+ *
+ * <p>This test suite verifies the functionality of the VectorAdapter class,
+ * which implements the HList and HCollection interfaces to provide a
+ * growable dynamic array of objects.
+ * The tests cover various scenarios including construction, capacity management,
+ * element manipulation, and collection operations.</p>
+ *
+ * <h2>Test Case Design</h2>
+ * <p>The test cases are designed to validate the behavior of VectorAdapter
+ * against the specifications of Java 1.4.2 Vector class. The test design
+ * includes categories for basic functionality, edge cases, error conditions,
+ * and compliance with the HList and HCollection interfaces.</p>
+ *
+ * <p>Categories:
+ * <ul>
+ *   <li>Constructor tests</li>
+ *   <li>Capacity and size management tests</li>
+ *   <li>Element access and modification tests</li>
+ *   <li>Collection operation tests</li>
+ *   <li>Iterator and enumeration tests</li>
+ *   <li>Edge case and exception handling tests</li>
+ * </ul>
+ * </p>
+ *
+ * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see      HCollection
+ * @see      HList
+ * @see      VectorAdapter
+ */
 public class VectorAdapterTest
 {
+    /**
+     * The main VectorAdapter instance used for testing.
+     * Initialized before each test method execution.
+     */
     private VectorAdapter vector;
 
+    /**
+     * Sets up the testing environment before each test method execution.
+     * Initializes the vector instance to null to ensure the use of a clean state.
+     */
     @Before
     public void setUp()
     {
         vector = null;
     }
 
+    /**
+     * Cleans up test environment after each test method execution.
+     * Sets the vector instance to null to assist garbage collection.
+     */
     @After
     public void tearDown()
     {
