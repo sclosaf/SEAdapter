@@ -77,6 +77,27 @@ public class SubListAdapter extends VectorAdapter
         return new SubListAdapter(vector, beginIndex(), beginIndex() + size());
     }
 
+    public synchronized String toString()
+    {
+        StringBuffer bf = new StringBuffer();
+        bf.append("[");
+
+        HIterator iter = iterator();
+
+        while(iter.hasNext())
+        {
+            Object o = iter.next();
+
+            bf.append(o == this ? "(this Collection)" : String.valueOf(o));
+
+            if(iter.hasNext())
+                bf.append(", ");
+        }
+
+        bf.append("]");
+        return bf.toString();
+    }
+
     protected int beginIndex()
     {
         return offset;
