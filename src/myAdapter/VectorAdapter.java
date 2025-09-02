@@ -44,23 +44,21 @@ import java.lang.IllegalArgumentException;
  * <p>Note that the fail-fast behavior of an iterator cannot be guaranteed
  * as it is, generally speaking, impossible to make any hard guarantees in the
  * presence of unsynchronized concurrent modification.  Fail-fast iterators
- * throw <tt>ConcurrentModificationException</tt> on a best-effort basis.
+ * throw <code>ConcurrentModificationException</code> on a best-effort basis.
  * Therefore, it would be wrong to write a program that depended on this
  * exception for its correctness:  <i>the fail-fast behavior of iterators
- * should be used only to detect bugs.</i><p>
+ * should be used only to detect bugs.</i></p>
  *
- * @author  Zoppolato Tommaso Vittorio (martricola: 2101844)
- * @see HCollection
- * @see HList
+ * @author  Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see     HCollection
+ * @see     HList
  */
 public class VectorAdapter implements HList
 {
-
     /**
-     * The Vector adaptee into which the components of the adapter are stored
+     * The Vector adaptee into which the components of the adapter are stored.
      * */
     protected Vector vec;
-
 
     /**
      * Constructs an empty vector with the specified initial capacity and
@@ -95,7 +93,7 @@ public class VectorAdapter implements HList
 
     /**
      * Constructs an empty vector so that its internal data array
-     * has size <tt>10</tt> and its standard capacity increment is
+     * has size <code>10</code> and its standard capacity increment is
      * zero.
      */
     public VectorAdapter()
@@ -120,10 +118,10 @@ public class VectorAdapter implements HList
 
     /**
      * Copies the components of this vector into the specified array. The
-     * item at index <tt>k</tt> in this vector is copied into component
-     * <tt>k</tt> of <tt>anArray</tt>. The array must be big enough to hold
+     * item at index <code>k</code> in this vector is copied into component
+     * <code>k</code> of <code>anArray</code>. The array must be big enough to hold
      * all the objects in this vector, else an
-     * <tt>IndexOutOfBoundsException</tt> is thrown.
+     * <code>IndexOutOfBoundsException</code> is thrown.
      *
      * @param   anArray   the array into which the components get copied.
      * @throws  NullPointerException if the given array is null.
@@ -136,15 +134,14 @@ public class VectorAdapter implements HList
         if(anArray.length < size())
             throw new IndexOutOfBoundsException();
 
-        System.arraycopy(vec.toArray(), beginIndex(), anArray, 0, size());
+        System.arraycopy(vec.toArray(), offset(), anArray, 0, size());
     }
-
 
     /**
      * Trims the capacity of this vector to be the vector's current
      * size. If the capacity of this vector is larger than its current
      * size, then the capacity is changed to equal the size by replacing
-     * its internal data array, kept in the field <tt>elementData</tt>,
+     * its internal data array, kept in the field <code>elementData</code>,
      * with a smaller one. An application can use this operation to
      * minimize the storage of a vector.
      */
@@ -159,14 +156,14 @@ public class VectorAdapter implements HList
      * the minimum capacity argument.
      *
      * <p>If the current capacity of this vector is less than
-     * <tt>minCapacity</tt>, then its capacity is increased by replacing its
-     * internal data array, kept in the field <tt>elementData</tt>, with a
+     * <code>minCapacity</code>, then its capacity is increased by replacing its
+     * internal data array, kept in the field <code>elementData</code>, with a
      * larger one.  The size of the new data array will be the old size plus
-     * <tt>capacityIncrement</tt>, unless the value of
-     * <tt>capacityIncrement</tt> is less than or equal to zero, in which case
+     * <code>capacityIncrement</code>, unless the value of
+     * <code>capacityIncrement</code> is less than or equal to zero, in which case
      * the new capacity will be twice the old capacity; but if this new size
-     * is still smaller than <tt>minCapacity</tt>, then the new capacity will
-     * be <tt>minCapacity</tt>.
+     * is still smaller than <code>minCapacity</code>, then the new capacity will
+     * be <code>minCapacity</code>.
      *
      * @param minCapacity the desired minimum capacity.
      */
@@ -196,7 +193,7 @@ public class VectorAdapter implements HList
      * Returns the current capacity of this vector.
      *
      * @return  the current capacity (the length of its internal
-     *          data array, kept in the field <tt>elementData</tt>
+     *          data array, kept in the field <code>elementData</code>
      *          of this vector).
      */
     public synchronized int capacity()
@@ -228,9 +225,9 @@ public class VectorAdapter implements HList
 
     /**
      * Returns an enumeration of the components of this vector. The
-     * returned <tt>HEnumeration</tt> object will generate all items in
-     * this vector. The first item generated is the item at index <tt>0</tt>,
-     * then the item at index <tt>1</tt>, and so on.
+     * returned <code>HEnumeration</code> object will generate all items in
+     * this vector. The first item generated is the item at index <code>0</code>,
+     * then the item at index <code>1</code>, and so on.
      *
      * @return  an enumeration of the components of this vector.
      * @see     HEnumeration
@@ -238,7 +235,7 @@ public class VectorAdapter implements HList
      */
     public HEnumeration elements()
     {
-        return new EnumerationAdapter(this, beginIndex(), beginIndex() + size());
+        return new EnumerationAdapter(this, offset(), offset() + size());
     }
 
     /**
@@ -247,7 +244,7 @@ public class VectorAdapter implements HList
      * @param   elem   an object.
      * @return  <code>true</code> if and only if the specified object
      * is the same as a component in this vector, as determined by the
-     * <tt>equals</tt> method; <code>false</code> otherwise.
+     * <code>equals</code> method; <code>false</code> otherwise.
      */
     public boolean contains(Object elem)
     {
@@ -260,8 +257,8 @@ public class VectorAdapter implements HList
      *
      * @param   elem   an object.
      * @return  the index of the first occurrence of the argument in this
-     *          vector, that is, the smallest value <tt>k</tt> such that
-     *          <tt>elem.equals(elementData[k])</tt> is <tt>true</tt>;
+     *          vector, that is, the smallest value <code>k</code> such that
+     *          <code>elem.equals(elementData[k])</code> is <code>true</code>;
      *          returns <code>-1</code> if the object is not found.
      */
     public int indexOf(Object elem)
@@ -269,15 +266,23 @@ public class VectorAdapter implements HList
         return indexOf(elem, 0);
     }
 
+
     /**
-     * Searches for the first occurence of the given argument, testing
-     * for equality using the <code>equals</code> method.
+     * Searches for the first occurence of the given argument, beginning
+     * the search at <code>index</code>, and testing for equality using
+     * the <code>equals</code> method.
      *
-     * @param   elem   an object.
-     * @return  the index of the first occurrence of the argument in this
-     *          vector, that is, the smallest value <tt>k</tt> such that
-     *          <tt>elem.equals(elementData[k])</tt> is <tt>true</tt>;
-     *          returns <code>-1</code> if the object is not found.
+     * @param   elem    an object.
+     * @param   index   the non-negative index to start searching from.
+     * @return  the index of the first occurrence of the object argument in
+     *          this vector at position <code>index</code> or later in the
+     *          vector, that is, the smallest value <code>k</code> such that
+     *          <code>elem.equals(elementData[k]) &amp;&amp; (k &gt;= index)</code> is
+     *          <code>true</code>; returns <code>-1</code> if the object is not
+     *          found. (Returns <code>-1</code> if <code>index</code> &gt;= the
+     *          current size of this <code>Vector</code>.)
+     * @exception  IndexOutOfBoundsException  if <code>index</code> is negative.
+     * @see     Object#equals(Object)
      */
     public synchronized int indexOf(Object elem, int index)
     {
@@ -289,15 +294,15 @@ public class VectorAdapter implements HList
 
         if(elem == null)
         {
-            for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
-                if(elementAt(i - beginIndex()) == null)
-                    return i - beginIndex();
+            for(int i = offset() + index; i < offset() + size(); i++)
+                if(elementAt(i - offset()) == null)
+                    return i - offset();
         }
         else
         {
-            for(int i = beginIndex() + index; i < beginIndex() + size(); i++)
-                if(elem.equals(elementAt(i - beginIndex())))
-                    return i - beginIndex();
+            for(int i = offset() + index; i < offset() + size(); i++)
+                if(elem.equals(elementAt(i - offset())))
+                    return i - offset();
         }
 
         return -1;
@@ -309,8 +314,8 @@ public class VectorAdapter implements HList
      *
      * @param   elem   the desired component.
      * @return  the index of the last occurrence of the specified object in
-     *          this vector, that is, the largest value <tt>k</tt> such that
-     *          <tt>elem.equals(elementData[k])</tt> is <tt>true</tt>;
+     *          this vector, that is, the largest value <code>k</code> such that
+     *          <code>elem.equals(elementData[k])</code> is <code>true</code>;
      *          returns <code>-1</code> if the object is not found.
      */
     public int lastIndexOf(Object elem)
@@ -327,11 +332,11 @@ public class VectorAdapter implements HList
      * @param  index   the index to start searching from.
      * @return the index of the last occurrence of the specified object in this
      *          vector at position less than or equal to <code>index</code> in
-     *          the vector, that is, the largest value <tt>k</tt> such that
-     *          <tt>elem.equals(elementData[k]) && (k &lt;= index)</tt> is
-     *          <tt>true</tt>; <code>-1</code> if the object is not found.
-     *          (Returns <code>-1</code> if <tt>index</tt> is negative.)
-     * @exception  IndexOutOfBoundsException  if <tt>index</tt> is greater
+     *          the vector, that is, the largest value <code>k</code> such that
+     *          <code>elem.equals(elementData[k]) &amp;&amp; (k &lt;= index)</code> is
+     *          <code>true</code>; <code>-1</code> if the object is not found.
+     *          (Returns <code>-1</code> if <code>index</code> is negative.)
+     * @exception  IndexOutOfBoundsException  if <code>index</code> is greater
      *             than or equal to the current size of this vector.
      */
     public synchronized int lastIndexOf(Object elem, int index)
@@ -344,15 +349,15 @@ public class VectorAdapter implements HList
 
         if(elem == null)
         {
-            for(int i = beginIndex() + index; i >= beginIndex(); i--)
-                if(elementAt(i - beginIndex()) == null)
-                    return i - beginIndex();
+            for(int i = offset() + index; i >= offset(); i--)
+                if(elementAt(i - offset()) == null)
+                    return i - offset();
         }
         else
         {
-            for(int i = beginIndex() + index; i >= beginIndex(); i--)
-                if(elem.equals(elementAt(i - beginIndex())))
-                    return i - beginIndex();
+            for(int i = offset() + index; i >= offset(); i--)
+                if(elem.equals(elementAt(i - offset())))
+                    return i - offset();
         }
 
         return -1;
@@ -366,9 +371,9 @@ public class VectorAdapter implements HList
      *
      * @param      index   an index into this vector.
      * @return     the component at the specified index.
-     * @exception  ArrayIndexOutOfBoundsException  if the <tt>index</tt>
+     * @exception  ArrayIndexOutOfBoundsException  if the <code>index</code>
      *             is negative or not less than the current size of this
-     *             <tt>Vector</tt> object.
+     *             <code>Vector</code> object.
      *             given.
      * @see	  HList
      */
@@ -377,11 +382,11 @@ public class VectorAdapter implements HList
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
 
-        return vec.elementAt(beginIndex() + index);
+        return vec.elementAt(offset() + index);
     }
 
     /**
-     * Returns the first component (the item at index <tt>0</tt>) of
+     * Returns the first component (the item at index <code>0</code>) of
      * this vector.
      *
      * @return     the first component of this vector.
@@ -392,9 +397,8 @@ public class VectorAdapter implements HList
         if(isEmpty())
             throw new NoSuchElementException();
 
-        return vec.elementAt(beginIndex());
+        return vec.elementAt(offset());
     }
-
 
     /**
      * Returns the last component of the vector.
@@ -408,7 +412,7 @@ public class VectorAdapter implements HList
         if(isEmpty())
             throw new NoSuchElementException();
 
-        return vec.elementAt(beginIndex() + size() - 1);
+        return vec.elementAt(offset() + size() - 1);
     }
 
     /**
@@ -437,7 +441,7 @@ public class VectorAdapter implements HList
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
 
-        vec.setElementAt(obj, beginIndex() + index);
+        vec.setElementAt(obj, offset() + index);
     }
 
     /**
@@ -445,7 +449,7 @@ public class VectorAdapter implements HList
      * this vector with an index greater or equal to the specified
      * <code>index</code> is shifted downward to have an index one
      * smaller than the value it had previously. The size of this vector
-     * is decreased by <tt>1</tt>.<p>
+     * is decreased by <code>1</code>.<p>
      *
      * The index must be a value greater than or equal to <code>0</code>
      * and less than the current size of the vector. <p>
@@ -465,9 +469,8 @@ public class VectorAdapter implements HList
         if(index < 0 || index >= size())
             throw new ArrayIndexOutOfBoundsException();
 
-        vec.removeElementAt(beginIndex() + index);
+        vec.removeElementAt(offset() + index);
     }
-
 
     /**
      * Inserts the specified object as a component in this vector at the
@@ -497,7 +500,7 @@ public class VectorAdapter implements HList
         if(index < 0 || index > size())
             throw new ArrayIndexOutOfBoundsException();
 
-        vec.insertElementAt(obj, beginIndex() + index);
+        vec.insertElementAt(obj, offset() + index);
     }
 
     /**
@@ -510,7 +513,7 @@ public class VectorAdapter implements HList
      *
      * @param   obj   the component to be added.
      * @see     #add(Object)
-     * @see     List
+     * @see     HList
      */
     public synchronized void addElement(Object obj)
     {
@@ -564,7 +567,7 @@ public class VectorAdapter implements HList
     /**
      * Returns a clone of this vector. The copy will contain a
      * reference to a clone of the internal data array, not a reference
-     * to the original internal data array of this <tt>Vector</tt> object.
+     * to the original internal data array of this <code>Vector</code> object.
      *
      * @return  a clone of this vector.
      */
@@ -580,7 +583,6 @@ public class VectorAdapter implements HList
         return cloned;
     }
 
-
     /**
      * Returns an array containing all of the elements in this Vector
      * in the correct order.
@@ -588,10 +590,9 @@ public class VectorAdapter implements HList
     public synchronized Object[] toArray()
     {
         Object[] arr = new Object[size()];
-        System.arraycopy(vec.toArray(), beginIndex(), arr, 0, size());
+        System.arraycopy(vec.toArray(), offset(), arr, 0, size());
         return arr;
     }
-
 
     /**
      * Returns an array containing all of the elements in this Vector in the
@@ -623,7 +624,7 @@ public class VectorAdapter implements HList
         if(a.length < size())
             a = new Object[size()];
 
-        System.arraycopy(vec.toArray(), beginIndex(), a, 0, size());
+        System.arraycopy(vec.toArray(), offset(), a, 0, size());
 
         if(a.length > size())
             a[size()] = null;
@@ -643,7 +644,6 @@ public class VectorAdapter implements HList
     {
         return elementAt(index);
     }
-
 
     /**
      * Replaces the element at the specified position in this Vector with the
@@ -768,7 +768,7 @@ public class VectorAdapter implements HList
      * specified Collection is this Vector, and this Vector is nonempty.)
      *
      * @param c elements to be inserted into this Vector.
-     * @return <tt>true</tt> if this Vector changed as a result of the call.
+     * @return <code>true</code> if this Vector changed as a result of the call.
      * @throws NullPointerException if the specified collection is null.
      */
     public synchronized boolean addAll(HCollection c)
@@ -859,7 +859,7 @@ public class VectorAdapter implements HList
      * @param index index at which to insert first element
      *		   from the specified collection.
      * @param c elements to be inserted into this Vector.
-     * @return <tt>true</tt> if this Vector changed as a result of the call.
+     * @return <code>true</code> if this Vector changed as a result of the call.
      * @exception ArrayIndexOutOfBoundsException index out of range (index
      *		 &lt; 0 || index &gt; size()).
      * @throws NullPointerException if the specified collection is null.
@@ -950,7 +950,6 @@ public class VectorAdapter implements HList
         return vec.toString();
     }
 
-
     /**
      * Returns a view of the portion of this List between fromIndex,
      * inclusive, and toIndex, exclusive.  (If fromIndex and ToIndex are
@@ -993,7 +992,7 @@ public class VectorAdapter implements HList
         if(fromIndex < 0 || toIndex > size())
             throw new IndexOutOfBoundsException();
 
-        return new SubListAdapter(vec, beginIndex() + fromIndex, beginIndex() + toIndex);
+        return new SubListAdapter(vec, offset() + fromIndex, offset() + toIndex);
     }
 
     /**
@@ -1016,20 +1015,24 @@ public class VectorAdapter implements HList
      * sequence. <p>
      *
      * This implementation returns a straightforward implementation of the
-     * iterator interface, relying on the backing list's <tt>size()</tt>,
-     * <tt>get(int)</tt>, and <tt>remove(int)</tt> methods.<p>
+     * iterator interface, relying on the backing list's <code>size()</code>,
+     * <code>get(int)</code>, and <code>remove(int)</code> methods.<p>
+     *
+     * Note that the iterator returned by this method will throw an
+     * <code>UnsupportedOperationException</code> in response to its
+     * <code>remove</code> method unless the list's <code>remove(int)</code> method is
+     * overridden.</p>
      *
      * @return an iterator over the elements in this list in proper sequence.
      */
     public HIterator iterator()
     {
-        return new IteratorAdapter(this, beginIndex(), beginIndex() + size());
+        return new IteratorAdapter(this, offset(), offset() + size());
     }
-
 
     /**
      * Returns an iterator of the elements in this list (in proper sequence).
-     * This implementation returns <tt>listIterator(0)</tt>.
+     * This implementation returns <code>listIterator(0)</code>.
      *
      * @return an iterator of the elements in this list (in proper sequence).
      *
@@ -1040,15 +1043,51 @@ public class VectorAdapter implements HList
         return listIterator(0);
     }
 
+    /**
+     * Returns a list iterator of the elements in this list (in proper
+     * sequence), starting at the specified position in the list.  The
+     * specified index indicates the first element that would be returned by
+     * an initial call to the <code>next</code> method.  An initial call to
+     * the <code>previous</code> method would return the element with the
+     * specified index minus one.
+     *
+     * This implementation returns a straightforward implementation of the
+     * <code>ListIterator</code> interface that extends the implementation of the
+     * <code>Iterator</code> interface returned by the <code>iterator()</code> method.
+     * The <code>ListIterator</code> implementation relies on the backing list's
+     * <code>get(int)</code>, <code>set(int, Object)</code>, <code>add(int, Object)</code>
+     * and <code>remove(int)</code> methods.
+     *
+     * Note that the list iterator returned by this implementation will throw
+     * an <code>UnsupportedOperationException</code> in response to its
+     * <code>remove</code>, <code>set</code> and <code>add</code> methods unless the
+     * list's <code>remove(int)</code>, <code>set(int, Object)</code>, and
+     * <code>add(int, Object)</code> methods are overridden.
+     *
+     * @param index index of the first element to be returned from the list
+     *		   iterator (by a call to the <code>next</code> method).
+     *
+     * @return a list iterator of the elements in this list (in proper
+     * 	      sequence), starting at the specified position in the list.
+     *
+     * @throws IndexOutOfBoundsException if the specified index is out of
+     *		 range (<code>index &lt; 0 || index &gt; size()</code>).
+     */
     public HListIterator listIterator(int index)
     {
         if(index < 0 || index > size())
             throw new IndexOutOfBoundsException();
 
-        return new ListIteratorAdapter(this, beginIndex() + index, beginIndex() + size());
+        return new ListIteratorAdapter(this, offset() + index, offset() + size());
     }
 
-    protected int beginIndex()
+    /**
+     * Returns the offset of this sublist relative to the backing vector.
+     * This is a helper method to manage sublist offset throughout polymorphism.
+     *
+     * @return the offset of the list relative to its Vector
+     */
+    protected int offset()
     {
         return 0;
     }

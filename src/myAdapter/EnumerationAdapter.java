@@ -6,17 +6,61 @@ import java.lang.IllegalArgumentException;
 import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 
+/**
+ * An adapter that implements the HEnumeration interface to iterate over elements
+ * of a VectorAdapter. Provides a way to enumerate elements of a vector
+ * or a specific portion of it.
+ * <p>
+ * This class allows iterating through all elements of a VectorAdapter or only
+ * a specific subsection defined by start and end indices.
+ * </p>
+
+ * @author      Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see         HEnumeration
+ * @see         VectorAdapter
+ */
 public class EnumerationAdapter implements HEnumeration
 {
+    /**
+     * The current position of this enumeration. The next element to be returned
+     * by nextElement() is at this index. This cursor moves forward.
+     */
     private int cursor = 0;
+
+    /**
+     * The exclusive upper bound of the enumeration range.
+     */
     private final int end;
+
+    /**
+     * The VectorAdapter being enumerated. This adapter provides access to the
+     * underlying elements that this enumeration iterates over.
+     */
     private VectorAdapter vect;
 
+    /**
+     * Constructs an EnumerationAdapter that iterates over all elements
+     * of the specified VectorAdapter.
+     *
+     * @param vect  the VectorAdapter to enumerate over
+     * @throws NullPointerException if the specified VectorAdapter is null
+     */
     EnumerationAdapter(VectorAdapter vect)
     {
-        this(vect, vect.beginIndex(), vect.beginIndex() + vect.size());
+        this(vect, vect.offset(), vect.offset() + vect.size());
     }
 
+    /**
+     * Constructs an EnumerationAdapter that iterates over a specific range
+     * of elements in the specified VectorAdapter.
+     *
+     * @param vect   the VectorAdapter to enumerate over
+     * @param start  the starting index (inclusive) of the range to enumerate
+     * @param end    the ending index (exclusive) of the range to enumerate
+     * @throws NullPointerException if the specified VectorAdapter is null
+     * @throws IllegalArgumentException if the start index is greater than the end index
+     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds
+     */
     EnumerationAdapter(VectorAdapter vect, int start, int end)
     {
         if(vect == null)
@@ -25,7 +69,7 @@ public class EnumerationAdapter implements HEnumeration
         if(start > end)
             throw new IllegalArgumentException();
 
-        if(start < vect.beginIndex() || end > vect.beginIndex() + vect.size())
+        if(start < vect.offset() || end > vect.offset() + vect.size())
             throw new IndexOutOfBoundsException();
 
         this.vect = vect;
@@ -33,17 +77,31 @@ public class EnumerationAdapter implements HEnumeration
         this.end = end;
     }
 
+    /**
+     * Tests if this enumeration contains more elements.
+     *
+     * @return  <code>true</code> if and only if this enumeration object
+     *           contains at least one more element to provide;
+     *          <code>false</code> otherwise.
+     */
     public boolean hasMoreElements()
     {
         return cursor < end;
     }
 
+    /**
+     * Returns the next element of this enumeration if this enumeration
+     * object has at least one more element to provide.
+     *
+     * @return     the next element of this enumeration.
+     * @exception  NoSuchElementException  if no more elements exist.
+     */
     public synchronized Object nextElement()
     {
         if(!hasMoreElements())
             throw new NoSuchElementException();
 
-        Object obj = vect.elementAt(cursor - vect.beginIndex());
+        Object obj = vect.elementAt(cursor - vect.offset());
         cursor++;
 
         return obj;
