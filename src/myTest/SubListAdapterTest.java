@@ -78,6 +78,31 @@ public class SubListAdapterTest
         subList = null;
     }
 
+    /**
+     * Test method to verify that subList creation works correctly with valid parameters.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist can be created with valid indices and contains the correct elements.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate basic sublist functionality with normal parameters,
+     * ensuring proper element selection and size calculation.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with 5 elements, then creates a sublist from indices 1 to 4.
+     * It verifies that the sublist contains the correct elements at the expected positions
+     * and has the correct size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with size 3</p>
+     * <p>- Sublist contains elements ["2", "3", "4"] at indices 0, 1, 2 respectively</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist should be created successfully with correct elements and size.</p>
+     */
     @Test
     public void testSubListValidParameters()
     {
@@ -98,6 +123,29 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList creation works correctly for a single element range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a single-element sublist can be created and contains the correct element.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality for the edge case of a single element range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with 3 elements, then creates a sublist from indices 1 to 2.
+     * It verifies that the sublist contains exactly one element at position 0.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with size 1</p>
+     * <p>- Sublist contains element "2" at index 0</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist should be created successfully with one correct element.</p>
+     */
     @Test
     public void testSubListSingleElement()
     {
@@ -114,6 +162,29 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList creation works correctly for an empty range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that an empty sublist can be created and has the correct properties.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality for the edge case of an empty range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with 3 elements, then creates a sublist from indices 1 to 1.
+     * It verifies that the sublist is empty and has size 0.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with size 0</p>
+     * <p>- Sublist is empty</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Empty sublist should be created successfully.</p>
+     */
     @Test
     public void testSubListEmptyRange()
     {
@@ -129,6 +200,29 @@ public class SubListAdapterTest
         assertTrue("Should be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList creation works correctly for a full range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist covering the entire vector can be created correctly.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality for the case of a full range selection.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with 3 elements, then creates a sublist from indices 0 to 3.
+     * It verifies that the sublist contains all elements in the correct order.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with size 3</p>
+     * <p>- Sublist contains all original elements in order</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Full-range sublist should be created successfully with all elements preserved.</p>
+     */
     @Test
     public void testSubListFullRange()
     {
@@ -147,6 +241,30 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList creation works correctly with null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist containing null elements can be created and handled correctly.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality with null values,
+     * ensuring proper handling of null elements.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with 4 null elements, then creates a sublist from indices 1 to 3.
+     * It verifies that the sublist contains the correct number of null elements.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 4 null elements</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with size 2</p>
+     * <p>- Sublist contains two null elements</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist with null elements should be created successfully.</p>
+     */
     @Test
     public void testSubListNullElements()
     {
@@ -165,6 +283,29 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList constructor throws IllegalArgumentException when fromIndex bigger than toIndex.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies proper exception handling for invalid index parameters.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for the edge case of fromIndex bigger than toIndex.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test attempts to create a sublist with fromIndex 2 and toIndex 1,
+     * expecting an IllegalArgumentException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IllegalArgumentException is thrown</p>
+     * <p>- No sublist is created</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>IllegalArgumentException should be thrown when fromIndex bigger than toIndex.</p>
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testSubListConstructorFromIndexGreaterThanToIndex()
     {
@@ -175,6 +316,29 @@ public class SubListAdapterTest
         subList = (SubListAdapter) vector.subList(2, 1);
     }
 
+    /**
+     * Test method to verify that subList constructor throws IndexOutOfBoundsException for negative fromIndex.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies proper exception handling for negative index parameters.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for the edge case of negative fromIndex.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test attempts to create a sublist with fromIndex -1 and toIndex 1,
+     * expecting an IndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IndexOutOfBoundsException is thrown</p>
+     * <p>- No sublist is created</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>IndexOutOfBoundsException should be thrown for negative fromIndex.</p>
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSubListConstructorNegativeFromIndex()
     {
@@ -185,6 +349,29 @@ public class SubListAdapterTest
         subList = (SubListAdapter) vector.subList(-1, 1);
     }
 
+    /**
+     * Test method to verify that subList constructor throws IndexOutOfBoundsException for toIndex bigger than size.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies proper exception handling for out-of-bounds index parameters.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for the edge case of toIndex exceeding vector size.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test attempts to create a sublist with fromIndex 0 and toIndex 3 on a vector of size 2,
+     * expecting an IndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IndexOutOfBoundsException is thrown</p>
+     * <p>- No sublist is created</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>IndexOutOfBoundsException should be thrown when toIndex bigger than the vector size.</p>
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSubListConstructorToIndexGreaterThanSize()
     {
@@ -195,6 +382,30 @@ public class SubListAdapterTest
         subList = (SubListAdapter) vector.subList(0, 3);
     }
 
+    /**
+     * Test method to verify that subList constructor works correctly with default VectorAdapter.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies sublist creation with a default-constructed VectorAdapter.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality with the default vector constructor.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter using the default constructor, adds elements,
+     * then creates a sublist and verifies its properties match the backing vector.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is created with default constructor</p>
+     * <p>- Three elements are added: ["1", "2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with correct elements</p>
+     * <p>- Capacity matches backing vector capacity</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist should be created successfully with matching capacity.</p>
+     */
     @Test
     public void testSubListConstructorDefaultVector()
     {
@@ -213,6 +424,30 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList constructor works correctly with capacity-specified VectorAdapter.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies sublist creation with a capacity-specified VectorAdapter.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality with a vector created with specific capacity.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 5, adds elements,
+     * then creates a sublist and verifies its properties match the backing vector.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is created with initial capacity 5</p>
+     * <p>- Three elements are added: ["1", "2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with correct elements</p>
+     * <p>- Capacity matches backing vector capacity</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist should be created successfully with matching capacity.</p>
+     */
     @Test
     public void testSubListConstructorCapacityVector()
     {
@@ -231,6 +466,30 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList constructor works correctly with capacity-and-increment VectorAdapter.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies sublist creation with a VectorAdapter created with capacity and increment.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality with a vector created with specific capacity and increment.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 3 and capacity increment 2,
+     * adds elements beyond initial capacity, then creates a sublist and verifies its properties.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is created with capacity 3 and increment 2</p>
+     * <p>- Four elements are added: ["1", "2", "3", "4"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with correct elements</p>
+     * <p>- Capacity matches expanded backing vector capacity</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist should be created successfully with matching expanded capacity.</p>
+     */
     @Test
     public void testSubListConstructorCapacityAndIncrementVector()
     {
@@ -251,6 +510,30 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that subList constructor works correctly with collection-based VectorAdapter.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies sublist creation with a VectorAdapter created from another collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate sublist functionality with a vector created from an existing collection.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter from another VectorAdapter, then creates a sublist
+     * and verifies its properties match the backing vector.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- Source VectorAdapter is created with elements ["1", "2", "3"]</p>
+     * <p>- Target VectorAdapter is created from source collection</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubListAdapter is successfully created with correct elements</p>
+     * <p>- Capacity matches backing vector capacity</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublist should be created successfully with matching capacity.</p>
+     */
     @Test
     public void testSubListConstructorCollectionVector()
     {
@@ -270,6 +553,30 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that copyInto copies elements in correct order.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that copyInto method copies sublist elements in the correct order.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the element ordering preservation in copyInto operation.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with 5 elements, creates a sublist,
+     * and verifies that copyInto copies elements in the correct sequential order.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- Sublist is created from indices 1 to 4</p>
+     * <p>- Target array of size 3 is created</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Array contains elements ["2", "3", "4"] in positions 0, 1, 2 respectively</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>copyInto should copy elements in correct sequential order.</p>
+     */
     @Test
     public void testSubListCopyIntoCorrectOrder()
     {
@@ -289,6 +596,30 @@ public class SubListAdapterTest
         assertEquals("Third element should be '4'", "4", arr[2]);
     }
 
+    /**
+     * Test method to verify that copyInto works correctly with empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that copyInto method handles empty sublists correctly.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate copyInto operation with empty sublists.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates an empty sublist and verifies that copyInto doesn't modify
+     * the target empty array.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- Empty sublist is created from indices 1 to 1</p>
+     * <p>- Empty target array is created</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Array remains empty and unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>copyInto should not modify empty target array when copying from empty sublist.</p>
+     */
     @Test
     public void testSubListCopyIntoEmptySubList()
     {
@@ -304,6 +635,32 @@ public class SubListAdapterTest
         assertEquals("Array should remain empty", 0, arr.length);
     }
 
+    /**
+     * Test method to verify that copyInto preserves existing array elements beyond copied range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that copyInto preserves array elements beyond the copied range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that copyInto doesn't overwrite array elements
+     * beyond the copied sublist range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a sublist and copies it into an array with pre-existing elements,
+     * verifying that elements beyond the copied range remain unchanged.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- Sublist is created from indices 1 to 3</p>
+     * <p>- Target array of size 3 has pre-existing elements</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Array positions 0 and 1 contain copied elements</p>
+     * <p>- Array position 2 retains original value</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>copyInto should preserve array elements beyond copied range.</p>
+     */
     @Test
     public void testSubListCopyIntoLargerArray()
     {
@@ -326,6 +683,30 @@ public class SubListAdapterTest
         assertEquals("Existing elements should be preserved", "0", arr[2]);
     }
 
+    /**
+     * Test method to verify that copyInto throws IndexOutOfBoundsException for smaller target array.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies proper exception handling when target array is too small.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for array size mismatch.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test attempts to copy a sublist into a smaller array,
+     * expecting an IndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 4 elements: ["1", "2", "3", "4"]</p>
+     * <p>- Sublist is created from indices 1 to 4 (size 3)</p>
+     * <p>- Target array of size 2 is created</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IndexOutOfBoundsException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>IndexOutOfBoundsException should be thrown when target array is smaller than sublist.</p>
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSubListCopyIntoSmallerArray()
     {
@@ -340,6 +721,30 @@ public class SubListAdapterTest
         subList.copyInto(arr);
     }
 
+    /**
+     * Test method to verify that copyInto handles null elements correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that copyInto correctly handles sublists containing null elements.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate null element handling in copyInto operation.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a sublist containing null elements and verifies that
+     * copyInto correctly copies null values to the target array.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with mixed null and non-null elements</p>
+     * <p>- Sublist is created containing null elements</p>
+     * <p>- Target array has pre-existing values</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Array contains null values at copied positions</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>copyInto should correctly copy null elements to target array.</p>
+     */
     @Test
     public void testSubListCopyIntoNullElements()
     {
@@ -360,6 +765,29 @@ public class SubListAdapterTest
         assertNull("Second element should be null", arr[1]);
     }
 
+    /**
+     * Test method to verify that copyInto throws NullPointerException for null array.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies proper exception handling for null array parameter.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for null array reference.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test attempts to copy a sublist into a null array,
+     * expecting a NullPointerException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- Sublist is created from indices 0 to 2</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- NullPointerException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>NullPointerException should be thrown when target array is null.</p>
+     */
     @Test(expected = NullPointerException.class)
     public void testSubListCopyIntoNullArray()
     {
@@ -372,6 +800,30 @@ public class SubListAdapterTest
         subList.copyInto(null);
     }
 
+    /**
+     * Test method to verify that copyInto throws IndexOutOfBoundsException for zero-length array with elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies proper exception handling for zero-length array with non-empty sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for array size mismatch with zero-length array.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test attempts to copy a non-empty sublist into a zero-length array,
+     * expecting an IndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- Sublist is created from indices 0 to 1 (size 1)</p>
+     * <p>- Zero-length target array is created</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IndexOutOfBoundsException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>IndexOutOfBoundsException should be thrown when target array is too small.</p>
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSubListCopyIntoZeroLengthArrayWithElements()
     {
