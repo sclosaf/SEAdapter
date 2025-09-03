@@ -291,7 +291,7 @@ public class IteratorAdapterTest
      * <p>next() should throw NoSuchElementException when called on an exhausted iterator.</p>
      */
     @Test(expected = NoSuchElementException.class)
-    public void testHasNextThrowsException()
+    public void testNextThrowsException()
     {
         while(iterator.hasNext())
             iterator.next();
@@ -365,7 +365,7 @@ public class IteratorAdapterTest
      * <p>next() should throw NoSuchElementException when called on an iterator from an empty collection.</p>
      */
     @Test(expected = NoSuchElementException.class)
-    public void testHasNextThrowsExceptionOnEmptyCollection()
+    public void testNextThrowsExceptionOnEmptyCollection()
     {
         VectorAdapter vec = new VectorAdapter();
 
@@ -404,7 +404,7 @@ public class IteratorAdapterTest
      * after all elements have been consumed.</p>
      */
     @Test
-    public void testIteratorDuplicateElements()
+    public void testNextDuplicateElements()
     {
         VectorAdapter vec = new VectorAdapter();
         vec.add("0");
@@ -1547,7 +1547,7 @@ public class IteratorAdapterTest
      * from an empty nested sublist.</p>
      */
     @Test(expected = NoSuchElementException.class)
-    public void testNestedSubListThrowsExceptionWhenEmpty()
+    public void testNestedSubListNextThrowsExceptionWhenEmpty()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);

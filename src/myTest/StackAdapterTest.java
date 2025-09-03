@@ -1090,7 +1090,7 @@ public class StackAdapterTest
      * <p>search(null) should return 2 (the position of the null element).</p>
      */
     @Test
-    public void testSearchNullElementWhenPresent()
+    public void testSearchNullElement()
     {
         stack = new StackAdapter();
         stack.push("1");
