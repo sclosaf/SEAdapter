@@ -14,6 +14,32 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * TestRunner class for executing the complete test suite for the adapter implementation.
+ *
+ * <p>The test suite includes the following test classes:
+ * <ul>
+ *   <li>{@link EnumerationAdapterTest}</li>
+ *   <li>{@link IteratorAdapterTest}</li>
+ *   <li>{@link ListIteratorAdapterTest}</li>
+ *   <li>{@link StackAdapterTest}</li>
+ *   <li>{@link SubListAdapterTest}</li>
+ *   <li>{@link VectorAdapterTest}</li>
+ * </ul>
+ *
+ * <p>This runner provides comprehensive output including:
+ * <ul>
+ *   <li>Execution header with environment information</li>
+ *   <li>Detailed test statistics (pass/fail/ignore counts)</li>
+ *   <li>Failure details with relevant stack traces</li>
+ *   <li>Performance metrics (execution time, memory usage)</li>
+ *   <li>Summary of test execution results</li>
+ * </ul>
+ *
+ * <p>The runner exits with status code 1 if any tests fail, 0 if all tests pass.
+ *
+ * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     EnumerationAdapterTest.class,
@@ -43,6 +69,10 @@ public class TestRunner
     private static final String BOLD = "\033[1m";
     private static final String RESET = "\033[0m";
 
+    /**
+     * Main entry point for the test runner.
+     * Executes all test classes and prints comprehensive results.
+     */
     public static void main(String[] args)
     {
         printHeader();
@@ -67,6 +97,9 @@ public class TestRunner
         System.exit(numberOfFails > 0 ? 1 : 0);
     }
 
+    /**
+     * Prints the execution header with environment information and test configuration.
+     */
     private static void printHeader()
     {
         System.out.println(SEPARATOR);
@@ -91,6 +124,12 @@ public class TestRunner
         System.out.println(SEPARATOR);
     }
 
+    /**
+     * Processes and stores the test execution results.
+     *
+     * @param result the JUnit test result object
+     * @param actualTime the actual execution time in milliseconds
+     */
     private static void elaborateResults(Result result, long actualTime)
     {
         numberOfTests = result.getRunCount();
@@ -103,6 +142,12 @@ public class TestRunner
         time = actualTime;
     }
 
+    /**
+     * Prints detailed statistics about test execution including:
+     * - Number of tests run, passed, failed, and ignored
+     * - Execution time metrics
+     * - Memory usage information
+     */
     private static void printDetailedStats()
     {
         System.out.println("\n" + HEADER_START + BOLD + " DETAILED RESULTS: " + RESET);
@@ -183,6 +228,12 @@ public class TestRunner
 
     }
 
+    /**
+     * Prints detailed information about test failures including:
+     * - Test method name and class
+     * - Error messages
+     * - Relevant stack trace lines (filtered to show only project-related packages)
+     */
     private static void printFailureDetails()
     {
         if(numberOfFails > 0)
@@ -234,6 +285,13 @@ public class TestRunner
         }
     }
 
+    /**
+     * Prints a comprehensive summary of the test execution including:
+     * - Overall success/failure status
+     * - Total execution time
+     * - End timestamp
+     * - Visual status indicator
+     */
     private static void printSummary()
     {
         System.out.println(SEPARATOR);
@@ -274,6 +332,12 @@ public class TestRunner
         System.out.println(SEPARATOR);
     }
 
+    /**
+     * Extracts the test method name from a JUnit Description object.
+     *
+     * @param description the JUnit test description
+     * @return the clean test method name without class information
+     */
     private static String getTestMethodName(Description description)
     {
         String displayName = description.getDisplayName();
@@ -284,16 +348,31 @@ public class TestRunner
         return displayName;
     }
 
+    /**
+     * Checks if all tests have passed successfully.
+     *
+     * @return true if all tests passed, false otherwise
+     */
     public static boolean hasTestsPassed()
     {
         return numberOfFails == 0;
     }
 
+    /**
+     * Returns the number of failed tests.
+     *
+     * @return the count of failed tests
+     */
     public static int getFailureCount()
     {
         return numberOfFails;
     }
 
+    /**
+     * Returns the total execution time of the test suite.
+     *
+     * @return execution time in milliseconds
+     */
     public static long getExecutionTime()
     {
         return time;

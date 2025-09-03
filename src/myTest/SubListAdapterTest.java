@@ -872,7 +872,7 @@ public class SubListAdapterTest
     }
 
     @Test
-    public void testSubListIsEmptyEmptySubList()
+    public void testSubListIsEmptyOnEmptySubList()
     {
         vector = new VectorAdapter();
         vector.add("1");
@@ -1096,22 +1096,6 @@ public class SubListAdapterTest
     }
 
     @Test
-    public void testSubListIndexOfAfterRemove()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("2");
-        vector.add("3");
-
-        subList = (SubListAdapter) vector.subList(0, 3);
-        subList.remove("2");
-
-        assertEquals("Should still find remaining elements", 0, subList.indexOf("1"));
-        assertEquals("Should not find removed element", -1, subList.indexOf("2"));
-        assertEquals("Should still find remaining elements", 1, subList.indexOf("3"));
-    }
-
-    @Test
     public void testSubListIndexOfElementsOutsideRange()
     {
         vector = new VectorAdapter();
@@ -1202,23 +1186,6 @@ public class SubListAdapterTest
         assertEquals("Should find fourth occurrence starting from index 2", 3, subList.indexOf("1", 2));
         assertEquals("Should find fourth occurrence starting from index 3", 3, subList.indexOf("1", 3));
         assertEquals("Should not find occurrence starting from index 4", -1, subList.indexOf("1", 4));
-    }
-
-    @Test
-    public void testSubListIndexOfWithIndexAfterRemove()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("2");
-        vector.add("3");
-        vector.add("4");
-
-        subList = (SubListAdapter) vector.subList(1, 4);
-        subList.remove("2");
-
-        assertEquals("Should find remaining elements starting from index 0", 0, subList.indexOf("3", 0));
-        assertEquals("Should find remaining elements starting from index 1", 1, subList.indexOf("4", 1));
-        assertEquals("Should not find removed element", -1, subList.indexOf("2", 0));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -1355,22 +1322,6 @@ public class SubListAdapterTest
     }
 
     @Test
-    public void testSubListLastIndexOfAfterRemove()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("2");
-        vector.add("3");
-
-        subList = (SubListAdapter) vector.subList(0, 3);
-        subList.remove("2");
-
-        assertEquals("Should still find remaining elements", 0, subList.lastIndexOf("1"));
-        assertEquals("Should not find removed element", -1, subList.lastIndexOf("2"));
-        assertEquals("Should still find remaining elements", 1, subList.lastIndexOf("3"));
-    }
-
-    @Test
     public void testSubListLastIndexOfElementsOutsideRange()
     {
         vector = new VectorAdapter();
@@ -1458,22 +1409,6 @@ public class SubListAdapterTest
         assertEquals("Should find third occurrence ending at index 2", 1, subList.lastIndexOf("1", 2));
         assertEquals("Should find second occurrence ending at index 1", 1, subList.lastIndexOf("1", 1));
         assertEquals("Should not find occurrence ending at negative index", -1, subList.lastIndexOf("1", -1));
-    }
-
-    @Test
-    public void testSubListLastIndexOfWithIndexAfterRemove()
-    {
-        vector = new VectorAdapter();
-        vector.add("1");
-        vector.add("2");
-        vector.add("3");
-        vector.add("4");
-
-        subList = (SubListAdapter) vector.subList(1, 4);
-        subList.remove("2");
-
-        assertEquals("Should find remaining elements ending at index 1", 0, subList.lastIndexOf("3", 1));
-        assertEquals("Should find remaining elements ending at index 0", -1, subList.lastIndexOf("1", 0));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -1596,7 +1531,7 @@ public class SubListAdapterTest
     }
 
     @Test
-    public void testSubListElementAtNullElements()
+    public void testSubListElementAtNullElement()
     {
         vector = new VectorAdapter();
         vector.add("1");

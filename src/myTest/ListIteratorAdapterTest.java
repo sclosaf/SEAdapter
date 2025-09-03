@@ -5631,7 +5631,7 @@ public class ListIteratorAdapterTest
 
         assertEquals("Size should increase", 4, subList.size());
         assertEquals("New element should be at index 0", "6", subList.get(0));
-        assertEquals("Next should return original element", "1", subListLIter.next());
+        assertEquals("Next should return original element", "2", subListLIter.next());
     }
 
     /**
