@@ -2306,6 +2306,32 @@ public class SubListAdapterTest
         assertTrue("SubList should be empty after setSize(0)", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that contains() returns true for existing elements in a sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly identifies elements that exist within
+     * the sublist range, ensuring proper element detection functionality.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the basic functionality of the contains() method for elements
+     * that should be present in the sublist. This ensures the method works correctly for normal use cases.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3.
+     * It verifies that contains() returns true for elements "2" and "3" which are within the sublist range.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns true for elements within the sublist range</p>
+     * <p>- No modifications to the underlying vector</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return true for elements "2" and "3" that exist within the sublist range.</p>
+     */
     @Test
     public void testSubListContainsExistingElement()
     {
@@ -2319,6 +2345,33 @@ public class SubListAdapterTest
         assertTrue("Should contain element '3'", subList.contains("3"));
     }
 
+    /**
+     * Test method to verify that contains() returns false for non-existing elements in a sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly returns false for elements that do not
+     * exist within the sublist range, ensuring proper element detection functionality.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the contains() method's ability to correctly identify when
+     * elements are not present in the sublist, including elements outside the sublist range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3.
+     * It verifies that contains() returns false for element "1" (which is before the sublist range)
+     * and element "4" (which doesn't exist in the vector).</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns false for elements not in the sublist range</p>
+     * <p>- No modifications to the underlying vector</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return false for elements "1" and "4" that do not exist within the sublist range.</p>
+     */
     @Test
     public void testSubListContainsNonExistingElement()
     {
@@ -2332,6 +2385,32 @@ public class SubListAdapterTest
         assertFalse("Should not contain element '4'", subList.contains("4"));
     }
 
+    /**
+     * Test method to verify that contains() correctly handles null elements in a sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly identifies null elements within
+     * the sublist range, ensuring proper handling of null values.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the contains() method's ability to detect null elements
+     * in the sublist, which is important for completeness and edge case handling.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with elements including a null value, then creates a sublist
+     * that includes the null element. It verifies that contains() returns true when checking for null.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", null, "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 2 (containing the null element)</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns true for null element within the sublist</p>
+     * <p>- No modifications to the underlying vector</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return true when checking for null in a sublist that contains a null element.</p>
+     */
     @Test
     public void testSubListContainsNullElement()
     {
@@ -2344,6 +2423,33 @@ public class SubListAdapterTest
         assertTrue("Should contain null element", subList.contains(null));
     }
 
+    /**
+     * Test method to verify that contains() returns false for all elements on an empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly returns false for any element when
+     * called on an empty sublist, ensuring proper behavior for edge cases.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the contains() method's behavior on empty sublists, which
+     * should never contain any elements, including null values.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates an empty sublist (from index 1 to 1).
+     * It verifies that contains() returns false for any element, including elements that exist in the
+     * main vector but not in the empty sublist range.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 (empty range)</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns false for all elements on empty sublist</p>
+     * <p>- No modifications to the underlying vector</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return false for any element when called on an empty sublist.</p>
+     */
     @Test
     public void testSubListContainsOnEmptySubList()
     {
@@ -2358,6 +2464,34 @@ public class SubListAdapterTest
         assertFalse("Empty subList should not contain null", subList.contains(null));
     }
 
+    /**
+     * Test method to verify that contains() correctly reflects element removal from a sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly updates its return value after elements
+     * are removed from the sublist, ensuring dynamic consistency with the sublist's contents.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the contains() method's ability to reflect changes to the
+     * sublist's contents, specifically after element removal operations.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements, then creates a sublist from index 1 to 4.
+     * It removes elements "2" and "3" from the sublist, then verifies that contains() returns false
+     * for these removed elements but still returns true for remaining elements.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns false for removed elements "2" and "3"</p>
+     * <p>- contains() returns true for remaining element "4"</p>
+     * <p>- The underlying vector is modified to reflect the removals</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return false for removed elements and true for remaining elements after removal operations.</p>
+     */
     @Test
     public void testSubListContainsAfterRemove()
     {
@@ -2376,6 +2510,34 @@ public class SubListAdapterTest
         assertTrue("Should still contain '4'", subList.contains("4"));
     }
 
+    /**
+     * Test method to verify that contains() correctly reflects element replacement in a sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly updates its return value after an element
+     * is replaced in the sublist, ensuring dynamic consistency with the sublist's contents.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the contains() method's ability to reflect changes to the
+     * sublist's contents, specifically after element replacement operations using the set() method.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * It replaces element "2" with "4" at index 1, then verifies that contains() returns false for the
+     * replaced element "2" but returns true for the new element "4".</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns false for replaced element "2"</p>
+     * <p>- contains() returns true for new element "4"</p>
+     * <p>- The underlying vector is modified to reflect the replacement</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return false for replaced elements and true for new elements after replacement operations.</p>
+     */
     @Test
     public void testSubListContainsAfterSet()
     {
@@ -2391,6 +2553,34 @@ public class SubListAdapterTest
         assertTrue("Should contain new element", subList.contains("4"));
     }
 
+    /**
+     * Test method to verify that contains() returns false for elements outside the sublist range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the contains() method correctly returns false for elements that exist
+     * in the backing vector but outside the current sublist range, ensuring proper range isolation.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the contains() method's ability to respect sublist boundaries
+     * and not report elements that exist in the backing vector but outside the sublist range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements, then creates a sublist from index 1 to 3.
+     * It verifies that contains() returns false for element "1" (which is before the sublist range)
+     * and element "4" (which is after the sublist range), even though these elements exist in the
+     * backing vector.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- contains() returns false for elements outside the sublist range</p>
+     * <p>- No modifications to the underlying vector</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>contains() should return false for elements that exist in the backing vector but outside the sublist range.</p>
+     */
     @Test
     public void testSubListContainsElementsOutsideRange()
     {
@@ -2405,6 +2595,31 @@ public class SubListAdapterTest
         assertFalse("Should not contain element after subList range", subList.contains("4"));
     }
 
+    /**
+     * Test method to verify indexOf() returns correct index for existing elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() correctly returns the index of existing elements within a sublist range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate basic indexOf functionality for elements that exist within the sublist boundaries,
+     * ensuring proper index calculation relative to the sublist's view.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3. Verifies that indexOf
+     * returns correct relative indices for elements "2" and "3" within the sublist.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 1 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns 0 for "2"</p>
+     * <p>- indexOf returns 1 for "3"</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return correct relative indices for elements within the sublist range.</p>
+     */
     @Test
     public void testSubListIndexOfExistingElement()
     {
@@ -2418,6 +2633,30 @@ public class SubListAdapterTest
         assertEquals("Should return correct index for second element", 1, subList.indexOf("3"));
     }
 
+    /**
+     * Test method to verify indexOf() returns -1 for non-existing elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() correctly returns -1 for elements not present in the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper handling of elements that are outside the sublist range or not present in the backing vector.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3. Verifies that indexOf
+     * returns -1 for elements "1" (before sublist range) and "4" (not in vector).</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 1 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns -1 for "1"</p>
+     * <p>- indexOf returns -1 for "4"</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return -1 for elements not present in the sublist.</p>
+     */
     @Test
     public void testSubListIndexOfNonExistingElement()
     {
@@ -2431,6 +2670,29 @@ public class SubListAdapterTest
         assertEquals("Should return -1 for non-existing element", -1, subList.indexOf("4"));
     }
 
+    /**
+     * Test method to verify indexOf() correctly handles null elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() correctly identifies the index of null elements within a sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper handling of null values in the sublist, ensuring they are correctly located.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter containing a null element, then creates a sublist that includes the null element.
+     * Verifies that indexOf returns the correct index for the null value.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", null, "3"]</p>
+     * <p>- SubListAdapter created from indices 1 to 2</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns 0 for null element</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return the correct index for null elements within the sublist.</p>
+     */
     @Test
     public void testSubListIndexOfNullElement()
     {
@@ -2443,6 +2705,30 @@ public class SubListAdapterTest
         assertEquals("Should return correct index for null element", 0, subList.indexOf(null));
     }
 
+    /**
+     * Test method to verify indexOf() behavior on empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() returns -1 for any element when called on an empty sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates edge case behavior for empty sublists, ensuring no false positives occur.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with three elements, then creates an empty sublist (from index 1 to 1).
+     * Verifies that indexOf returns -1 for both existing elements and null values.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 1 to 1 (empty range)</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns -1 for "1"</p>
+     * <p>- indexOf returns -1 for null</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return -1 for any element when called on an empty sublist.</p>
+     */
     @Test
     public void testSubListIndexOfOnEmptySubList()
     {
@@ -2456,6 +2742,29 @@ public class SubListAdapterTest
         assertEquals("Should return -1 for null in empty subList", -1, subList.indexOf(null));
     }
 
+    /**
+     * Test method to verify indexOf() returns first occurrence for duplicate elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() returns the index of the first occurrence when duplicate elements exist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates that indexOf follows the specification of returning the first occurrence index for duplicates.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with duplicate elements, then creates a sublist containing the duplicates.
+     * Verifies that indexOf returns the index of the first occurrence of the duplicate element.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["0", "1", "1"]</p>
+     * <p>- SubListAdapter created from indices 1 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns 0 for first occurrence of "1"</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return the index of the first occurrence when duplicate elements exist.</p>
+     */
     @Test
     public void testSubListIndexOfDuplicateElements()
     {
@@ -2468,6 +2777,30 @@ public class SubListAdapterTest
         assertEquals("Should return first occurrence index for duplicate elements", 0, subList.indexOf("1"));
     }
 
+    /**
+     * Test method to verify indexOf() does not find elements outside sublist range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() correctly returns -1 for elements outside the sublist's range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates that the sublist view properly restricts element search to its defined range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with four elements, then creates a sublist from index 1 to 3.
+     * Verifies that indexOf returns -1 for elements before and after the sublist range.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter created from indices 1 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns -1 for "1" (before range)</p>
+     * <p>- indexOf returns -1 for "4" (after range)</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should not find elements outside the sublist's defined range.</p>
+     */
     @Test
     public void testSubListIndexOfElementsOutsideRange()
     {
@@ -2482,6 +2815,30 @@ public class SubListAdapterTest
         assertEquals("Should not find element after subList range", -1, subList.indexOf("4"));
     }
 
+    /**
+     * Test method to verify indexOf() works correctly with sublist offset.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf() correctly calculates indices relative to the sublist's offset.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper index calculation when the sublist starts at a non-zero offset.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with four elements, then creates a sublist starting at index 2.
+     * Verifies that indexOf returns correct relative indices for elements within the sublist.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["0", "1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 2 to 4</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns 0 for "2"</p>
+     * <p>- indexOf returns 1 for "3"</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return correct relative indices accounting for the sublist's offset.</p>
+     */
     @Test
     public void testSubListIndexOfWithOffset()
     {
@@ -2496,6 +2853,31 @@ public class SubListAdapterTest
         assertEquals("Should return correct index with offset", 1, subList.indexOf("3"));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) with existing elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) correctly finds elements starting from specified index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates the search-from-index functionality for elements that exist in the sublist.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with five elements, then creates a sublist from index 1 to 4.
+     * Verifies that indexOf finds elements correctly when starting from different indices.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter created from indices 1 to 4</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf finds "3" at index 1 when starting from index 0</p>
+     * <p>- indexOf finds "3" at index 1 when starting from index 1</p>
+     * <p>- indexOf returns -1 when starting from index beyond element occurrence</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should correctly find elements when starting from specified indices.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexExistingElement()
     {
@@ -2513,6 +2895,29 @@ public class SubListAdapterTest
         assertEquals("Should find element starting from index 3", -1, subList.indexOf("3", 3));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) with non-existing elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) returns -1 for non-existing elements regardless of start index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates that non-existing elements are properly handled across different start indices.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3.
+     * Verifies that indexOf returns -1 for non-existing element "4" across different start indices.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 1 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns -1 for "4" at all start indices</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return -1 for non-existing elements regardless of start index.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexNonExistingElement()
     {
@@ -2527,6 +2932,31 @@ public class SubListAdapterTest
         assertEquals("Should return -1 for non-existing element", -1, subList.indexOf("4", 2));
     }
 
+    /**
+     * Test method to verify indexOf(null, index) with multiple null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(null, index) correctly finds null elements starting from specified index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper handling of multiple null values with different start indices.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with multiple null elements, then creates a sublist containing them.
+     * Verifies that indexOf correctly finds null elements based on start index.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", null, "3", null, "5"]</p>
+     * <p>- SubListAdapter created from indices 1 to 4</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf finds first null at index 0 when starting from index 0</p>
+     * <p>- indexOf finds second null at index 2 when starting from index 1</p>
+     * <p>- indexOf returns -1 when starting beyond last null</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should correctly find null elements based on start index.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexNullElement()
     {
@@ -2543,6 +2973,29 @@ public class SubListAdapterTest
         assertEquals("Should not find null starting from index 3", -1, subList.indexOf(null, 3));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) with duplicate elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) correctly finds occurrences of duplicate elements based on start index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates that the method finds the correct occurrence of duplicate elements when using different start indices.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with duplicate elements, then creates a sublist containing them.
+     * Verifies that indexOf returns correct indices for different occurrences based on start index.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["0", "1", "1", "2", "1"]</p>
+     * <p>- SubListAdapter created from indices 1 to 5</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf finds correct occurrence indices for "1" based on start index</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return correct occurrence indices for duplicate elements based on start index.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexDuplicateElements()
     {
@@ -2561,6 +3014,29 @@ public class SubListAdapterTest
         assertEquals("Should not find occurrence starting from index 4", -1, subList.indexOf("1", 4));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) throws exception for negative index.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) throws IndexOutOfBoundsException for negative start index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper exception handling for invalid negative start indices.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with three elements, then creates a sublist covering all elements.
+     * Attempts to call indexOf with negative start index, expecting IndexOutOfBoundsException.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 0 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IndexOutOfBoundsException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should throw IndexOutOfBoundsException for negative start index.</p>
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSubListIndexOfWithIndexNegativeIndex()
     {
@@ -2573,6 +3049,30 @@ public class SubListAdapterTest
         subList.indexOf("1", -1);
     }
 
+    /**
+     * Test method to verify indexOf(element, index) returns -1 for indices equal or greater than size.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) returns -1 when start index is equal or greater than sublist size.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper handling of start indices that are beyond the sublist's bounds.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with three elements, then creates a sublist from index 0 to 2.
+     * Verifies that indexOf returns -1 when start index equals or exceeds sublist size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 0 to 2</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns -1 when start index equals size</p>
+     * <p>- indexOf returns -1 when start index exceeds size</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return -1 when start index is equal or greater than sublist size.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexEqualOrGreaterThanSize()
     {
@@ -2586,6 +3086,30 @@ public class SubListAdapterTest
         assertEquals("Should return -1 when index greater than size", -1, subList.indexOf("2", 3));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) edge cases.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies indexOf(element, index) behavior in various edge cases with exact indices.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates precise index matching and boundary conditions for the search-from-index functionality.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with five elements, then creates a sublist from index 1 to 4.
+     * Tests various edge cases including exact index matches and boundary conditions.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter created from indices 1 to 4</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf finds elements at exact start indices</p>
+     * <p>- indexOf returns -1 when element not found from start index</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should handle edge cases and exact index matches correctly.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexEdgeCases()
     {
@@ -2603,6 +3127,29 @@ public class SubListAdapterTest
         assertEquals("Should find last element with max valid index", 2, subList.indexOf("4", 2));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) does not find elements outside sublist range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) correctly returns -1 for elements outside sublist range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates that the search-from-index functionality respects sublist boundaries.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with four elements, then creates a sublist from index 1 to 3.
+     * Verifies that indexOf returns -1 for elements outside the sublist range regardless of start index.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter created from indices 1 to 3</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns -1 for elements before and after sublist range</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should not find elements outside the sublist's defined range.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexElementsOutsideRange()
     {
@@ -2617,6 +3164,29 @@ public class SubListAdapterTest
         assertEquals("Should not find element after subList range", -1, subList.indexOf("4", 0));
     }
 
+    /**
+     * Test method to verify indexOf(element, index) works correctly with sublist offset.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that indexOf(element, index) correctly calculates indices relative to sublist offset.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test validates proper index calculation when using start index with sublist offset.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>Creates a VectorAdapter with four elements, then creates a sublist starting at index 2.
+     * Verifies that indexOf returns correct relative indices when using different start indices.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter initialized with elements: ["0", "1", "2", "3"]</p>
+     * <p>- SubListAdapter created from indices 2 to 4</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- indexOf returns correct relative indices accounting for sublist offset</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>indexOf should return correct relative indices when using start index with sublist offset.</p>
+     */
     @Test
     public void testSubListIndexOfWithIndexWithOffset()
     {
