@@ -10431,6 +10431,36 @@ public class SubListAdapterTest
         assertEquals("Element after subList should be shifted", "1", vector.get(1));
     }
 
+    /**
+     * Test method to verify that retainAll() returns false when all elements are present in the sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that retainAll() returns false when called on a sublist where all elements
+     * are present in the specified collection, indicating no modification occurred.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of retainAll() when the sublist already contains
+     * all elements from the specified collection, ensuring no unnecessary modifications are made.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements and a sublist covering all elements.
+     * A collection containing the same three elements is created. retainAll() is called and the
+     * return value is verified to be false, and the sublist size remains unchanged.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["1", "2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- retainAll() returns false</p>
+     * <p>- SubList size remains 3</p>
+     * <p>- SubList content remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>retainAll() should return false and the sublist should remain unchanged when all elements
+     * are already present in the collection.</p>
+     */
     @Test
     public void testSubListRetainAllEveryElementPresent()
     {
@@ -10450,6 +10480,37 @@ public class SubListAdapterTest
         assertEquals("SubList size should remain 3", 3, subList.size());
     }
 
+    /**
+     * Test method to verify that retainAll() removes some elements when only some are present in the collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that retainAll() correctly removes elements not present in the specified
+     * collection and returns true when modifications occur.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of retainAll() when only some elements from
+     * the sublist are present in the specified collection, ensuring proper element retention.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with five elements and a sublist covering indices 1 to 4.
+     * A collection containing only elements "2" and "4" is created. retainAll() is called and
+     * the return value is verified to be true, and the sublist is checked to contain only the
+     * retained elements in the correct order.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["2", "4"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- retainAll() returns true</p>
+     * <p>- SubList size becomes 2</p>
+     * <p>- SubList contains only elements "2" and "4"</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>retainAll() should return true and the sublist should contain only elements present in
+     * the specified collection.</p>
+     */
     @Test
     public void testSubListRetainAllSomeElementPresent()
     {
@@ -10472,6 +10533,36 @@ public class SubListAdapterTest
         assertEquals("Second retained element should be '4'", "4", subList.get(1));
     }
 
+    /**
+     * Test method to verify that retainAll() removes all elements when none are present in the collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that retainAll() correctly removes all elements when none of them are
+     * present in the specified collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of retainAll() when no elements from the
+     * sublist are present in the specified collection, ensuring complete element removal.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements and a sublist covering indices 0 to 3.
+     * A collection containing different elements ("5", "6") is created. retainAll() is called and
+     * the return value is verified to be true, and the sublist is checked to be empty.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["5", "6"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- retainAll() returns true</p>
+     * <p>- SubList becomes empty (size 0)</p>
+     * <p>- SubList isEmpty() returns true</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>retainAll() should return true and the sublist should become empty when none of its
+     * elements are present in the specified collection.</p>
+     */
     @Test
     public void testSubListRetainAllNoElementPresent()
     {
@@ -10492,6 +10583,36 @@ public class SubListAdapterTest
         assertTrue("SubList should be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that retainAll() with empty collection removes all elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that retainAll() correctly removes all elements when called with an
+     * empty collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of retainAll() when the specified collection
+     * is empty, ensuring all elements are removed from the sublist.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements and a sublist covering indices 0 to 2.
+     * An empty collection is created. retainAll() is called and the return value is verified to be
+     * true, and the sublist is checked to be empty.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- An empty VectorAdapter is created</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- retainAll() returns true</p>
+     * <p>- SubList becomes empty (size 0)</p>
+     * <p>- SubList isEmpty() returns true</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>retainAll() should return true and the sublist should become empty when called with
+     * an empty collection.</p>
+     */
     @Test
     public void testSubListRetainAllEmptyCollection()
     {
@@ -10509,6 +10630,30 @@ public class SubListAdapterTest
         assertTrue("SubList should be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that retainAll() throws NullPointerException with null collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that retainAll() throws NullPointerException when called with a null collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate proper exception handling when retainAll() is called with
+     * a null collection parameter.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering indices 0 to 2.
+     * retainAll() is called with a null parameter, expecting a NullPointerException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- NullPointerException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>retainAll() should throw NullPointerException when called with a null collection.</p>
+     */
     @Test(expected = NullPointerException.class)
     public void testSubListRetainAllNullCollection()
     {
@@ -10521,7 +10666,38 @@ public class SubListAdapterTest
         subList.retainAll(null);
     }
 
-
+    /**
+     * Test method to verify that retainAll() works correctly with offset sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that retainAll() works correctly when the sublist has an offset from
+     * the beginning of the backing vector.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of retainAll() with sublists that don't
+     * start at index 0 of the backing vector, ensuring proper element retention considering
+     * the offset.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements and a sublist covering indices 2 to 4.
+     * A collection containing the same elements as the sublist is created. retainAll() is called
+     * and the return value is verified to be false, and the sublist content remains unchanged.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["0", "1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 2 to 4 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- retainAll() returns false</p>
+     * <p>- SubList size remains 2</p>
+     * <p>- SubList content remains unchanged</p>
+     * <p>- Vector size remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>retainAll() should return false and the sublist should remain unchanged when all elements
+     * are already present in the collection, even with offset sublist.</p>
+     */
     @Test
     public void testSubListRetainAllWithOffset()
     {
@@ -10543,6 +10719,39 @@ public class SubListAdapterTest
         assertEquals("Vector size should remain unchanged", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() at index works with non-empty collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() at a specific index correctly inserts all elements from
+     * a non-empty collection into the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() when inserting a non-empty
+     * collection at a specific index in the sublist, ensuring proper element insertion and
+     * shifting of existing elements.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * A collection with two elements is created. addAll() is called at index 1 and the return
+     * value is verified to be true. The sublist and vector sizes are checked, and the element
+     * order is verified after insertion.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "4"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
+     * <p>- Vector size becomes 4</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return true and correctly insert all elements from the collection at
+     * the specified index, shifting existing elements as needed.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexNonEmptyCollection()
     {
@@ -10565,6 +10774,37 @@ public class SubListAdapterTest
         assertEquals("Vector size should be increased", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() at index returns false with empty collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() at a specific index returns false when called with
+     * an empty collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() when attempting to insert
+     * an empty collection at a specific index, ensuring no modifications occur.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * An empty collection is created. addAll() is called at index 1 and the return value is
+     * verified to be false. The sublist and vector sizes and contents are checked to ensure
+     * no changes occurred.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- An empty VectorAdapter is created</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns false</p>
+     * <p>- SubList size remains 2</p>
+     * <p>- SubList content remains unchanged</p>
+     * <p>- Vector size remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return false and make no modifications when called with an empty collection.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexEmptyCollection()
     {
@@ -10582,6 +10822,39 @@ public class SubListAdapterTest
         assertEquals("Vector size should remain unchanged", 2, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() at beginning works correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() at index 0 correctly inserts all elements from
+     * a collection at the beginning of the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * at the beginning of the sublist (index 0), ensuring proper element insertion and
+     * shifting of existing elements.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * A collection with two elements is created. addAll() is called at index 0 and the return
+     * value is verified to be true. The sublist and vector sizes are checked, and the element
+     * order is verified after insertion.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["1", "2"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
+     * <p>- Vector size becomes 4</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return true and correctly insert all elements from the collection at
+     * the beginning of the sublist, shifting existing elements as needed.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexAtTheBeginning()
     {
@@ -10603,6 +10876,38 @@ public class SubListAdapterTest
         assertEquals("Vector size should be increased", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() at end works correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() at the end of the sublist correctly appends all
+     * elements from a collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * at the end of the sublist, ensuring proper element appending without shifting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * A collection with two elements is created. addAll() is called at index 2 (the end) and
+     * the return value is verified to be true. The sublist and vector sizes are checked, and
+     * the element order is verified after appending.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["3", "4"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
+     * <p>- Vector size becomes 4</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return true and correctly append all elements from the collection at
+     * the end of the sublist.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexAtTheEnd()
     {
@@ -10624,6 +10929,37 @@ public class SubListAdapterTest
         assertEquals("Vector size should be increased", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() works with empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() correctly inserts elements into an empty sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * into an empty sublist, ensuring proper element insertion and sublist initialization.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and an empty sublist (indices 1 to 1).
+     * A collection with two elements is created. addAll() is called at index 0 and the return
+     * value is verified to be true. The sublist and vector sizes are checked, and the element
+     * content is verified.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 (empty) of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["3", "4"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 2</p>
+     * <p>- Elements are in correct order: ["3", "4"]</p>
+     * <p>- Vector size becomes 4</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return true and correctly insert all elements from the collection into
+     * the empty sublist, properly initializing it.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexEmptySubList()
     {
@@ -10643,6 +10979,33 @@ public class SubListAdapterTest
         assertEquals("Vector size should be increased", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() throws ArrayIndexOutOfBoundsException with negative index.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() throws ArrayIndexOutOfBoundsException when called with
+     * a negative index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * an invalid negative index parameter.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * A collection with one element is created. addAll() is called with index -1, expecting
+     * an ArrayIndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- Another VectorAdapter is created with element: ["3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- ArrayIndexOutOfBoundsException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should throw ArrayIndexOutOfBoundsException when called with a negative index.</p>
+     */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testSubListAddAllAtIndexNegativeIndex()
     {
@@ -10657,6 +11020,34 @@ public class SubListAdapterTest
         subList.addAll(-1, vec);
     }
 
+    /**
+     * Test method to verify that addAll() throws ArrayIndexOutOfBoundsException with index greater than size.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() throws ArrayIndexOutOfBoundsException when called with
+     * an index greater than the sublist size.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * an index parameter that exceeds the sublist size.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * A collection with one element is created. addAll() is called with index 3 (greater than
+     * size 2), expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- Another VectorAdapter is created with element: ["3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- ArrayIndexOutOfBoundsException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should throw ArrayIndexOutOfBoundsException when called with an index greater
+     * than the sublist size.</p>
+     */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testSubListAddAllAtIndexGreaterThanSize()
     {
@@ -10671,6 +11062,30 @@ public class SubListAdapterTest
         subList.addAll(3, vec);
     }
 
+    /**
+     * Test method to verify that addAll() throws NullPointerException with null collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() throws NullPointerException when called with a null collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * a null collection parameter.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * addAll() is called with a null parameter, expecting a NullPointerException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- NullPointerException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should throw NullPointerException when called with a null collection.</p>
+     */
     @Test(expected = NullPointerException.class)
     public void testSubListAddAllAtIndexNullCollection()
     {
@@ -10682,6 +11097,30 @@ public class SubListAdapterTest
         subList.addAll(1, null);
     }
 
+    /**
+     * Test method to verify that addAll() throws NullPointerException with null collection.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() throws NullPointerException when called with a null collection.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * a null collection parameter.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * addAll() is called with a null parameter, expecting a NullPointerException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- NullPointerException is thrown</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should throw NullPointerException when called with a null collection.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexNullElements()
     {
@@ -10703,6 +11142,36 @@ public class SubListAdapterTest
         assertEquals("Vector size should be increased", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() works correctly when adding the sublist to itself.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() correctly handles adding a sublist to itself.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() when the collection parameter
+     * is the same sublist, ensuring proper element duplication and handling.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * addAll() is called with the same sublist as the collection parameter at index 1. The
+     * return value is verified to be true. The sublist and vector sizes are checked, and the
+     * element content is verified after the operation.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Elements are in correct order: ["1", "1", "2", "2"]</p>
+     * <p>- Vector size becomes 4</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return true and correctly duplicate the sublist elements when adding
+     * the sublist to itself.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexSelf()
     {
@@ -10720,6 +11189,41 @@ public class SubListAdapterTest
         assertEquals("Vector size should be increased", 4, vector.size());
     }
 
+    /**
+     * Test method to verify that addAll() works correctly with offset sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that addAll() works correctly when the sublist has an offset from
+     * the beginning of the backing vector.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the behavior of addAll() with sublists that don't
+     * start at index 0 of the backing vector, ensuring proper element insertion considering
+     * the offset and proper shifting of elements in the backing vector.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements and a sublist covering indices 1 to 3.
+     * A collection with two elements is created. addAll() is called at index 1 and the return
+     * value is verified to be true. The sublist and vector sizes are checked, and the element
+     * content is verified after insertion, including elements before and after the sublist.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["0", "1", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: ["2", "3"]</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
+     * <p>- Vector size becomes 6</p>
+     * <p>- Elements before and after sublist remain correct</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>addAll() should return true and correctly insert elements from the collection into
+     * the offset sublist, properly handling the offset and maintaining elements outside
+     * the sublist range.</p>
+     */
     @Test
     public void testSubListAddAllAtIndexWithOffset()
     {
@@ -10745,6 +11249,32 @@ public class SubListAdapterTest
         assertEquals("Element after sublist should be shifted", "5", vector.get(5));
     }
 
+    /**
+     * Test method to verify that a sublist equals itself.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns true when comparing a sublist to itself,
+     * ensuring reflexivity of the equals operation.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the reflexive property of the equals method for sublists.
+     * This ensures that any sublist should always be equal to itself according to the equals contract.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist from indices 1 to 3.
+     * It then calls the equals method on the sublist with itself as the parameter and verifies it returns true.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns true</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return true when comparing a sublist to itself.</p>
+     */
     @Test
     public void testSubListEqualsSelf()
     {
@@ -10758,6 +11288,32 @@ public class SubListAdapterTest
         assertTrue("Should return true for same object", subList.equals(subList));
     }
 
+    /**
+     * Test method to verify that two equal sublists are considered equal.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns true when comparing two sublists with identical content,
+     * ensuring symmetry of the equals operation.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with the same elements in the same order are considered equal.
+     * This ensures proper implementation of the equals method for sublists with identical content.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two separate VectorAdapters with identical elements, creates sublists from both with the same
+     * range, and verifies that they are considered equal by the equals method.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- Two VectorAdapters are initialized with identical elements: ["1", "2", "3"]</p>
+     * <p>- Two SubListAdapters are created from indices 0 to 3 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns true</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return true when comparing two sublists with identical content.</p>
+     */
     @Test
     public void testSubListEqualsEqualSubLists()
     {
@@ -10778,6 +11334,33 @@ public class SubListAdapterTest
         assertTrue("Should return true for equal lists", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify that sublists of different sizes are not equal.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns false when comparing sublists of different sizes,
+     * ensuring that size difference is properly detected.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with different numbers of elements are not considered equal.
+     * This ensures the equals method correctly handles size comparisons.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates two sublists with different ranges
+     * (one full range, one partial range) and verifies they are not equal.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- First SubListAdapter is created from indices 0 to 3 (full range)</p>
+     * <p>- Second SubListAdapter is created from indices 1 to 3 (partial range)</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns false</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return false when comparing sublists of different sizes.</p>
+     */
     @Test
     public void testSubListEqualsDifferentSizes()
     {
@@ -10792,6 +11375,33 @@ public class SubListAdapterTest
         assertFalse("Should return false for different sizes", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify that sublists with different elements are not equal.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns false when comparing sublists with different elements,
+     * ensuring content difference is properly detected.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with different elements are not considered equal.
+     * This ensures the equals method correctly performs element-by-element comparison.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two VectorAdapters with different elements at the same positions, creates sublists
+     * from both with the same range, and verifies they are not equal.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- First VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- Second VectorAdapter is initialized with elements: ["1", "4", "3"]</p>
+     * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns false</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return false when comparing sublists with different elements.</p>
+     */
     @Test
     public void testSubListEqualsDifferentElements()
     {
@@ -10812,6 +11422,33 @@ public class SubListAdapterTest
         assertFalse("Should return false for different elements", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify that sublists with elements in different order are not equal.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns false when comparing sublists with elements in different order,
+     * ensuring order sensitivity of the equals operation.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with the same elements but in different order are not considered equal.
+     * This ensures the equals method is order-sensitive as required by the List contract.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two VectorAdapters with the same elements but in different order, creates sublists
+     * from both with the same range, and verifies they are not equal.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- First VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- Second VectorAdapter is initialized with elements: ["1", "3", "2"]</p>
+     * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns false</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return false when comparing sublists with elements in different order.</p>
+     */
     @Test
     public void testSubListEqualsDifferentOrder()
     {
@@ -10832,6 +11469,32 @@ public class SubListAdapterTest
         assertFalse("Should return false for different order", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify that sublists with null elements are handled correctly in equality comparison.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method correctly handles null elements when comparing sublists,
+     * ensuring proper null value comparison.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with identical content including null elements
+     * are considered equal. This ensures proper handling of null values in the equals implementation.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two VectorAdapters with identical elements including null values, creates sublists
+     * from both with the same range, and verifies they are equal.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- Both VectorAdapters are initialized with elements: ["1", null, "3"]</p>
+     * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns true</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return true when comparing sublists with identical content including null elements.</p>
+     */
     @Test
     public void testSubListEqualsNullElements()
     {
@@ -10852,6 +11515,33 @@ public class SubListAdapterTest
         assertTrue("Should return true for lists with null elements", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify that empty sublists are considered equal.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns true when comparing two empty sublists,
+     * ensuring proper handling of empty collections.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that empty sublists from different backing vectors are considered equal.
+     * This ensures the equals method correctly handles the edge case of empty collections.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two VectorAdapters with different content, creates empty sublists from both
+     * (range 0 to 0), and verifies they are equal.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- First VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- Second VectorAdapter is initialized with elements: ["4", "5", "6"]</p>
+     * <p>- SubListAdapters are created from indices 0 to 0 (empty range) of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns true</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return true when comparing two empty sublists.</p>
+     */
     @Test
     public void testSubListEqualsEmptySubLists()
     {
@@ -10872,6 +11562,33 @@ public class SubListAdapterTest
         assertTrue("Should return true for empty sublists", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify that a sublist is not equal to a non-list object.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method returns false when comparing a sublist to a non-list object,
+     * ensuring type safety in equality comparisons.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that the equals method correctly handles comparisons with objects
+     * of different types, specifically non-list objects.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, creates a sublist, and compares it to
+     * a String object, verifying they are not equal.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the vector</p>
+     * <p>- String object "1" is created for comparison</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns false</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return false when comparing a sublist to a non-list object.</p>
+     */
     @Test
     public void testSubListEqualsNonListObject()
     {
@@ -10885,6 +11602,32 @@ public class SubListAdapterTest
         assertFalse("Should return false for non-list object", subList.equals("1"));
     }
 
+    /**
+     * Test method to verify that sublists with offset positions are compared correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that the equals method works correctly for sublists that have offset positions
+     * within their backing vectors, ensuring proper handling of positional offsets.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with the same content but starting at different
+     * positions in their backing vectors are correctly identified as equal.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two identical VectorAdapters, creates sublists from both starting at index 2,
+     * and verifies they are equal despite the positional offset.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- Both VectorAdapters are initialized with 5 identical elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapters are created from indices 2 to 5 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- equals method returns true</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>The equals method should return true when comparing sublists with identical content but positional offsets.</p>
+     */
     @Test
     public void testSubListEqualsWithOffset()
     {
@@ -10909,6 +11652,32 @@ public class SubListAdapterTest
         assertTrue("Should return true for subLists with offset", subList.equals(sub));
     }
 
+    /**
+     * Test method to verify the hashCode of an empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that an empty sublist produces the same hashCode as another empty sublist,
+     * ensuring consistency in hashCode implementation for empty collections.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that empty sublists from the same vector produce consistent
+     * hashCodes, which is important for proper functioning in hash-based collections.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates an empty VectorAdapter, creates an empty sublist from it, and verifies its
+     * hashCode matches that of another empty sublist from the same vector.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with no elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- hashCode values match</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>An empty sublist should produce the same hashCode as another empty sublist from the same vector.</p>
+     */
     @Test
     public void testSubListHashCodeOfEmptySubList()
     {
@@ -10918,6 +11687,32 @@ public class SubListAdapterTest
         assertEquals("Hash code of empty vector should match empty vector", vector.subList(0, 0).hashCode(), subList.hashCode());
     }
 
+    /**
+     * Test method to verify the hashCode of sublists with multiple elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that sublists with identical content produce the same hashCode,
+     * ensuring consistency in hashCode implementation.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with the same elements produce identical
+     * hashCodes, which is required for proper functioning in hash-based collections.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two VectorAdapters with identical elements, creates sublists from both
+     * with the same range, and verifies their hashCodes match.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- Both VectorAdapters are initialized with identical elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- hashCode values match</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublists with identical content should produce the same hashCode.</p>
+     */
     @Test
     public void testSubListHashCodeOfMultipleElements()
     {
@@ -10938,6 +11733,32 @@ public class SubListAdapterTest
         assertEquals("Hash code should match for multiple elements", sub.hashCode(), subList.hashCode());
     }
 
+    /**
+     * Test method to verify the hashCode of sublists with null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that sublists with identical null elements produce the same hashCode,
+     * ensuring proper handling of null values in hashCode calculation.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that sublists with the same null elements produce identical
+     * hashCodes, ensuring consistent behavior with null values.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates two VectorAdapters with identical null elements, creates sublists from both
+     * with the same range, and verifies their hashCodes match.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- Both VectorAdapters are initialized with identical null elements: [null, null, null]</p>
+     * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- hashCode values match</p>
+     * <p>- No changes to either sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sublists with identical null elements should produce the same hashCode.</p>
+     */
     @Test
     public void testSubListHashCodeOfNullElements()
     {
@@ -10958,6 +11779,32 @@ public class SubListAdapterTest
         assertEquals("Hash code should match for null elements", sub.hashCode(), subList.hashCode());
     }
 
+    /**
+     * Test method to verify the string representation of an empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that an empty sublist produces the correct string representation,
+     * ensuring proper formatting for empty collections.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that the toString method correctly represents empty sublists
+     * using the standard collection formatting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates an empty VectorAdapter, creates an empty sublist from it, and verifies
+     * its string representation matches the expected format for empty collections.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with no elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- String representation is "[]"</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>An empty sublist should have the string representation "[]".</p>
+     */
     @Test
     public void testSubListToStringEmptyVector()
     {
@@ -10967,6 +11814,32 @@ public class SubListAdapterTest
         assertEquals("String representation of empty vector should match", "[]", subList.toString());
     }
 
+    /**
+     * Test method to verify the string representation of a sublist with multiple elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist with multiple elements produces the correct string representation,
+     * ensuring proper formatting and element ordering.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that the toString method correctly represents sublists with
+     * multiple elements using the standard collection formatting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, creates a sublist containing all elements,
+     * and verifies its string representation matches the expected format.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- String representation is "[1, 2, 3]"</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>A sublist with elements ["1", "2", "3"] should have the string representation "[1, 2, 3]".</p>
+     */
     @Test
     public void testSubListToStringMultipleElements()
     {
@@ -10979,6 +11852,32 @@ public class SubListAdapterTest
         assertEquals("String representation of multiple elements should match", "[1, 2, 3]", subList.toString());
     }
 
+    /**
+     * Test method to verify the string representation of a sublist with null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist with null elements produces the correct string representation,
+     * ensuring proper handling of null values in string formatting.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that the toString method correctly represents sublists with
+     * null elements using the standard collection formatting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with elements including null values, creates a sublist containing
+     * all elements, and verifies its string representation matches the expected format.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", null, "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- String representation is "[1, null, 3]"</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>A sublist with elements ["1", null, "3"] should have the string representation "[1, null, 3]".</p>
+     */
     @Test
     public void testSubListToStringNullElements()
     {
@@ -10992,6 +11891,32 @@ public class SubListAdapterTest
         assertEquals("String representation with null elements should match", "[1, null, 3]", subList.toString());
     }
 
+    /**
+     * Test method to verify the string representation of a sublist with duplicate elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist with duplicate elements produces the correct string representation,
+     * ensuring proper formatting of repeated values.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that the toString method correctly represents sublists with
+     * duplicate elements using the standard collection formatting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with duplicate elements, creates a sublist containing all elements,
+     * and verifies its string representation matches the expected format.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with duplicate elements: ["1", "1", "1"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- String representation is "[1, 1, 1]"</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>A sublist with duplicate elements ["1", "1", "1"] should have the string representation "[1, 1, 1]".</p>
+     */
     @Test
     public void testSubListToStringDuplicateElements()
     {
@@ -11005,6 +11930,32 @@ public class SubListAdapterTest
         assertEquals("String representation with duplicate elements should match", "[1, 1, 1]", subList.toString());
     }
 
+    /**
+     * Test method to verify the string representation of a sublist with offset positioning.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that a sublist with offset positioning within its backing vector produces
+     * the correct string representation, ensuring proper handling of positional offsets.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that the toString method correctly represents sublists that
+     * start at an offset position within their backing vectors.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with five elements, creates a sublist starting at index 2,
+     * and verifies its string representation matches the expected format for the subset of elements.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 2 to 5 of the vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- String representation is "[3, 4, 5]"</p>
+     * <p>- No changes to the sublist state</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>A sublist starting at index 2 of ["1", "2", "3", "4", "5"] should have the string representation "[3, 4, 5]".</p>
+     */
     @Test
     public void testSubListToStringWithOffset()
     {
