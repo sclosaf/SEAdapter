@@ -3201,6 +3201,34 @@ public class SubListAdapterTest
         assertEquals("Should return correct index with offset", 1, subList.indexOf("3", 1));
     }
 
+    /**
+     * Test method to verify lastIndexOf returns correct index for existing elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf correctly returns the index of the last occurrence
+     * of existing elements within the sublist range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the basic functionality of lastIndexOf method for
+     * elements that exist within the sublist boundaries, ensuring proper index calculation
+     * with sublist offset.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist from
+     * index 1 to 3. It calls lastIndexOf for elements "2" and "3" and verifies the returned
+     * indices match the expected positions within the sublist.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns correct indices for existing elements</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return 0 for element "2" and 1 for element "3" within the sublist.</p>
+     */
     @Test
     public void testSubListLastIndexOfExistingElement()
     {
@@ -3214,6 +3242,33 @@ public class SubListAdapterTest
         assertEquals("Should return correct last index for second element", 1, subList.lastIndexOf("3"));
     }
 
+    /**
+     * Test method to verify lastIndexOf returns -1 for non-existing elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf correctly returns -1 for elements that do not
+     * exist within the sublist range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the edge case behavior of lastIndexOf method for
+     * elements outside the sublist content, ensuring proper handling of non-existent elements.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist from
+     * index 1 to 3. It calls lastIndexOf for elements "1" and "4" and verifies that -1 is
+     * returned for both non-existing elements.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns -1 for non-existing elements</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return -1 for elements not present in the sublist.</p>
+     */
     @Test
     public void testSubListLastIndexOfNonExistingElement()
     {
@@ -3227,6 +3282,33 @@ public class SubListAdapterTest
         assertEquals("Should return -1 for non-existing element", -1, subList.lastIndexOf("4"));
     }
 
+    /**
+     * Test method to verify lastIndexOf correctly handles null elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf correctly identifies and returns the index of
+     * null elements within the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the special case handling of null elements in
+     * lastIndexOf method, ensuring proper null comparison semantics.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter containing a null element, then creates a sublist
+     * that includes the null element. It calls lastIndexOf for null and verifies the correct
+     * index is returned.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", null, "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns correct index for null element</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return the correct index of the null element within the sublist.</p>
+     */
     @Test
     public void testSubListLastIndexOfNullElement()
     {
@@ -3239,6 +3321,33 @@ public class SubListAdapterTest
         assertEquals("Should return correct last index for null element", 0, subList.lastIndexOf(null));
     }
 
+    /**
+     * Test method to verify lastIndexOf behavior on empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf returns -1 for any element when called on an
+     * empty sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the edge case behavior of lastIndexOf method on
+     * empty sublists, ensuring proper handling of the empty collection scenario.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates an empty sublist
+     * (from index 1 to 1). It calls lastIndexOf for both existing and null elements and
+     * verifies that -1 is returned in all cases.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns -1 for all elements on empty sublist</p>
+     * <p>- Empty sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return -1 for any element when the sublist is empty.</p>
+     */
     @Test
     public void testSubListLastIndexOfOnEmptySubList()
     {
@@ -3252,6 +3361,33 @@ public class SubListAdapterTest
         assertEquals("Should return -1 for null in empty subList", -1, subList.lastIndexOf(null));
     }
 
+    /**
+     * Test method to verify lastIndexOf returns last occurrence index for duplicate elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf correctly returns the index of the last occurrence
+     * when duplicate elements exist in the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the duplicate element handling in lastIndexOf method,
+     * ensuring it returns the highest index where the element appears.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with duplicate elements, then creates a sublist
+     * containing the duplicates. It calls lastIndexOf for the duplicate element and verifies
+     * the returned index matches the last occurrence.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["0", "1", "1"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns index of last occurrence for duplicate elements</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return the index of the last occurrence of duplicate elements.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithDuplicateElements()
     {
@@ -3264,6 +3400,33 @@ public class SubListAdapterTest
         assertEquals("Should return last occurrence index for duplicate elements", 1, subList.lastIndexOf("1"));
     }
 
+    /**
+     * Test method to verify lastIndexOf does not find elements outside sublist range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf correctly returns -1 for elements that exist in
+     * the backing vector but outside the sublist range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the range boundary handling in lastIndexOf method,
+     * ensuring elements outside the sublist range are not found.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements, then creates a sublist from
+     * index 1 to 3. It calls lastIndexOf for elements before and after the sublist range
+     * and verifies that -1 is returned.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns -1 for elements outside sublist range</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should not find elements that exist outside the sublist range.</p>
+     */
     @Test
     public void testSubListLastIndexOfElementsOutsideRange()
     {
@@ -3278,6 +3441,33 @@ public class SubListAdapterTest
         assertEquals("Should not find element after subList range", -1, subList.lastIndexOf("4"));
     }
 
+    /**
+     * Test method to verify lastIndexOf works correctly with sublist offset.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf correctly handles the offset calculation when
+     * the sublist starts from a non-zero index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the offset handling in lastIndexOf method, ensuring
+     * indices are correctly calculated relative to the sublist start.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements, then creates a sublist starting
+     * from index 2. It calls lastIndexOf for elements within the sublist and verifies the
+     * returned indices are correct relative to the sublist start.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["0", "1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 2 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns correct indices accounting for sublist offset</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return indices relative to the sublist start, not the backing vector.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithOffset()
     {
@@ -3292,6 +3482,33 @@ public class SubListAdapterTest
         assertEquals("Should return correct index with offset", 1, subList.lastIndexOf("3"));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter finds elements correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly finds elements
+     * up to the specified index within the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the index parameter functionality in lastIndexOf
+     * method, ensuring it searches backwards from the specified index.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with five elements, then creates a sublist. It calls
+     * lastIndexOf with different index parameters and verifies the returned indices match
+     * the expected occurrences within the specified range.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf with index parameter returns correct indices</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return the correct index when searching backwards from specified index.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexExistingElement()
     {
@@ -3308,6 +3525,32 @@ public class SubListAdapterTest
         assertEquals("Should find element ending at index 0", -1, subList.lastIndexOf("3", 0));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter returns -1 for non-existing elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly returns -1 for
+     * elements that do not exist within the search range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the index parameter functionality in lastIndexOf
+     * method for non-existing elements, ensuring proper handling of absent elements.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist. It calls
+     * lastIndexOf with index parameter for non-existing elements and verifies that -1 is returned.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf with index parameter returns -1 for non-existing elements</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return -1 when element is not found within the specified index range.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexNonExistingElement()
     {
@@ -3321,6 +3564,33 @@ public class SubListAdapterTest
         assertEquals("Should return -1 for non-existing element", -1, subList.lastIndexOf("4", 0));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter correctly handles null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly identifies and
+     * returns the index of null elements within the specified range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the index parameter functionality in lastIndexOf
+     * method for null elements, ensuring proper null comparison with range limitation.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with multiple null elements, then creates a sublist.
+     * It calls lastIndexOf with different index parameters for null and verifies the returned
+     * indices match the expected occurrences within the specified range.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", null, "3", null, "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf with index parameter returns correct indices for null elements</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should correctly find null elements within the specified index range.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexNullElement()
     {
@@ -3337,6 +3607,34 @@ public class SubListAdapterTest
         assertEquals("Should not find null ending at index 0", -1, subList.lastIndexOf(null, -1));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter handles duplicate elements correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly returns the
+     * last occurrence index for duplicate elements within the specified range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the index parameter functionality in lastIndexOf
+     * method for duplicate elements, ensuring it returns the correct occurrence within the
+     * limited search range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with multiple duplicate elements, then creates a
+     * sublist. It calls lastIndexOf with different index parameters for the duplicate element
+     * and verifies the returned indices match the expected occurrences within the specified range.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["0", "1", "1", "2", "1"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 5 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf with index parameter returns correct occurrence indices for duplicates</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return the correct occurrence index within the specified search range.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexDuplicateElements()
     {
@@ -3354,6 +3652,33 @@ public class SubListAdapterTest
         assertEquals("Should not find occurrence ending at negative index", -1, subList.lastIndexOf("1", -1));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter throws exception for invalid index.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter throws IndexOutOfBoundsException
+     * when the index is equal to the sublist size.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the exception handling in lastIndexOf method when
+     * provided with an invalid index parameter that equals the sublist size.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist. It calls
+     * lastIndexOf with an index parameter equal to the sublist size and expects an
+     * IndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- IndexOutOfBoundsException is thrown</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should throw IndexOutOfBoundsException when index equals sublist size.</p>
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSubListLastIndexOfWithIndexEqualToSize()
     {
@@ -3366,6 +3691,32 @@ public class SubListAdapterTest
         subList.lastIndexOf("1", 2);
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter returns -1 for negative indices.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter returns -1 when the
+     * index parameter is negative.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the edge case behavior of lastIndexOf method when
+     * provided with negative index parameters.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist. It calls
+     * lastIndexOf with negative index parameters and verifies that -1 is returned.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns -1 for negative indices</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return -1 when the index parameter is negative.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexNegativeIndex()
     {
@@ -3379,6 +3730,33 @@ public class SubListAdapterTest
         assertEquals("Should return -1 when index is negative", -1, subList.lastIndexOf("2", -2));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter handles edge cases correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly handles various
+     * edge cases including exact matches and boundary conditions.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the comprehensive edge case handling in lastIndexOf
+     * method with index parameter, ensuring robust behavior in boundary scenarios.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with five elements, then creates a sublist. It calls
+     * lastIndexOf with various edge case index parameters and verifies the returned indices
+     * match expected results for exact matches, boundary conditions, and range limitations.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf with index parameter returns correct results for edge cases</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should handle all edge cases correctly with index parameter.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexEdgeCases()
     {
@@ -3396,6 +3774,35 @@ public class SubListAdapterTest
         assertEquals("Should find first element with min valid index", 0, subList.lastIndexOf("2", 0));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter does not find elements outside range.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly returns -1 for
+     * elements that exist in the backing vector but outside the sublist range, even when
+     * searching within valid index bounds.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the range boundary handling in lastIndexOf method
+     * with index parameter, ensuring elements outside the sublist are not found regardless
+     * of search index.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements, then creates a sublist. It calls
+     * lastIndexOf with index parameter for elements before and after the sublist range and
+     * verifies that -1 is returned even with valid index parameters.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf returns -1 for elements outside sublist range</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should not find elements that exist outside the sublist range.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexElementsOutsideRange()
     {
@@ -3410,6 +3817,33 @@ public class SubListAdapterTest
         assertEquals("Should not find element after subList range", -1, subList.lastIndexOf("4", 1));
     }
 
+    /**
+     * Test method to verify lastIndexOf with index parameter works correctly with sublist offset.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that lastIndexOf with an index parameter correctly handles the
+     * offset calculation when the sublist starts from a non-zero index.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the offset handling in lastIndexOf method with
+     * index parameter, ensuring indices are correctly calculated relative to the sublist start.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with four elements, then creates a sublist starting
+     * from index 2. It calls lastIndexOf with index parameter for elements within the sublist
+     * and verifies the returned indices are correct relative to the sublist start.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with elements: ["0", "1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 2 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- lastIndexOf with index parameter returns correct indices accounting for sublist offset</p>
+     * <p>- Sublist remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>lastIndexOf should return indices relative to the sublist start when using index parameter.</p>
+     */
     @Test
     public void testSubListLastIndexOfWithIndexWithOffset()
     {
