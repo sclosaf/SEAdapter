@@ -137,7 +137,7 @@ public interface HList extends HCollection
 
     /**
      * Appends the specified element to the end of this list (optional
-     * operation). <p>
+     * operation).
      *
      * HLists that support this operation may place limitations on what
      * elements may be added to this list.  In particular, some

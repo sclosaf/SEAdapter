@@ -57,6 +57,12 @@ public class SubListAdapterTest
     private SubListAdapter subList;
 
     /**
+     * Default constructor
+     */
+    public SubListAdapterTest()
+    {}
+
+    /**
      * Sets up the testing environment before each test method execution.
      * Initializes the vector and subList instances to null to ensure the use of a clean state.
      */
@@ -837,6 +843,36 @@ public class SubListAdapterTest
         subList.copyInto(arr);
     }
 
+    /**
+     * Test method to verify that trimToSize() on a sublist only affects the capacity of the backing vector.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that calling trimToSize() on a SubListAdapter correctly trims the capacity
+     * of the backing vector while maintaining the correct sublist size and element values.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that capacity management operations on sublists properly
+     * delegate to the backing vector while preserving the sublist's view boundaries and content.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 20 and adds 5 elements. A sublist is
+     * created from indices 1 to 4. After calling trimToSize() on the sublist, the test verifies that
+     * the capacity has been reduced to match the vector size, while the sublist size remains unchanged
+     * and elements are preserved.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 20 and 5 string elements</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Backing vector capacity is trimmed to match its size</p>
+     * <p>- Sublist capacity matches vector capacity</p>
+     * <p>- Sublist size remains unchanged at 3</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>After trimToSize(), sublist capacity should equal vector size (5), sublist size should remain 3,
+     * and all elements should be preserved.</p>
+     */
     @Test
     public void testSubListTrimToSizeAffectsOnlyVectorCapacity()
     {
@@ -858,6 +894,35 @@ public class SubListAdapterTest
         assertEquals("SubList size should be 3", 3, subList.size());
     }
 
+    /**
+     * Test method to verify that trimToSize() works correctly with null elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that trimToSize() functions correctly when the sublist contains null elements,
+     * ensuring proper capacity management without affecting element values.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate capacity operations on sublists containing null values,
+     * ensuring that null elements don't interfere with capacity management.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 20 and adds 5 null elements. A sublist is
+     * created from indices 1 to 4. After calling trimToSize() on the sublist, the test verifies that
+     * the capacity has been properly reduced while maintaining the correct sublist size and null elements.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 20 and 5 null elements</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Backing vector capacity is trimmed to match its size</p>
+     * <p>- Sublist capacity matches vector capacity</p>
+     * <p>- Sublist size remains unchanged at 3 with null elements</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>After trimToSize(), sublist capacity should equal vector size (5), sublist size should remain 3,
+     * and all null elements should be preserved.</p>
+     */
     @Test
     public void testSubListTrimToSizeAffectsOnlyVectorCapacityNullElements()
     {
@@ -879,6 +944,35 @@ public class SubListAdapterTest
         assertEquals("SubList size should be 3", 3, subList.size());
     }
 
+    /**
+     * Test method to verify ensureCapacity() behavior when minimum capacity is smaller than current capacity.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() has no effect when the requested minimum capacity
+     * is smaller than the current capacity of the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that ensureCapacity() correctly handles cases where capacity
+     * expansion is not needed, ensuring no unnecessary operations are performed.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 10 and adds 3 elements. A sublist is
+     * created covering all elements. ensureCapacity(5) is called, and the test verifies that capacity
+     * remains unchanged since 5 is less than the current capacity of 10.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 10 and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity remains unchanged at 10</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(5) should not change capacity (remains 10), size should remain 3, and all
+     * elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityConstructor()
     {
@@ -895,6 +989,35 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify ensureCapacity() behavior when minimum capacity equals current capacity.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() has no effect when the requested minimum capacity
+     * exactly equals the current capacity of the sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the edge case where the requested capacity matches the
+     * current capacity, ensuring no unnecessary operations are performed.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 10 and adds 3 elements. A sublist is
+     * created covering all elements. ensureCapacity(10) is called, and the test verifies that capacity
+     * remains unchanged since it matches the current capacity.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 10 and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity remains unchanged at 10</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(10) should not change capacity (remains 10), size should remain 3, and all
+     * elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityExactCurrentCapacity()
     {
@@ -911,6 +1034,35 @@ public class SubListAdapterTest
         assertFalse("Should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify ensureCapacity() uses capacity increment correctly.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() correctly uses the capacity increment value
+     * when expanding the capacity of the backing vector.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that capacity expansion follows the specified capacity
+     * increment parameter, ensuring predictable growth behavior.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 5 and capacity increment 3, then
+     * adds 3 elements. A sublist is created covering all elements. ensureCapacity(7) is called,
+     * and the test verifies that capacity increases to 8 (5 + 3) using the capacity increment.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 5, increment 3, and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity increases to 8 using capacity increment</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(7) should increase capacity to 8 (5 + 3), size should remain 3, and all
+     * elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityCapacityIncrement()
     {
@@ -929,6 +1081,36 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify ensureCapacity() uses minimum capacity when increment is insufficient.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() uses the requested minimum capacity when the
+     * capacity increment would result in insufficient capacity expansion.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that capacity expansion prioritizes the minimum capacity
+     * requirement over the capacity increment when the increment would be insufficient.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 5 and capacity increment 3, then
+     * adds 3 elements. A sublist is created covering all elements. ensureCapacity(10) is called,
+     * and the test verifies that capacity increases directly to 10 since the increment would be
+     * insufficient (5 + 3 = 8).</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 5, increment 3, and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity increases directly to 10 (minimum capacity)</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(10) should increase capacity to 10, size should remain 3, and all
+     * elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityCapacityIncrementInsufficient()
     {
@@ -947,6 +1129,35 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify ensureCapacity() uses doubling growth when capacity increment is zero.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() uses doubling growth behavior when the
+     * capacity increment is set to zero.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the doubling growth algorithm used when capacity
+     * increment is zero, ensuring predictable capacity expansion.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 5 and zero capacity increment,
+     * then adds 3 elements. A sublist is created covering all elements. ensureCapacity(9) is
+     * called, and the test verifies that capacity doubles to 10 (5 * 2 = 10 ≥ 9).</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 5, zero increment, and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity doubles to 10</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(9) should double capacity to 10, size should remain 3, and all
+     * elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityDoubleGrowthIncrement()
     {
@@ -965,6 +1176,36 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify ensureCapacity() uses minimum capacity when doubling is insufficient.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() uses the requested minimum capacity when
+     * doubling the current capacity would still be insufficient.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that capacity expansion uses the minimum capacity
+     * requirement when doubling growth would not meet the capacity needs.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 5 and zero capacity increment,
+     * then adds 3 elements. A sublist is created covering all elements. ensureCapacity(20) is
+     * called, and the test verifies that capacity increases directly to 20 since doubling
+     * (5 * 2 = 10) would be insufficient.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 5, zero increment, and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity increases directly to 20 (minimum capacity)</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(20) should increase capacity to 20, size should remain 3, and all
+     * elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityDoubleGrowthInsufficient()
     {
@@ -983,6 +1224,37 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify ensureCapacity() works correctly after setSize() operation.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() functions correctly after the sublist size
+     * has been modified using setSize().</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate capacity management operations following size
+     * modifications, ensuring proper coordination between size and capacity management.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 5 and adds 4 elements. A sublist
+     * is created covering the first 3 elements. setSize(4) is called to expand the sublist,
+     * then ensureCapacity(20) is called. The test verifies that capacity expands correctly
+     * while preserving all elements including the newly added null element.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 5 and 4 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     * <p>- setSize(4) is called on the sublist</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity increases to 20</p>
+     * <p>- Size remains 4 with one null element added</p>
+     * <p>- All original elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>After setSize(4) and ensureCapacity(20), capacity should be 20, size should be 4,
+     * with three original elements and one null element at the end.</p>
+     */
     @Test
     public void testSubListEnsureCapacityAfterSetSize()
     {
@@ -1004,6 +1276,37 @@ public class SubListAdapterTest
         assertNull("Fourth element should be null", subList.get(3));
     }
 
+    /**
+     * Test method to verify ensureCapacity() works correctly after trimToSize() operation.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() functions correctly after the sublist capacity
+     * has been reduced using trimToSize().</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate capacity expansion following a trim operation,
+     * ensuring that capacity can be increased again when needed.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 10 and adds 3 elements. A sublist
+     * is created covering all elements. trimToSize() is called to reduce capacity, then
+     * ensureCapacity(8) is called. The test verifies that capacity expands correctly while
+     * preserving all elements.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 10 and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     * <p>- trimToSize() is called on the sublist</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity increases to 8</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>After trimToSize() and ensureCapacity(8), capacity should be 8, size should remain 3,
+     * and all elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityAfterTrimToSize()
     {
@@ -1023,6 +1326,35 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify ensureCapacity() behavior with zero minimum capacity.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() has no effect when called with zero
+     * minimum capacity.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the edge case of zero minimum capacity,
+     * ensuring no unnecessary operations are performed.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 10 and adds 3 elements.
+     * A sublist is created covering all elements. ensureCapacity(0) is called, and the
+     * test verifies that capacity remains unchanged since zero is less than current capacity.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 10 and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity remains unchanged at 10</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(0) should not change capacity (remains 10), size should remain 3,
+     * and all elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityZeroMinCapacity()
     {
@@ -1041,6 +1373,35 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify ensureCapacity() behavior with negative minimum capacity.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that ensureCapacity() has no effect when called with negative
+     * minimum capacity.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate error handling for invalid negative capacity values,
+     * ensuring the method gracefully handles edge cases.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a VectorAdapter with initial capacity 10 and adds 3 elements.
+     * A sublist is created covering all elements. ensureCapacity(-5) is called, and the
+     * test verifies that capacity remains unchanged since negative values are invalid.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with capacity 10 and 3 string elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity remains unchanged at 10</p>
+     * <p>- Size remains 3</p>
+     * <p>- All elements are preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>ensureCapacity(-5) should not change capacity (remains 10), size should remain 3,
+     * and all elements should be preserved.</p>
+     */
     @Test
     public void testSubListEnsureCapacityNegativeMinCapacity()
     {
@@ -1059,6 +1420,34 @@ public class SubListAdapterTest
         assertEquals("Third element should remain", "3", subList.get(2));
     }
 
+    /**
+     * Test method to verify that setSize() increases the size of an empty sublist and adds null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() correctly increases the size of an empty sublist by adding null elements
+     * and updates both the sublist and backing vector accordingly.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior when increasing the size of an empty sublist,
+     * ensuring proper element insertion and size management in both the sublist and backing vector.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, then creates an empty sublist (from index 1 to 1).
+     * It calls setSize(2) on the empty sublist and verifies the new size, capacity, element values,
+     * and the backing vector's size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 2</p>
+     * <p>- Backing vector size becomes 5</p>
+     * <p>- New elements in sublist are null</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should increase sublist size to 2, add null elements, and increase backing vector size to 5.</p>
+     */
     @Test
     public void testSubListSetSizeIncreaseFromEmpty()
     {
@@ -1077,6 +1466,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be increased", 5, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() increases the size of a sublist with existing elements and adds null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() correctly increases the size of a sublist with existing elements,
+     * preserving existing elements and adding null elements to the end.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior when increasing the size of a non-empty sublist,
+     * ensuring proper element preservation and null element insertion.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist from indices 0 to 2,
+     * calls setSize(4) on the sublist, and verifies the new size, element values, and backing vector size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Backing vector size becomes 5</p>
+     * <p>- Existing elements are preserved, new elements are null</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should increase sublist size to 4, preserve existing elements, add null elements, and increase backing vector size to 5.</p>
+     */
     @Test
     public void testSubListSetSizeIncreaseExistingElements()
     {
@@ -1096,6 +1512,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be increased", 5, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() decreases the size of a sublist and removes elements from the backing vector.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() correctly decreases the size of a sublist by removing elements
+     * from the end and updates the backing vector accordingly.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior when decreasing the size of a sublist,
+     * ensuring proper element removal and size management in both the sublist and backing vector.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with four elements, creates a sublist covering all elements,
+     * calls setSize(2) on the sublist, and verifies the new size, remaining elements, and backing vector size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 4 elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 2</p>
+     * <p>- Backing vector size becomes 2</p>
+     * <p>- Elements beyond new size are removed</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should decrease sublist size to 2, preserve first two elements, and decrease backing vector size to 2.</p>
+     */
     @Test
     public void testSubListSetSizeDecreaseExistingElements()
     {
@@ -1114,6 +1557,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be decreased", 2, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() with the same size does not modify the sublist or backing vector.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() with the current size does not modify the sublist or backing vector,
+     * ensuring idempotent behavior.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior when the new size equals the current size,
+     * ensuring no unnecessary modifications occur.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist covering all elements,
+     * calls setSize(3) on the sublist, and verifies that size and elements remain unchanged.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size remains 3</p>
+     * <p>- Backing vector size remains 3</p>
+     * <p>- All elements remain unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should not modify the sublist or backing vector when new size equals current size.</p>
+     */
     @Test
     public void testSubListSetSizeSameSize()
     {
@@ -1132,6 +1602,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should remain unchanged", 3, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize(0) clears the sublist and backing vector.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize(0) correctly empties the sublist and removes all elements
+     * from the backing vector within the sublist range.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior when setting size to zero,
+     * ensuring complete removal of elements from both sublist and backing vector.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist covering all elements,
+     * calls setSize(0) on the sublist, and verifies that both sublist and backing vector become empty.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 0</p>
+     * <p>- Backing vector size becomes 0</p>
+     * <p>- All elements are removed</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize(0) should empty the sublist and remove all elements from the backing vector.</p>
+     */
     @Test
     public void testSubListSetSizeToZero()
     {
@@ -1148,6 +1645,32 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be decreased", 0, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() throws ArrayIndexOutOfBoundsException for negative size.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() throws ArrayIndexOutOfBoundsException when called with a negative size,
+     * ensuring proper validation of input parameters.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate exception handling for invalid negative size values,
+     * ensuring robust error reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist from indices 0 to 2,
+     * calls setSize(-1) on the sublist, and expects ArrayIndexOutOfBoundsException to be thrown.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- ArrayIndexOutOfBoundsException is thrown</p>
+     * <p>- SubList and backing vector remain unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should throw ArrayIndexOutOfBoundsException when called with negative size.</p>
+     */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testSubListSetSizeNegative()
     {
@@ -1160,6 +1683,33 @@ public class SubListAdapterTest
         subList.setSize(-1);
     }
 
+    /**
+     * Test method to verify that setSize() works correctly after multiple size changes (decrease then increase).
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() correctly handles sequential size changes (decrease then increase),
+     * preserving existing elements and properly managing null element insertion.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior during multiple sequential operations,
+     * ensuring consistent state management.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with five elements, creates a sublist from indices 1 to 4,
+     * calls setSize(2) then setSize(4) on the sublist, and verifies the final size, element values, and backing vector size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Backing vector size becomes 6</p>
+     * <p>- Existing elements are preserved, new elements are null</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sequential setSize() calls should correctly handle size changes, preserve elements, and properly manage backing vector.</p>
+     */
     @Test
     public void testSubListSetSizeDecreaseThenIncrease()
     {
@@ -1182,6 +1732,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be 6", 6, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() works correctly after multiple size changes (increase then decrease).
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() correctly handles sequential size changes (increase then decrease),
+     * preserving existing elements and properly removing excess elements.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior during multiple sequential operations,
+     * ensuring consistent state management when increasing then decreasing size.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with two elements, creates a sublist covering all elements,
+     * calls setSize(4) then setSize(1) on the sublist, and verifies the final size, remaining elements, and backing vector size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 1</p>
+     * <p>- Backing vector size becomes 1</p>
+     * <p>- Only the first element is preserved</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>Sequential setSize() calls should correctly handle size changes and preserve appropriate elements.</p>
+     */
     @Test
     public void testSubListSetSizeIncreaseThenDecrease()
     {
@@ -1198,6 +1775,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be 1", 1, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() works correctly with null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() correctly handles sublists containing null elements,
+     * preserving existing null elements and adding new null elements when increasing size.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the setSize() method's behavior with null elements,
+     * ensuring proper handling of null values during size operations.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three null elements, creates a sublist covering all elements,
+     * calls setSize(5) on the sublist, and verifies the new size, element values, and backing vector size.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 null elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 5</p>
+     * <p>- Backing vector size becomes 5</p>
+     * <p>- All elements remain null</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should correctly handle null elements and maintain null values when increasing size.</p>
+     */
     @Test
     public void testSubListSetSizeNullElements()
     {
@@ -1218,6 +1822,33 @@ public class SubListAdapterTest
         assertEquals("Original vector size should be 5", 5, vector.size());
     }
 
+    /**
+     * Test method to verify that setSize() only affects the sublist range in the backing vector.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that setSize() operations only modify the portion of the backing vector
+     * covered by the sublist, leaving other elements unaffected.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate that setSize() correctly isolates changes to the sublist range,
+     * ensuring integrity of elements outside the sublist range.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with five elements, creates a sublist from indices 1 to 4,
+     * calls setSize(2) on the sublist, and verifies that elements before and after the sublist range remain unchanged.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- SubList size becomes 2</p>
+     * <p>- Backing vector size becomes 4</p>
+     * <p>- Elements outside sublist range remain unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>setSize() should only modify elements within the sublist range, preserving elements outside this range.</p>
+     */
     @Test
     public void testSubListSetSizeAffectsOnlySubListRange()
     {
@@ -1239,6 +1870,30 @@ public class SubListAdapterTest
         assertEquals("Element after subList should be shifted", "5", vector.get(3));
     }
 
+    /**
+     * Test method to verify that capacity() returns correct value for empty vector sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that capacity() returns the correct capacity value for a sublist created from an empty vector.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the capacity() method's behavior for sublists created from empty vectors,
+     * ensuring proper capacity reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates an empty vector with default capacity, creates an empty sublist,
+     * and verifies that capacity() returns the expected default capacity value.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with default capacity (10)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity value remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>capacity() should return the backing vector's capacity for empty sublists.</p>
+     */
     @Test
     public void testSubListCapacityEmptyVector()
     {
@@ -1249,6 +1904,31 @@ public class SubListAdapterTest
         assertEquals("Capacity should be 10", 10, subList.capacity());
     }
 
+    /**
+     * Test method to verify that capacity() returns correct value for custom initial capacity.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that capacity() returns the correct capacity value for a sublist created from a vector
+     * with custom initial capacity.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the capacity() method's behavior for sublists created from vectors
+     * with custom capacity, ensuring proper capacity reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates an empty vector with custom capacity (15), creates an empty sublist,
+     * and verifies that capacity() returns the expected custom capacity value.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with custom capacity (15)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Capacity value remains unchanged</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>capacity() should return the backing vector's custom capacity for empty sublists.</p>
+     */
     @Test
     public void testSubListCapacityAtInitialCapacity()
     {
@@ -1259,6 +1939,30 @@ public class SubListAdapterTest
         assertEquals("Capacity should be 15", 15, subList.capacity());
     }
 
+    /**
+     * Test method to verify that size() returns 0 for empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that size() returns 0 for an empty sublist created from a non-empty vector.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the size() method's behavior for empty sublists,
+     * ensuring accurate size reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates an empty sublist (from index 1 to 1),
+     * and verifies that size() returns 0.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Size remains 0</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>size() should return 0 for empty sublists.</p>
+     */
     @Test
     public void testSubListSizeEmptySubList()
     {
@@ -1271,6 +1975,30 @@ public class SubListAdapterTest
         assertEquals("Size should be 0 for empty subList", 0, subList.size());
     }
 
+    /**
+     * Test method to verify that size() increases after adding elements to sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that size() correctly reflects the increased size after adding elements to a sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the size() method's behavior after element addition operations,
+     * ensuring accurate size tracking.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist from indices 0 to 2,
+     * adds an element to the sublist, and verifies that size() returns the increased value.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Size increases to 3</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>size() should return increased value after adding elements to sublist.</p>
+     */
     @Test
     public void testSubListSizeAfterAddingElements()
     {
@@ -1284,6 +2012,30 @@ public class SubListAdapterTest
         assertEquals("Size should be 3 after adding one element", 3, subList.size());
     }
 
+    /**
+     * Test method to verify that size() decreases after removing elements from sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that size() correctly reflects the decreased size after removing elements from a sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the size() method's behavior after element removal operations,
+     * ensuring accurate size tracking.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with four elements, creates a sublist from indices 1 to 4,
+     * removes an element from the sublist, and verifies that size() returns the decreased value.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 4 elements: ["1", "2", "3", "4"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Size decreases to 2</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>size() should return decreased value after removing elements from sublist.</p>
+     */
     @Test
     public void testSubListSizeAfterRemovingElements()
     {
@@ -1298,6 +2050,30 @@ public class SubListAdapterTest
         assertEquals("Size should be 2 after removing one element", 2, subList.size());
     }
 
+    /**
+     * Test method to verify that size() returns 0 after clearing sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that size() returns 0 after clearing a sublist using the clear() method.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the size() method's behavior after clearing operations,
+     * ensuring accurate size reporting for empty sublists.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist covering all elements,
+     * calls clear() on the sublist, and verifies that size() returns 0.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Size becomes 0</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>size() should return 0 after clearing the sublist.</p>
+     */
     @Test
     public void testSubListSizeAfterClear()
     {
@@ -1311,6 +2087,30 @@ public class SubListAdapterTest
         assertEquals("Size should be 0 after clear", 0, subList.size());
     }
 
+    /**
+     * Test method to verify that size() correctly counts null elements in sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that size() correctly includes null elements when counting sublist size.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the size() method's behavior with null elements,
+     * ensuring accurate counting of all elements regardless of value.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three null elements, creates a sublist covering all elements,
+     * and verifies that size() returns 3.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 null elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- Size remains 3</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>size() should count null elements when determining sublist size.</p>
+     */
     @Test
     public void testSubListSizeNullElements()
     {
@@ -1323,6 +2123,30 @@ public class SubListAdapterTest
         assertEquals("Size should count null elements", 3, subList.size());
     }
 
+    /**
+     * Test method to verify that isEmpty() returns true for empty sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that isEmpty() returns true for an empty sublist created from a non-empty vector.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the isEmpty() method's behavior for empty sublists,
+     * ensuring accurate empty status reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates an empty sublist (from index 1 to 1),
+     * and verifies that isEmpty() returns true.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- isEmpty() returns true</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>isEmpty() should return true for empty sublists.</p>
+     */
     @Test
     public void testSubListIsEmptyOnEmptySubList()
     {
@@ -1335,6 +2159,30 @@ public class SubListAdapterTest
         assertTrue("Empty subList should be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that isEmpty() returns false after adding elements to sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that isEmpty() returns false after adding elements to a previously empty sublist.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the isEmpty() method's behavior after element addition operations,
+     * ensuring accurate empty status reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist from indices 0 to 2,
+     * adds an element to the sublist, and verifies that isEmpty() returns false.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- isEmpty() returns false</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>isEmpty() should return false after adding elements to sublist.</p>
+     */
     @Test
     public void testSubListIsEmptyAfterAddingElements()
     {
@@ -1348,6 +2196,30 @@ public class SubListAdapterTest
         assertFalse("SubList should not be empty after adding element", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that isEmpty() returns true after clearing sublist.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that isEmpty() returns true after clearing a sublist using the clear() method.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the isEmpty() method's behavior after clearing operations,
+     * ensuring accurate empty status reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist covering all elements,
+     * calls clear() on the sublist, and verifies that isEmpty() returns true.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- isEmpty() returns true</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>isEmpty() should return true after clearing the sublist.</p>
+     */
     @Test
     public void testSubListIsEmptyAfterClear()
     {
@@ -1361,6 +2233,31 @@ public class SubListAdapterTest
         assertTrue("SubList should be empty after clear", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that isEmpty() returns false for sublist containing null elements.
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that isEmpty() returns false for sublists containing null elements,
+     * ensuring that null values are considered as valid elements.</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the isEmpty() method's behavior with null elements,
+     * ensuring accurate empty status reporting regardless of element values.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with two null elements, creates a sublist covering all elements,
+     * and verifies that isEmpty() returns false.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 2 null elements</p>
+     * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- isEmpty() returns false</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>isEmpty() should return false for sublists containing null elements.</p>
+     */
     @Test
     public void testSubListIsEmptyNullElements()
     {
@@ -1372,6 +2269,30 @@ public class SubListAdapterTest
         assertFalse("SubList with null elements should not be empty", subList.isEmpty());
     }
 
+    /**
+     * Test method to verify that isEmpty() returns true after setSize(0).
+     *
+     * <p><b>Summary:</b></p>
+     * <p>This test verifies that isEmpty() returns true after setting sublist size to zero using setSize(0).</p>
+     *
+     * <p><b>Test Case Design:</b></p>
+     * <p>The test is designed to validate the isEmpty() method's behavior after setSize(0) operations,
+     * ensuring accurate empty status reporting.</p>
+     *
+     * <p><b>Test Description:</b></p>
+     * <p>The test creates a vector with three elements, creates a sublist covering all elements,
+     * calls setSize(0) on the sublist, and verifies that isEmpty() returns true.</p>
+     *
+     * <p><b>Pre-Condition:</b></p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
+     * <p>- SubListAdapter is created from indices 0 to 3 of the main vector</p>
+     *
+     * <p><b>Post-Condition:</b></p>
+     * <p>- isEmpty() returns true</p>
+     *
+     * <p><b>Expected Results:</b></p>
+     * <p>isEmpty() should return true after setSize(0).</p>
+     */
     @Test
     public void testSubListIsEmptyAfterSetSizeZero()
     {

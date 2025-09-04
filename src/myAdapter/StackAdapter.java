@@ -14,6 +14,8 @@ import java.util.EmptyStackException;
  * When a stack is first created, it contains no items.
  *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
+ * @see      HCollection
+ * @see      HList
  * @see      VectorAdapter
  */
 public class StackAdapter extends VectorAdapter
@@ -47,7 +49,7 @@ public class StackAdapter extends VectorAdapter
      * object as the value of this function.
      *
      * @return     The object at the top of this stack (the last item
-     *             of the <code>Vector</code> object).
+     *             of the <code>VectorAdapter</code> object).
      * @exception  EmptyStackException  if this stack is empty.
      */
     public synchronized Object pop()
@@ -63,7 +65,7 @@ public class StackAdapter extends VectorAdapter
      * from the stack.
      *
      * @return     the object at the top of this stack (the last item
-     *             of the <code>Vector</code> object).
+     *             of the <code>VectorAdapter</code> object).
      * @exception  EmptyStackException  if this stack is empty.
      */
     public synchronized Object peek()

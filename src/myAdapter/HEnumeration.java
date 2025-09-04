@@ -20,10 +20,10 @@ import java.util.NoSuchElementException;
  * HEnumerations are also used to specify the input streams to a
  * <code>SequenceInputStream</code>.
  * <p>
- * NOTE: The functionality of this interface is duplicated by the Iterator
- * interface.  In addition, Iterator adds an optional remove operation, and
+ * NOTE: The functionality of this interface is duplicated by the HIterator
+ * interface.  In addition, HIterator adds an optional remove operation, and
  * has shorter method names.  New implementations should consider using
- * Iterator in preference to HEnumeration.
+ * HIterator in preference to HEnumeration.
  *
  * @author  Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see     HIterator

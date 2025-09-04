@@ -141,8 +141,7 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
      * The new element is inserted before the implicit cursor: a subsequent
      * call to <code>next</code> would be unaffected, and a subsequent call to
      * <code>previous</code> would return the new element.  (This call increases
-     * by one the value that would be returned by a call to
-     * <code>nextIndex</code>
+     * by one the value that would be returned by a call to <code>nextIndex</code>
      * or <code>previousIndex</code>.)
      *
      * @param o the element to insert.

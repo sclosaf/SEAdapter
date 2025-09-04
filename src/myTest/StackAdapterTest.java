@@ -53,6 +53,12 @@ public class StackAdapterTest
     private StackAdapter stack;
 
     /**
+     * Default constructor
+     */
+    public StackAdapterTest()
+    {}
+
+    /**
      * Sets up the testing environment before each test method execution.
      * Initializes the stack instance to null to ensure the use of a clean state.
      */

@@ -12,11 +12,11 @@ import java.lang.ArrayIndexOutOfBoundsException;
 import java.lang.IllegalArgumentException;
 
 /**
- * The <code>Vector</code> class implements a growable array of
+ * The <code>VectorAdapter</code> class implements a growable array of
  * objects. Like an array, it contains components that can be
  * accessed using an integer index. However, the size of a
- * <code>Vector</code> can grow or shrink as needed to accommodate
- * adding and removing items after the <code>Vector</code> has been created.<p>
+ * <code>VectorAdapter</code> can grow or shrink as needed to accommodate
+ * adding and removing items after the <code>VectorAdapter</code> has been created.<p>
  *
  * Each vector tries to optimize storage management by maintaining a
  * <code>capacity</code> and a <code>capacityIncrement</code>. The
@@ -28,17 +28,17 @@ import java.lang.IllegalArgumentException;
  * components; this reduces the amount of incremental reallocation. <p>
  *
  * As of the Java 2 platform v1.2, this class has been retrofitted to
- * implement List, so that it becomes a part of Java's collection framework.
- * Unlike the new collection implementations, Vector is synchronized.<p>
+ * implement HList, so that it becomes a part of Java's collection framework.
+ * Unlike the new collection implementations, VectorAdapter is synchronized.<p>
  *
- * The Iterators returned by Vector's iterator and listIterator
- * methods are <em>fail-fast</em>: if the Vector is structurally modified
- * at any time after the Iterator is created, in any way except through the
- * Iterator's own remove or add methods, the Iterator will throw a
+ * The HIterators returned by VectorAdapter's iterator and listIterator
+ * methods are <em>fail-fast</em>: if the VectorAdapter is structurally modified
+ * at any time after the HIterator is created, in any way except through the
+ * HIterator's own remove or add methods, the HIterator will throw a
  * ConcurrentModificationException.  Thus, in the face of concurrent
- * modification, the Iterator fails quickly and cleanly, rather than risking
+ * modification, the HIterator fails quickly and cleanly, rather than risking
  * arbitrary, non-deterministic behavior at an undetermined time in the future.
- * The Enumerations returned by Vector's elements method are <em>not</em>
+ * The HEnumerations returned by VectorAdapter's elements method are <em>not</em>
  * fail-fast.
  *
  * <p>Note that the fail-fast behavior of an iterator cannot be guaranteed
@@ -57,7 +57,7 @@ public class VectorAdapter implements HList
 {
     /**
      * The Vector adaptee into which the components of the adapter are stored.
-     * Each adapted operation is applied directly to this Vector, in order to
+     * Each adapted operation is applied directly to this VectorAdapter, in order to
      * conform the interface.
      * */
     protected Vector vec;
@@ -268,7 +268,6 @@ public class VectorAdapter implements HList
         return indexOf(elem, 0);
     }
 
-
     /**
      * Searches for the first occurence of the given argument, beginning
      * the search at <code>index</code>, and testing for equality using
@@ -282,9 +281,9 @@ public class VectorAdapter implements HList
      *          <code>elem.equals(elementData[k]) &amp;&amp; (k &gt;= index)</code> is
      *          <code>true</code>; returns <code>-1</code> if the object is not
      *          found. (Returns <code>-1</code> if <code>index</code> &gt;= the
-     *          current size of this <code>Vector</code>.)
+     *          current size of this <code>VectorAdapter</code>.)
      * @exception  IndexOutOfBoundsException  if <code>index</code> is negative.
-     * @see     Object#equals(Object)
+     * @see        Object#equals(Object)
      */
     public synchronized int indexOf(Object elem, int index)
     {
@@ -375,7 +374,7 @@ public class VectorAdapter implements HList
      * @return     the component at the specified index.
      * @exception  ArrayIndexOutOfBoundsException  if the <code>index</code>
      *             is negative or not less than the current size of this
-     *             <code>Vector</code> object.
+     *             <code>VectorAdapter</code> object.
      *             given.
      * @see	  HList
      */
@@ -457,7 +456,7 @@ public class VectorAdapter implements HList
      * and less than the current size of the vector. <p>
      *
      * This method is identical in functionality to the remove method
-     * (which is part of the List interface).  Note that the remove method
+     * (which is part of the HList interface).  Note that the remove method
      * returns the old value that was stored at the specified position.
      *
      * @param      index   the index of the object to remove.
@@ -484,7 +483,7 @@ public class VectorAdapter implements HList
      * The index must be a value greater than or equal to <code>0</code>
      * and less than or equal to the current size of the vector. (If the
      * index is equal to the current size of the vector, the new element
-     * is appended to the Vector.)<p>
+     * is appended to the VectorAdapter.)<p>
      *
      * This method is identical in functionality to the add(Object, int) method
      * (which is part of the HList interface). Note that the add method reverses
@@ -569,7 +568,7 @@ public class VectorAdapter implements HList
     /**
      * Returns a clone of this vector. The copy will contain a
      * reference to a clone of the internal data array, not a reference
-     * to the original internal data array of this <code>Vector</code> object.
+     * to the original internal data array of this <code>VectorAdapter</code> object.
      *
      * @return  a clone of this vector.
      */
@@ -586,7 +585,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns an array containing all of the elements in this Vector
+     * Returns an array containing all of the elements in this VectorAdapter
      * in the correct order.
      */
     public synchronized Object[] toArray()
@@ -597,25 +596,25 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns an array containing all of the elements in this Vector in the
+     * Returns an array containing all of the elements in this VectorAdapter in the
      * correct order; the runtime type of the returned array is that of the
-     * specified array.  If the Vector fits in the specified array, it is
+     * specified array.  If the VectorAdapter fits in the specified array, it is
      * returned therein.  Otherwise, a new array is allocated with the runtime
-     * type of the specified array and the size of this Vector.<p>
+     * type of the specified array and the size of this VectorAdapter.<p>
      *
-     * If the Vector fits in the specified array with room to spare
-     * (i.e., the array has more elements than the Vector),
+     * If the VectorAdapter fits in the specified array with room to spare
+     * (i.e., the array has more elements than the VectorAdapter),
      * the element in the array immediately following the end of the
-     * Vector is set to null.  This is useful in determining the length
-     * of the Vector <em>only</em> if the caller knows that the Vector
-     * does not contain any null elements.
+     * VectorAdapter is set to null.  This is useful in determining the length
+     * of the VectorAdapter <em>only</em> if the caller knows that the
+     * VectorAdapter does not contain any null elements.
      *
-     * @param a the array into which the elements of the Vector are to
+     * @param a the array into which the elements of the VectorAdapter are to
      *		be stored, if it is big enough; otherwise, a new array of the
      * 		same runtime type is allocated for this purpose.
-     * @return an array containing the elements of the Vector.
+     * @return an array containing the elements of the VectorAdapter.
      * @exception ArrayStoreException the runtime type of a is not a supertype
-     * of the runtime type of every element in this Vector.
+     * of the runtime type of every element in this VectorAdapter.
      * @throws NullPointerException if the given array is null.
      */
     public synchronized Object[] toArray(Object[] a)
@@ -635,7 +634,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns the element at the specified position in this Vector.
+     * Returns the element at the specified position in this VectorAdapter.
      *
      * @param index index of element to return.
      * @return object at the specified index
@@ -648,7 +647,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Replaces the element at the specified position in this Vector with the
+     * Replaces the element at the specified position in this VectorAdapter with the
      * specified element.
      *
      * @param index index of element to replace.
@@ -666,10 +665,10 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Appends the specified element to the end of this Vector.
+     * Appends the specified element to the end of this VectorAdapter.
      *
-     * @param o element to be appended to this Vector.
-     * @return true (as per the general contract of Collection.add).
+     * @param o element to be appended to this VectorAdapter.
+     * @return true (as per the general contract of HCollection.add).
      */
     public synchronized boolean add(Object o)
     {
@@ -678,14 +677,14 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Removes the first occurrence of the specified element in this Vector
-     * If the Vector does not contain the element, it is unchanged.  More
+     * Removes the first occurrence of the specified element in this VectorAdapter
+     * If the VectorAdapter does not contain the element, it is unchanged.  More
      * formally, removes the element with the lowest index i such that
      * <code>(o==null ? get(i)==null : o.equals(get(i)))</code> (if such
      * an element exists).
      *
-     * @param o element to be removed from this Vector, if present.
-     * @return true if the Vector contained the specified element.
+     * @param o element to be removed from this VectorAdapter, if present.
+     * @return true if the VectorAdapter contained the specified element.
      */
     public boolean remove(Object o)
     {
@@ -693,7 +692,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Inserts the specified element at the specified position in this Vector.
+     * Inserts the specified element at the specified position in this VectorAdapter.
      * Shifts the element currently at that position (if any) and any
      * subsequent elements to the right (adds one to their indices).
      *
@@ -708,9 +707,9 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Removes the element at the specified position in this Vector.
+     * Removes the element at the specified position in this VectorAdapter.
      * shifts any subsequent elements to the left (subtracts one from their
-     * indices).  Returns the element that was removed from the Vector.
+     * indices).  Returns the element that was removed from the VectorAdapter.
      *
      * @exception ArrayIndexOutOfBoundsException index out of range (index
      * 		 &lt; 0 || index &gt;= size()).
@@ -726,7 +725,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Removes all of the elements from this Vector.  The Vector will
+     * Removes all of the elements from this VectorAdapter.  The VectorAdapter will
      * be empty after this call returns (unless it throws an exception).
      */
     public void clear()
@@ -735,12 +734,12 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns true if this Vector contains all of the elements in the
-     * specified Collection.
+     * Returns true if this VectorAdapter contains all of the elements in the
+     * specified HCollection.
      *
      * @param   c a collection whose elements will be tested for containment
-     *          in this Vector
-     * @return true if this Vector contains all of the elements in the
+     *          in this VectorAdapter
+     * @return true if this VectorAdapter contains all of the elements in the
      *	      specified collection.
      * @throws NullPointerException if the specified collection is null.
      */
@@ -762,15 +761,15 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Appends all of the elements in the specified Collection to the end of
-     * this Vector, in the order that they are returned by the specified
-     * Collection's Iterator.  The behavior of this operation is undefined if
-     * the specified Collection is modified while the operation is in progress.
+     * Appends all of the elements in the specified HCollection to the end of
+     * this VectorAdapter, in the order that they are returned by the specified
+     * HCollection's HIterator.  The behavior of this operation is undefined if
+     * the specified HCollection is modified while the operation is in progress.
      * (This implies that the behavior of this call is undefined if the
-     * specified Collection is this Vector, and this Vector is nonempty.)
+     * specified HCollection is this VectorAdapter, and this VectorAdapter is nonempty.)
      *
-     * @param c elements to be inserted into this Vector.
-     * @return <code>true</code> if this Vector changed as a result of the call.
+     * @param c elements to be inserted into this VectorAdapter.
+     * @return <code>true</code> if this VectorAdapter changed as a result of the call.
      * @throws NullPointerException if the specified collection is null.
      */
     public synchronized boolean addAll(HCollection c)
@@ -779,11 +778,11 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Removes from this Vector all of its elements that are contained in the
-     * specified Collection.
+     * Removes from this VectorAdapter all of its elements that are contained in the
+     * specified HCollection.
      *
-     * @param c a collection of elements to be removed from the Vector
-     * @return true if this Vector changed as a result of the call.
+     * @param c a collection of elements to be removed from the VectorAdapter
+     * @return true if this VectorAdapter changed as a result of the call.
      * @throws NullPointerException if the specified collection is null.
      */
     public synchronized boolean removeAll(HCollection c)
@@ -818,13 +817,13 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Retains only the elements in this Vector that are contained in the
-     * specified Collection.  In other words, removes from this Vector all
-     * of its elements that are not contained in the specified Collection.
+     * Retains only the elements in this VectorAdapter that are contained in the
+     * specified HCollection.  In other words, removes from this VectorAdapter all
+     * of its elements that are not contained in the specified HCollection.
      *
-     * @param c a collection of elements to be retained in this Vector
+     * @param c a collection of elements to be retained in this VectorAdapter
      *          (all other elements are removed)
-     * @return true if this Vector changed as a result of the call.
+     * @return true if this VectorAdapter changed as a result of the call.
      * @throws NullPointerException if the specified collection is null.
      */
     public synchronized boolean retainAll(HCollection c)
@@ -851,17 +850,17 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Inserts all of the elements in in the specified Collection into this
-     * Vector at the specified position.  Shifts the element currently at
+     * Inserts all of the elements in in the specified HCollection into this
+     * VectorAdapter at the specified position.  Shifts the element currently at
      * that position (if any) and any subsequent elements to the right
-     * (increases their indices).  The new elements will appear in the Vector
-     * in the order that they are returned by the specified Collection's
+     * (increases their indices).  The new elements will appear in the VectorAdapter
+     * in the order that they are returned by the specified HCollection's
      * iterator.
      *
      * @param index index at which to insert first element
      *		   from the specified collection.
-     * @param c elements to be inserted into this Vector.
-     * @return <code>true</code> if this Vector changed as a result of the call.
+     * @param c elements to be inserted into this VectorAdapter.
+     * @return <code>true</code> if this VectorAdapter changed as a result of the call.
      * @exception ArrayIndexOutOfBoundsException index out of range (index
      *		 &lt; 0 || index &gt; size()).
      * @throws NullPointerException if the specified collection is null.
@@ -898,16 +897,16 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Compares the specified Object with this Vector for equality.  Returns
-     * true if and only if the specified Object is also a List, both Lists
+     * Compares the specified Object with this VectorAdapter for equality.  Returns
+     * true if and only if the specified Object is also a HList, both HLists
      * have the same size, and all corresponding pairs of elements in the two
-     * Lists are <em>equal</em>.  (Two elements <code>e1</code> and
+     * HLists are <em>equal</em>.  (Two elements <code>e1</code> and
      * <code>e2</code> are <em>equal</em> if <code>(e1==null ? e2==null :
-     * e1.equals(e2))</code>.)  In other words, two Lists are defined to be
+     * e1.equals(e2))</code>.)  In other words, two HLists are defined to be
      * equal if they contain the same elements in the same order.
      *
-     * @param o the Object to be compared for equality with this Vector.
-     * @return true if the specified Object is equal to this Vector
+     * @param o the Object to be compared for equality with this VectorAdapter.
+     * @return true if the specified Object is equal to this VectorAdapter
      */
     public synchronized boolean equals(Object o)
     {
@@ -936,7 +935,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns the hash code value for this Vector.
+     * Returns the hash code value for this VectorAdapter.
      */
     public synchronized int hashCode()
     {
@@ -944,7 +943,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns a string representation of this Vector, containing
+     * Returns a string representation of this VectorAdapter, containing
      * the String representation of each element.
      */
     public synchronized String toString()
@@ -953,34 +952,34 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Returns a view of the portion of this List between fromIndex,
+     * Returns a view of the portion of this HList between fromIndex,
      * inclusive, and toIndex, exclusive.  (If fromIndex and ToIndex are
-     * equal, the returned List is empty.)  The returned List is backed by this
-     * List, so changes in the returned List are reflected in this List, and
-     * vice-versa.  The returned List supports all of the optional List
-     * operations supported by this List.<p>
+     * equal, the returned HList is empty.)  The returned HList is backed by this
+     * HList, so changes in the returned HList are reflected in this HList, and
+     * vice-versa.  The returned HList supports all of the optional HList
+     * operations supported by this HList.<p>
      *
      * This method eliminates the need for explicit range operations (of
      * the sort that commonly exist for arrays).   Any operation that expects
-     * a List can be used as a range operation by operating on a subList view
-     * instead of a whole List.  For example, the following idiom
-     * removes a range of elements from a List:
+     * a HList can be used as a range operation by operating on a subList view
+     * instead of a whole HList.  For example, the following idiom
+     * removes a range of elements from a HList:
      * <pre>
      *	   list.subList(from, to).clear();
      * </pre>
      * Similar idioms may be constructed for indexOf and lastIndexOf,
-     * and all of the algorithms in the Collections class can be applied to
+     * and all of the algorithms in the HCollections class can be applied to
      * a subList.<p>
      *
-     * The semantics of the List returned by this method become undefined if
-     * the backing list (i.e., this List) is <i>structurally modified</i> in
-     * any way other than via the returned List.  (Structural modifications are
-     * those that change the size of the List, or otherwise perturb it in such
+     * The semantics of the HList returned by this method become undefined if
+     * the backing list (i.e., this HList) is <i>structurally modified</i> in
+     * any way other than via the returned HList.  (Structural modifications are
+     * those that change the size of the HList, or otherwise perturb it in such
      * a fashion that iterations in progress may yield incorrect results.)
      *
      * @param fromIndex low endpoint (inclusive) of the subList.
      * @param toIndex high endpoint (exclusive) of the subList.
-     * @return a view of the specified range within this List.
+     * @return a view of the specified range within this HList.
      * @throws IndexOutOfBoundsException endpoint index value out of range
      *         <code>(fromIndex &lt; 0 || toIndex &gt; size)</code>
      * @throws IllegalArgumentException endpoint indices out of order
@@ -998,7 +997,7 @@ public class VectorAdapter implements HList
     }
 
     /**
-     * Removes from this List all of the elements whose index is between
+     * Removes from this HList all of the elements whose index is between
      * fromIndex, inclusive and toIndex, exclusive.  Shifts any succeeding
      * elements to the left (reduces their index).
      * This call shortens the ArrayList by (toIndex - fromIndex) elements.  (If
@@ -1054,9 +1053,9 @@ public class VectorAdapter implements HList
      * specified index minus one.
      *
      * This implementation returns a straightforward implementation of the
-     * <code>ListIterator</code> interface that extends the implementation of the
-     * <code>Iterator</code> interface returned by the <code>iterator()</code> method.
-     * The <code>ListIterator</code> implementation relies on the backing list's
+     * <code>HListIterator</code> interface that extends the implementation of the
+     * <code>HIterator</code> interface returned by the <code>iterator()</code> method.
+     * The <code>HListIterator</code> implementation relies on the backing list's
      * <code>get(int)</code>, <code>set(int, Object)</code>, <code>add(int, Object)</code>
      * and <code>remove(int)</code> methods.
      *
@@ -1087,7 +1086,7 @@ public class VectorAdapter implements HList
      * Returns the offset of this sublist relative to the backing vector.
      * This is a helper method to manage sublist offset throughout polymorphism.
      *
-     * @return the offset of the list relative to its Vector
+     * @return the offset of the list relative to its VectorAdapter
      */
     protected int offset()
     {

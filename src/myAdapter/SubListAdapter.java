@@ -15,12 +15,8 @@ import java.lang.ArrayIndexOutOfBoundsException;
  * <p>
  * This class eliminates the need for explicit range operations. Any operation that
  * expects a list can be used as a range operation by passing a sublist view instead
- * of a whole list. For example, the following idiom removes a range of elements
- * from a list:
- * <pre>
- *     list.subList(from, to).clear();
- * </pre>
- * <p>
+ * of a whole list.<p>
+ *
  * The semantics of the list returned by this method become undefined if the backing
  * list is <i>structurally modified</i> in any way other than via the returned list.
  * Structural modifications are those that change the size of the backing list, or
@@ -117,7 +113,7 @@ public class SubListAdapter extends VectorAdapter
      * and less than the current size of the sublist. <p>
      *
      * This method is identical in functionality to the remove method
-     * (which is part of the List interface).  Note that the remove method
+     * (which is part of the HList interface).  Note that the remove method
      * returns the old value that was stored at the specified position.
      *
      * @param      index   the index of the object to remove.
@@ -173,7 +169,7 @@ public class SubListAdapter extends VectorAdapter
     /**
      * Returns a clone of this sublist. The copy will contain a
      * reference to a clone of the internal data array, not a reference
-     * to the original internal data array of this <code>SubList</code> object.
+     * to the original internal data array of this <code>SubListAdapter</code> object.
      *
      * @return  a clone of this sublist.
      */

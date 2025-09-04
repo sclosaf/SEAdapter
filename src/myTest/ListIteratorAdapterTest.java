@@ -75,6 +75,12 @@ public class ListIteratorAdapterTest
     private HListIterator subListLIterator;
 
     /**
+     * Default constructor
+     */
+    public ListIteratorAdapterTest()
+    {}
+
+    /**
      * Sets up the testing environment before each test method execution.
      * Initializes the vector and sublist with test data and creates iterator instances.
      */
