@@ -19,13 +19,12 @@ import static org.junit.Assert.*;
  * <p>This test suite verifies the functionality of the EnumerationAdapter class,
  * which implements the HEnumeration interface to iterate over elements of a
  * VectorAdapter or SubListAdapter. The tests cover various scenarios including
- * normal iteration, edge cases, and error conditions.</p>
+ * normal cases, edge cases and error conditions.</p>
  *
  * <h2>Test Case Design</h2>
  * <p>The test cases are designed to validate the behavior of EnumerationAdapter
  * against the specifications of Java 1.4.2 Enumeration interface. The test design
- * includes categories for basic functionality, edge cases, error conditions,
- * and sublist-specific behavior.</p>
+ * aims to validate the class to work properly for basic vector and sublist-specific behaviors.</p>
  *
  * <h2>Testing Framework Information</h2>
  * <p>This test suite utilizes JUnit 4.13 testing framework with Hamcrest 1.3
@@ -78,7 +77,7 @@ public class EnumerationAdapterTest
     private HEnumeration subEnumeration;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public EnumerationAdapterTest()
     {}
@@ -122,16 +121,15 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns true when the enumeration is at the beginning
-     * of a non-empty collection, indicating that there are elements available for iteration.</p>
+     * of a non-empty collection, showing that there are elements available for iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the initial state of the enumeration. After setup, the enumeration
-     * should be positioned at the start of the collection and should report that more elements are available.</p>
+     * should report that more elements are available.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an enumeration from a pre-populated VectorAdapter and immediately checks if
-     * hasMoreElements() returns true. The VectorAdapter contains 5 elements including a null value.
-     * The test expects hasMoreElements() to return true since the enumeration hasn't started iterating yet.</p>
+     * <p>The test checks if hasMoreElements() returns true, since more elements are available
+     * and nothing has been iterated.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -148,25 +146,23 @@ public class EnumerationAdapterTest
     @Test
     public void testHasMoreElementsAtTheBeginning()
     {
-        assertTrue("Collection should have been created and filled properly", enumeration.hasMoreElements());
+        assertTrue("Should have been created and filled properly", enumeration.hasMoreElements());
     }
 
     /**
-     * Test method to verify the behavior of hasMoreElements() during middle of enumeration.
+     * Test method to verify the behavior of hasMoreElements() in the middle middle of enumeration.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns true when the enumeration is in the middle
-     * of iterating through a collection, indicating that there are still more elements available.
+     * of a collection, indicating that there are still more elements available.
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the intermediate state of the enumeration. After consuming
-     * some elements, the enumeration should still report that more elements are available if the
-     * end hasn't been reached.</p>
+     * <p>The test is designed to validate the intermediate state of the enumeration. After iterating over
+     * some elements, the enumeration should still report that more elements are available.</p>
      *
      * <p><b>Test Description:</b>
-     * <p>The test creates an enumeration and consumes the first two elements. It then checks if
-     * hasMoreElements() returns true, indicating that there are still elements remaining for iteration.
-     * The VectorAdapter contains 5 elements, so after consuming 2, 3 elements should remain.</p>
+     * <p>The test consumes the first two elements, then checks if hasMoreElements() returns true,
+     * indicating that there are still elements remaining.
      *
      * <p><b>Pre-Condition:</b>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -198,18 +194,17 @@ public class EnumerationAdapterTest
      * have been consumed, indicating that no more elements are available for iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the terminal state of the enumeration. After consuming all
-     * elements, the enumeration should report that no more elements are available.</p>
+     * <p>The test is designed to validate the terminal state of the enumeration, where no more
+     * elements are available.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an enumeration and iterates through all elements until hasMoreElements()
-     * returns false. It then verifies that hasMoreElements() consistently returns false after
-     * all elements have been consumed.</p>
+     * <p>The test creates an enumeration and iterates through all elements, then verifies
+     * that hasMoreElements() returns false after all elements have been consumed.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- HEnumeration is created from vector.elements()</p>
-     * <p>- All elements have been consumed using nextElement() in a loop</p>
+     * <p>- All elements have been consumed using nextElement()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Enumeration cursor is at the end position (cursor = 5)</p>
@@ -232,18 +227,16 @@ public class EnumerationAdapterTest
      * Test method to verify proper iteration sequence using nextElement().
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that nextElement() returns elements in the correct order and that
-     * hasMoreElements() accurately reflects the remaining elements throughout the iteration.</p>
+     * <p>This test verifies that nextElement() returns the elements in the correct order.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the complete iteration sequence, including handling of
-     * null values and proper exhaustion of the enumeration.</p>
+     * null values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test iterates through all elements of the enumeration, verifying each element matches
-     * the expected value in sequence. It checks the specific values including a null element at
-     * position 3. Finally, it verifies that hasMoreElements() returns false after all elements
-     * have been consumed.</p>
+     * the expected value in sequence. Finally, it verifies that hasMoreElements() returns
+     * false after all elements have been consumed.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -267,7 +260,7 @@ public class EnumerationAdapterTest
         assertNull("Fourth element should be null", enumeration.nextElement());
         assertEquals("Fifth element should match", "5", enumeration.nextElement());
 
-        assertFalse("Colleciton should have no more elements", enumeration.hasMoreElements());
+        assertFalse("Should have no more elements", enumeration.hasMoreElements());
     }
 
     /**
@@ -275,15 +268,15 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() throws NoSuchElementException when called after
-     * all elements have been consumed, ensuring proper exception handling.</p>
+     * the iteration of all the elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the exception handling behavior of the enumeration
-     * when it's exhausted. This is an edge case test for robustness.</p>
+     * when it's exhausted.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first exhausts the enumeration by iterating through all elements until
-     * hasMoreElements() returns false. It then attempts to call nextElement() again and
+     * hasMoreElements() returns false. It then attempts to call nextElement() and
      * expects a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -293,7 +286,6 @@ public class EnumerationAdapterTest
      * <p>- hasMoreElements() returns false</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Enumeration remains in exhausted state</p>
      * <p>- NoSuchElementException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -313,24 +305,22 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns false when the enumeration is created
-     * from an empty collection, indicating that no elements are available for iteration.</p>
+     * from an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the edge case of an empty collection. This ensures that
-     * the enumeration correctly handles collections with no elements and doesn't report false
-     * positives for available elements.</p>
+     * the enumeration correctly handles collections with no elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter and creates an enumeration from it. It then
-     * immediately checks if hasMoreElements() returns false, confirming that no elements
-     * are available for iteration in an empty collection.</p>
+     * <p>The test creates an empty VectorAdapter and an enumeration from it. It then
+     * immediately checks if hasMoreElements() returns false, since no elements
+     * are available.</p>
      *
      * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized as empty (no elements added)</p>
+     * <p>- VectorAdapter is initialized as empty</p>
      * <p>- HEnumeration is created from the empty vector.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Enumeration state remains unchanged</p>
      * <p>- No elements are available for iteration</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -342,7 +332,7 @@ public class EnumerationAdapterTest
         VectorAdapter vec = new VectorAdapter();
         HEnumeration enumer = vec.elements();
 
-        assertFalse("Empty collection should have no elements",
+        assertFalse("Should have no elements",
             enumer.hasMoreElements());
     }
 
@@ -351,25 +341,21 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() throws NoSuchElementException when called on an
-     * enumeration created from an empty collection, ensuring proper exception handling.</p>
+     * enumeration created from an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty collection.
-     * This ensures robustness and proper error reporting when attempting to access elements
-     * from an empty collection.</p>
+     * <p>The test is designed to validate exception handling for the edge case of an empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and creates an enumeration from it. It then
-     * attempts to call nextElement() and expects a NoSuchElementException to be thrown
-     * since there are no elements to return.</p>
+     * attempts to call nextElement() and expects a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized as empty (no elements added)</p>
+     * <p>- VectorAdapter is initialized as empty</p>
      * <p>- HEnumeration is created from the empty vector.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
-     * <p>- Enumeration remains in exhausted state</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>nextElement() should throw NoSuchElementException when called on an empty collection.</p>
@@ -391,16 +377,15 @@ public class EnumerationAdapterTest
      * elements and returns them in the proper sequence.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate enumeration behavior with duplicate values. This ensures
-     * that the enumeration doesn't perform any deduplication or special handling of repeated values.</p>
+     * <p>The test is designed to validate enumeration behavior with duplicate values.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three identical string elements "0". It then
-     * iterates through the enumeration, verifying that each call to nextElement() returns
-     * the same value "0" and that hasMoreElements() correctly reflects the remaining elements.</p>
+     * <p>The test iterates through the enumeration with three strings of "0", verifying
+     * that each call to nextElement() returns the same value "0" and that hasMoreElements()
+     * defines the absence of other elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 3 identical elements: ["0", "0", "0"]</p>
+     * <p>- VectorAdapter is initialized with 3 elements: ["0", "0", "0"]</p>
      * <p>- HEnumeration is created from vector.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
@@ -410,7 +395,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Expected Results:</b></p>
      * <p>All three calls to nextElement() should return "0"</p>
-     * <p>hasMoreElements() should return false after the third element is consumed</p>
+     * <p>hasMoreElements() should return false after all elements are consumed</p>
      */
     @Test
     public void testNextElementDuplicates()
@@ -434,17 +419,16 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() correctly handles collections containing null
-     * elements and returns them properly during iteration.</p>
+     * elements and returns them properly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate enumeration behavior with null values. This ensures
-     * that the enumeration can handle null elements without throwing exceptions and correctly
-     * reports their presence.</p>
+     * <p>The test is designed to validate enumeration behavior with null
+     * values, correctly reporting their presence.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three null elements. It verifies that hasMoreElements()
      * returns true initially, then iterates through the enumeration, checking that each call to
-     * nextElement() returns null and that hasMoreElements() correctly tracks the remaining elements.</p>
+     * nextElement() returns null and that hasMoreElements() returns false once exhausted.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 null elements: [null, null, null]</p>
@@ -456,7 +440,6 @@ public class EnumerationAdapterTest
      * <p>- All three null elements have been consumed</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>hasMoreElements() should return true initially</p>
      * <p>All three calls to nextElement() should return null</p>
      * <p>hasMoreElements() should return false after the third element is consumed</p>
      */
@@ -482,16 +465,13 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns true when the sublist enumeration is at the
-     * beginning of a non-empty sublist, indicating that there are elements available for iteration.</p>
+     * beginning of a non-empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the initial state of a sublist enumeration. This ensures that
-     * sublist enumerations behave consistently with full collection enumerations.</p>
+     * <p>The test is designed to validate the initial state of a sublist enumeration.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test uses the pre-configured subEnumeration (created from vector.subList(1, 4)) and
-     * immediately checks if hasMoreElements() returns true. The sublist contains elements from
-     * index 1 to 3 of the main vector: ["2", "3", null].</p>
+     * <p>The test checks if hasMoreElements() returns true.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -509,7 +489,7 @@ public class EnumerationAdapterTest
     @Test
     public void testSubListHasMoreElementsAtTheBeginning()
     {
-        assertTrue("SubList collection should have been created properly",
+        assertTrue("Should have been created properly",
             subEnumeration.hasMoreElements());
     }
 
@@ -518,16 +498,14 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns true when the sublist enumeration is in the
-     * middle of iterating through the sublist, indicating that there are still more elements available.</p>
+     * middle of iterating through the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the intermediate state of a sublist enumeration. This ensures
-     * that sublist enumerations correctly track remaining elements during iteration.</p>
+     * <p>The test is designed to validate the intermediate state of a sublist enumeration.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test uses the pre-configured subEnumeration and consumes the first two elements of the
-     * sublist. It then checks if hasMoreElements() returns true, indicating that there is still
-     * one element remaining for iteration in the 3-element sublist.</p>
+     * <p>The test consumes the first two elements of the, then checks if hasMoreElements()
+     * returns true.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- SubListAdapter contains 3 elements: ["2", "3", null]</p>
@@ -537,10 +515,9 @@ public class EnumerationAdapterTest
      * <p><b>Post-Condition:</b></p>
      * <p>- Enumeration cursor has advanced to position 2</p>
      * <p>- Two elements have been consumed</p>
-     * <p>- One element remains</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>hasMoreElements() should return true, indicating there is still one element available for iteration.</p>
+     * <p>hasMoreElements() should return true, indicating there is still elements available for iteration.</p>
      */
     @Test
     public void testSubListHasMoreElementsInTheMiddle()
@@ -548,7 +525,7 @@ public class EnumerationAdapterTest
         subEnumeration.nextElement();
         subEnumeration.nextElement();
 
-        assertTrue("Collection should have some more elements", subEnumeration.hasMoreElements());
+        assertTrue("Should have some more elements", subEnumeration.hasMoreElements());
     }
 
     /**
@@ -556,21 +533,19 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns false when all elements in the sublist
-     * have been consumed, indicating that no more elements are available for iteration.</p>
+     * have been consumed.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the terminal state of a sublist enumeration. This ensures
-     * that sublist enumerations correctly report exhaustion after all elements have been consumed.</p>
+     * <p>The test is designed to validate the terminal state of a sublist enumeration.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test uses the pre-configured subEnumeration and iterates through all elements until
-     * hasMoreElements() returns false. It then verifies that hasMoreElements() consistently
-     * returns false after all elements have been consumed.</p>
+     * <p>The test iterates through all elements until hasMoreElements() returns false after
+     * all elements have been consumed.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- SubListAdapter contains 3 elements: ["2", "3", null]</p>
      * <p>- HEnumeration is created from subList.elements()</p>
-     * <p>- All elements have been consumed using nextElement() in a loop</p>
+     * <p>- All elements have been consumed using nextElement()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Enumeration cursor is at the end position</p>
@@ -585,7 +560,7 @@ public class EnumerationAdapterTest
         while(subEnumeration.hasMoreElements())
             subEnumeration.nextElement();
 
-        assertFalse("hasMoreElements should return false after full emptying iteration",
+        assertFalse("Should return false after full emptying iteration",
             subEnumeration.hasMoreElements());
     }
 
@@ -593,18 +568,14 @@ public class EnumerationAdapterTest
      * Test method to verify proper iteration sequence using nextElement() on a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that nextElement() returns elements in the correct order from a sublist
-     * and that hasMoreElements() accurately reflects the remaining elements throughout the iteration.</p>
+     * <p>This test verifies that nextElement() returns elements in the correct order from a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the complete iteration sequence of a sublist enumeration,
-     * including handling of null values and proper exhaustion of the sublist enumeration.</p>
+     * <p>The test is designed to validate the complete iteration sequence of a sublist enumeration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test iterates through all elements of the sublist enumeration, verifying each element matches
-     * the expected value in sequence. The sublist contains elements from index 1 to 3 of the main vector:
-     * ["2", "3", null]. Finally, it verifies that hasMoreElements() returns false after all elements
-     * have been consumed.</p>
+     * the expected value in sequence. Finally, it verifies that hasMoreElements() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -627,7 +598,7 @@ public class EnumerationAdapterTest
         assertEquals("Second element of subList should match", "3", subEnumeration.nextElement());
         assertNull("Third element of subList should be null", subEnumeration.nextElement());
 
-        assertFalse("Collection should have no more elements after iteration", subEnumeration.hasMoreElements());
+        assertFalse("Should have no more elements after iteration", subEnumeration.hasMoreElements());
     }
 
     /**
@@ -635,11 +606,11 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() throws NoSuchElementException when called after
-     * all elements in a sublist have been consumed, ensuring proper exception handling for sublist enumerations.</p>
+     * all elements in a sublist have been consumed.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the exception handling behavior of a sublist enumeration
-     * when it's exhausted. This ensures robustness and proper error reporting for sublist operations.</p>
+     * when it's exhausted.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first exhausts the sublist enumeration by iterating through all elements until
@@ -673,24 +644,21 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns false when the enumeration is created
-     * from an empty sublist, indicating that no elements are available for iteration.</p>
+     * from an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of an empty sublist. This ensures that
-     * sublist enumerations correctly handle sublists with no elements.</p>
+     * <p>The test is designed to validate the edge case of an empty sublist, to ensures
+     * sublist enumerations handle emptysublists with no elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty sublist (from index 1 to 1, which is empty) and creates an
-     * enumeration from it. It then immediately checks if hasMoreElements() returns false,
-     * confirming that no elements are available for iteration in an empty sublist.</p>
+     * <p>The test creates an empty enumeration and then checks if hasMoreElements() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      * <p>- HEnumeration is created from the empty sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Enumeration state remains unchanged</p>
      * <p>- No elements are available for iteration</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -702,7 +670,7 @@ public class EnumerationAdapterTest
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 1);
         HEnumeration subEnumer = sub.elements();
 
-        assertFalse("Empty subList should have no elements", subEnumer.hasMoreElements());
+        assertFalse("Should have no elements", subEnumer.hasMoreElements());
     }
 
     /**
@@ -710,26 +678,23 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() throws NoSuchElementException when called on an
-     * enumeration created from an empty sublist, ensuring proper exception handling.</p>
+     * enumeration created from an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty sublist.
-     * This ensures robustness and proper error reporting when attempting to access elements
-     * from an empty sublist.</p>
+     * <p>The test is designed to validate exception handling for the edge case
+     * of an empty sublist.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty sublist (from index 0 to 0, which is empty) and creates an
-     * enumeration from it. It then attempts to call nextElement() and expects a NoSuchElementException
-     * to be thrown since there are no elements to return.</p>
+     * <p>The test creates an empty enumeration. It then attempts to call nextElement()
+     * and expects a NoSuchElementException to be thrown since there are no elements to return.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 0 to 0 of the main vector</p>
      * <p>- HEnumeration is created from the empty sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
-     * <p>- Enumeration remains in exhausted state</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>nextElement() should throw NoSuchElementException when called on an empty sublist.</p>
@@ -751,19 +716,16 @@ public class EnumerationAdapterTest
      * elements and returns them properly during iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate enumeration behavior with null values in sublists.
-     * This ensures that sublist enumerations can handle null elements without throwing exceptions
-     * and correctly report their presence.</p>
+     * <p>The test is designed to validate enumeration behavior with null values in sublists.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with four null elements, then creates a sublist containing
-     * three of them (indices 1 to 4). It verifies that hasMoreElements() returns true initially,
-     * then iterates through the sublist enumeration, checking that each call to nextElement()
-     * returns null and that hasMoreElements() correctly tracks the remaining elements.</p>
+     * <p>The test creates a sublist with three null elements. It verifies that hasMoreElements()
+     * returns true initially, then iterates through the sublist enumeration, checking that nextElement()
+     * returns null each call and that hasMoreElements() correctly tracks the remaining elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 4 null elements: [null, null, null, null]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
+     * <p>- SubListAdapter is created from indexes 1 to 4 of the main vector</p>
      * <p>- HEnumeration is created from sublist.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
@@ -772,7 +734,6 @@ public class EnumerationAdapterTest
      * <p>- All three null elements have been consumed</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>hasMoreElements() should return true initially</p>
      * <p>All three calls to nextElement() should return null</p>
      * <p>hasMoreElements() should return false after the third element is consumed</p>
      */
@@ -843,21 +804,20 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasMoreElements() returns false when the enumeration is created
-     * from an empty nested sublist, indicating that no elements are available for iteration.</p>
+     * from an empty nested sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of an empty nested sublist. This ensures
-     * that nested sublist enumerations correctly handle empty ranges.</p>
+     * <p>The test is designed to validate the edge case of an empty nested sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a sublist from the main vector, then creates an empty sub-sublist
-     * (from index 1 to 1, which is empty) from that sublist. It creates an enumeration from
-     * the empty nested sublist and checks if hasMoreElements() returns false.</p>
+     * from that sublist. It creates an enumeration from the empty nested sublist and checks
+     * if hasMoreElements() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 4 of the main vector</p>
-     * <p>- Second SubListAdapter is created from indices 1 to 1 (empty range) of the first sublist</p>
+     * <p>- Second SubListAdapter is created from indices 1 to 1 of the first sublist</p>
      * <p>- HEnumeration is created from the empty nested sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -874,7 +834,7 @@ public class EnumerationAdapterTest
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
         HEnumeration subEnumer = subSub.elements();
 
-        assertFalse("Empty sub-subList should have no elements", subEnumer.hasMoreElements());
+        assertFalse("Should have no elements", subEnumer.hasMoreElements());
     }
 
     /**
@@ -882,23 +842,20 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() throws NoSuchElementException when called on an
-     * enumeration created from an empty nested sublist, ensuring proper exception handling.</p>
+     * enumeration created from an empty nested sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty nested sublist.
-     * This ensures robustness and proper error reporting when attempting to access elements
-     * from an empty nested sublist.</p>
+     * <p>The test is designed to validate exception handling for the edge case of an empty nested sublist.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a sublist from the main vector, then creates an empty sub-sublist
-     * (from index 1 to 1, which is empty) from that sublist. It creates an enumeration from
-     * the empty nested sublist and attempts to call nextElement(), expecting a NoSuchElementException
-     * to be thrown.</p>
+     * <p>The test creates a sublist from the main vector, then creates an empty sub-sublist from that sublist.
+     * It creates an enumeration from the empty nested sublist and attempts to call nextElement(),
+     * expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 4 of the main vector</p>
-     * <p>- Second SubListAdapter is created from indices 1 to 1 (empty range) of the first sublist</p>
+     * <p>- Second SubListAdapter is created from indices 1 to 1 of the first sublist</p>
      * <p>- HEnumeration is created from the empty nested sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
