@@ -276,7 +276,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the exception handling behavior of the enumeration
-     * when it's exhausted. This is an edge case test for robustness.</p>
+     * when it's exhausted.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first iterates through all elements until hasMoreElements() returns false.
@@ -389,7 +389,7 @@ public class EnumerationAdapterTest
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three string of "0". It then
      * iterates through the enumeration, verifying that each call to nextElement() returns
-     * the same value element.</p>
+     * the same value.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 identical elements: ["0", "0", "0"]</p>
@@ -426,7 +426,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextElement() correctly handles collections containing null
-     * elements and returns them properly during iteration.</p>
+     * elements and properly returns them during iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate enumeration behavior with null values, without throwing exceptions.</p>
@@ -619,7 +619,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the exception handling behavior of a sublist enumeration
-     * when it's exhausted. This ensures proper error reporting for sublist operations.</p>
+     * when it's exhausted.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first exhausts the sublist enumeration by iterating through all elements until
@@ -780,7 +780,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the complete iteration sequence of a nested sublist enumeration.
-     * This ensures that sublist operations work correctly even when nested multiple levels deep.</p>
+     * This ensures that sublist operations work correctly even with multiple nested levels.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a multiple sublist from the main vector. It then iterates

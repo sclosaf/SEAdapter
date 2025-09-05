@@ -277,7 +277,7 @@ public class TestRunner
                             System.out.println("     >>> " + line.trim());
 
                             count++;
-                            if(count >= 3) break;
+                            if(count >= 5) break;
                         }
                     }
 
