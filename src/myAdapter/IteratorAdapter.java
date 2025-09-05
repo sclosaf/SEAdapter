@@ -107,7 +107,6 @@ public class IteratorAdapter implements HIterator
     }
 
     /**
-     *
      * Removes from the underlying collection the last element returned by the
      * iterator (optional operation).  This method can be called only once per
      * call to <code>next</code>.  The behavior of an iterator is unspecified if

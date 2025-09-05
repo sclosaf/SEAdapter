@@ -66,28 +66,28 @@ public class TestRunner
     private static long time = 0;
     private static List<Failure> failures;
 
-    private static final String SEPARATOR = "================================================================";
-    private static final String SUB_SEPARATOR = "----------------------------------------------------------------";
-    private static final String HEADER_START = ">>> ";
-    private static final String SUCCESS_MARKER = "[✓]";
-    private static final String FAIL_MARKER = "[✗]";
-    private static final String WARNING_MARKER = "[!]";
-    private static final String INFO_MARKER = "[i]";
-
     private static final String BOLD = "\033[1m";
     private static final String RESET = "\033[0m";
 
+    private static final String SEPARATOR = "================================================================";
+    private static final String SUB_SEPARATOR = "----------------------------------------------------------------";
+    private static final String HEADER_START = ">>> ";
+    private static final String SUCCESS_MARKER = "[" + BOLD + "+" + RESET + "]";
+    private static final String FAIL_MARKER = "[" + BOLD + "-" + RESET + "]";
+    private static final String WARNING_MARKER = "[!]";
+    private static final String INFO_MARKER = "[i]";
+
     /**
-     * Default constructor
+     * Default constructor.
      */
     TestRunner()
     {}
 
     /**
      * Main entry point for the test runner.
-     * Executes all test classes and prints comprehensive results.
+     * Executes all test classes and prints the results.
      *
-     * @param args input parameters (unused)
+     * @param args CLI parameters (unused)
      */
     public static void main(String[] args)
     {
@@ -127,7 +127,6 @@ public class TestRunner
         System.out.println(INFO_MARKER + " Start time: " + BOLD + sdf.format(new Date()) + RESET);
         System.out.println(INFO_MARKER + " JUnit version: " + BOLD + "4.13" + RESET);
         System.out.println(INFO_MARKER + " Java version: " + BOLD + System.getProperty("java.version") + RESET);
-        System.out.println(INFO_MARKER + " JVM: " + BOLD + System.getProperty("java.vm.name") + " " + System.getProperty("java.vm.version") + RESET);
 
         System.out.println("\n" + HEADER_START + BOLD + "CONFIGURED TEST CLASSES:" + RESET);
         System.out.println("  • EnumerationAdapterTest");
@@ -209,10 +208,7 @@ public class TestRunner
 
         System.out.printf("%-25s: ", "Total time");
 
-        if(time > 5000)
-            System.out.printf(BOLD + "%d ms" + RESET + " %s", time, WARNING_MARKER);
-        else
-            System.out.printf(BOLD + "%d ms" + RESET, time);
+        System.out.printf(BOLD + "%d ms" + RESET, time);
 
         System.out.println();
 
@@ -222,10 +218,7 @@ public class TestRunner
 
             System.out.printf("%-25s: ", "Average time per test");
 
-            if(avgTime > 1000)
-                System.out.printf(BOLD + "%.2f ms" + RESET + " %s", avgTime, WARNING_MARKER);
-            else
-                System.out.printf("%.2f ms", avgTime);
+            System.out.printf("%.2f ms", avgTime);
 
             System.out.println();
         }
@@ -237,10 +230,7 @@ public class TestRunner
 
         System.out.printf("%-25s: ", "Memory used");
 
-        if(memoryMB > 100)
-            System.out.printf(BOLD + "%.2f MB" + RESET + " %s%n", memoryMB, WARNING_MARKER);
-        else
-            System.out.printf("%.2f MB%n", memoryMB);
+        System.out.printf("%.2f MB%n", memoryMB);
 
     }
 
