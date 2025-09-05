@@ -9,11 +9,8 @@ import java.lang.NullPointerException;
 /**
  * An adapter that implements the HEnumeration interface to iterate over elements
  * of a VectorAdapter. Provides a way to enumerate elements of a vector
- * or a specific portion of it.
- * <p>
- * This class allows iterating through all elements of a VectorAdapter or only
- * a specific subsection defined by start and end indices.
- * </p>
+ * or a specific restricted portion of it by the use of starting and ending
+ * indices.
 
  * @author      Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see         HEnumeration
@@ -23,7 +20,7 @@ public class EnumerationAdapter implements HEnumeration
 {
     /**
      * The current position of this enumeration. The next element to be returned
-     * by nextElement() is at this index. This cursor moves forward.
+     * by nextElement() is at this index. This cursor moves only forward.
      */
     private int cursor = 0;
 
@@ -33,13 +30,13 @@ public class EnumerationAdapter implements HEnumeration
     private final int end;
 
     /**
-     * The VectorAdapter being enumerated. This adapter provides access to the
+     * The VectorAdapter being enumerated. This vector provides access to the
      * underlying elements that this enumeration iterates over.
      */
     private VectorAdapter vect;
 
     /**
-     * Constructs an EnumerationAdapter that iterates over all elements
+     * Constructs an EnumerationAdapter that iterates over all the elements
      * of the specified VectorAdapter.
      *
      * @param vect  the VectorAdapter to enumerate over
@@ -51,7 +48,7 @@ public class EnumerationAdapter implements HEnumeration
     }
 
     /**
-     * Constructs an EnumerationAdapter that iterates over a specific range
+     * Constructs an EnumerationAdapter that iterates over a specified range
      * of elements in the specified VectorAdapter.
      *
      * @param vect   the VectorAdapter to enumerate over
