@@ -4,7 +4,6 @@ import myException.IllegalStateException;
 
 import java.util.NoSuchElementException;
 
-
 /**
  * An adapter that implements the HListIterator interface to iterate over elements
  * of a VectorAdapter. Provides bidirectional iteration with support for element

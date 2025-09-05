@@ -8,7 +8,7 @@ import java.lang.IndexOutOfBoundsException;
 import java.lang.ArrayIndexOutOfBoundsException;
 
 /**
- * A view of a portion of a {@code VectorAdapter} or another {@code SubListAdapter}.
+ * A view of a portion of a <code>VectorAdapter</code> or another <code>SubListAdapter</code>.
  * The sublist supports all of the optional list operations supported by the backing vector.
  * <p>
  * This class eliminates the need for explicit range operations. Any operation that
@@ -40,17 +40,17 @@ public class SubListAdapter extends VectorAdapter
 
     /**
      * Constructs a sublist view of the specified vector between the specified
-     * {@code fromIndex} (inclusive) and {@code toIndex} (exclusive).
+     * <code>fromIndex</code> (inclusive) and <code>toIndex</code> (exclusive).
      *
      * @param vec the backing vector from which the sublist is derived.
      * @param fromIndex bottom endpoint (inclusive) of the sublist.
      * @param toIndex top endpoint (exclusive) of the sublist.
-     * @throws NullPointerException if the specified vector is {@code null}.
-     * @throws IllegalArgumentException if {@code fromIndex} is greater than {@code toIndex}.
-     * @throws IndexOutOfBoundsException if {@code fromIndex} or {@code toIndex} is out of range
-     *         ({@code fromIndex < 0 || toIndex > vec.size()}).
+     * @throws NullPointerException if the specified vector is <code>null</code>.
+     * @throws IllegalArgumentException if <code>fromIndex</code> is greater than <code>toIndex</code>.
+     * @throws IndexOutOfBoundsException if <code> fromIndex</code> or <code> toIndex</code> is out of range
+     *         (<code> fromIndex < 0 || toIndex > vec.size()</code>).
      */
-    public SubListAdapter(Vector vec, int fromIndex, int toIndex)
+    SubListAdapter(Vector vec, int fromIndex, int toIndex)
     {
         if(vec == null)
             throw new NullPointerException();

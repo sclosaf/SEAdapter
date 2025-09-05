@@ -1,6 +1,5 @@
 package myAdapter;
 
-
 /**
  * An ordered collection (also known as a <i>sequence</i>).  The user of this
  * interface has precise control over where in the list each element is
