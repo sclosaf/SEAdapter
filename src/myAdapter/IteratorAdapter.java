@@ -10,13 +10,7 @@ import java.lang.NullPointerException;
 
 /**
  * An adapter that implements the HIterator interface to iterate over elements
- * of a VectorAdapter. Provides a way to iterate through elements of a vector
- * or a specific portion of it, with support for element removal.
- * <p>
- * This class allows iterating through all elements of a VectorAdapter or only
- * a specific subsection defined by start and end indices. Unlike HEnumeration,
- * HIterator supports removing elements during iteration.
- * </p>
+ * of a VectorAdapter or a specific portion of it, with support for element removal.
  *
  * @author      Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see         HIterator
@@ -26,15 +20,14 @@ import java.lang.NullPointerException;
 public class IteratorAdapter implements HIterator
 {
     /**
-     * The current position of this iterator. The next element to be returned
+     * The current position of this iterator cursor. The next element to be returned
      * by next() is at this index. This iterator only moves forward.
      */
     protected int cursor = 0;
 
     /**
-     * The index of the last element returned by next(), or -1 if no element
-     * has been returned yet or if the element has been removed. This is used
-     * to track which element should be removed when remove() is called.
+     * The index of the last element returned by next() or -1 if no element
+     * has been returned yet or if the element has been removed.
      */
     protected int lastRet = -1;
 
@@ -46,7 +39,6 @@ public class IteratorAdapter implements HIterator
 
     /**
      * The ending index (exclusive) of the iteration range within the vector.
-     * When the cursor reaches this value, hasNext() will return false.
      */
     protected int end;
 
@@ -60,12 +52,12 @@ public class IteratorAdapter implements HIterator
      * Constructs an IteratorAdapter that iterates over a specific range
      * of elements in the specified VectorAdapter.
      *
-     * @param vect   the VectorAdapter to iterate over
-     * @param start  the starting index (inclusive) of the range to iterate
-     * @param end    the ending index (exclusive) of the range to iterate
-     * @throws NullPointerException if the specified VectorAdapter is null
-     * @throws IllegalArgumentException if the start index is greater than the end index
-     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds
+     * @param vect   the VectorAdapter to iterate over.
+     * @param start  the starting index (inclusive) of the range to iterate.
+     * @param end    the ending index (exclusive) of the range to iterate.
+     * @throws NullPointerException if the specified VectorAdapter is null.
+     * @throws IllegalArgumentException if the start index is greater than the end index.
+     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds.
      */
     IteratorAdapter(VectorAdapter vect, int start, int end)
     {
@@ -122,8 +114,6 @@ public class IteratorAdapter implements HIterator
      * the underlying collection is modified while the iteration is in
      * progress in any way other than by calling this method.
      *
-     * @exception UnsupportedOperationException if the <code>remove</code>
-     *		operation is not supported by this HIterator.
      * @exception IllegalStateException if the <code>next</code> method has not
      *		yet been called, or the <code>remove</code> method has already
      *		been called after the last call to the <code>next</code>

@@ -9,9 +9,7 @@ import java.lang.ArrayIndexOutOfBoundsException;
 
 /**
  * A view of a portion of a {@code VectorAdapter} or another {@code SubListAdapter}.
- * The sublist is backed by the original vector, so non-structural changes in the
- * sublist are reflected in the original vector, and vice-versa. The sublist supports
- * all of the optional list operations supported by the backing list.
+ * The sublist supports all of the optional list operations supported by the backing vector.
  * <p>
  * This class eliminates the need for explicit range operations. Any operation that
  * expects a list can be used as a range operation by passing a sublist view instead
@@ -19,9 +17,9 @@ import java.lang.ArrayIndexOutOfBoundsException;
  *
  * The semantics of the list returned by this method become undefined if the backing
  * list is <i>structurally modified</i> in any way other than via the returned list.
- * Structural modifications are those that change the size of the backing list, or
+ * (Structural modifications are those that change the size of the backing list, or
  * otherwise perturb it in such a fashion that iterations in progress may yield
- * incorrect results.
+ * incorrect results.)
  *
  * @author  Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see     HList
@@ -42,15 +40,15 @@ public class SubListAdapter extends VectorAdapter
 
     /**
      * Constructs a sublist view of the specified vector between the specified
-     * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.
+     * {@code fromIndex} (inclusive) and {@code toIndex} (exclusive).
      *
-     * @param vec the backing vector from which the sublist is derived
-     * @param fromIndex bottom endpoint (inclusive) of the sublist
-     * @param toIndex top endpoint (exclusive) of the sublist
-     * @throws NullPointerException if the specified vector is {@code null}
-     * @throws IllegalArgumentException if {@code fromIndex} is greater than {@code toIndex}
+     * @param vec the backing vector from which the sublist is derived.
+     * @param fromIndex bottom endpoint (inclusive) of the sublist.
+     * @param toIndex top endpoint (exclusive) of the sublist.
+     * @throws NullPointerException if the specified vector is {@code null}.
+     * @throws IllegalArgumentException if {@code fromIndex} is greater than {@code toIndex}.
      * @throws IndexOutOfBoundsException if {@code fromIndex} or {@code toIndex} is out of range
-     *         ({@code fromIndex < 0 || toIndex > vec.size()})
+     *         ({@code fromIndex < 0 || toIndex > vec.size()}).
      */
     public SubListAdapter(Vector vec, int fromIndex, int toIndex)
     {
@@ -212,7 +210,7 @@ public class SubListAdapter extends VectorAdapter
      * Returns the offset of this sublist relative to the backing vector.
      * This is a helper method to manage sublist offsets throughout polymorphism.
      *
-     * @return the offset of the sublist relative to its backing vector
+     * @return the offset of the sublist relative to its backing vector.
      */
     protected int offset()
     {

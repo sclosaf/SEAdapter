@@ -9,11 +9,6 @@ import java.util.NoSuchElementException;
  * An adapter that implements the HListIterator interface to iterate over elements
  * of a VectorAdapter. Provides bidirectional iteration with support for element
  * modification, insertion, and removal.
- * <p>
- * This class extends IteratorAdapter to provide additional functionality for
- * bidirectional traversal, element replacement, and element insertion. It allows
- * iterating through elements of a VectorAdapter in both forward and reverse directions.
- * </p>
  *
  * @author      Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see         HListIterator
@@ -26,12 +21,12 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
      * Constructs a ListIteratorAdapter that iterates over a specific range
      * of elements in the specified VectorAdapter.
      *
-     * @param vect   the VectorAdapter to iterate over
-     * @param start  the starting index (inclusive) of the range to iterate
-     * @param end    the ending index (exclusive) of the range to iterate
-     * @throws NullPointerException if the specified VectorAdapter is null
-     * @throws IllegalArgumentException if the start index is greater than the end index
-     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds
+     * @param vect   the VectorAdapter to iterate over.
+     * @param start  the starting index (inclusive) of the range to iterate.
+     * @param end    the ending index (exclusive) of the range to iterate.
+     * @throws NullPointerException if the specified VectorAdapter is null.
+     * @throws IllegalArgumentException if the start index is greater than the end index.
+     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds.
      */
     ListIteratorAdapter(VectorAdapter vect, int start, int end)
     {
@@ -113,10 +108,6 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
      *
      * @param o the element with which to replace the last element returned by
      *          <code>next</code> or <code>previous</code>.
-     * @exception UnsupportedOperationException if the <code>set</code> operation
-     * 		is not supported by this list iterator.
-     * @exception ClassCastException if the class of the specified element
-     * 		prevents it from being added to this list.
      * @exception IllegalArgumentException if some aspect of the specified
      *		element prevents it from being added to this list.
      * @exception IllegalStateException if neither <code>next</code> nor
@@ -145,12 +136,6 @@ public class ListIteratorAdapter extends IteratorAdapter implements HListIterato
      * or <code>previousIndex</code>.)
      *
      * @param o the element to insert.
-     * @exception UnsupportedOperationException if the <code>add</code> method is
-     * 		not supported by this list iterator.
-     *
-     * @exception ClassCastException if the class of the specified element
-     * 		prevents it from being added to this list.
-     *
      * @exception IllegalArgumentException if some aspect of this element
      *            prevents it from being added to this list.
      */

@@ -93,10 +93,6 @@ public interface HList extends HCollection
      *
      * @param o element whose presence in this list is to be tested.
      * @return <code>true</code> if this list contains the specified element.
-     * @throws ClassCastException if the type of the specified element
-     * 	      is incompatible with this list (optional).
-     * @throws NullPointerException if the specified element is null and this
-     *         list does not support null elements (optional).
      */
     boolean contains(Object o);
 
@@ -150,12 +146,6 @@ public interface HList extends HCollection
      * @return <code>true</code> (as per the general contract of the
      *            <code>HCollection.add</code> method).
      *
-     * @throws UnsupportedOperationException if the <code>add</code> method is not
-     * 		 supported by this list.
-     * @throws ClassCastException if the class of the specified element
-     * 		 prevents it from being added to this list.
-     * @throws NullPointerException if the specified element is null and this
-     *           list does not support null elements.
      * @throws IllegalArgumentException if some aspect of this element
      *            prevents it from being added to this list.
      */
@@ -170,12 +160,6 @@ public interface HList extends HCollection
      *
      * @param o element to be removed from this list, if present.
      * @return <code>true</code> if this list contained the specified element.
-     * @throws ClassCastException if the type of the specified element
-     * 	         is incompatible with this list (optional).
-     * @throws NullPointerException if the specified element is null and this
-     *            list does not support null elements (optional).
-     * @throws UnsupportedOperationException if the <code>remove</code> method is
-     *		 not supported by this list.
      */
     boolean remove(Object o);
 
@@ -187,12 +171,6 @@ public interface HList extends HCollection
      * @param  c collection to be checked for containment in this list.
      * @return <code>true</code> if this list contains all of the elements of the
      * 	      specified collection.
-     * @throws ClassCastException if the types of one or more elements
-     *         in the specified collection are incompatible with this
-     *         list (optional).
-     * @throws NullPointerException if the specified collection contains one
-     *         or more null elements and this list does not support null
-     *         elements (optional).
      * @throws NullPointerException if the specified collection is
      *         <code>null</code>.
      * @see #contains(Object)
@@ -210,13 +188,7 @@ public interface HList extends HCollection
      * @param c collection whose elements are to be added to this list.
      * @return <code>true</code> if this list changed as a result of the call.
      *
-     * @throws UnsupportedOperationException if the <code>addAll</code> method is
-     *         not supported by this list.
-     * @throws ClassCastException if the class of an element in the specified
-     * 	      collection prevents it from being added to this list.
-     * @throws NullPointerException if the specified collection contains one
-     *         or more null elements and this list does not support null
-     *         elements, or if the specified collection is <code>null</code>.
+     * @throws NullPointerException if the specified collection is <code>null</code>.
      * @throws IllegalArgumentException if some aspect of an element in the
      *         specified collection prevents it from being added to this
      *         list.
@@ -240,14 +212,7 @@ public interface HList extends HCollection
      * @param c elements to be inserted into this list.
      * @return <code>true</code> if this list changed as a result of the call.
      *
-     * @throws UnsupportedOperationException if the <code>addAll</code> method is
-     *		 not supported by this list.
-     * @throws ClassCastException if the class of one of elements of the
-     * 		 specified collection prevents it from being added to this
-     * 		 list.
-     * @throws NullPointerException if the specified collection contains one
-     *           or more null elements and this list does not support null
-     *           elements, or if the specified collection is <code>null</code>.
+     * @throws NullPointerException if the specified collection is <code>null</code>.
      * @throws IllegalArgumentException if some aspect of one of elements of
      *		 the specified collection prevents it from being added to
      *		 this list.
@@ -264,14 +229,6 @@ public interface HList extends HCollection
      *          this list.
      * @return <code>true</code> if this list changed as a result of the call.
      *
-     * @throws UnsupportedOperationException if the <code>removeAll</code> method
-     * 		 is not supported by this list.
-     * @throws ClassCastException if the types of one or more elements
-     *            in this list are incompatible with the specified
-     *            collection (optional).
-     * @throws NullPointerException if this list contains one or more
-     *            null elements and the specified collection does not support
-     *            null elements (optional).
      * @throws NullPointerException if the specified collection is
      *            <code>null</code>.
      * @see #remove(Object)
@@ -289,14 +246,6 @@ public interface HList extends HCollection
      *
      * @return <code>true</code> if this list changed as a result of the call.
      *
-     * @throws UnsupportedOperationException if the <code>retainAll</code> method
-     * 		 is not supported by this list.
-     * @throws ClassCastException if the types of one or more elements
-     *            in this list are incompatible with the specified
-     *            collection (optional).
-     * @throws NullPointerException if this list contains one or more
-     *            null elements and the specified collection does not support
-     *            null elements (optional).
      * @throws NullPointerException if the specified collection is
      *         <code>null</code>.
      * @see #remove(Object)
@@ -308,9 +257,6 @@ public interface HList extends HCollection
      * Removes all of the elements from this list (optional operation).  This
      * list will be empty after this call returns (unless it throws an
      * exception).
-     *
-     * @throws UnsupportedOperationException if the <code>clear</code> method is
-     * 		 not supported by this list.
      */
     void clear();
 
@@ -371,13 +317,6 @@ public interface HList extends HCollection
      * @param index index of element to replace.
      * @param element element to be stored at the specified position.
      * @return the element previously at the specified position.
-     *
-     * @throws UnsupportedOperationException if the <code>set</code> method is not
-     *		 supported by this list.
-     * @throws    ClassCastException if the class of the specified element
-     * 		 prevents it from being added to this list.
-     * @throws    NullPointerException if the specified element is null and
-     *            this list does not support null elements.
      * @throws    IllegalArgumentException if some aspect of the specified
      *		 element prevents it from being added to this list.
      * @throws    IndexOutOfBoundsException if the index is out of range
@@ -394,12 +333,6 @@ public interface HList extends HCollection
      * @param index index at which the specified element is to be inserted.
      * @param element element to be inserted.
      *
-     * @throws UnsupportedOperationException if the <code>add</code> method is not
-     *		 supported by this list.
-     * @throws    ClassCastException if the class of the specified element
-     * 		 prevents it from being added to this list.
-     * @throws    NullPointerException if the specified element is null and
-     *            this list does not support null elements.
      * @throws    IllegalArgumentException if some aspect of the specified
      *		 element prevents it from being added to this list.
      * @throws    IndexOutOfBoundsException if the index is out of range
@@ -416,8 +349,6 @@ public interface HList extends HCollection
      * @param index the index of the element to removed.
      * @return the element previously at the specified position.
      *
-     * @throws UnsupportedOperationException if the <code>remove</code> method is
-     *		 not supported by this list.
      * @throws IndexOutOfBoundsException if the index is out of range (index
      *            &lt; 0 || index &gt;= size()).
      */
@@ -433,10 +364,6 @@ public interface HList extends HCollection
      * @param o element to search for.
      * @return the index in this list of the first occurrence of the specified
      * 	      element, or -1 if this list does not contain this element.
-     * @throws ClassCastException if the type of the specified element
-     * 	      is incompatible with this list (optional).
-     * @throws NullPointerException if the specified element is null and this
-     *         list does not support null elements (optional).
      */
     int indexOf(Object o);
 
@@ -450,10 +377,6 @@ public interface HList extends HCollection
      * @param o element to search for.
      * @return the index in this list of the last occurrence of the specified
      * 	      element, or -1 if this list does not contain this element.
-     * @throws ClassCastException if the type of the specified element
-     * 	      is incompatible with this list (optional).
-     * @throws NullPointerException if the specified element is null and this
-     *         list does not support null elements (optional).
      */
     int lastIndexOf(Object o);
 

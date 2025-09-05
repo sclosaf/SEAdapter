@@ -44,8 +44,6 @@ public interface HIterator
      * the underlying collection is modified while the iteration is in
      * progress in any way other than by calling this method.
      *
-     * @exception UnsupportedOperationException if the <code>remove</code>
-     *		 operation is not supported by this HIterator.
      * @exception IllegalStateException if the <code>next</code> method has not
      *		 yet been called, or the <code>remove</code> method has already
      *		 been called after the last call to the <code>next</code>

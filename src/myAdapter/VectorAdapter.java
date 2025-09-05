@@ -1019,11 +1019,6 @@ public class VectorAdapter implements HList
      * iterator interface, relying on the backing list's <code>size()</code>,
      * <code>get(int)</code>, and <code>remove(int)</code> methods.<p>
      *
-     * Note that the iterator returned by this method will throw an
-     * <code>UnsupportedOperationException</code> in response to its
-     * <code>remove</code> method unless the list's <code>remove(int)</code> method is
-     * overridden.</p>
-     *
      * @return an iterator over the elements in this list in proper sequence.
      */
     public HIterator iterator()
@@ -1059,12 +1054,6 @@ public class VectorAdapter implements HList
      * <code>get(int)</code>, <code>set(int, Object)</code>, <code>add(int, Object)</code>
      * and <code>remove(int)</code> methods.
      *
-     * Note that the list iterator returned by this implementation will throw
-     * an <code>UnsupportedOperationException</code> in response to its
-     * <code>remove</code>, <code>set</code> and <code>add</code> methods unless the
-     * list's <code>remove(int)</code>, <code>set(int, Object)</code>, and
-     * <code>add(int, Object)</code> methods are overridden.
-     *
      * @param index index of the first element to be returned from the list
      *		   iterator (by a call to the <code>next</code> method).
      *
@@ -1086,7 +1075,7 @@ public class VectorAdapter implements HList
      * Returns the offset of this sublist relative to the backing vector.
      * This is a helper method to manage sublist offset throughout polymorphism.
      *
-     * @return the offset of the list relative to its VectorAdapter
+     * @return the offset of the list relative to its VectorAdapter.
      */
     protected int offset()
     {

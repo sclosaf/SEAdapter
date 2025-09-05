@@ -55,7 +55,6 @@ package myAdapter;
  */
 public interface HCollection
 {
-
     /**
      * Returns the number of elements in this collection.  If this collection
      * contains more than <code>Integer.MAX_VALUE</code> elements, returns
@@ -81,10 +80,6 @@ public interface HCollection
      * @param o element whose presence in this collection is to be tested.
      * @return <code>true</code> if this collection contains the specified
      *         element
-     * @throws ClassCastException if the type of the specified element
-     * 	      is incompatible with this collection (optional).
-     * @throws NullPointerException if the specified element is null and this
-     *         collection does not support null elements (optional).
      */
     boolean contains(Object o);
 
@@ -186,12 +181,6 @@ public interface HCollection
      * @return <code>true</code> if this collection changed as a result of the
      *         call
      *
-     * @throws UnsupportedOperationException <code>add</code> is not supported by
-     *         this collection.
-     * @throws ClassCastException class of the specified element prevents it
-     *         from being added to this collection.
-     * @throws NullPointerException if the specified element is null and this
-     *         collection does not support null elements.
      * @throws IllegalArgumentException some aspect of this element prevents
      *         it from being added to this collection.
      */
@@ -209,13 +198,6 @@ public interface HCollection
      * @param o element to be removed from this collection, if present.
      * @return <code>true</code> if this collection changed as a result of the
      *         call
-     *
-     * @throws ClassCastException if the type of the specified element
-     * 	      is incompatible with this collection (optional).
-     * @throws NullPointerException if the specified element is null and this
-     *         collection does not support null elements (optional).
-     * @throws UnsupportedOperationException remove is not supported by this
-     *         collection.
      */
     boolean remove(Object o);
 
@@ -226,12 +208,6 @@ public interface HCollection
      * @param  c collection to be checked for containment in this collection.
      * @return <code>true</code> if this collection contains all of the elements
      *	      in the specified collection
-     * @throws ClassCastException if the types of one or more elements
-     *         in the specified collection are incompatible with this
-     *         collection (optional).
-     * @throws NullPointerException if the specified collection contains one
-     *         or more null elements and this collection does not support null
-     *         elements (optional).
      * @throws NullPointerException if the specified collection is
      *         <code>null</code>.
      * @see    #contains(Object)
@@ -249,14 +225,6 @@ public interface HCollection
      * @param c elements to be inserted into this collection.
      * @return <code>true</code> if this collection changed as a result of the
      *         call
-     *
-     * @throws UnsupportedOperationException if this collection does not
-     *         support the <code>addAll</code> method.
-     * @throws ClassCastException if the class of an element of the specified
-     * 	      collection prevents it from being added to this collection.
-     * @throws NullPointerException if the specified collection contains one
-     *         or more null elements and this collection does not support null
-     *         elements, or if the specified collection is <code>null</code>.
      * @throws IllegalArgumentException some aspect of an element of the
      *	      specified collection prevents it from being added to this
      *	      collection.
@@ -275,14 +243,6 @@ public interface HCollection
      * @return <code>true</code> if this collection changed as a result of the
      *         call
      *
-     * @throws UnsupportedOperationException if the <code>removeAll</code> method
-     * 	      is not supported by this collection.
-     * @throws ClassCastException if the types of one or more elements
-     *         in this collection are incompatible with the specified
-     *         collection (optional).
-     * @throws NullPointerException if this collection contains one or more
-     *         null elements and the specified collection does not support
-     *         null elements (optional).
      * @throws NullPointerException if the specified collection is
      *         <code>null</code>.
      * @see #remove(Object)
@@ -300,14 +260,6 @@ public interface HCollection
      * @return <code>true</code> if this collection changed as a result of the
      *         call
      *
-     * @throws UnsupportedOperationException if the <code>retainAll</code> method
-     * 	      is not supported by this HCollection.
-     * @throws ClassCastException if the types of one or more elements
-     *         in this collection are incompatible with the specified
-     *         collection (optional).
-     * @throws NullPointerException if this collection contains one or more
-     *         null elements and the specified collection does not support null
-     *         elements (optional).
      * @throws NullPointerException if the specified collection is
      *         <code>null</code>.
      * @see #remove(Object)
@@ -319,9 +271,6 @@ public interface HCollection
      * Removes all of the elements from this collection (optional operation).
      * This collection will be empty after this method returns unless it
      * throws an exception.
-     *
-     * @throws UnsupportedOperationException if the <code>clear</code> method is
-     *         not supported by this collection.
      */
     void clear();
 

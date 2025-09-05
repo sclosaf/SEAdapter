@@ -113,8 +113,6 @@ public interface HListIterator extends HIterator
      * can be made only if <code>HListIterator.add</code> has not been called after
      * the last call to <code>next</code> or <code>previous</code>.
      *
-     * @exception UnsupportedOperationException if the <code>remove</code>
-     * 		 operation is not supported by this list iterator.
      * @exception IllegalStateException neither <code>next</code> nor
      *		 <code>previous</code> have been called, or <code>remove</code> or
      *		 <code>add</code> have been called after the last call to *
@@ -131,10 +129,6 @@ public interface HListIterator extends HIterator
      *
      * @param o the element with which to replace the last element returned by
      *          <code>next</code> or <code>previous</code>.
-     * @exception UnsupportedOperationException if the <code>set</code> operation
-     * 		 is not supported by this list iterator.
-     * @exception ClassCastException if the class of the specified element
-     * 		 prevents it from being added to this list.
      * @exception IllegalArgumentException if some aspect of the specified
      *		 element prevents it from being added to this list.
      * @exception IllegalStateException if neither <code>next</code> nor
@@ -158,12 +152,6 @@ public interface HListIterator extends HIterator
      * or <code>previousIndex</code>.)
      *
      * @param o the element to insert.
-     * @exception UnsupportedOperationException if the <code>add</code> method is
-     * 		 not supported by this list iterator.
-     *
-     * @exception ClassCastException if the class of the specified element
-     * 		 prevents it from being added to this list.
-     *
      * @exception IllegalArgumentException if some aspect of this element
      *            prevents it from being added to this list.
      */

@@ -8,10 +8,9 @@ import java.lang.NullPointerException;
 
 /**
  * An adapter that implements the HEnumeration interface to iterate over elements
- * of a VectorAdapter. Provides a way to enumerate elements of a vector
- * or a specific restricted portion of it by the use of starting and ending
- * indices.
-
+ * of a VectorAdapter or a specific restricted portion of it by the use
+ * of starting and ending indexes.
+ *
  * @author      Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see         HEnumeration
  * @see         VectorAdapter
@@ -19,7 +18,7 @@ import java.lang.NullPointerException;
 public class EnumerationAdapter implements HEnumeration
 {
     /**
-     * The current position of this enumeration. The next element to be returned
+     * The current position of this enumeration cursor. The next element to be returned
      * by nextElement() is at this index. This cursor moves only forward.
      */
     private int cursor = 0;
@@ -39,8 +38,8 @@ public class EnumerationAdapter implements HEnumeration
      * Constructs an EnumerationAdapter that iterates over all the elements
      * of the specified VectorAdapter.
      *
-     * @param vect  the VectorAdapter to enumerate over
-     * @throws NullPointerException if the specified VectorAdapter is null
+     * @param vect  the VectorAdapter to enumerate over.
+     * @throws NullPointerException if the specified VectorAdapter is null.
      */
     EnumerationAdapter(VectorAdapter vect)
     {
@@ -51,12 +50,12 @@ public class EnumerationAdapter implements HEnumeration
      * Constructs an EnumerationAdapter that iterates over a specified range
      * of elements in the specified VectorAdapter.
      *
-     * @param vect   the VectorAdapter to enumerate over
-     * @param start  the starting index (inclusive) of the range to enumerate
-     * @param end    the ending index (exclusive) of the range to enumerate
-     * @throws NullPointerException if the specified VectorAdapter is null
-     * @throws IllegalArgumentException if the start index is greater than the end index
-     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds
+     * @param vect   the VectorAdapter to enumerate over.
+     * @param start  the starting index (inclusive) of the range to enumerate.
+     * @param end    the ending index (exclusive) of the range to enumerate.
+     * @throws NullPointerException if the specified VectorAdapter is null.
+     * @throws IllegalArgumentException if the start index is greater than the end index.
+     * @throws IndexOutOfBoundsException if the start or end index is out of the vector's bounds.
      */
     EnumerationAdapter(VectorAdapter vect, int start, int end)
     {

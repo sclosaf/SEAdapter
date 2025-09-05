@@ -3,7 +3,7 @@ package myAdapter;
 import java.util.EmptyStackException;
 
 /**
- * The <code>Stack</code> class represents a last-in-first-out
+ * The <code>StackAdapter</code> class represents a last-in-first-out
  * (LIFO) stack of objects. It extends class <code>Vector</code> with five
  * operations that allow a vector to be treated as a stack. The usual
  * <code>push</code> and <code>pop</code> operations are provided, as well as a
