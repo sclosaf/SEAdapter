@@ -692,8 +692,7 @@ public class EnumerationAdapterTest
      * enumeration created from an empty sublist, ensuring proper exception handling.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty sublist.
-     * This ensures proper exception reporting.</p>
+     * <p>The test is designed to validate exception handling for the edge case of an empty sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty sublist and creates an enumeration from it.
@@ -860,8 +859,7 @@ public class EnumerationAdapterTest
      * enumeration created from an empty nested sublist, ensuring proper exception handling.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty nested sublist.
-     * This ensures proper exception handling.</p>
+     * <p>The test is designed to validate exception handling for the edge case of an empty nested sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a sublist from the main vector, then creates an empty sub-sublist

@@ -124,17 +124,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns true when called at the beginning of iteration
-     * on a non-empty collection, ensuring proper detection of available elements.</p>
+     * on a non-empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the basic functionality of hasNext() method at the start
-     * of iteration. This ensures that iterators correctly identify available elements before
-     * any elements have been consumed.</p>
+     * of iteration. This validates the presence of elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with predefined elements and obtains an iterator.
-     * Without calling next(), it immediately checks if hasNext() returns true, indicating
-     * that elements are available for iteration.</p>
+     * <p>The test immediately checks if hasNext() returns true, indicating that elements are
+     * available for iteration.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -159,18 +157,15 @@ public class IteratorAdapterTest
      * Test method to verify that hasNext() returns true in the middle of iteration.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that hasNext() returns true when called in the middle of iteration,
-     * ensuring continuous detection of available elements during traversal.</p>
+     * <p>This test verifies that hasNext() returns true when called in the middle of iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate hasNext() behavior after partially consuming elements
-     * from the iterator. This ensures the method correctly reports remaining elements
-     * throughout the iteration process.</p>
+     * from the iterator. Reporting the presence of remaining elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It calls next() three times to advance the iterator position, then checks if
-     * hasNext() still returns true, indicating more elements are available.</p>
+     * <p>The test calls next() three times to advance the iterator position, then checks if
+     * hasNext() still returns true, indicating that more elements are available.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -198,17 +193,14 @@ public class IteratorAdapterTest
      * Test method to verify that hasNext() returns false at the end of iteration.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that hasNext() returns false after all elements have been consumed,
-     * ensuring proper detection of iteration completion.</p>
+     * <p>This test verifies that hasNext() returns false after all elements have been consumed.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the terminal behavior of hasNext() method.
-     * This ensures that iterators correctly report when no more elements are available
-     * after full traversal of the collection.</p>
+     * Ensuring it reports when no more elements are available.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It iterates through all elements using a while loop with hasNext() and next(),
+     * <p>The test iterates through all elements  with hasNext() and next(),
      * then checks if hasNext() returns false after exhaustion.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -238,17 +230,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() returns elements in the correct order during iteration,
-     * ensuring proper sequential access to collection elements.</p>
+     * ensuring proper sequential access.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the fundamental iteration functionality.
-     * This ensures that elements are returned in the proper sequence and that
-     * the iterator maintains correct position throughout traversal.</p>
+     * Ensuring proper sequence and position are maintained.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with mixed elements (including null) and obtains an iterator.
-     * It calls next() sequentially and verifies each returned element matches the expected value
-     * in the correct order. Finally, it confirms that hasNext() returns false after all elements.</p>
+     * <p>The test calls next() sequentially and verifies each returned element matches the expected value
+     * in the correct order. Finally, it checks that hasNext() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -280,16 +270,14 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() throws NoSuchElementException when called after all
-     * elements have been consumed, ensuring proper exception handling at iteration end.</p>
+     * elements have been consumed.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for the boundary condition
-     * of calling next() on an exhausted iterator. This ensures robustness and proper
-     * error reporting when attempting to access elements beyond collection limits.</p>
+     * of calling next() on an exhausted iterator.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It consumes all elements using a while loop, then attempts to call next() again,
+     * <p>The test consumes all elements using next() and hasNext(), then attempts to call next() again,
      * expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -318,15 +306,14 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns false when called on an iterator
-     * created from an empty collection, ensuring proper handling of empty collections.</p>
+     * created from an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior with empty collections.
-     * This ensures that hasNext() correctly identifies the absence of elements
-     * without throwing exceptions or returning incorrect values.</p>
+     * Ensuring proper handling of empty collections.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter and obtains an iterator.
+     * <p>The test obtains an iterator of an empty VectorAdapter.
      * It immediately checks if hasNext() returns false, indicating no elements
      * are available for iteration.</p>
      *
@@ -355,13 +342,11 @@ public class IteratorAdapterTest
      * Test method to verify that next() throws NoSuchElementException on empty collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that next() throws NoSuchElementException when called on an iterator
-     * created from an empty collection, ensuring proper exception handling for empty collections.</p>
+     * <p>This test verifies that next() throws NoSuchElementException on an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of empty collections.
-     * This ensures robustness and proper error reporting when attempting to access elements
-     * from an empty collection.</p>
+     * <p>The test is designed to validate robustness for the edge case of empty collections.
+     * This ensures proper exception handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and obtains an iterator.
@@ -392,17 +377,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that iterators correctly handle collections containing duplicate elements,
-     * ensuring proper element retrieval regardless of value repetition.</p>
+     * ensuring proper element retrieval.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate iterator behavior with homogeneous collections
-     * containing duplicate values. This ensures that value repetition doesn't affect
-     * the iteration process or element counting.</p>
+     * <p>The test is designed to validate iterator behavior with duplicate values.
+     * This ensures that value repetition doesn't affect the iteration process or element counting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three identical string elements "0".
-     * It obtains an iterator and verifies that next() returns "0" three times in sequence,
-     * and that hasNext() returns false after the third element.</p>
+     * It verifies that next() returns "0" three times in sequence,  and that hasNext()
+     * returns false after the third element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["0", "0", "0"]</p>
@@ -438,19 +422,17 @@ public class IteratorAdapterTest
      * Test method to verify proper iteration over collections with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that iterators correctly handle collections containing null elements,
-     * ensuring proper retrieval and handling of null values during iteration.</p>
+     * <p>This test verifies that iterators correctly handle collections containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior with collections containing
-     * null values. This ensures that null elements are properly returned by next()
-     * and don't interfere with the iteration process.</p>
+     * null values. This ensures that null elements are properly returned by
+     * next(), without throwing exceptions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three null elements.
-     * It obtains an iterator and verifies that hasNext() returns true initially,
-     * that next() returns null three times in sequence, and that hasNext() returns
-     * false after the third element.</p>
+     * <p>The test  verifies that hasNext() returns true initially, over null
+     * elements, that next() returns null three times in sequence, and that hasNext() returns
+     * false after the last element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: [null, null, null]</p>
@@ -487,16 +469,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly removes the first element when called
-     * after the first next() call, ensuring proper element removal and collection modification.</p>
+     * after the first next() call.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality at the start of iteration.
-     * This ensures that the iterator properly handles structural modifications and
-     * maintains collection integrity when removing the first element.</p>
+     * This ensures that the iterator properly handles structural modifications and  integrity
+     * when removing the first element.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It calls next() once to position at the first element, then calls remove() to delete it.
+     * <p>The test immediatly calls next() once to position calls remove() to delete it.
      * The test verifies that the collection size decreases, the first element changes,
      * and the removed element is no longer present.</p>
      *
@@ -531,17 +512,17 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly removes a middle element when called
-     * after multiple next() calls, ensuring proper element removal and collection modification.</p>
+     * after multiple next() calls.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality in the middle of iteration.
      * This ensures that the iterator properly handles structural modifications and
-     * maintains collection integrity when removing elements from the middle.</p>
+     * integrity when removing elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It calls next() three times to position at the third element ("3"), then calls remove()
-     * to delete it. The test verifies that the collection size decreases, the element
+     * It calls next() three times, then calls remove() to delete it.
+     * The test verifies that the collection size decreases, the element
      * at position 2 becomes null, and the removed element is no longer present.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -577,17 +558,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly removes the last element when called
-     * after consuming all elements, ensuring proper element removal and collection modification.</p>
+     * after consuming all elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality at the end of iteration.
      * This ensures that the iterator properly handles structural modifications and
-     * maintains collection integrity when removing the last element.</p>
+     * integrity when removing the last element.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It iterates through all elements using a while loop, then calls remove() to delete
-     * the last returned element ("5"). The test verifies that the collection size decreases,
+     * <p>The test iterates through all elements, then calls remove() to delete
+     * the last returned element. The test verifies that the collection size decreases,
      * the last element becomes null, and the removed element is no longer present.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -623,7 +603,7 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() throws IllegalStateException when called without
-     * a preceding next() call, ensuring proper usage of the iterator remove operation.</p>
+     * a preceding next() call.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for improper remove() usage.
@@ -631,8 +611,7 @@ public class IteratorAdapterTest
      * prevents invalid removal attempts.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * Without calling next() first, it immediately attempts to call remove(), expecting
+     * <p>The test, without calling next() first, immediately attempts to call remove(), expecting
      * an IllegalStateException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -659,16 +638,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() throws IllegalStateException when called twice
-     * without an intervening next() call, ensuring proper usage of the iterator remove operation.</p>
+     * without an intervening next() call.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for consecutive remove() calls.
-     * This ensures that the iterator enforces the proper sequence of operations and
-     * prevents multiple consecutive removals without repositioning.</p>
+     * This ensures that the iterator enforces the proper repositioning and
+     * prevents multiple consecutive removals.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It calls next() once to position at the first element, calls remove() to delete it,
+     * <p>The test calls next() once to position at the first element, calls remove() to delete it,
      * then immediately attempts to call remove() again without an intervening next() call,
      * expecting an IllegalStateException to be thrown.</p>
      *
@@ -699,16 +677,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly handles multiple element removals
-     * during iteration, ensuring proper collection modification and iterator behavior.</p>
+     * during iteration, ensuring proper collection modification.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate multiple removal operations during a single iteration.
-     * This ensures that the iterator properly handles consecutive structural modifications
-     * and maintains correct positioning throughout the process.</p>
+     * <p>The test is designed to validate multiple removal operations in a single iteration.
+     * This ensures that the iterator handles consecutive modifications and maintains correct
+     * positioning throughout the process.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements and obtains an iterator.
-     * It removes the first three elements in sequence by calling next() followed by remove()
+     * <p>The test removes the first three elements in sequence by calling next() followed by remove()
      * three times. The test verifies that the collection size decreases appropriately
      * and the remaining elements are in the expected positions.</p>
      *
@@ -753,13 +730,11 @@ public class IteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for remove() operation
-     * on empty collections. This ensures robustness and proper error reporting when
-     * attempting removal from an empty collection.</p>
+     * on empty collections.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter and obtains an iterator.
-     * It immediately attempts to call remove(), expecting an IllegalStateException
-     * to be thrown since no elements are available for removal.</p>
+     * <p>The test creates an iterator over an empty collection and, immediately attempts to call remove(),
+     * expecting an IllegalStateException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with no elements</p>
@@ -788,12 +763,12 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly handles removal of duplicate elements,
-     * ensuring proper collection modification regardless of value repetition.</p>
+     * ensuring proper modifications regardless of repetitions.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality with duplicate values.
      * This ensures that the iterator properly handles element removal based on position
-     * rather than value, and maintains collection integrity with duplicate elements.</p>
+     * rather than value.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three identical string elements "0".
@@ -837,17 +812,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns true when called at the beginning of iteration
-     * on a sublist iterator, ensuring proper detection of available elements in sublists.</p>
+     * on a sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the basic functionality of hasNext() method
-     * for sublist iterators. This ensures that sublist iterators correctly identify
-     * available elements before any elements have been consumed.</p>
+     * for sublist iterators. This ensures that sublist iterators identify
+     * available elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. Without calling next(), it immediately checks if
-     * hasNext() returns true, indicating that elements are available for iteration.</p>
+     * <p>The test immediately checks if hasNext() returns true, indicating that
+     * elements are available for iteration.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -875,17 +849,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns true when called in the middle of iteration
-     * on a sublist iterator, ensuring continuous detection of available elements during traversal.</p>
+     * on a sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate hasNext() behavior after partially consuming elements
-     * from a sublist iterator. This ensures that sublist iterators correctly report
-     * remaining elements throughout the iteration process.</p>
+     * <p>The test is designed to validate hasNext() behavior after partially consuming elements.
+     * This ensures that sublist iterators correctly report elements presence throughout the iteration.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It calls next() twice to advance the iterator position,
-     * then checks if hasNext() still returns true, indicating more elements are available.</p>
+     * <p>The test calls next() twice to advance the iterator position, then checks if
+     * hasNext() still returns true, indicating more elements are available.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -915,17 +887,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns false after all elements have been consumed
-     * from a sublist iterator, ensuring proper detection of iteration completion in sublists.</p>
+     * from a sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the terminal behavior of hasNext() method
-     * for sublist iterators. This ensures that sublist iterators correctly report
-     * when no more elements are available after full traversal of the sublist.</p>
+     * for sublist iterators. Ensures sublist iterators correctly report when no more
+     * elements are available.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It iterates through all elements using a while loop
-     * with hasNext() and next(), then checks if hasNext() returns false after exhaustion.</p>
+     * <p>The test iterates through all elements with hasNext() and next(), then checks if
+     * hasNext() returns false after exhaustion.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -956,18 +927,17 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() returns elements in the correct order during
-     * sublist iteration, ensuring proper sequential access to sublist elements.</p>
+     * sublist iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the fundamental iteration functionality
      * for sublist iterators. This ensures that elements are returned in the proper
-     * sequence and that the iterator maintains correct position throughout traversal.</p>
+     * sequence and maintaining a correct position.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It calls next() sequentially and verifies each
-     * returned element matches the expected value in the correct order. Finally,
-     * it confirms that hasNext() returns false after all elements.</p>
+     * <p>The test calls next() sequentially and verifies each returned element matches
+     * the expected value in the correct order. Finally, it confirms that hasNext() returns
+     * false after all elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -998,17 +968,15 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() throws NoSuchElementException when called after all
-     * elements have been consumed from a sublist iterator, ensuring proper exception handling.</p>
+     * elements have been consumed.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for the boundary condition
-     * of calling next() on an exhausted sublist iterator. This ensures robustness and
-     * proper error reporting when attempting to access elements beyond sublist limits.</p>
+     * of calling next() on an exhausted sublist iterator. This ensures proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It consumes all elements using a while loop, then
-     * attempts to call next() again, expecting a NoSuchElementException to be thrown.</p>
+     * <p>The test consumes all elements, then attempts to call next() again,
+     * expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -1038,21 +1006,19 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns false when called on an iterator
-     * created from an empty sublist, ensuring proper handling of empty sublists.</p>
+     * created from an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior with empty sublists.
-     * This ensures that hasNext() correctly identifies the absence of elements
-     * without throwing exceptions or returning incorrect values.</p>
+     * To ensure it correctly identifies the absence of elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty SubListAdapter (from index 0 to 0) from the main vector
-     * and obtains an iterator from the empty sublist. It immediately checks if
+     * <p>The test creates an iterator from the empty sublist. It immediately checks if
      * hasNext() returns false, indicating no elements are available for iteration.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HIterator is created from subList.iterator()</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -1077,21 +1043,19 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() throws NoSuchElementException when called on
-     * an iterator created from an empty sublist, ensuring proper exception handling.</p>
+     * an iterator created from an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for the edge case of
-     * empty sublists. This ensures robustness and proper error reporting when
-     * attempting to access elements from an empty sublist.</p>
+     * empty sublists. This ensures proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty SubListAdapter (from index 0 to 0) from the main vector
-     * and obtains an iterator from the empty sublist. It immediately attempts to
+     * <p>The test creates an iterator from the empty sublist. It immediately attempts to
      * call next(), expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HIterator is created from subList.iterator()</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -1116,19 +1080,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that sublist iterators correctly handle collections containing
-     * null elements, ensuring proper retrieval and handling of null values.</p>
+     * null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior with sublists containing
-     * null values. This ensures that null elements are properly returned by next()
-     * and don't interfere with the iteration process.</p>
+     * null values. This ensures null elements are properly returned and don't interfere.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple null elements, then creates
-     * a SubListAdapter covering indices 1 to 4 (three null elements). It obtains
-     * an iterator from the sublist and verifies that hasNext() returns true initially,
-     * that next() returns null three times in sequence, and that hasNext() returns
-     * false after the third element.</p>
+     * <p>The test creates a SubListAdapter with multiple null elements. It obtains
+     * an iterator from it and verifies that next() returns null three times in sequence
+     * and that hasNext() returns false after the third element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 4 elements: [null, null, null, null]</p>
@@ -1167,21 +1128,17 @@ public class IteratorAdapterTest
      * Test method to verify proper element removal at the beginning of sublist iteration.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly removes the first element from a sublist
-     * when called after the first next() call, ensuring proper element removal and
-     * collection modification in both sublist and original vector.</p>
+     * <p>This test verifies that remove() correctly removes the first element from a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality at the start of
      * sublist iteration. This ensures that sublist iterators properly handle
-     * structural modifications and maintain collection integrity across both
-     * sublist and original vector.</p>
+     * structural modifications and integrity.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It calls next() once to position at the first
-     * element ("2"), then calls remove() to delete it. The test verifies that both
-     * the sublist size decreases and the element is removed from the original vector.</p>
+     * <p>The test calls next() once to position at the first element, then calls remove()
+     * to delete it. The test verifies that both the sublist size decreases and the element
+     * is removed from the original vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -1214,18 +1171,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly removes a middle element from a sublist
-     * when called after multiple next() calls, ensuring proper element removal and
-     * collection modification.</p>
+     * when called after multiple next() calls.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality in the middle of
      * sublist iteration. This ensures that sublist iterators properly handle
-     * structural modifications and maintain collection integrity.</p>
+     * structural modifications and integrity.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It calls next() twice to position at the second
-     * element ("3"), then calls remove() to delete it. The test verifies that the
+     * <p>The test calls next() twice to position at the second
+     * element, then calls remove() to delete it. The test verifies that the
      * sublist size decreases and the element is properly removed.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1262,19 +1217,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly removes the last element from a sublist
-     * when called after consuming all elements, ensuring proper element removal and
-     * collection modification.</p>
+     * when called after consuming all elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality at the end of
      * sublist iteration. This ensures that sublist iterators properly handle
-     * structural modifications when removing the last element.</p>
+     * structural modifications.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It iterates through all elements using a while loop,
-     * then calls remove() to delete the last returned element (null). The test verifies
-     * that the sublist size decreases and the element is properly removed.</p>
+     * <p>The test iterates through all elements, then calls remove() to delete the last returned element.
+     * The test verifies that the sublist size decreases and the element is properly removed.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -1310,17 +1262,16 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() throws IllegalStateException when called without
-     * a preceding next() call on a sublist iterator, ensuring proper usage of the remove operation.</p>
+     * a preceding next() call on a sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for improper remove() usage
      * on sublist iterators. This ensures that sublist iterators enforce the proper
-     * sequence of operations and prevent invalid removal attempts.</p>
+     * sequence of operations.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. Without calling next() first, it immediately
-     * attempts to call remove(), expecting an IllegalStateException to be thrown.</p>
+     * <p>The test, without calling next() first, it immediately attempts to call remove(),
+     * expecting an IllegalStateException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -1348,16 +1299,14 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() throws IllegalStateException when called twice
-     * without an intervening next() call on a sublist iterator, ensuring proper usage.</p>
+     * without an intervening next() call on a sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for consecutive remove() calls
-     * on sublist iterators. This ensures that sublist iterators enforce the proper
-     * sequence of operations and prevent multiple consecutive removals.</p>
+     * <p>The test is designed to validate exception handling for consecutive remove() calls.
+     * This enforce the proper sequence of operations.</p>
      *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a SubListAdapter from the main vector (indices 1 to 4) and obtains
-     * an iterator from the sublist. It calls next() once to position at the first element,
+     * <p><b>Test Description:</b></>
+     * <p>The test calls next() once to position at the first element,
      * calls remove() to delete it, then immediately attempts to call remove() again
      * without an intervening next() call, expecting an IllegalStateException to be thrown.</p>
      *
@@ -1388,18 +1337,16 @@ public class IteratorAdapterTest
      * Test method to verify proper element removal in nested sublist iteration.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly removes elements from nested sublists,
-     * ensuring proper element removal and collection modification across multiple levels
-     * of sublist hierarchy.</p>
+     * <p>This test verifies that remove() correctly removes elements from nested
+     * sublists across multiple levels.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate removal functionality in deeply nested sublists.
      * This ensures that iterators properly handle structural modifications across
-     * multiple levels of sublist hierarchy and maintain collection integrity.</p>
+     * multiple levels of sublist hierarchy and integrity.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a two-level nested sublist structure: a sublist from indices 1-4
-     * of the main vector, and a sub-sublist from indices 1-3 of the first sublist.
+     * <p>The test creates a two-level nested sublist structure.
      * It obtains an iterator from the nested sublist, calls next() to position at the
      * first element, then calls remove() to delete it. The test verifies that the
      * nested sublist size decreases and the remaining elements are correct.</p>
@@ -1440,20 +1387,17 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() returns elements in the correct order during
-     * nested sublist iteration, ensuring proper sequential access to elements across
+     * nested sublist iteration, ensuring proper sequential access across
      * multiple levels of sublist hierarchy.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the fundamental iteration functionality
-     * for nested sublist iterators. This ensures that elements are returned in the
-     * proper sequence and that the iterator maintains correct position throughout
-     * traversal of nested sublists.</p>
+     * for nested sublist iterators. This ensures proper sequence and correct position.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a two-level nested sublist structure: a sublist from indices 1-5
-     * of the main vector, and a sub-sublist from indices 1-3 of the first sublist.
+     * <p>The test creates a two-level nested sublist structure.
      * It obtains an iterator from the nested sublist and verifies that next() returns
-     * elements in the correct order: "3" followed by null. Finally, it confirms that
+     * elements in the correct order. Finally, it confirms that
      * hasNext() returns false after all elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1488,24 +1432,20 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() returns false when called on an iterator
-     * created from an empty nested sublist, ensuring proper handling of empty
-     * sublists at multiple hierarchy levels.</p>
+     * created from an empty nested sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior with empty nested sublists.
-     * This ensures that hasNext() correctly identifies the absence of elements
-     * without throwing exceptions or returning incorrect values across sublist levels.</p>
+     * This ensures it identifies the absence of elements without throwing exceptions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a two-level nested sublist structure with an empty sub-sublist:
-     * a sublist from indices 1-4 of the main vector, and an empty sub-sublist from
-     * indices 1-1 of the first sublist. It obtains an iterator from the empty nested
-     * sublist and immediately checks if hasNext() returns false.</p>
+     * <p>The test creates a two-level nested sublist structure with an empty sub-sublist.
+     * It obtains an iterator from the empty nested sublist and checks if hasNext() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- Second SubListAdapter is created from indices 1 to 1 (empty range) of first sublist</p>
+     * <p>- Second SubListAdapter is created from indices 1 to 1 of first sublist</p>
      * <p>- HIterator is created from the empty nested sublist iterator</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -1531,25 +1471,21 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() throws NoSuchElementException when called on
-     * an iterator created from an empty nested sublist, ensuring proper exception
-     * handling for empty sublists at multiple hierarchy levels.</p>
+     * an iterator created from an empty nested sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for the edge case of
-     * empty nested sublists. This ensures robustness and proper error reporting when
-     * attempting to access elements from empty nested sublists.</p>
+     * empty nested sublists. This ensures proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a two-level nested sublist structure with an empty sub-sublist:
-     * a sublist from indices 1-4 of the main vector, and an empty sub-sublist from
-     * indices 1-1 of the first sublist. It obtains an iterator from the empty nested
-     * sublist and immediately attempts to call next(), expecting a NoSuchElementException
-     * to be thrown.</p>
+     * <p>The test creates a two-level nested sublist structure with an empty sub-sublist.
+     * It obtains an iterator from the empty nested sublist and immediately attempts
+     * to call next(), expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- Second SubListAdapter is created from indices 1 to 1 (empty range) of first sublist</p>
+     * <p>- Second SubListAdapter is created from indices 1 to 1 of first sublist</p>
      * <p>- HIterator is created from the empty nested sublist iterator</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -1568,56 +1504,5 @@ public class IteratorAdapterTest
         HIterator subIter = subSub.iterator();
 
         subIter.next();
-    }
-
-    /**
-     * Test method to verify proper sequential element retrieval in deeply nested sublist iteration.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that next() returns elements in the correct order during
-     * deeply nested sublist iteration, ensuring proper sequential access to elements
-     * across multiple levels of sublist hierarchy.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the fundamental iteration functionality
-     * for deeply nested sublist iterators. This ensures that elements are returned
-     * in the proper sequence and that the iterator maintains correct position
-     * throughout traversal of deeply nested sublists.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a three-level nested sublist structure: a sublist from indices 0-5
-     * of the main vector, a sub-sublist from indices 1-4 of the first sublist, and
-     * a sub-sub-sublist from indices 1-3 of the second sublist. It obtains an iterator
-     * from the deepest nested sublist and verifies that next() returns elements in
-     * the correct order: "3" followed by null. Finally, it confirms that hasNext()
-     * returns false after all elements.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- First SubListAdapter is created from indices 0 to 5: ["1", "2", "3", null, "5"]</p>
-     * <p>- Second SubListAdapter is created from indices 1 to 4 of first sublist: ["2", "3", null]</p>
-     * <p>- Third SubListAdapter is created from indices 1 to 3 of second sublist: ["3", null]</p>
-     * <p>- HIterator is created from the deepest nested sublist iterator</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- All deepest nested sublist elements are returned in correct sequence: "3", null</p>
-     * <p>- hasNext() returns false after the last element</p>
-     * <p>- Iterator position is at the end of the deepest nested sublist</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>next() should return deeply nested sublist elements in the correct order,
-     * and hasNext() should return false after all elements have been consumed.</p>
-     */
-    @Test
-    public void testDeepNestedSubListNextProperIteration()
-    {
-        SubListAdapter sub = (SubListAdapter) vector.subList(0, 5);
-        SubListAdapter subSub = (SubListAdapter) sub.subList(1, 4);
-        SubListAdapter subSubSub = (SubListAdapter) subSub.subList(1, 3);
-        HIterator subIter = subSubSub.iterator();
-
-        assertEquals("First element should be 3", "3", subIter.next());
-        assertNull("Second element should be null", subIter.next());
-        assertFalse("Should have no more elements", subIter.hasNext());
     }
 }
