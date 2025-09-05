@@ -129,12 +129,12 @@ public class TestRunner
         System.out.println(INFO_MARKER + " Java version: " + BOLD + System.getProperty("java.version") + RESET);
 
         System.out.println("\n" + HEADER_START + BOLD + "CONFIGURED TEST CLASSES:" + RESET);
-        System.out.println("  • EnumerationAdapterTest");
-        System.out.println("  • IteratorAdapterTest");
-        System.out.println("  • ListIteratorAdapterTest");
-        System.out.println("  • StackAdapterTest");
-        System.out.println("  • SubListAdapterTest");
-        System.out.println("  • VectorAdapterTest");
+        System.out.println("  - EnumerationAdapterTest");
+        System.out.println("  - IteratorAdapterTest");
+        System.out.println("  - ListIteratorAdapterTest");
+        System.out.println("  - StackAdapterTest");
+        System.out.println("  - SubListAdapterTest");
+        System.out.println("  - VectorAdapterTest");
 
         System.out.println(SEPARATOR);
     }
@@ -319,10 +319,7 @@ public class TestRunner
 
         System.out.print("Execution completed in ");
 
-        if(time > 10000)
-            System.out.println(BOLD + time + " ms" + RESET + " " + WARNING_MARKER + " (Slow execution)");
-        else
-            System.out.println(BOLD + time + " ms" + RESET);
+        System.out.println(BOLD + time + " ms" + RESET);
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
