@@ -38,6 +38,14 @@ import java.util.Date;
  *
  * <p>The runner exits with status code 1 if any tests fail, 0 if all tests pass.
  *
+ * <h2>Testing Framework Information</h2>
+ * <p>This test suite utilizes JUnit 4.13 testing framework with Hamcrest 1.3
+ * matchers for assertions. These dependencies  are located as follows:</p>
+ * <ul>
+ *   <li>JUnit 4.13: {@code lib/junit-4.13.jar}</li>
+ *   <li>Hamcrest Core 1.3: {@code Matcher/hamcrest-core-1.3.jar}</li>
+ * </ul>
+ *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
  */
 @RunWith(Suite.class)
@@ -70,8 +78,16 @@ public class TestRunner
     private static final String RESET = "\033[0m";
 
     /**
+     * Default constructor
+     */
+    TestRunner()
+    {}
+
+    /**
      * Main entry point for the test runner.
      * Executes all test classes and prints comprehensive results.
+     *
+     * @param args input parameters (unused)
      */
     public static void main(String[] args)
     {

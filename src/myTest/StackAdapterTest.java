@@ -27,6 +27,14 @@ import static org.junit.Assert.*;
  * includes categories for basic functionality, edge cases, error conditions,
  * and compliance with the LIFO principle.</p>
  *
+ * <h2>Testing Framework Information</h2>
+ * <p>This test suite utilizes JUnit 4.13 testing framework with Hamcrest 1.3
+ * matchers for assertions. These dependencies  are located as follows:</p>
+ * <ul>
+ *   <li>JUnit 4.13: {@code lib/junit-4.13.jar}</li>
+ *   <li>Hamcrest Core 1.3: {@code Matcher/hamcrest-core-1.3.jar}</li>
+ * </ul>
+ *
  * <p>Categories:</p>
  * <ul>
  *   <li>Constructor tests</li>
