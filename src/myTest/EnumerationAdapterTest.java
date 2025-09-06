@@ -60,7 +60,7 @@ public class EnumerationAdapterTest
 
     /**
      * A SubListAdapter instance created from the main vector.
-     * By default represents a sublist from index 1 to 4 (exclusive)
+     * By default represents a sublist from index 1 (inclusive) to 4 (exclusive)
      * of the main vector.
      */
     private SubListAdapter subList;

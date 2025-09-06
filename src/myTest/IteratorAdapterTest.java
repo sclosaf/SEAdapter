@@ -62,7 +62,7 @@ public class IteratorAdapterTest
 
     /**
      * A SubListAdapter instance created from the main vector.
-     * By default represents a sublist from index 1 to 4 (exclusive)
+     * By default represents a sublist from index 1 (inclusive) to 4 (exclusive)
      * of the main vector.
      */
     private SubListAdapter subList;
@@ -193,7 +193,7 @@ public class IteratorAdapterTest
      * Test method to verify that hasNext() returns false at the end of iteration.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that hasNext() returns false after all elements have been consumed.</p>
+     * <p>This test verifies that hasNext() returns false after all elements have been traversed.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the terminal behavior of hasNext() method.
@@ -213,7 +213,7 @@ public class IteratorAdapterTest
      * <p>- Iterator position is at the end of the collection</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>hasNext() should return false after all elements have been consumed from the iterator.</p>
+     * <p>hasNext() should return false after all elements have been traversed from the iterator.</p>
      */
     @Test
     public void testHasNextAtTheEnd()
@@ -270,7 +270,7 @@ public class IteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() throws NoSuchElementException when called after all
-     * elements have been consumed.</p>
+     * elements have been traversed.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate exception handling for the boundary condition
@@ -283,7 +283,7 @@ public class IteratorAdapterTest
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- HIterator is created from vector.iterator()</p>
-     * <p>- All elements have been consumed by calling next() until hasNext() returns false</p>
+     * <p>- All elements have been traversed by calling next() until hasNext() returns false</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -399,7 +399,7 @@ public class IteratorAdapterTest
      *
      * <p><b>Expected Results:</b></p>
      * <p>next() should return all duplicate elements in sequence, and hasNext() should return false
-     * after all elements have been consumed.</p>
+     * after all elements have been traversed.</p>
      */
     @Test
     public void testNextDuplicateElements()
@@ -886,7 +886,7 @@ public class IteratorAdapterTest
      * Test method to verify that hasNext() returns false at the end of sublist iteration.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that hasNext() returns false after all elements have been consumed
+     * <p>This test verifies that hasNext() returns false after all elements have been traversed
      * from a sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
@@ -909,7 +909,7 @@ public class IteratorAdapterTest
      * <p>- Sublist iterator position is at the end of the sublist</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>hasNext() should return false after all elements have been consumed from
+     * <p>hasNext() should return false after all elements have been traversed from
      * the sublist iterator.</p>
      */
     @Test
@@ -982,7 +982,7 @@ public class IteratorAdapterTest
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
      * <p>- HIterator is created from subList.iterator()</p>
-     * <p>- All elements have been consumed by calling next() until hasNext() returns false</p>
+     * <p>- All elements have been traversed by calling next() until hasNext() returns false</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -1232,7 +1232,7 @@ public class IteratorAdapterTest
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
      * <p>- HIterator is created from subList.iterator()</p>
-     * <p>- All elements have been consumed by calling next() until hasNext() returns false</p>
+     * <p>- All elements have been traversed by calling next() until hasNext() returns false</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size decreases from 3 to 2</p>
