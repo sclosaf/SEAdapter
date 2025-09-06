@@ -16,10 +16,11 @@ import static org.junit.Assert.*;
 /**
  * Test suite for the StackAdapter class.
  *
- * <p>This test suite verifies the functionality of the StackAdapter class,
- * which provides a last-in-first-out (LIFO) stack of objects. The adapter
- * uses a Vector as its underlying data structure and implements the standard
- * stack operations: push, pop, peek, empty, and search.</p>
+ * <p>This test suite verifies the functionality of the StackAdapter class.
+ * The adapter uses a Vector as its underlying data structure and
+ * 1implements the standard stack operations: push, pop, peek,
+ * empty, and search. The test cover various scenarions including basic usage,
+ * construction, insertion, removal, edge cases and error conditions</p>
  *
  * <h2>Test Case Design</h2>
  * <p>The test cases are designed to validate the behavior of StackAdapter

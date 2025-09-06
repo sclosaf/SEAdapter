@@ -19,9 +19,9 @@ import static org.junit.Assert.*;
  *
  * <p>This test suite verifies the functionality of the VectorAdapter class,
  * which implements the HList and HCollection interfaces to provide a
- * growable dynamic array of objects.
- * The tests cover various scenarios including construction, capacity management,
- * element manipulation, and collection operations.</p>
+ * growable dynamic array of objects. The tests cover various scenarios
+ * including construction, basic usage, element manipulation,
+ * collection operations, edge cases and error conditions.</p>
  *
  * <h2>Test Case Design</h2>
  * <p>The test cases are designed to validate the behavior of VectorAdapter

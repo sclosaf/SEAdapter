@@ -17,8 +17,8 @@ import static org.junit.Assert.*;
  *
  * <p>This test suite verifies the functionality of the SubListAdapter class,
  * which provides a view of a portion of a VectorAdapter or another SubListAdapter.
- * The tests cover various scenarios including construction, element access,
- * modification, and compliance with the HList and HCollection interfaces.</p>
+ * The tests cover various scenarios including normal usage, element access,
+ * modification, collection access and modification, edge cases and error conditions.</p>
  *
  * <h2>Test Case Design</h2>
  * <p>The test cases are designed to validate the behavior of SubListAdapter
@@ -37,6 +37,7 @@ import static org.junit.Assert.*;
  * <p>Categories:</p>
  * <ul>
  *   <li>Constructor and initialization tests</li>
+ *   <li>Basic functionality tests</li>
  *   <li>Element access and modification tests</li>
  *   <li>Size and capacity management tests</li>
  *   <li>Collection operation tests</li>
