@@ -100,7 +100,7 @@ public class SubListAdapterTest
      * <p>This test verifies that a sublist can be created with valid indices and contains the correct elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic sublist functionality with normal parameters,
+     * <p>The test validates basic sublist functionality with normal parameters,
      * ensuring proper element selection and size calculation.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -145,7 +145,7 @@ public class SubListAdapterTest
      * <p>This test verifies that a single-element sublist is properly created.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality for the edge case of a single element range.</p>
+     * <p>The test validates sublist functionality for the edge case of a single element range.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with 3 elements, then creates a sublist from indices 1 to 2.
@@ -184,7 +184,7 @@ public class SubListAdapterTest
      * <p>This test verifies that an empty sublist can be created and has the correct properties.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality for the edge case of an empty range.</p>
+     * <p>The test validates sublist functionality for the edge case of an empty range.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with 3 elements, then creates a sublist from indices 1 to 1.
@@ -222,7 +222,7 @@ public class SubListAdapterTest
      * <p>This test verifies that a sublist covering the entire vector can be created correctly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality for the case of a full range selection.</p>
+     * <p>The test validates sublist functionality for the case of a full range selection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with 3 elements, then creates a sublist from indices 0 to 3.
@@ -263,7 +263,7 @@ public class SubListAdapterTest
      * <p>This test verifies that a sublist containing null elements can be created and handled correctly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality with null values,
+     * <p>The test validates sublist functionality with null values,
      * ensuring proper handling of null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -302,10 +302,10 @@ public class SubListAdapterTest
      * Test method to verify that subList constructor throws IllegalArgumentException when fromIndex bigger than toIndex.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies proper exception handling for invalid index parameters.</p>
+     * <p>This test verifies proper exception handling for invalid index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of fromIndex bigger than toIndex.</p>
+     * <p>The test validates exception handling for the edge case of fromIndex bigger than toIndex.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a sublist with fromIndex 2 and toIndex 1,
@@ -335,10 +335,10 @@ public class SubListAdapterTest
      * Test method to verify that subList constructor throws IndexOutOfBoundsException for negative fromIndex.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies proper exception handling for negative index parameters.</p>
+     * <p>This test verifies proper exception handling for negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of negative fromIndex.</p>
+     * <p>The test validates exception handling for the edge case of negative fromIndex.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a sublist with fromIndex -1 and toIndex 1,
@@ -368,10 +368,10 @@ public class SubListAdapterTest
      * Test method to verify that subList constructor throws IndexOutOfBoundsException for toIndex bigger than size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies proper exception handling for out-of-bounds index parameters.</p>
+     * <p>This test verifies proper exception handling for out-of-bounds index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of toIndex exceeding vector size.</p>
+     * <p>The test validates exception handling for the edge case of toIndex exceeding vector size.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a sublist with fromIndex 0 and toIndex 3 on a vector of size 2,
@@ -404,7 +404,7 @@ public class SubListAdapterTest
      * <p>This test verifies sublist creation with a default-constructed VectorAdapter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality with the default vector constructor.</p>
+     * <p>The test validates sublist functionality with the default vector constructor.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter using the default constructor,
@@ -447,7 +447,7 @@ public class SubListAdapterTest
 
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality with a vector created with specific capacity.</p>
+     * <p>The test validates sublist functionality with a vector created with specific capacity.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity 5,
@@ -489,7 +489,7 @@ public class SubListAdapterTest
      * <p>This test verifies sublist creation with a VectorAdapter created with capacity and increment.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality with a vector created with specific capacity and increment.</p>
+     * <p>The test validates sublist functionality with a vector created with specific capacity and increment.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity 3 and capacity increment 2,
@@ -533,7 +533,7 @@ public class SubListAdapterTest
      * <p>This test verifies sublist creation with a VectorAdapter created from another collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sublist functionality with a vector created from an existing collection.</p>
+     * <p>The test validates sublist functionality with a vector created from an existing collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter from another VectorAdapter, then creates a sublist
@@ -576,7 +576,7 @@ public class SubListAdapterTest
      * <p>This test verifies that copyInto() method copies sublist elements in the correct order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the element ordering preservation in copyInto() operation.</p>
+     * <p>The test validates the element ordering preservation in copyInto() operation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with 5 elements, creates a sublist,
@@ -619,7 +619,7 @@ public class SubListAdapterTest
      * <p>This test verifies that copyInto() method handles empty sublists correctly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate copyInto() operation with empty sublists.</p>
+     * <p>The test validates copyInto() operation with empty sublists.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty sublist and verifies that copyInto() doesn't modify
@@ -658,7 +658,7 @@ public class SubListAdapterTest
      * <p>This test verifies that copyInto() preserves array elements beyond the copied range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that copyInto() doesn't overwrite array elements
+     * <p>The test validates that copyInto() doesn't overwrite array elements
      * beyond the copied sublist range.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -706,7 +706,7 @@ public class SubListAdapterTest
      * <p>This test verifies proper exception handling when target array is too small.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for array size mismatch.</p>
+     * <p>The test validates exception handling for array size mismatch.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to copy a sublist into a smaller array,
@@ -744,7 +744,7 @@ public class SubListAdapterTest
      * <p>This test verifies that copyInto() correctly handles sublists containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element handling in copyInto() operation.</p>
+     * <p>The test validates null element handling in copyInto() operation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a sublist containing null elements and verifies that
@@ -788,7 +788,7 @@ public class SubListAdapterTest
      * <p>This test verifies proper exception handling for null array parameter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for null array reference.</p>
+     * <p>The test validates exception handling for null array reference.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to copy a sublist into a null array,
@@ -823,7 +823,7 @@ public class SubListAdapterTest
      * <p>This test verifies proper exception handling for zero-length array with non-empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for array size mismatch with zero-length array.</p>
+     * <p>The test validates exception handling for array size mismatch with zero-length array.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to copy a non-empty sublist into a zero-length array,
@@ -861,7 +861,7 @@ public class SubListAdapterTest
      * of the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that capacity management operations are properly delegated.</p>
+     * <p>The test validates that capacity management operations are properly delegated.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity 20 and adds 5 elements. A sublist is
@@ -911,7 +911,7 @@ public class SubListAdapterTest
      * is smaller than the current capacity of the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that ensureCapacity() correctly handles cases where capacity
+     * <p>The test validates that ensureCapacity() correctly handles cases where capacity
      * expansion is not needed, avoiding unnecessary operations.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -956,7 +956,7 @@ public class SubListAdapterTest
      * equals current capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the requested capacity matches the
+     * <p>The test validates the edge case where the requested capacity matches the
      * current capacity, avoiding unnecessary operations.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1001,7 +1001,7 @@ public class SubListAdapterTest
      * when expanding the capacity of the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that capacity expansion follows the specified capacity
+     * <p>The test validates that capacity expansion follows the specified capacity
      * increment parameter.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1048,7 +1048,7 @@ public class SubListAdapterTest
      * capacity increment would result insufficient.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that capacity expansion prioritizes the minimum capacity
+     * <p>The test validates that capacity expansion prioritizes the minimum capacity
      * requirement over the capacity increment when insufficient.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1096,7 +1096,7 @@ public class SubListAdapterTest
      * capacity increment is set to zero.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the doubling growth used when capacity
+     * <p>The test validates the doubling growth used when capacity
      * increment is zero.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1143,7 +1143,7 @@ public class SubListAdapterTest
      * doubling the current capacity would still be insufficient.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that capacity expansion uses the minimum capacity
+     * <p>The test validates that capacity expansion uses the minimum capacity
      * requirement when doubling growth would be insufficient.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1191,7 +1191,7 @@ public class SubListAdapterTest
      * has been modified using setSize().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate capacity management operations, ensuring
+     * <p>The test validates capacity management operations, ensuring
      * proper coordination between size and capacity management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1243,7 +1243,7 @@ public class SubListAdapterTest
      * has been reduced using trimToSize().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate capacity expansion following a trim operation,
+     * <p>The test validates capacity expansion following a trim operation,
      * ensuring that capacity is increased properly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1292,7 +1292,7 @@ public class SubListAdapterTest
      * minimum capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of zero minimum capacity,
+     * <p>The test validates the edge case of zero minimum capacity,
      * ensuring no unnecessary operations are performed.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1339,7 +1339,7 @@ public class SubListAdapterTest
      * minimum capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate error handling for invalid negative capacity values,
+     * <p>The test validates error handling for invalid negative capacity values,
      * ensuring the method gracefully handles edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1385,7 +1385,7 @@ public class SubListAdapterTest
      * <p>This test verifies that setSize() correctly increases the size of an empty sublist by adding null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior when increasing the size of an empty sublist,
+     * <p>The test validates the setSize() behavior when increasing the size of an empty sublist,
      * ensuring proper element insertion and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1430,7 +1430,7 @@ public class SubListAdapterTest
      * <p>This test verifies that setSize() correctly increases the size of a sublist with existing elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior when increasing the size of a non-empty sublist,
+     * <p>The test validates the setSize() behavior when increasing the size of a non-empty sublist,
      * ensuring proper element preservation and null element insertion.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1476,7 +1476,7 @@ public class SubListAdapterTest
      * from the end.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior when decreasing the size of a sublist,
+     * <p>The test validates the setSize() behavior when decreasing the size of a sublist,
      * ensuring proper element removal and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1520,7 +1520,7 @@ public class SubListAdapterTest
      * <p>This test verifies that setSize() with the current size does not modify the sublist or backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior when the new size equals the current size,
+     * <p>The test validates the setSize() behavior when the new size equals the current size,
      * ensuring no unnecessary modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1564,7 +1564,7 @@ public class SubListAdapterTest
      * <p>This test verifies that setSize(0) correctly empties the sublist and removes all elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior when setting size to zero,
+     * <p>The test validates the setSize() behavior when setting size to zero,
      * ensuring complete removal of elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1606,7 +1606,7 @@ public class SubListAdapterTest
      * <p>This test verifies that setSize() throws ArrayIndexOutOfBoundsException when called with a negative size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative size values.</p>
+     * <p>The test validates exception handling for invalid negative size values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist from indices 0 to 2,
@@ -1639,11 +1639,10 @@ public class SubListAdapterTest
      * Test method to verify that setSize() works correctly after multiple size changes (decrease then increase).
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() correctly handles sequential size changes (decrease then increase),
-     * preserving existing elements and properly managing null element insertion.</p>
+     * <p>This test verifies that setSize() correctly handles sequential size changes (decrease then increase).</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior during multiple sequential operations,
+     * <p>The test validates the setSize() behavior during multiple sequential operations,
      * ensuring consistent state.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1688,11 +1687,10 @@ public class SubListAdapterTest
      * Test method to verify that setSize() works correctly after multiple size changes (increase then decrease).
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() correctly handles sequential size changes (increase then decrease),
-     * preserving existing elements and properly removing excess elements.</p>
+     * <p>This test verifies that setSize() correctly handles sequential size changes (increase then decrease).</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior during multiple sequential operations,
+     * <p>The test validates the setSize() behavior during multiple sequential operations,
      * ensuring consistent state management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1731,11 +1729,10 @@ public class SubListAdapterTest
      * Test method to verify that setSize() works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() correctly handles sublists containing null elements,
-     * preserving existing null elements and adding new null elements when increasing size.</p>
+     * <p>This test verifies that setSize() correctly handles sublists containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the setSize() behavior with null elements,
+     * <p>The test validates the setSize() behavior with null elements,
      * ensuring proper handling of null values.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1779,10 +1776,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that setSize() operations only modify the portion of the backing vector
-     * covered by the sublist, leaving other elements unaffected.</p>
+     * covered by the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that setSize() correctly isolates changes to the sublist range,
+     * <p>The test validates that setSize() correctly isolates changes to the sublist range,
      * ensuring integrity of elements outside the sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1829,7 +1826,7 @@ public class SubListAdapterTest
      * <p>This test verifies that capacity() returns the correct capacity value for a sublist created from an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity() behaviour for sublists created from empty vectors,
+     * <p>The test validates the capacity() behaviour for sublists created from empty vectors,
      * ensuring proper capacity reporting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1864,7 +1861,7 @@ public class SubListAdapterTest
      * with custom initial capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity() behavior for sublists created from vectors
+     * <p>The test validates the capacity() behavior for sublists created from vectors
      * with custom capacity, ensuring proper capacity reporting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1898,7 +1895,7 @@ public class SubListAdapterTest
      * <p>This test verifies that size() returns 0 for an empty sublist created from a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size() behavior for empty sublists,
+     * <p>The test validates the size() behavior for empty sublists,
      * ensuring accurate size reporting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1934,7 +1931,7 @@ public class SubListAdapterTest
      * <p>This test verifies that size() correctly reflects the increased size after adding elements to a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size() behavior after element addition operations,
+     * <p>The test validates the size() behavior after element addition operations,
      * ensuring accurate size tracking.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1971,7 +1968,7 @@ public class SubListAdapterTest
      * <p>This test verifies that size() correctly reflects the decreased size after removing elements from a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size() behavior after element removal operations,
+     * <p>The test validates the size() behavior after element removal operations,
      * ensuring accurate size tracking.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2009,7 +2006,7 @@ public class SubListAdapterTest
      * <p>This test verifies that size() returns 0 after clearing a sublist using the clear() method.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size() behavior after clearing operations,
+     * <p>The test validates the size() behavior after clearing operations,
      * ensuring accurate size reporting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2046,7 +2043,7 @@ public class SubListAdapterTest
      * <p>This test verifies that size() correctly includes null elements when counting sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size() behavior with null elements,
+     * <p>The test validates the size() behavior with null elements,
      * ensuring accurate counting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2083,7 +2080,7 @@ public class SubListAdapterTest
      * <p>This test verifies that isEmpty() returns true for an empty sublist created from a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the isEmpty() behavior for empty sublists.</p>
+     * <p>The test validates the isEmpty() behavior for empty sublists.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates an empty sublist,
@@ -2118,7 +2115,7 @@ public class SubListAdapterTest
      * <p>This test verifies that isEmpty() returns false after adding elements to a previously empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the isEmpty() behavior after element addition operations.</p>
+     * <p>The test validates the isEmpty() behavior after element addition operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist from indices 0 to 2,
@@ -2154,7 +2151,7 @@ public class SubListAdapterTest
      * <p>This test verifies that isEmpty() returns true after clearing a sublist using the clear() method.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the isEmpty() behavior after clearing operations.</p>
+     * <p>The test validates the isEmpty() behavior after clearing operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist,
@@ -2187,11 +2184,10 @@ public class SubListAdapterTest
      * Test method to verify that isEmpty() returns false for sublist containing null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that isEmpty() returns false for sublists containing null elements,
-     * ensuring that null values are considered as valid elements.</p>
+     * <p>This test verifies that isEmpty() returns false for sublists containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the isEmpty() behavior with null elements.</p>
+     * <p>The test validates the isEmpty() behavior with null elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with two null elements, creates a sublist,
@@ -2225,7 +2221,7 @@ public class SubListAdapterTest
      * <p>This test verifies that isEmpty() returns true after setting sublist size to zero using setSize(0).</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the isEmpty() behavior after setSize(0) operations.</p>
+     * <p>The test validates the isEmpty() behavior after setSize(0) operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist,
@@ -2262,7 +2258,7 @@ public class SubListAdapterTest
      * the sublist range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic functionality of the contains() method for elements
+     * <p>The test validates the basic functionality of the contains() method for elements
      * that should be present in the sublist. This ensures the method works correctly for normal use cases.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2298,10 +2294,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the contains() method correctly returns false for elements that do not
-     * exist within the sublist range, ensuring proper element detection.</p>
+     * exist within range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contains() ability to correctly identify when
+     * <p>The test validates the contains() ability to correctly identify when
      * elements are not present in the sublist, including elements outside the sublist range.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2337,10 +2333,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the contains() method correctly identifies null elements within
-     * the sublist range.</p>
+     * the range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contains() ability to detect null elements
+     * <p>The test validates the contains() ability to detect null elements
      * in the sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2375,11 +2371,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the contains() method correctly returns false for any element when
-     * called on an empty sublist, ensuring proper behavior for edge cases.</p>
+     * called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contains() behavior on empty sublists, which
-     * should not contain any elements.</p>
+     * <p>The test validates the contains() behavior on empty sublists, which
+     * should not contain any elements, ensuring proper edge case handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates an empty sublist.
@@ -2419,7 +2415,7 @@ public class SubListAdapterTest
      * are removed from the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contains() ability to reflect changes to the
+     * <p>The test validates the contains() ability to reflect changes to the
      * sublist's contents.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2465,7 +2461,7 @@ public class SubListAdapterTest
      * is replaced in the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contains() ability to reflect changes to the
+     * <p>The test validates the contains() ability to access changes to the
      * sublist's contents.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2505,10 +2501,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the contains() method correctly returns false for elements that exist
-     * in the backing vector but outside the current sublist range.</p>
+     * in the backing vector but outside the range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contains() ability to respect sublist boundaries
+     * <p>The test validates the contains() ability to respect sublist boundaries
      * and not report elements that exist in the backing vector but outside the sublist range.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2549,7 +2545,7 @@ public class SubListAdapterTest
      * <p>This test verifies that indexOf() correctly returns the index of existing elements within a sublist range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic indexOf() functionality for elements that exist within the sublist boundaries,
+     * <p>The test validates basic indexOf() functionality for elements that exist within the sublist boundaries,
      * ensuring proper index calculation relative to the sublist's view.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2925,7 +2921,7 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that indexOf(element, index) correctly finds occurrences
-     * of duplicate elements based on start index.</p>
+     * of duplicate elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test validates that the method finds the correct occurrence of duplicate elements when using different start indices.</p>
@@ -3157,7 +3153,7 @@ public class SubListAdapterTest
      * of existing elements within the sublist range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic functionality of lastIndexOf() method.</p>
+     * <p>The test validates the basic functionality of lastIndexOf() method.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates a sublist from
@@ -3196,7 +3192,7 @@ public class SubListAdapterTest
      * exist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case behavior of lastIndexOf() method for
+     * <p>The test validates the edge case behavior of lastIndexOf() method for
      * elements outside the sublist content, ensuring proper handling of non-existent elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3236,7 +3232,7 @@ public class SubListAdapterTest
      * null elements within the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the special case handling of null elements in
+     * <p>The test validates the special case handling of null elements in
      * lastIndexOf() method, ensuring proper null comparison semantics.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3275,7 +3271,7 @@ public class SubListAdapterTest
      * empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case behavior of lastIndexOf() method on
+     * <p>The test validates the edge case behavior of lastIndexOf() method on
      * empty sublists.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3285,7 +3281,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- lastIndexOf() returns -1 for all elements on empty sublist</p>
@@ -3315,7 +3311,7 @@ public class SubListAdapterTest
      * when duplicate elements exist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the duplicate element handling in lastIndexOf() method,
+     * <p>The test validates the duplicate element handling in lastIndexOf() method,
      * ensuring it returns the highest index where the element appears.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3354,7 +3350,7 @@ public class SubListAdapterTest
      * the backing vector but outside the sublist range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the range boundary handling in lastIndexOf() method,
+     * <p>The test validates the range boundary handling in lastIndexOf() method,
      * ensuring elements outside the sublist range are not found.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3395,7 +3391,7 @@ public class SubListAdapterTest
      * the sublist starts from a non-zero index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the offset handling in lastIndexOf() method, ensuring
+     * <p>The test validates the offset handling in lastIndexOf() method, ensuring
      * indices are correctly calculated relative to the sublist start.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3436,7 +3432,7 @@ public class SubListAdapterTest
      * up to the specified index within the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the functionality of lastIndexOf(element, index)
+     * <p>The test validates the functionality of lastIndexOf(element, index)
      * method, ensuring it searches backwards from the specified index.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3479,7 +3475,7 @@ public class SubListAdapterTest
      * elements that do not exist within the search range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate functionality of lastIndexOf(element, index)
+     * <p>The test validates functionality of lastIndexOf(element, index)
      * method for non-existing elements, ensuring proper handling of absent elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3518,7 +3514,7 @@ public class SubListAdapterTest
      * returns the index of null elements within the specified range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the  functionality in lastIndexOf(element, index)
+     * <p>The test validates the  functionality in lastIndexOf(element, index)
      * method for null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3561,7 +3557,7 @@ public class SubListAdapterTest
      * last occurrence index for duplicate elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the index in lastIndexOf(element, index)
+     * <p>The test validates the index in lastIndexOf(element, index)
      * method for duplicate elements, ensuring it returns the correct occurrence.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3605,7 +3601,7 @@ public class SubListAdapterTest
      * when the index is equal to the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the exception handling in lastIndexOf(element, index) method when
+     * <p>The test validates the exception handling in lastIndexOf(element, index) method when
      * provided with an invalid index.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3644,7 +3640,7 @@ public class SubListAdapterTest
      * index is negative.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case behavior of lastIndexOf(element, index) method when
+     * <p>The test validates the edge case behavior of lastIndexOf(element, index) method when
      * provided with negative index.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3683,7 +3679,7 @@ public class SubListAdapterTest
      * edge cases including exact matches and boundary conditions.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the comprehensive edge case handling in lastIndexOf(element, index),
+     * <p>The test validates the comprehensive edge case handling in lastIndexOf(element, index),
      * ensuring robust behavior in boundary scenarios.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3727,7 +3723,7 @@ public class SubListAdapterTest
      * elements that exist in the backing vector but outside the sublist range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the range boundary handling in lastIndexOf(element, index),
+     * <p>The test validates the range boundary handling in lastIndexOf(element, index),
      * ensuring elements outside the sublist are not found.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3768,7 +3764,7 @@ public class SubListAdapterTest
      * offset calculation when the sublist starts from a non-zero index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the offset handling in lastIndexOf(element, index),
+     * <p>The test validates the offset handling in lastIndexOf(element, index),
      * ensuring indices are correctly calculated relative to the sublist start.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3805,11 +3801,10 @@ public class SubListAdapterTest
      * Test method to verify that elementAt() returns correct elements for valid indices in a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt() correctly returns elements at specified valid indices within a sublist,
-     * ensuring proper element access functionality.</p>
+     * <p>This test verifies that elementAt() correctly returns elements at specified valid indices within a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic element access functionality for valid indices in a sublist.
+     * <p>The test validates basic element access functionality for valid indices in a sublist.
      * This ensures that the sublist correctly maps indices to the corresponding elements in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3844,11 +3839,10 @@ public class SubListAdapterTest
      * Test method to verify that elementAt() throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called with a negative index,
-     * ensuring proper bounds checking.</p>
+     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called with a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative indices.
+     * <p>The test validates exception handling for invalid negative indices.
      * This ensures proper error reporting when attempting to access invalid indices.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3881,11 +3875,10 @@ public class SubListAdapterTest
      * Test method to verify that elementAt() throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called with an index equal to the sublist size,
-     * ensuring proper bounds checking.</p>
+     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called with an index equal to the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for indices at the upper boundary.
+     * <p>The test validates exception handling for indices at the upper boundary.
      * This ensures proper error reporting when attempting to access invalid range.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3918,11 +3911,10 @@ public class SubListAdapterTest
      * Test method to verify that elementAt() throws ArrayIndexOutOfBoundsException on empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called on an empty sublist,
-     * ensuring proper exception handling for edge cases.</p>
+     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case.
+     * <p>The test validates exception handling for the edge case.
      * This ensures proper error reporting when attempting to access an empty sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3931,7 +3923,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
@@ -3955,11 +3947,10 @@ public class SubListAdapterTest
      * Test method to verify that elementAt() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt() correctly returns null,
-     * ensuring proper handling.</p>
+     * <p>This test verifies that elementAt() correctly returns nulls.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements in the sublist.</p>
+     * <p>The test validates proper handling of null elements in the sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements including a null value, then creates a sublist containing the null element.
@@ -3991,11 +3982,10 @@ public class SubListAdapterTest
      * Test method to verify that elementAt() correctly handles offset calculations.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt() correctly calculates offsets when accessing elements in a sublist,
-     * ensuring proper index mapping between the sublist and backing vector.</p>
+     * <p>This test verifies that elementAt() correctly calculates offsets when accessing elements in a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset calculation in sublist element access.
+     * <p>The test validates proper offset calculation in sublist element access.
      * This ensures that the sublist correctly maps its indices to the corresponding positions in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4032,11 +4022,10 @@ public class SubListAdapterTest
      * Test method to verify that firstElement() returns the correct element in a non-empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement() returns the first element of a non-empty sublist,
-     * ensuring proper functionality for accessing the first element.</p>
+     * <p>This test verifies that firstElement() returns the first element of a non-empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic functionality of firstElement() for non-empty sublists.</p>
+     * <p>The test validates basic functionality of firstElement() for non-empty sublists.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3.
@@ -4069,12 +4058,11 @@ public class SubListAdapterTest
      * Test method to verify that firstElement() throws NoSuchElementException on empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement() throws NoSuchElementException when called on an empty sublist,
-     * ensuring proper exception handling for edge cases.</p>
+     * <p>This test verifies that firstElement() throws NoSuchElementException when called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty sublist.
-     * This ensures proper error reporting when attempting to access an empty sublist.</p>
+     * <p>The test validates exception handling for the edge case of an empty sublist.
+     * This ensures proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates an empty sublist from index 1 to 1.
@@ -4082,7 +4070,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -4106,11 +4094,10 @@ public class SubListAdapterTest
      * Test method to verify that firstElement() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement() correctly returns null when the first element of the sublist is null,
-     * ensuring proper handling of null values.</p>
+     * <p>This test verifies that firstElement() correctly returns null when the first element of the sublist is null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements as the first element of a sublist.</p>
+     * <p>The test validates proper handling of null elements as the first element of a sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements including a null value as the first element of the sublist,
@@ -4143,11 +4130,10 @@ public class SubListAdapterTest
      * Test method to verify that firstElement() correctly handles offset calculations.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement() correctly calculates offsets when accessing the first element in a sublist,
-     * ensuring proper index mapping between the sublist and backing vector.</p>
+     * <p>This test verifies that firstElement() correctly calculates offsets when accessing the first element in a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset calculation in sublist first element access.
+     * <p>The test validates proper offset calculation in sublist first element access.
      * This ensures that the sublist correctly maps its first element to the corresponding position in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4182,11 +4168,10 @@ public class SubListAdapterTest
      * Test method to verify that lastElement() returns the correct element in a non-empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement() returns the last element of a non-empty sublist,
-     * ensuring proper functionality for accessing the last element.</p>
+     * <p>This test verifies that lastElement() returns the last element of a non-empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic functionality of lastElement() for non-empty sublists.
+     * <p>The test validates basic functionality of lastElement() for non-empty sublists.
      * This ensures that the method correctly identifies and returns the last element in the sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4219,11 +4204,10 @@ public class SubListAdapterTest
      * Test method to verify that lastElement() throws NoSuchElementException on empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement() throws NoSuchElementException when called on an empty sublist,
-     * ensuring proper exception handling for edge cases.</p>
+     * <p>This test verifies that lastElement() throws NoSuchElementException when called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty sublist.
+     * <p>The test validates exception handling for the edge case of an empty sublist.
      * This ensures robustness and proper error reporting when attempting to access the last element of an empty sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4232,7 +4216,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -4256,11 +4240,10 @@ public class SubListAdapterTest
      * Test method to verify that lastElement() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement() correctly returns null when the last element of the sublist is null,
-     * ensuring proper handling of null values.</p>
+     * <p>This test verifies that lastElement() correctly returns null when the last element of the sublist is null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements as the last element of a sublist.</p>
+     * <p>The test validates proper handling of null elements as the last element of a sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements including a null value as the last element of the sublist,
@@ -4293,11 +4276,10 @@ public class SubListAdapterTest
      * Test method to verify that lastElement() correctly handles offset calculations.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement() correctly calculates offsets when accessing the last element in a sublist,
-     * ensuring proper index mapping between the sublist and backing vector.</p>
+     * <p>This test verifies that lastElement() correctly calculates offsets when accessing the last element in a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset calculation in sublist last element access.
+     * <p>The test validates proper offset calculation in sublist last element access.
      * This ensures that the sublist correctly maps its last element to the corresponding position in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4332,11 +4314,10 @@ public class SubListAdapterTest
      * Test method to verify that firstElement() and lastElement() return the same value for single-element sublists.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement() and lastElement() return the same value for a sublist containing only one element,
-     * ensuring consistency in element access methods for single-element collections.</p>
+     * <p>This test verifies that firstElement() and lastElement() return the same value for a sublist containing only one element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate consistency between firstElement() and lastElement() for single-element sublists.
+     * <p>The test validates consistency between firstElement() and lastElement() for single-element sublists.
      * This ensures that both methods return the same value when the sublist contains exactly one element.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4368,24 +4349,20 @@ public class SubListAdapterTest
                      subList.firstElement(), subList.lastElement());
     }
 
-    ////////////////////////////////////////////////////////
-
     /**
      * Test method to verify that setElementAt() correctly updates elements at valid indices in a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() correctly updates elements at specified valid indices within a sublist,
-     * ensuring proper element modification functionality while maintaining the sublist and backing vector integrity.</p>
+     * <p>This test verifies that setElementAt() correctly updates elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic element modification functionality for valid indices in a sublist.
-     * This ensures that the sublist correctly updates elements while preserving size and maintaining consistency
-     * with the backing vector.</p>
+     * <p>The test validates basic element modification functionality.
+     * This ensures correctly elements and preserve size.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates a sublist from index 1 to 3.
      * It calls setElementAt() with index 0 and value "4", then verifies that the element was updated correctly,
-     * the size remains unchanged, and unaffected elements in both sublist and backing vector remain intact.</p>
+     * the size remains unchanged.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
@@ -4420,15 +4397,14 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called with a negative index,
-     * ensuring proper bounds checking for element modification operations.</p>
+     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called with a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative indices during element modification.
-     * This ensures robustness and proper error reporting when attempting to update elements with invalid indices.</p>
+     * <p>The test validates exception handling for invalid negative indices.
+     * This ensures proper error reporting and bound condition.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with two elements, then creates a sublist.
      * It calls setElementAt() with index -1 and expects ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4457,15 +4433,14 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called with an index equal to the sublist size,
-     * ensuring proper bounds checking at the upper limit for element modification operations.</p>
+     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called with an index equal to the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for indices at the upper boundary of the sublist during element modification.
-     * This ensures robustness and proper error reporting when attempting to update elements beyond the valid range.</p>
+     * <p>The test validates exception handling for indices at the upper boundary.
+     * This ensures proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls setElementAt() with index 3 (equal to size) and expects ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4494,12 +4469,11 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() throws ArrayIndexOutOfBoundsException on empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called on an empty sublist,
-     * ensuring proper exception handling for edge cases during element modification.</p>
+     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty sublist during element modification.
-     * This ensures robustness and proper error reporting when attempting to update elements in an empty sublist.</p>
+     * <p>The test validates exception handling for the edge case of an empty sublist.
+     * This ensures proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, then creates an empty sublist from index 1 to 1.
@@ -4507,7 +4481,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
@@ -4531,16 +4505,15 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() correctly updates elements at the beginning of a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() correctly updates the first element of a sublist,
-     * ensuring proper element modification functionality at boundary positions.</p>
+     * <p>This test verifies that setElementAt() correctly updates the first element of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element modification functionality at the beginning of a sublist.
-     * This ensures that the method correctly handles boundary conditions and maintains consistency with the backing vector.</p>
+     * <p>The test validates element modification at the beginning of a sublist.
+     * This ensures that the method correctly handles boundary conditions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
-     * It calls setElementAt() with index 0 and value "0", then verifies that the first element was updated correctly
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
+     * It calls setElementAt() with index 0 and value "0", then verifies that the element was updated correctly
      * while other elements remain unchanged in both sublist and backing vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4577,16 +4550,15 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() correctly updates elements at the end of a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() correctly updates the last element of a sublist,
-     * ensuring proper element modification functionality at boundary positions.</p>
+     * <p>This test verifies that setElementAt() correctly updates the last element of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element modification functionality at the end of a sublist.
-     * This ensures that the method correctly handles boundary conditions and maintains consistency with the backing vector.</p>
+     * <p>The test validates element modification at the end of a sublist.
+     * This ensures that the method correctly handles boundary conditions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
-     * It calls setElementAt() with index 2 and value "4", then verifies that the last element was updated correctly
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
+     * It calls setElementAt() with index 2 and value "4", then verifies that the element was updated correctly
      * while other elements remain unchanged in both sublist and backing vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4623,15 +4595,14 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() correctly handles null values.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() correctly updates elements to null values,
-     * ensuring proper handling of null elements during modification operations.</p>
+     * <p>This test verifies that setElementAt() correctly updates elements to null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during element modification.
-     * This ensures that the implementation correctly supports null elements and maintains consistency with the backing vector.</p>
+     * <p>The test validates proper handling of null values.
+     * This ensures it supports null elements and maintains consistency.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls setElementAt() with index 1 and value null, then verifies that the element was set to null correctly
      * while other elements remain unchanged in both sublist and backing vector.</p>
      *
@@ -4669,15 +4640,14 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() correctly handles multiple consecutive updates at the same index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() correctly handles multiple consecutive updates at the same index,
-     * ensuring that the last update determines the final value and maintains consistency with the backing vector.</p>
+     * <p>This test verifies that setElementAt() correctly handles multiple updates.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of multiple modifications at the same position.
-     * This ensures that the implementation correctly handles sequential updates and maintains data integrity.</p>
+     * <p>The test validates the behavior of multiple modifications at the same position.
+     * This ensures it correctly handles sequential updates.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls setElementAt() three times at index 1 with different values, then verifies that the element
      * contains the last set value and that the backing vector is consistently updated.</p>
      *
@@ -4715,13 +4685,11 @@ public class SubListAdapterTest
      * Test method to verify that setElementAt() correctly handles offset calculations during element modification.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt() correctly calculates offsets when updating elements in a sublist,
-     * ensuring proper index mapping between the sublist and backing vector during modification operations.</p>
+     * <p>This test verifies that setElementAt() correctly calculates offsets.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset calculation in sublist element modification.
-     * This ensures that the sublist correctly maps its indices to the corresponding positions in the backing vector
-     * when updating elements.</p>
+     * <p>The test validates proper offset calculation and ensures that the sublist correctly maps
+     * its indices to the corresponding positions in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, then creates a sublist starting from index 3.
@@ -4758,13 +4726,11 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() correctly removes elements at valid indices in a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() correctly removes elements at specified valid indices within a sublist,
-     * ensuring proper element removal functionality while maintaining the sublist and backing vector integrity.</p>
+     * <p>This test verifies that removeElementAt() correctly removes element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic element removal functionality for valid indices in a sublist.
-     * This ensures that the sublist correctly removes elements, decreases size, shifts subsequent elements,
-     * and maintains consistency with the backing vector.</p>
+     * <p>The test validates basic element removal for valid indices in a sublist.
+     * This ensures that the sublist correctly removes elements, decreases size, shifts subsequent elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, then creates a sublist from index 1 to 4.
@@ -4808,15 +4774,14 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when called with a negative index,
-     * ensuring proper bounds checking for element removal operations.</p>
+     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when called with a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative indices during element removal.
-     * This ensures robustness and proper error reporting when attempting to remove elements with invalid indices.</p>
+     * <p>The test validates exception handling for invalid negative.
+     * This ensures robustness and proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls removeElementAt() with index -1 and expects ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4847,15 +4812,14 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when called with an index equal to the sublist size,
-     * ensuring proper bounds checking at the upper limit for element removal operations.</p>
+     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when called with an index equal to size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for indices at the upper boundary of the sublist during element removal.
-     * This ensures robustness and proper error reporting when attempting to remove elements beyond the valid range.</p>
+     * <p>The test validates exception handling for indices at the upper boundary of the sublist.
+     * This ensures robustness and proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls removeElementAt() with index 3 (equal to size) and expects ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4886,12 +4850,11 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() throws ArrayIndexOutOfBoundsException on empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when called on an empty sublist,
-     * ensuring proper exception handling for edge cases during element removal.</p>
+     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for the edge case of an empty sublist during element removal.
-     * This ensures robustness and proper error reporting when attempting to remove elements from an empty sublist.</p>
+     * <p>The test validates exception handling for the edge case of an empty sublist during element removal and
+     * proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, then creates an empty sublist from index 1 to 1.
@@ -4899,7 +4862,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
@@ -4924,16 +4887,14 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() correctly removes elements at the beginning of a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() correctly removes the first element of a sublist,
-     * ensuring proper element removal functionality at boundary positions.</p>
+     * <p>This test verifies that removeElementAt() correctly removes the first element of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal functionality at the beginning of a sublist.
-     * This ensures that the method correctly handles boundary conditions, shifts elements, and maintains
-     * consistency with the backing vector.</p>
+     * <p>The test validates element removal functionality at the beginning of a sublist.
+     * This ensures it handles boundary conditions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls removeElementAt() with index 0, then verifies that the first element was removed correctly,
      * elements were properly shifted, and the backing vector was updated accordingly.</p>
      *
@@ -4973,16 +4934,14 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() correctly removes elements at the end of a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() correctly removes the last element of a sublist,
-     * ensuring proper element removal functionality at boundary positions.</p>
+     * <p>This test verifies that removeElementAt() correctly removes the last element of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal functionality at the end of a sublist.
-     * This ensures that the method correctly handles boundary conditions and maintains consistency
-     * with the backing vector when removing the last element.</p>
+     * <p>The test validates element removal functionality at the end of a sublist.
+     * This ensures it handles boundary conditions and maintains consistency.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with three elements, then creates a sublist.
      * It calls removeElementAt() with index 2, then verifies that the last element was removed correctly,
      * other elements remain unchanged, and the backing vector was updated accordingly.</p>
      *
@@ -5022,15 +4981,14 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() correctly handles null elements during removal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() correctly removes null elements from a sublist,
-     * ensuring proper handling of null values during removal operations.</p>
+     * <p>This test verifies that removeElementAt() correctly removes null elements from a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements during element removal.
-     * This ensures that the implementation correctly removes null elements and maintains consistency with the backing vector.</p>
+     * <p>The test validates proper handling of null elements during element removal.
+     * This ensures it correctly removes null elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements including a null value, then creates a sublist covering the entire vector.
+     * <p>The test creates a VectorAdapter with elements including a null value, then creates a sublist.
      * It calls removeElementAt() with the index of the null element, then verifies that the null element was removed correctly,
      * elements were properly shifted, and the backing vector was updated accordingly.</p>
      *
@@ -5070,13 +5028,12 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() correctly handles multiple consecutive removals.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() correctly handles multiple consecutive removals from a sublist,
-     * ensuring proper element removal functionality and maintenance of sublist and backing vector integrity.</p>
+     * <p>This test verifies that removeElementAt() correctly handles multiple consecutive removals from a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of multiple consecutive removal operations.
-     * This ensures that the implementation correctly handles sequential removals, updates sizes,
-     * and maintains data integrity in both sublist and backing vector.</p>
+     * <p>The test validates the behavior of multiple consecutive removal operations.
+     * This ensures it correctly handles sequential removals, updates sizes,
+     * and maintains data integrity.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with five elements, then creates a sublist from index 1 to 4.
@@ -5121,13 +5078,12 @@ public class SubListAdapterTest
      * Test method to verify that removeElementAt() correctly handles offset calculations during element removal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt() correctly calculates offsets when removing elements from a sublist,
-     * ensuring proper index mapping between the sublist and backing vector during removal operations.</p>
+     * <p>This test verifies that removeElementAt() correctly calculates offsets when removing elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset calculation in sublist element removal.
-     * This ensures that the sublist correctly maps its indices to the corresponding positions in the backing vector
-     * when removing elements.</p>
+     * <p>The test validates proper offset calculation in sublist element removal.
+     * This ensures that the sublist correctly maps its indices to the
+     * corresponding positions in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, then creates a sublist starting from index 2.
@@ -5171,12 +5127,11 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly inserts an element at a valid index within the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly inserts an element at a valid index, shifting subsequent elements
-     * and updating both sublist and backing vector sizes appropriately.</p>
+     * <p>This test verifies that insertElementAt() correctly inserts an element at a valid index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the core functionality of element insertion at a valid position within a sublist,
-     * ensuring proper element shifting and size management.</p>
+     * <p>The test validates the functionality of element insertion at a valid position within a sublist,
+     * ensuring proper element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist, inserts a new element
@@ -5220,11 +5175,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that insertElementAt() throws ArrayIndexOutOfBoundsException when attempting to insert
-     * an element at a negative index, ensuring proper bounds checking.</p>
+     * an element at a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative index values, ensuring the method
-     * maintains proper bounds validation.</p>
+     * <p>The test validates exception handling for invalid negative index values, ensuring the maintains
+     * proper bounds validation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist, and attempts to insert an element
@@ -5257,10 +5212,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that insertElementAt() throws ArrayIndexOutOfBoundsException when attempting to insert
-     * an element at an index greater than the current sublist size, ensuring proper bounds checking.</p>
+     * an element at an index greater than the current sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for index values beyond the current sublist size,
+     * <p>The test validates exception handling for index values beyond the current sublist size,
      * ensuring the method maintains proper bounds validation.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5293,12 +5248,11 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly inserts an element into an empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly inserts an element into an empty sublist,
-     * creating a single-element sublist and updating the backing vector appropriately.</p>
+     * <p>This test verifies that insertElementAt() correctly inserts an element into an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion into empty sublists, ensuring proper handling
-     * of edge cases where the sublist has no elements initially.</p>
+     * <p>The test validates element insertion into empty sublists, ensuring proper handling
+     * of edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates an empty sublist (from index 1 to 1),
@@ -5306,7 +5260,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size becomes 1</p>
@@ -5336,11 +5290,10 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly inserts an element at the beginning of the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly inserts an element at the beginning of the sublist,
-     * shifting all existing elements right and updating sizes appropriately.</p>
+     * <p>This test verifies that insertElementAt() correctly inserts an element at the beginning of the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the beginning of a sublist, ensuring proper
+     * <p>The test validates element insertion, ensuring proper
      * shifting of all existing elements and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5384,16 +5337,15 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly inserts an element at the end of the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly inserts an element at the end of the sublist,
-     * appending it without shifting existing elements and updating sizes appropriately.</p>
+     * <p>This test verifies that insertElementAt() correctly inserts an element at the end of the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the end of a sublist, ensuring proper
+     * <p>The test validates element insertion, ensuring proper
      * appending behavior without affecting existing elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist,
-     * inserts an element at index 3 (the end), and verifies the resulting element order and size changes.</p>
+     * inserts an element at index 3, and verifies the resulting element order and size changes.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
@@ -5432,12 +5384,10 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly inserts a null element into the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly handles null element insertion,
-     * maintaining proper element shifting and size management.</p>
+     * <p>This test verifies that insertElementAt() correctly handles null element insertion.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element insertion, ensuring the method properly handles
-     * null values without throwing exceptions.</p>
+     * <p>The test validates null element insertion, ensuring it handles null values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist,
@@ -5478,12 +5428,11 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly handles multiple consecutive insertions into the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly handles multiple consecutive insertions,
-     * maintaining proper element ordering and size management through multiple operations.</p>
+     * <p>This test verifies that insertElementAt() correctly handles multiple consecutive insertions.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the sublist's behavior during multiple insertion operations,
-     * ensuring proper element positioning and size tracking.</p>
+     * <p>The test validates the sublist's behavior during multiple insertion operations,
+     * ensuring proper element positioning and size management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist,
@@ -5525,12 +5474,10 @@ public class SubListAdapterTest
      * Test method to verify that insertElementAt() correctly handles insertions in a sublist with offset from the backing vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt() correctly handles element insertion in a sublist that has
-     * an offset from the beginning of the backing vector, ensuring proper positioning in both sublist and vector.</p>
+     * <p>This test verifies that insertElementAt() correctly handles element insertion in a sublist that has an offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion operations in sublists that don't start at vector index 0,
-     * ensuring proper offset calculation and element positioning.</p>
+     * <p>The test validates insertion operations in sublists, ensuring proper offset calculation and element positioning.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist starting at index 1,
@@ -5577,15 +5524,14 @@ public class SubListAdapterTest
      * Test method to verify that addElement() correctly appends an element to a non-empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addElement() correctly appends an element to a non-empty sublist,
-     * adding it to the end and updating sizes appropriately.</p>
+     * <p>This test verifies that addElement() correctly appends an element to a non-empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element appending to non-empty sublists, ensuring proper
+     * <p>The test validates element appending to non-empty sublists, ensuring proper
      * addition at the end without affecting existing elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, creates a sublist covering the last two elements,
+     * <p>The test creates a VectorAdapter with three elements, creates a sublist,
      * appends an element, and verifies the resulting element order and size changes.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5624,12 +5570,11 @@ public class SubListAdapterTest
      * Test method to verify that addElement() correctly adds an element to an empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addElement() correctly adds an element to an empty sublist,
-     * creating a single-element sublist and updating the backing vector appropriately.</p>
+     * <p>This test verifies that addElement() correctly adds an element to an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element addition to empty sublists, ensuring proper handling
-     * of edge cases where the sublist has no elements initially.</p>
+     * <p>The test validates element addition to empty sublist, ensuring proper handling
+     * of edge cases where the sublist has no elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates an empty sublist (from index 1 to 1),
@@ -5637,7 +5582,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size becomes 1</p>
@@ -5670,15 +5615,14 @@ public class SubListAdapterTest
      * Test method to verify that addElement() correctly handles null element addition to a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addElement() correctly handles null element addition,
-     * appending it to the end of the sublist without throwing exceptions.</p>
+     * <p>This test verifies that addElement() correctly handles null element addition.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element addition, ensuring the method properly handles
-     * null values without throwing exceptions.</p>
+     * <p>The test validates null element addition at the end, ensuring the method properly handles
+     * null values.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, creates a sublist covering the last two elements,
+     * <p>The test creates a VectorAdapter with three elements, creates a sublist,
      * adds a null element, and verifies the resulting element order and size changes.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5718,11 +5662,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that addElement() correctly handles element addition in a sublist that has
-     * an offset from the beginning of the backing vector, ensuring proper positioning in both sublist and vector.</p>
+     * an offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate addition operations in sublists that don't start at vector index 0,
-     * ensuring proper offset calculation and element positioning.</p>
+     * <p>The test validates addition operations, ensuring proper offset calculation and element positioning.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist starting at index 2,
@@ -5767,12 +5710,11 @@ public class SubListAdapterTest
      * Test method to verify that removeElement() correctly removes an existing element from the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement() successfully removes an existing element from the sublist,
-     * decreases the sublist size, shifts subsequent elements, and updates the backing vector accordingly.</p>
+     * <p>This test verifies that removeElement() removes an existing element from the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the removal of existing elements from a sublist, ensuring proper
-     * size management, element shifting, and synchronization with the backing vector.</p>
+     * <p>The test validates the removal of existing elements from a sublist, ensuring proper
+     * size management, element shifting, and updates the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist from indices 1 to 4,
@@ -5815,11 +5757,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeElement() returns false when attempting to remove an element
-     * that doesn't exist in the sublist, and that both sublist and backing vector remain unchanged.</p>
+     * that doesn't exist in the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of removeElement() when attempting to remove
-     * non-existing elements, ensuring no modifications occur to the sublist or backing vector.</p>
+     * <p>The test validates the behavior of removeElement() when attempting to remove
+     * non-existing elements, ensuring no modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from indices 1 to 3,
@@ -5860,12 +5802,11 @@ public class SubListAdapterTest
      * Test method to verify that removeElement() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement() successfully removes null elements from the sublist
-     * and properly updates both the sublist and backing vector.</p>
+     * <p>This test verifies that removeElement() successfully removes null element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the removal of null elements from a sublist, ensuring
-     * proper handling of null values and correct synchronization with the backing vector.</p>
+     * <p>The test validates the removal of null elements from a sublist, ensuring
+     * proper handling of null values and correct update with the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter containing a null element, creates a sublist containing
@@ -5907,10 +5848,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeElement() returns false when attempting to remove any element
-     * from an empty sublist, and that both sublist and backing vector remain unchanged.</p>
+     * from an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of removeElement() on empty sublists,
+     * <p>The test validates the behavior of removeElement() on empty sublists,
      * ensuring no modifications occur and the method correctly returns false.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5920,7 +5861,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 1 to 1</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeElement() returns false</p>
@@ -5951,12 +5892,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeElement() only removes the first occurrence when multiple
-     * identical elements exist in the sublist, and properly updates the sublist and backing vector.</p>
+     * identical elements exist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that removeElement() follows the specified behavior of
-     * removing only the first occurrence of duplicate elements, ensuring proper element shifting
-     * and size management.</p>
+     * <p>The test validates that removeElement() removes only the first occurrence of duplicate elements,
+     * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with duplicate elements, creates a sublist containing
@@ -5995,21 +5935,20 @@ public class SubListAdapterTest
         assertEquals("Vector size should be decreased", 3, vector.size());
     }
 
-
     /**
      * Test method to verify that removeElement() works correctly with sublists that have offset positions.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeElement() correctly handles elements in sublists with non-zero
-     * offsets, ensuring proper removal and synchronization with the backing vector.</p>
+     * offsets.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of removeElement() on sublists that start at
+     * <p>The test validates the behavior of removeElement() on sublists that start at
      * non-zero indices, ensuring proper offset calculation and element management.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with four elements, creates a sublist from the last element
-     * (indices 3 to 4), calls removeElement("3") on the sublist, and verifies that the element is
+     * <p>The test creates a VectorAdapter with four elements, creates a sublist from the last element,
+     * calls removeElement("3") on the sublist, and verifies that the element is
      * correctly removed, the sublist becomes empty, and the backing vector is properly updated.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -6048,12 +5987,11 @@ public class SubListAdapterTest
      * Test method to verify that removeAllElements() works correctly on empty sublists.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeAllElements() has no effect when called on empty sublists,
-     * and that both sublist and backing vector remain unchanged.</p>
+     * <p>This test verifies that removeAllElements() has no effect when called on empty sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of removeAllElements() on empty sublists,
-     * ensuring no modifications occur and the method executes without errors.</p>
+     * <p>The test validates the behavior of removeAllElements() on empty sublists,
+     * ensuring no modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates an empty sublist (from index 1 to 1),
@@ -6062,7 +6000,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 1 to 1</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist remains empty (size 0)</p>
@@ -6095,11 +6033,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAllElements() successfully removes all elements from non-empty
-     * sublists and properly updates both the sublist and backing vector.</p>
+     * sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the complete removal of all elements from sublists using
-     * removeAllElements(), ensuring proper size management and synchronization with the backing vector.</p>
+     * <p>The test validates the complete removal of all elements from sublists using
+     * removeAllElements(), ensuring proper size management and update of the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist containing three elements,
@@ -6142,13 +6080,11 @@ public class SubListAdapterTest
      * Test method to verify that removeAllElements() correctly handles sublists containing null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeAllElements() successfully removes all elements including
-     * null values from sublists and properly updates both the sublist and backing vector.</p>
+     * <p>This test verifies that removeAllElements() successfully removes all null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the removal of all elements including null values from
-     * sublists using removeAllElements(), ensuring proper handling of null elements and correct
-     * synchronization with the backing vector.</p>
+     * <p>The test validates the removal of all null values from sublists using removeAllElements(),
+     * ensuring proper handling and correct synchronization with the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter containing null elements, creates a sublist containing
@@ -6191,12 +6127,11 @@ public class SubListAdapterTest
      * Test method to verify that clone() works correctly on empty sublists.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone() creates a proper copy of empty sublists, maintaining
-     * the empty state and size while creating an independent instance.</p>
+     * <p>This test verifies that clone() creates a proper copy of empty sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cloning functionality for empty sublists, ensuring
-     * that the clone is a proper independent copy with the same empty state.</p>
+     * <p>The test validates the cloning functionality for empty sublists, ensuring
+     * that the clone is a proper independent copy with the same empty sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates an empty sublist (from index 1 to 1),
@@ -6205,7 +6140,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 1 to 1</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Clone is not null</p>
@@ -6236,10 +6171,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that clone() creates an exact independent copy of sublists containing
-     * multiple elements, preserving all element values and order.</p>
+     * multiple elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cloning functionality for sublists with multiple elements,
+     * <p>The test validates the cloning functionality for sublists with multiple elements,
      * ensuring that all elements are properly copied and the clone is independent from the original.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6282,11 +6217,10 @@ public class SubListAdapterTest
      * Test method to verify that clone() correctly handles sublists containing null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone() properly copies sublists containing null elements,
-     * preserving the null values in the cloned instance.</p>
+     * <p>This test verifies that clone() properly copies sublists containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cloning functionality for sublists containing null elements,
+     * <p>The test validates the cloning functionality for sublists containing nulls,
      * ensuring that null values are properly preserved in the clone.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6327,11 +6261,10 @@ public class SubListAdapterTest
      * Test method to verify that clone() creates independent instances that don't affect each other.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone() creates truly independent instances, where modifications
-     * to the original sublist don't affect the clone and vice versa.</p>
+     * <p>This test verifies that clone() creates truly independent instances.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the independence of cloned sublists, ensuring that
+     * <p>The test validates the independence of cloned sublists, ensuring
      * modifications to either the original or clone don't affect the other instance.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6374,12 +6307,11 @@ public class SubListAdapterTest
      * Test method to verify that clone() works correctly with sublists that have offset positions.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone() correctly handles sublists with non-zero offsets,
-     * preserving the correct elements and their values in the cloned instance.</p>
+     * <p>This test verifies that clone() correctly handles sublists with non-zero offsets.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cloning functionality for sublists with offset positions,
-     * ensuring that the clone contains the correct elements from the offset range.</p>
+     * <p>The test validates the cloning functionality for sublists with offset positions,
+     * ensuring that the clone contains the correct elements from the shifted range.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist from a non-zero offset,
@@ -6422,12 +6354,11 @@ public class SubListAdapterTest
      * Test method to verify that toArray() returns an empty array for an empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray() returns a non-null empty array when called on an empty sublist,
-     * ensuring proper handling of empty ranges in sublist operations.</p>
+     * <p>This test verifies that toArray() returns a non-null empty array when called on an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of toArray() on empty sublists, which is a boundary case
-     * that must return a valid but empty array representation.</p>
+     * <p>The test validates the behavior of toArray() on empty sublists, which is a boundary case
+     * that must return a valid but empty array.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, then creates an empty sublist (from index 1 to 1)
@@ -6435,7 +6366,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- toArray() returns a non-null array</p>
@@ -6467,7 +6398,7 @@ public class SubListAdapterTest
      * in the correct order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the normal operation of toArray() on a sublist containing multiple elements,
+     * <p>The test validates the normal operation of toArray() on a sublist containing multiple elements,
      * ensuring proper element copying and order preservation.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6507,12 +6438,11 @@ public class SubListAdapterTest
      * Test method to verify that toArray() correctly handles null elements in a sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray() properly handles null elements within a sublist,
-     * preserving the null values in the returned array.</p>
+     * <p>This test verifies that toArray() properly handles null elements within a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that null elements are correctly transferred to the array
-     * without conversion or alteration, maintaining the exact element representation.</p>
+     * <p>The test validates that null elements are correctly transferred to the array,
+     * maintaining the exact element representation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector containing a null element, creates a sublist encompassing the null element,
@@ -6550,12 +6480,11 @@ public class SubListAdapterTest
      * Test method to verify that toArray() works correctly with sublists that have an offset from the main vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray() correctly handles sublists that start at a non-zero offset,
-     * ensuring proper element indexing and copying.</p>
+     * <p>This test verifies that toArray() correctly handles sublists that start at a non-zero offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublist offset calculations work correctly with toArray(),
-     * particularly when the sublist doesn't start at the beginning of the backing vector.</p>
+     * <p>The test validates that sublist offset calculations work correctly with toArray(),
+     * in particular when the sublist presents a non-zero offset, ensuring proper indexing and copying.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with four elements, creates a sublist starting at index 2,
@@ -6591,14 +6520,13 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) returns the same empty array for an empty sublist.
+     * Test method to verify that toArray(Object[]) returns the same empty array for an empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) returns the input array unchanged when the sublist is empty,
-     * following the contract for empty collections.</p>
+     * <p>This test verifies that toArray(Object[]) returns the input array unchanged when the sublist is empty.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case behavior where an empty sublist is converted to an array
+     * <p>The test validates the edge case behavior where an empty sublist is converted to an array
      * using a provided array reference, which should be returned unchanged.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6607,15 +6535,15 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      * <p>- Empty object array is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns the same array reference</p>
+     * <p>- toArray(Object[]) returns the same array reference</p>
      * <p>- Array length remains 0</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should return the input array unchanged for empty sublists.</p>
+     * <p>toArray(Object[]) should return the input array unchanged for empty sublists.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceEmptySubList()
@@ -6634,15 +6562,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) works correctly with an array of exact size.
+     * Test method to verify that toArray(Object[]) works correctly with an array of exact size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly populates and returns the input array
+     * <p>This test verifies that toArray(Object[]) correctly populates and returns the input array
      * when it has exactly the same size as the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the optimal case where the provided array has exactly
-     * the required size, avoiding unnecessary array creation.</p>
+     * <p>The test validates the optimal case where the provided array has exactly
+     * the required size, avoiding unnecessary array creations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and calls toArray()
@@ -6654,11 +6582,11 @@ public class SubListAdapterTest
      * <p>- Object array of size 2 is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns the same array reference</p>
+     * <p>- toArray(Object[]) returns the same array reference</p>
      * <p>- Array contains elements ["1", "2"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should populate and return the input array when it has exact size.</p>
+     * <p>toArray(Object[]) should populate and return the input array when it has exact size.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceExactSize()
@@ -6678,15 +6606,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) correctly handles larger arrays with null termination.
+     * Test method to verify that toArray(Object[]) correctly handles larger arrays with null termination.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) properly handles arrays larger than the sublist size
-     * by null-terminating the result and preserving existing elements beyond the sublist content.</p>
+     * <p>This test verifies that toArray(Object[]) properly handles arrays larger than the sublist size
+     * by null-termination.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the contract requirement that when the array is larger than
-     * the collection, the element immediately following the collection content is set to null.</p>
+     * <p>The test validates the case when he array is larger than the collection, the element immediately
+     * following the collection content is set to null.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and calls toArray()
@@ -6699,11 +6627,11 @@ public class SubListAdapterTest
      * <p>- Object array of size 5 with pre-populated values is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns the same array reference</p>
+     * <p>- toArray(Object[]) returns the same array reference</p>
      * <p>- Array contains elements ["2", "3", null, "0", "0"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should null-terminate and preserve existing elements in larger arrays.</p>
+     * <p>toArray(Object[]) should null-terminate and preserve existing elements in larger arrays.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceLargerArray()
@@ -6730,14 +6658,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) creates a new array when the input array is too small.
+     * Test method to verify that toArray(Object[]) creates a new array when the input array is too small.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) creates and returns a new array when the provided array
-     * is smaller than the sublist size, following the collection contract.</p>
+     * <p>This test verifies that toArray(Object[]) creates and returns a new array when the provided array
+     * is smaller than the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where the provided array is insufficiently sized,
+     * <p>The test validates the case where the provided array is insufficiently sized,
      * requiring the method to allocate a new array of appropriate size.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6750,11 +6678,11 @@ public class SubListAdapterTest
      * <p>- Object array of size 2 is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns a different array reference</p>
+     * <p>- toArray(Object[]) returns a different array reference</p>
      * <p>- New array contains all three elements ["1", "2", "3"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should create a new array when the input array is too small.</p>
+     * <p>toArray(Object[]) should create a new array when the input array is too small.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceSmallerArray()
@@ -6776,15 +6704,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) correctly handles null elements in larger arrays.
+     * Test method to verify that toArray(Object[]) correctly handles null elements in larger arrays.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) properly handles null elements within the sublist
-     * when using a larger provided array, ensuring correct null termination and element preservation.</p>
+     * <p>This test verifies that toArray(Object[]) properly handles null elements within the sublist
+     * when using a larger provided array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the combination of null elements in the sublist and
-     * the use of a larger array, testing both null handling and array size management.</p>
+     * <p>The test validates the combination of null elements in the sublist and
+     * the use of a larger array, ensuring proper null handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector containing a null element, creates a sublist encompassing all elements,
@@ -6797,11 +6725,11 @@ public class SubListAdapterTest
      * <p>- Object array of size 5 is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns the same array reference</p>
+     * <p>- toArray(Object[]) returns the same array reference</p>
      * <p>- Array contains elements ["1", null, "3", null, unchanged]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should correctly handle null elements and proper null termination.</p>
+     * <p>toArray(Object[]) should correctly handle null elements and proper null termination.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceNullElements()
@@ -6823,15 +6751,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) throws NullPointerException when given a null array.
+     * Test method to verify that toArray(Object[]) throws NullPointerException when given a null array.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) throws NullPointerException when the provided array is null,
-     * as required by the collection interface contract.</p>
+     * <p>This test verifies that toArray(Object[]) throws NullPointerException when the provided array is null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid null input,
-     * ensuring robustness and contract compliance.</p>
+     * <p>The test validates proper exception handling for invalid null input,
+     * ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and calls toArray()
@@ -6845,7 +6772,7 @@ public class SubListAdapterTest
      * <p>- NullPointerException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should throw NullPointerException when given a null array.</p>
+     * <p>toArray(Object[]) should throw NullPointerException when given a null array.</p>
      */
     @Test(expected = NullPointerException.class)
     public void testSubListToArrayWithReferenceNullArray()
@@ -6860,14 +6787,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) properly null-terminates for empty sublists in larger arrays.
+     * Test method to verify that toArray(Object[]) properly null-terminates for empty sublists in larger arrays.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly null-terminates the result when an empty sublist
-     * is converted using a larger array, ensuring existing array elements are preserved.</p>
+     * <p>This test verifies that toArray(Object[]) correctly null-terminates the result when an empty sublist
+     * is converted using a larger array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the specific behavior of null-termination for empty collections
+     * <p>The test validates the specific behavior of null-termination for empty collections
      * when using larger arrays, including preservation of existing array content.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6877,15 +6804,15 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      * <p>- Object array of size 3 with pre-populated values is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns the same array reference</p>
+     * <p>- toArray(Object[]) returns the same array reference</p>
      * <p>- Array contains elements [null, "0", "0"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should null-terminate empty sublists and preserve existing array elements.</p>
+     * <p>toArray(Object[]) should null-terminate empty sublists and preserve existing array elements.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceEmptySubListNullTermination()
@@ -6910,14 +6837,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) creates a new array when given a zero-length array.
+     * Test method to verify that toArray(Object[]) creates a new array when given a zero-length array.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) creates and returns a new array when provided with
-     * a zero-length array, as the provided array is insufficient for any non-empty collection.</p>
+     * <p>This test verifies that toArray(Object[]) creates and returns a new array when provided with
+     * a zero-length array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the provided array has zero length,
+     * <p>The test validates the edge case where the provided array has zero length,
      * which should always trigger creation of a new array for non-empty collections.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6930,11 +6857,11 @@ public class SubListAdapterTest
      * <p>- Zero-length object array is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns a different array reference</p>
+     * <p>- toArray(Object[]) returns a different array reference</p>
      * <p>- New array contains elements ["2", "3"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should create a new array when given a zero-length array for non-empty sublists.</p>
+     * <p>toArray(Object[]) should create a new array when given a zero-length array for non-empty sublists.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceZeroLengthArray()
@@ -6955,15 +6882,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) works correctly with sublists that have an offset.
+     * Test method to verify that toArray(Object[]) works correctly with sublists that have an offset.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly handles sublists with non-zero offsets
-     * when using a provided array, ensuring proper element copying and null termination.</p>
+     * <p>This test verifies that toArray(Object[]) correctly handles sublists with non-zero offsets
+     * when using a provided array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublist offset calculations work correctly with
-     * the toArray(T[]) method, particularly when the sublist doesn't start at the vector beginning.</p>
+     * <p>The test validates that sublist offset calculations work correctly with the toArray(Object[]),
+     * particularly when the sublist doesn't start at the vector beginning.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with four elements, creates a sublist starting at index 2,
@@ -6976,11 +6903,11 @@ public class SubListAdapterTest
      * <p>- Object array of size 3 is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- toArray(T[]) returns the same array reference</p>
+     * <p>- toArray(Object[]) returns the same array reference</p>
      * <p>- Array contains elements ["2", "3", null]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should correctly handle sublists with non-zero offsets.</p>
+     * <p>toArray(Object[]) should correctly handle sublists with non-zero offsets.</p>
      */
     @Test
     public void testSubListToArrayWithReferenceWithOffset()
@@ -7006,10 +6933,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the get() method correctly returns elements at valid indices
-     * within a sublist, ensuring proper element retrieval functionality.</p>
+     * within a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic element retrieval functionality for valid indices
+     * <p>The test validates basic element retrieval functionality for valid indices
      * in a sublist, ensuring that elements are correctly accessed and returned.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7045,11 +6972,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that get() throws ArrayIndexOutOfBoundsException when called with
-     * a negative index, ensuring proper bounds checking.</p>
+     * a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative indices,
-     * ensuring robust error handling in the sublist implementation.</p>
+     * <p>The test validates exception handling for invalid negative indices,
+     * ensuring robust error handling and bound checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 1 to 3,
@@ -7083,11 +7010,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that get() throws ArrayIndexOutOfBoundsException when called with
-     * an index equal to the sublist size, ensuring proper bounds checking.</p>
+     * an index equal to the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for indices at the upper bound,
-     * ensuring robust error handling in the sublist implementation.</p>
+     * <p>The test validates exception handling for indices at the upper bound,
+     * ensuring robust error handling and bounds checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 1 to 3,
@@ -7121,11 +7048,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that get() throws ArrayIndexOutOfBoundsException when called on
-     * an empty sublist, ensuring proper bounds checking for edge cases.</p>
+     * an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for empty sublists,
-     * ensuring robust error handling in edge cases.</p>
+     * <p>The test validates exception handling for empty sublists,
+     * ensuring robust error handling in edge cases and bounds condition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates an empty sublist
@@ -7133,7 +7060,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
@@ -7158,12 +7085,11 @@ public class SubListAdapterTest
      * Test method to verify that get() correctly handles null elements in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that get() correctly returns null for null elements in a sublist,
-     * ensuring proper handling of null values.</p>
+     * <p>This test verifies that get() correctly returns null elements in a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements in sublists,
-     * ensuring the implementation correctly supports null values.</p>
+     * <p>The test validates proper handling of null elements in sublists,
+     * ensuring it correctly handles null values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements including a null value, creates a sublist
@@ -7197,12 +7123,11 @@ public class SubListAdapterTest
      * Test method to verify that get() works correctly with offset in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that get() correctly handles offset calculations in sublists,
-     * ensuring proper element retrieval when the sublist has a non-zero starting index.</p>
+     * <p>This test verifies that get() correctly handles offset calculations in sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset handling in sublists,
-     * ensuring elements are correctly mapped between the main vector and sublist.</p>
+     * <p>The test validates proper offset handling in sublists,
+     * ensuring elements are correctly mapped between the backing vector and sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist starting at index 3,
@@ -7236,12 +7161,12 @@ public class SubListAdapterTest
      * Test method to verify that set() correctly updates elements at valid indices in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly updates elements at valid indices in a sublist
-     * and returns the previous value, ensuring proper element modification functionality.</p>
+     * <p>This test verifies that set() correctly updates elements in a sublist
+     * and returns the previous value.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic element modification functionality for valid indices
-     * in a sublist, ensuring that elements are correctly updated and previous values are returned.</p>
+     * <p>The test validates basic element modification for valid indices, ensuring that
+     * elements are correctly updated and previous values are returned.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 1 to 3,
@@ -7282,11 +7207,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that set() throws ArrayIndexOutOfBoundsException when called with
-     * a negative index, ensuring proper bounds checking during element modification.</p>
+     * a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative indices
-     * during element modification, ensuring robust error handling.</p>
+     * <p>The test validates exception handling for invalid negative indices
+     * during element modification, ensuring robust error handling and bounds checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist from index 0 to 2,
@@ -7320,11 +7245,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that set() throws ArrayIndexOutOfBoundsException when called with
-     * an index equal to the sublist size, ensuring proper bounds checking during element modification.</p>
+     * an index equal to the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for indices at the upper bound
-     * during element modification, ensuring robust error handling.</p>
+     * <p>The test validates exception handling for indices at the upper bound
+     * during element modification, ensuring robust error handling and bounds checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist from index 0 to 2,
@@ -7358,10 +7283,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that set() throws ArrayIndexOutOfBoundsException when called on
-     * an empty sublist, ensuring proper bounds checking for edge cases during element modification.</p>
+     * an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for empty sublists
+     * <p>The test validates exception handling for empty sublists
      * during element modification, ensuring robust error handling in edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7370,7 +7295,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
@@ -7395,12 +7320,11 @@ public class SubListAdapterTest
      * Test method to verify that set() correctly updates elements at the beginning of sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly updates elements at the beginning of a sublist
-     * and properly propagates changes to the main vector.</p>
+     * <p>This test verifies that set() correctly updates elements at the beginning of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element modification at the beginning of a sublist,
-     * ensuring proper index mapping and main vector synchronization.</p>
+     * <p>The test validates element modification at the beginning of a sublist,
+     * ensuring proper index mapping and update of the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 0 to 3,
@@ -7440,12 +7364,11 @@ public class SubListAdapterTest
      * Test method to verify that set() correctly updates elements at the end of sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly updates elements at the end of a sublist
-     * and properly propagates changes to the main vector.</p>
+     * <p>This test verifies that set() correctly updates elements at the end of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element modification at the end of a sublist,
-     * ensuring proper index mapping and main vector synchronization.</p>
+     * <p>The test validates element modification at the end of a sublist,
+     * ensuring proper index mapping and update of the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 0 to 3,
@@ -7485,12 +7408,11 @@ public class SubListAdapterTest
      * Test method to verify that set() correctly handles null values in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly handles setting elements to null values
-     * in a sublist and properly propagates null values to the main vector.</p>
+     * <p>This test verifies that set() correctly handles setting elements to null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during element modification,
-     * ensuring the implementation correctly supports null assignments.</p>
+     * <p>The test validates proper handling of null values during element modification,
+     * ensuring support for null assignments.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 0 to 3,
@@ -7531,11 +7453,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that set() correctly handles multiple consecutive updates
-     * to the same position in a sublist and properly propagates changes to the main vector.</p>
+     * to the same position.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of multiple modifications
-     * to the same element, ensuring the implementation maintains consistency.</p>
+     * <p>The test validates proper handling of multiple modifications
+     * to the same element, maintaining consistency.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist from index 0 to 3,
@@ -7576,12 +7498,11 @@ public class SubListAdapterTest
      * Test method to verify that set() correctly handles offset calculations in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly handles offset calculations in sublists
-     * during element modification, ensuring proper element mapping between main vector and sublist.</p>
+     * <p>This test verifies that set() correctly handles offset calculations in sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper offset handling during element modification,
-     * ensuring elements are correctly mapped between the main vector and sublist.</p>
+     * <p>The test validates proper offset handling during element modification,
+     * ensuring elements are correctly mapped between the backing vector and sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist starting at index 2,
@@ -7621,15 +7542,14 @@ public class SubListAdapterTest
      * Test method to verify that adding an element to a non-empty sublist works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding an element to a non-empty sublist increases both the sublist
-     * and backing vector sizes correctly and maintains element ordering.</p>
+     * <p>This test verifies that add() proeprly adds an element to a non-empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the add operation on a non-empty sublist, ensuring proper
-     * size management and element positioning in both the sublist and backing vector.</p>
+     * <p>The test validates the add operation on a non-empty sublist, ensuring proper
+     * size management and element positioning.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, creates a sublist covering the entire vector,
+     * <p>The test creates a VectorAdapter with two elements, creates a sublist,
      * adds a third element to the sublist, and verifies the sizes and element positions in both the
      * sublist and backing vector.</p>
      *
@@ -7666,20 +7586,19 @@ public class SubListAdapterTest
      * Test method to verify that adding an element to an empty sublist works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding an element to an empty sublist properly initializes the sublist
-     * and updates the backing vector.</p>
+     * <p>This test verifies that add() adds an element to an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the add operation on an empty sublist, ensuring the sublist
-     * becomes non-empty and the backing vector is updated accordingly.</p>
+     * <p>The test validates the add operation on an empty sublist, ensuring the sublist
+     * becomes non-empty and the backing vector is updated properly.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, creates an empty sublist (range 1-1),
+     * <p>The test creates a VectorAdapter with two elements, creates an empty sublist,
      * adds an element to the sublist, and verifies the sizes and element positions.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 2 elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size becomes 1 (from empty)</p>
@@ -7709,11 +7628,10 @@ public class SubListAdapterTest
      * Test method to verify that adding a null element to a sublist works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that null elements can be added to sublists and are properly handled
-     * in both the sublist and backing vector.</p>
+     * <p>This test verifies that null elements can be added to sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements in the add operation,
+     * <p>The test validates proper handling of null elements,
      * ensuring null values are stored correctly and sizes are updated properly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7751,12 +7669,11 @@ public class SubListAdapterTest
      * Test method to verify that adding elements to a sublist with offset works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding elements to a sublist with a non-zero offset properly
-     * updates both the sublist and backing vector with correct element positioning.</p>
+     * <p>This test verifies that adding elements to a sublist with a non-zero offset is handled.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the add operation on sublists that don't start at
-     * the beginning of the backing vector, ensuring proper offset handling.</p>
+     * <p>The test validates the add operation on sublists with offset,
+     * ensuring proper offset handling and correct element positioning.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist starting at
@@ -7800,10 +7717,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding elements to a sublist of an empty vector properly
-     * initializes both the sublist and backing vector.</p>
+     * initializes both of them.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the add operation on sublists created from empty
+     * <p>The test validates the add operation on sublists created from empty
      * vectors, ensuring proper initialization and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7812,7 +7729,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized empty</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 0 to 0 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size becomes 1 (from empty)</p>
@@ -7840,11 +7757,11 @@ public class SubListAdapterTest
      * Test method to verify that removing existing elements from a sublist works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing existing elements from a sublist properly decreases
-     * sizes and maintains element ordering in both the sublist and backing vector.</p>
+     * <p>This test verifies that removing existing elements affects both
+     * sublist and backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation for existing elements, ensuring
+     * <p>The test validates the remove operation for existing elements, ensuring
      * proper size management and element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7886,10 +7803,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that attempting to remove non-existing elements from a sublist
-     * does not modify the collections and returns the appropriate result.</p>
+     * does not modify the collections.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation for elements not present in
+     * <p>The test validates the remove operation for elements not present in
      * the sublist, ensuring no modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7929,11 +7846,10 @@ public class SubListAdapterTest
      * Test method to verify that removing null elements from a sublist works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that null elements can be properly removed from sublists and
-     * both collections are updated correctly.</p>
+     * <p>This test verifies that null elements can be properly removed.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation for null elements, ensuring
+     * <p>The test validates the remove operation for null elements, ensuring
      * proper handling of null values and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7974,10 +7890,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that attempting to remove elements from an empty sublist
-     * does not modify the collections and returns the appropriate result.</p>
+     * does not modify the collections.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation on empty sublists, ensuring
+     * <p>The test validates the remove operation on empty sublists, ensuring
      * no modifications occur and the correct value is returned.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7986,7 +7902,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size remains unchanged at 0</p>
@@ -8015,11 +7931,10 @@ public class SubListAdapterTest
      * Test method to verify that only the first occurrence is removed when multiple identical elements exist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that when multiple identical elements exist in a sublist, only
-     * the first occurrence is removed during a remove operation.</p>
+     * <p>This test verifies multiple identical elements removal proper effect.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the remove operation only affects the first
+     * <p>The test validates that the remove operation only affects the first
      * occurrence of duplicate elements, ensuring proper element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8060,12 +7975,10 @@ public class SubListAdapterTest
      * Test method to verify that removing elements from a sublist with offset works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing elements from a sublist with a non-zero offset
-     * properly updates both the sublist and backing vector with correct element shifting.</p>
+     * <p>This test verifies that remove() deletes elements from a sublist with a non-zero offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation on sublists that don't start
-     * at the beginning of the backing vector, ensuring proper offset handling.</p>
+     * <p>The test validates the remove operation on sublists with offset, ensuring proper handling and shifting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist at the end,
@@ -8103,18 +8016,17 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that add(int index, Object element) works correctly at a valid position within the sublist.
+     * Test method to verify that add(int, Object) works correctly at a valid position within the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding an element at a valid middle position in the sublist correctly
-     * inserts the element and shifts subsequent elements to the right.</p>
+     * <p>This test verifies that add(int, Object) is adding an element at a valid position in the sublist correctly .</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic insertion functionality of the sublist at a middle position,
-     * ensuring proper element shifting and size management in both the sublist and backing vector.</p>
+     * <p>The test validates the basic insertion functionality of the sublist at a middle position,
+     * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, creates a sublist covering the entire vector,
+     * <p>The test creates a VectorAdapter with two elements, creates a sublist,
      * inserts an element at index 1, and verifies the resulting element order and sizes.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -8152,10 +8064,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element at the beginning of the sublist correctly
-     * inserts the element and shifts all existing elements to the right.</p>
+     * inserts the element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion at the beginning boundary of the sublist,
+     * <p>The test validates insertion at the beginning boundary of the sublist,
      * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8193,14 +8105,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that add(int index, Object element) works correctly at the end of the sublist.
+     * Test method to verify that add(int, Object) works correctly at the end of the sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element at the end of the sublist correctly
-     * appends the element without affecting existing elements.</p>
+     * appends the element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion at the end boundary of the sublist,
+     * <p>The test validates insertion at the end boundary of the sublist,
      * ensuring proper appending behavior without unnecessary shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8238,23 +8150,23 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that add(int index, Object element) works correctly on an empty sublist.
+     * Test method to verify that add(int, Object) works correctly on an empty sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element to an empty sublist correctly
-     * creates the first element and updates sizes appropriately.</p>
+     * inserts the new element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion into an empty sublist,
-     * ensuring proper initialization of the previously empty range.</p>
+     * <p>The test validates insertion into an empty sublist,
+     * ensuring proper initialization of the previous empty range.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, creates an empty sublist (range 1-1),
+     * <p>The test creates a VectorAdapter with two elements, creates an empty sublist,
      * inserts an element at index 0, and verifies the resulting element and sizes.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size becomes 1</p>
@@ -8280,15 +8192,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that add(int index, Object element) throws ArrayIndexOutOfBoundsException for negative index.
+     * Test method to verify that add(int, Object) throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding an element at a negative index throws the appropriate exception,
-     * preventing invalid index access.</p>
+     * <p>This test verifies that adding an element at a negative index throws
+     * ArrayIndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative index values,
-     * ensuring robust error checking in the sublist implementation.</p>
+     * <p>The test validates exception handling for invalid negative index values,
+     * ensuring robust error checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist,
@@ -8317,15 +8229,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that add(int index, Object element) throws ArrayIndexOutOfBoundsException for index greater than size.
+     * Test method to verify that add(int, Object) throws ArrayIndexOutOfBoundsException for index greater than size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding an element at an index greater than the current size throws the appropriate exception,
-     * preventing index overflow.</p>
+     * <p>This test verifies that adding an element at an index greater than the
+     * current size throws ArrayIndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for index values beyond the current size,
-     * ensuring proper bounds checking in the sublist implementation.</p>
+     * <p>The test validates exception handling for index values beyond the current size,
+     * ensuring proper bounds checking and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist,
@@ -8357,12 +8269,11 @@ public class SubListAdapterTest
      * Test method to verify that add(int index, Object element) works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that adding a null element at a valid position works correctly,
-     * ensuring proper handling of null values in the sublist.</p>
+     * <p>This test verifies that add(int, Object) adds properly null element at a valid position works correctly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion of null elements,
-     * ensuring the sublist implementation properly handles null values.</p>
+     * <p>The test validates insertion of null elements,
+     * ensuring properly handles null values insertion.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist,
@@ -8399,14 +8310,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that add(int index, Object element) works correctly with offset sublists.
+     * Test method to verify that add(index, Object) works correctly with offset sublists.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding elements to a sublist with an offset from the main vector
-     * works correctly and maintains proper positioning in the backing vector.</p>
+     * works correctly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion in sublists that don't start at the beginning of the vector,
+     * <p>The test validates insertion in sublists that don't start at the beginning of the vector,
      * ensuring proper offset calculation and element positioning.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8451,15 +8362,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) works correctly at a valid position within the sublist.
+     * Test method to verify that remove() works correctly at a valid position within the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing an element at a valid middle position in the sublist correctly
-     * returns the removed element and shifts subsequent elements to the left.</p>
+     * <p>This test verifies that removing an element at a valid position
+     * returns the removed element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic removal functionality of the sublist at a middle position,
-     * ensuring proper element shifting and size management in both the sublist and backing vector.</p>
+     * <p>The test validates the basic removal functionality at a valid position,
+     * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist covering the entire vector,
@@ -8495,15 +8406,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) throws ArrayIndexOutOfBoundsException for negative index.
+     * Test method to verify that remove() throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing an element at a negative index throws the appropriate exception,
-     * preventing invalid index access.</p>
+     * <p>This test verifies that removing an element at a negative index throws the appropriate exception.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative index values during removal,
-     * ensuring robust error checking in the sublist implementation.</p>
+     * <p>The test validates exception handling for invalid negative index values during removal,
+     * ensuring robust error checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, creates a sublist,
@@ -8532,15 +8442,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) throws ArrayIndexOutOfBoundsException for index equal to size.
+     * Test method to verify that remove() throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing an element at an index equal to the current size throws the appropriate exception,
-     * preventing index overflow.</p>
+     * <p>This test verifies that removing an element at an index equal to the
+     * current size throws ArrayIndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for index values equal to the size during removal,
-     * ensuring proper bounds checking in the sublist implementation.</p>
+     * <p>The test validates exception handling for index values equal to the size during removal,
+     * ensuring proper bounds checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates a sublist,
@@ -8570,23 +8480,23 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) throws ArrayIndexOutOfBoundsException on empty sublist.
+     * Test method to verify that remove() throws ArrayIndexOutOfBoundsException on empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing an element from an empty sublist throws the appropriate exception,
-     * preventing operations on invalid ranges.</p>
+     * <p>This test verifies that removing an element from an empty sublist
+     * throws ArrayIndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for removal attempts on empty sublists,
+     * <p>The test validates exception handling for removal attempts on empty sublists,
      * ensuring robust error checking for edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, creates an empty sublist (range 1-1),
+     * <p>The test creates a VectorAdapter with two elements, creates an empty sublist,
      * and attempts to remove an element at index 0, expecting an ArrayIndexOutOfBoundsException.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the main vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
@@ -8607,14 +8517,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) works correctly at the beginning of the sublist.
+     * Test method to verify that remove() works correctly at the beginning of the sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing the first element of the sublist correctly
-     * returns the removed element and shifts all subsequent elements to the left.</p>
+     * returns the removed element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate removal at the beginning boundary of the sublist,
+     * <p>The test validates removal at the beginning boundary of the sublist,
      * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8652,14 +8562,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) works correctly at the end of the sublist.
+     * Test method to verify that remove() works correctly at the end of the sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing the last element of the sublist correctly
-     * returns the removed element without affecting other elements.</p>
+     * returns the removed element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate removal at the end boundary of the sublist,
+     * <p>The test validates removal at the end boundary of the sublist,
      * ensuring proper size management without unnecessary shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8696,15 +8606,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) works correctly with null elements.
+     * Test method to verify that remove() works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing a null element from the sublist correctly
-     * returns null and handles the removal properly.</p>
+     * returns null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate removal of null elements,
-     * ensuring the sublist implementation properly handles null values during removal.</p>
+     * <p>The test validates removal of null elements,
+     * ensuring it properly handles null values during removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements including a null, creates a sublist,
@@ -8740,15 +8650,15 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) works correctly with multiple consecutive removals.
+     * Test method to verify that remove() works correctly with multiple consecutive removals.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that multiple consecutive removals from the sublist work correctly
-     * and maintain proper element ordering and sizing.</p>
+     * <p>This test verifies that multiple consecutive removals from the sublist work correctly.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate multiple removal operations in sequence,
-     * ensuring the sublist maintains consistency through multiple modifications.</p>
+     * <p>The test validates multiple removal operations in sequence,
+     * ensuring the sublist maintains size management and order
+     * consistency through multiple modifications.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with five elements, creates a sublist from the middle range,
@@ -8786,15 +8696,14 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove(int index) works correctly with offset sublists.
+     * Test method to verify that remove() works correctly with offset sublists.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removing an element from a sublist with an offset from the main vector
-     * works correctly and maintains proper positioning in the backing vector.</p>
+     * <p>This test verifies that remove() deletes an element from a sublist with an offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate removal in sublists that don't start at the beginning of the vector,
-     * ensuring proper offset calculation and element positioning during removal.</p>
+     * <p>The test validates removal in sublists that don't start at the beginning of the vector,
+     * ensuring proper offset calculation and element repositioning during removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements, creates a sublist from the end range,
@@ -8833,17 +8742,18 @@ public class SubListAdapterTest
      * Test method to verify that clear() operation on an empty sublist does not affect the backing vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that calling clear() on an empty sublist does not change the sublist's size or the backing vector's content.</p>
+     * <p>This test verifies that calling clear() on an empty sublist does not affect collections.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of the clear() method when applied to an empty sublist, ensuring it remains empty and doesn't affect the original vector.</p>
+     * <p>The test validates the behavior of the clear() method when applied to an empty sublist,
+     * ensuring it remains empty and doesn't affect the original vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, then creates an empty sublist (from index 1 to 1). It calls clear() on the empty sublist and verifies that the sublist remains empty and the original vector size is unchanged.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 1 (empty range) of the vector</p>
+     * <p>- SubListAdapter is created from indices 1 to 1 of the vector</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- SubList size remains 0</p>
@@ -8873,10 +8783,10 @@ public class SubListAdapterTest
      * Test method to verify that clear() operation removes multiple elements from sublist and updates backing vector correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clear() correctly removes multiple elements from a sublist and properly updates the backing vector.</p>
+     * <p>This test verifies that clear() correctly removes multiple elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the clear() operation on a sublist containing multiple elements, ensuring proper element removal and vector updating.</p>
+     * <p>The test validates the clear() operation on a sublist containing multiple elements, ensuring proper element removal and vector updating.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with four elements, creates a sublist containing elements at indices 1-2, calls clear() on the sublist, and verifies that the sublist becomes empty and the vector size decreases appropriately with elements properly shifted.</p>
@@ -8917,10 +8827,10 @@ public class SubListAdapterTest
      * Test method to verify that clear() operation correctly handles sublists containing null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clear() properly handles sublists containing null elements and correctly updates the backing vector.</p>
+     * <p>This test verifies that clear() properly handles sublists containing nulls.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the clear() operation on sublists containing null values, ensuring proper handling of null elements during removal.</p>
+     * <p>The test validates the clear() operation on sublists containing null values, ensuring proper handling of null elements during removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with mixed null and non-null elements, creates a sublist containing null elements, calls clear() on the sublist, and verifies proper removal and vector updating.</p>
@@ -8961,13 +8871,13 @@ public class SubListAdapterTest
      * Test method to verify that clear() operation works correctly when applied to a sublist covering the entire vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clear() correctly handles sublists that encompass the entire backing vector.</p>
+     * <p>This test verifies that clear() correctly handles sublists that covers the entire backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the clear() operation when the sublist represents the entire vector, ensuring complete element removal.</p>
+     * <p>The test validates the clear() operation when the sublist represents the entire vector, ensuring vector emptying.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements, creates a sublist covering all elements (indices 0-3), calls clear() on the sublist, and verifies that both sublist and vector become empty.</p>
+     * <p>The test creates a vector with three elements, creates a sublist covering all elements, calls clear() on the sublist, and verifies that both sublist and vector become empty.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
@@ -9004,7 +8914,7 @@ public class SubListAdapterTest
      * <p>This test verifies that clear() correctly handles sublists that start at non-zero positions in the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the clear() operation on sublists with positional offsets, ensuring proper element removal and vector updating.</p>
+     * <p>The test validates the clear() operation on sublists with positional offsets, ensuring proper element removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with four elements, creates a sublist starting at index 2, calls clear() on the sublist, and verifies proper removal and element shifting in the backing vector.</p>
@@ -9048,7 +8958,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() correctly returns true when checking against an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's behavior when presented with an empty collection, ensuring it follows the collection contract.</p>
+     * <p>The test validates the containsAll() behavior when checked with an empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and verifies that containsAll() returns true when checking against an empty collection.</p>
@@ -9062,7 +8972,7 @@ public class SubListAdapterTest
      * <p>- containsAll() returns true</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>containsAll() should return true when checking against an empty collection, following the collection contract.</p>
+     * <p>containsAll() should return true when checking against an empty collection.</p>
      */
     @Test
     public void testSubListContainsAllEmptyCollection()
@@ -9085,7 +8995,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() correctly identifies when all elements of a collection are present in the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's positive case, ensuring it returns true when all elements are contained.</p>
+     * <p>The test validates the containsAll() positive case, ensuring it returns true when all elements are contained.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and verifies that containsAll() returns true when checking against a collection containing elements that exist in the sublist.</p>
@@ -9121,10 +9031,10 @@ public class SubListAdapterTest
      * Test method to verify that containsAll() returns false when some elements of the collection are missing from the sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that containsAll() correctly identifies when some elements of a collection are missing from the sublist.</p>
+     * <p>This test verifies that containsAll() correctly identifies when some elements of a collection are missing.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's negative case, ensuring it returns false when some elements are missing.</p>
+     * <p>The test validates the containsAll() negative case, ensuring it returns false when some elements are missing.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and verifies that containsAll() returns false when checking against a collection containing some elements not present in the sublist.</p>
@@ -9163,7 +9073,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() correctly identifies when all elements of a collection are missing from the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's extreme negative case, ensuring it returns false when no elements are contained.</p>
+     * <p>The test validates the containsAll() extreme negative case, ensuring it returns false when no elements are contained.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and verifies that containsAll() returns false when checking against a collection containing elements not present in the sublist.</p>
@@ -9202,7 +9112,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() is order-independent and returns true when all elements are present regardless of their order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that containsAll() focuses on element presence rather than order, ensuring it follows the collection contract.</p>
+     * <p>The test validates that containsAll() focuses on element presence rather than order.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and verifies that containsAll() returns true when checking against a collection containing the same elements in different order.</p>
@@ -9241,7 +9151,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() properly handles collections with duplicate elements when the sublist contains sufficient copies.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's behavior with duplicate elements, ensuring it checks for sufficient quantity of each element.</p>
+     * <p>The test validates the containsAll() behavior with duplicate elements, ensuring double checks for duplicates.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with duplicate elements, creates a sublist containing those duplicates, and verifies that containsAll() returns true when checking against a collection with those elements.</p>
@@ -9278,10 +9188,10 @@ public class SubListAdapterTest
      * Test method to verify that containsAll() correctly handles null elements in both sublist and collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that containsAll() properly handles null elements present in both the sublist and the collection being checked.</p>
+     * <p>This test verifies that containsAll() properly handles null elements present in the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's behavior with null values, ensuring proper null handling and comparison.</p>
+     * <p>The test validates the containsAll() behavior with null values, ensuring proper null handling and comparison.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with null elements, creates a sublist containing null values, and verifies that containsAll() returns true when checking against a collection containing those null elements.</p>
@@ -9320,7 +9230,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() correctly returns false when an empty sublist is checked against a non-empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's behavior with empty sublists, ensuring it returns false for non-empty collections.</p>
+     * <p>The test validates the containsAll() behavior with empty sublists, ensuring it returns false for non-empty collections.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates an empty sublist, and verifies that containsAll() returns false when checking against a non-empty collection.</p>
@@ -9359,7 +9269,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() throws NullPointerException when the collection parameter is null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling in containsAll() when presented with a null collection parameter.</p>
+     * <p>The test validates proper exception handling in containsAll() when presented with a null collection parameter.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist, and verifies that containsAll() throws NullPointerException when passed a null collection.</p>
@@ -9390,10 +9300,11 @@ public class SubListAdapterTest
      * Test method to verify that containsAll() returns true when a sublist is checked against itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that containsAll() returns true when a sublist is checked against itself, ensuring reflexivity.</p>
+     * <p>This test verifies that containsAll() returns true when a sublist is checked against itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the reflexive property of containsAll(), ensuring a collection always contains all its own elements.</p>
+     * <p>The test validates the reflexive property of containsAll(), ensuring a collection always contains all its own elements,
+     * ensuring reflexivity.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, creates a sublist covering the entire vector, and verifies that containsAll() returns true when the sublist is checked against itself.</p>
@@ -9424,10 +9335,10 @@ public class SubListAdapterTest
      * Test method to verify that containsAll() returns false for elements outside the sublist range.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that containsAll() correctly returns false for elements that exist in the backing vector but outside the sublist range.</p>
+     * <p>This test verifies that containsAll() correctly returns false for elements that exist in the backing vector but outside the range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that containsAll() only considers elements within the sublist's range, not the entire backing vector.</p>
+     * <p>The test validates that containsAll() only considers elements within the sublist's range, not the entire backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with four elements, creates a sublist covering a middle range, and verifies that containsAll() returns false when checking against a collection containing elements outside the sublist range.</p>
@@ -9467,7 +9378,7 @@ public class SubListAdapterTest
      * <p>This test verifies that containsAll() correctly handles sublists with offset positions in the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the containsAll() method's behavior with sublists that start at non-zero positions, ensuring proper element checking within the offset range.</p>
+     * <p>The test validates the containsAll() behavior with sublists that start at non-zero positions, ensuring proper element checking within the offset range.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with four elements, creates a sublist starting at index 2, and verifies that containsAll() returns true when checking against a collection containing elements within the sublist's offset range.</p>
@@ -9504,12 +9415,11 @@ public class SubListAdapterTest
      * Test method to verify that addAll() returns true and correctly adds non-empty collection to sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() returns true when adding a non-empty collection to a sublist,
-     * and that the elements are correctly appended while maintaining proper size and element order.</p>
+     * <p>This test verifies that addAll() returns true when adding a non-empty collection to a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the addAll operation with a non-empty collection, ensuring
-     * proper integration of new elements into the sublist and verification of size changes.</p>
+     * <p>The test validates the addAll operation with a non-empty collection, ensuring
+     * proper integration through appending new elements into the sublist and verification of size changes.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial elements, creates a sublist from it, then adds
@@ -9556,10 +9466,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that addAll() returns false when attempting to add an empty collection
-     * to a sublist, and that no changes occur to the sublist or backing vector.</p>
+     * to a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of adding an empty collection, ensuring
+     * <p>The test validates the edge case of adding an empty collection, ensuring
      * the method returns false and maintains the original state unchanged.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9600,15 +9510,14 @@ public class SubListAdapterTest
      * Test method to verify that addAll() works correctly when adding to empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() correctly adds elements to an initially empty sublist,
-     * properly updating the size and element content.</p>
+     * <p>This test verifies that addAll() correctly adds elements to an initially empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate addAll operation on empty sublists, ensuring proper
+     * <p>The test validates addAll operation on empty sublists, ensuring proper
      * initialization and element insertion into previously empty ranges.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements, creates an empty sublist (range 1-1),
+     * <p>The test creates a VectorAdapter with elements, creates an empty sublist,
      * then adds a non-empty collection using addAll(). It verifies the return value, new size,
      * element content, and backing vector size changes.</p>
      *
@@ -9649,12 +9558,11 @@ public class SubListAdapterTest
      * Test method to verify that addAll() correctly handles null elements in collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() properly handles collections containing null elements,
-     * ensuring they are correctly added to the sublist without issues.</p>
+     * <p>This test verifies that addAll() properly handles collections containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element handling in addAll operation, ensuring
-     * proper storage and retrieval of null values within the sublist.</p>
+     * <p>The test validates null element handling in addAll operation, ensuring
+     * proper insertion and retrieval of null values within the sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements, creates a sublist, then adds a collection
@@ -9701,12 +9609,11 @@ public class SubListAdapterTest
      * Test method to verify that addAll() throws NullPointerException with null collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() throws NullPointerException when passed a null collection,
-     * ensuring proper error handling for invalid input.</p>
+     * <p>This test verifies that addAll() throws NullPointerException when passed a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for null collection parameter,
-     * ensuring the method fails fast with appropriate exception.</p>
+     * <p>The test validates exception handling for null collection parameter,
+     * ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements, creates a sublist, then attempts to add
@@ -9739,12 +9646,12 @@ public class SubListAdapterTest
      * Test method to verify that addAll() works correctly when adding sublist to itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() correctly handles adding a sublist to itself,
-     * effectively duplicating its elements while maintaining proper ordering.</p>
+     * <p>This test verifies that addAll() correctly handles adding a sublist to itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of self-addition, ensuring proper
-     * cloning and element duplication without infinite recursion or corruption.</p>
+     * <p>The test validates the edge case of self-addition, ensuring proper
+     * cloning and element duplication without infinite recursion or corruption,
+     * maintaining proper ordering.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements, creates a sublist,
@@ -9785,11 +9692,10 @@ public class SubListAdapterTest
      * Test method to verify that addAll() works correctly with offset sublist positioning.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() correctly handles elements added to a sublist that
-     * doesn't start at the beginning of the backing vector, ensuring proper offset management.</p>
+     * <p>This test verifies that addAll() correctly handles elements added to a sublist with offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate addAll operation on sublists with positional offsets,
+     * <p>The test validates addAll() operation on sublists with positional offsets,
      * ensuring elements are inserted at correct positions within the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9845,7 +9751,7 @@ public class SubListAdapterTest
      * when all elements in the collection are present in the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate removeAll operation when all collection elements
+     * <p>The test validates removeAll operation when all collection elements
      * are present, ensuring complete removal and proper size updates.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9894,11 +9800,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns true and correctly removes only the elements
-     * that are present in both the collection and sublist, leaving other elements unchanged.</p>
+     * that are present in both the collection and sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate partial removal scenario, ensuring only matching elements
-     * are removed while non-matching elements remain in place.</p>
+     * <p>The test validates partial removal scenario, ensuring only matching elements
+     * are removed while non-matching elements remain unchanged.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements, creates a sublist, then removes a collection
@@ -9947,10 +9853,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns false when attempting to remove an empty
-     * collection from a sublist, leaving the sublist unchanged.</p>
+     * collection from a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of empty collection removal, ensuring
+     * <p>The test validates the edge case of empty collection removal, ensuring
      * no changes occur to the sublist state.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9993,10 +9899,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns false when none of the collection elements
-     * are present in the sublist, leaving the sublist unchanged.</p>
+     * are present in the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the scenario where no elements match between the
+     * <p>The test validates the scenario where no elements match between the
      * collection and sublist, ensuring no removal occurs.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10041,10 +9947,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() correctly removes all occurrences of duplicate
-     * elements present in both the collection and sublist.</p>
+     * elements present.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate duplicate element handling, ensuring all instances
+     * <p>The test validates duplicate element handling, ensuring all instances
      * of matching elements are removed regardless of duplication.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10096,7 +10002,7 @@ public class SubListAdapterTest
      * in both the collection and sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element removal, ensuring proper handling
+     * <p>The test validates null element removal, ensuring proper handling
      * of null values in the removal process.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10145,10 +10051,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns false when attempting to remove elements
-     * from an empty sublist, regardless of collection content.</p>
+     * from an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of empty sublist removal, ensuring
+     * <p>The test validates the edge case of empty sublist removal, ensuring
      * no changes occur and proper return value is provided.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10193,11 +10099,11 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() throws NullPointerException when passed a null
-     * collection parameter, ensuring proper error handling.</p>
+     * collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for null collection parameter,
-     * ensuring the method fails fast with appropriate exception.</p>
+     * <p>The test validates exception handling for null collection parameter,
+     * ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements, creates a sublist, then attempts to
@@ -10231,11 +10137,10 @@ public class SubListAdapterTest
      * Test method to verify that removeAll() works correctly when removing sublist from itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeAll() correctly handles removing a sublist from itself,
-     * resulting in an empty sublist and proper backing vector updates.</p>
+     * <p>This test verifies that removeAll() correctly handles removing a sublist from itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of self-removal, ensuring all elements
+     * <p>The test validates the edge case of self-removal, ensuring all elements
      * are properly removed and state is correctly updated.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10278,7 +10183,7 @@ public class SubListAdapterTest
      * that exist in the backing vector but outside the sublist range.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that removeAll() only considers elements within the
+     * <p>The test validates that removeAll() only considers elements within the
      * sublist range, ignoring elements outside this range.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10324,10 +10229,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() correctly handles elements removal from a sublist
-     * that doesn't start at the beginning of the backing vector, ensuring proper offset management.</p>
+     * that doesn't start at the beginning of the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate removeAll operation on sublists with positional offsets,
+     * <p>The test validates removeAll operation on sublists with positional offsets,
      * ensuring elements are removed from correct positions within the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10377,10 +10282,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that retainAll() returns false when called on a sublist where all elements
-     * are present in the specified collection, indicating no modification occurred.</p>
+     * are present in the specified collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of retainAll() when the sublist already contains
+     * <p>The test validates the behavior of retainAll() when the sublist already contains
      * all elements from the specified collection, ensuring no unnecessary modifications are made.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10426,10 +10331,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that retainAll() correctly removes elements not present in the specified
-     * collection and returns true when modifications occur.</p>
+     * collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of retainAll() when only some elements from
+     * <p>The test validates the behavior of retainAll() when only some elements from
      * the sublist are present in the specified collection, ensuring proper element retention.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10479,10 +10384,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that retainAll() correctly removes all elements when none of them are
-     * present in the specified collection.</p>
+     * present.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of retainAll() when no elements from the
+     * <p>The test validates the behavior of retainAll() when no elements from the
      * sublist are present in the specified collection, ensuring complete element removal.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10532,7 +10437,7 @@ public class SubListAdapterTest
      * empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of retainAll() when the specified collection
+     * <p>The test validates the behavior of retainAll() when the specified collection
      * is empty, ensuring all elements are removed from the sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10578,8 +10483,8 @@ public class SubListAdapterTest
      * <p>This test verifies that retainAll() throws NullPointerException when called with a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when retainAll() is called with
-     * a null collection parameter.</p>
+     * <p>The test validates proper exception handling when retainAll() is called with
+     * a null collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist covering indices 0 to 2.
@@ -10611,11 +10516,10 @@ public class SubListAdapterTest
      * Test method to verify that retainAll() works correctly with offset sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that retainAll() works correctly when the sublist has an offset from
-     * the beginning of the backing vector.</p>
+     * <p>This test verifies that retainAll() works correctly when the sublist has an offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of retainAll() with sublists that don't
+     * <p>The test validates the behavior of retainAll() with sublists that don't
      * start at index 0 of the backing vector, ensuring proper element retention considering
      * the offset.</p>
      *
@@ -10668,7 +10572,7 @@ public class SubListAdapterTest
      * a non-empty collection into the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when inserting a non-empty
+     * <p>The test validates the behavior of addAll() when inserting a non-empty
      * collection at a specific index in the sublist, ensuring proper element insertion and
      * shifting of existing elements.</p>
      *
@@ -10723,7 +10627,7 @@ public class SubListAdapterTest
      * an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when attempting to insert
+     * <p>The test validates the behavior of addAll() when attempting to insert
      * an empty collection at a specific index, ensuring no modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10771,8 +10675,8 @@ public class SubListAdapterTest
      * a collection at the beginning of the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
-     * at the beginning of the sublist (index 0), ensuring proper element insertion and
+     * <p>The test validates the behavior of addAll() when inserting a collection
+     * at the beginning of the sublist, ensuring proper element insertion and
      * shifting of existing elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10825,7 +10729,7 @@ public class SubListAdapterTest
      * elements from a collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * <p>The test validates the behavior of addAll() when inserting a collection
      * at the end of the sublist, ensuring proper element appending without shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10877,7 +10781,7 @@ public class SubListAdapterTest
      * <p>This test verifies that addAll() correctly inserts elements into an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * <p>The test validates the behavior of addAll() when inserting a collection
      * into an empty sublist, ensuring proper element insertion and sublist initialization.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10928,7 +10832,7 @@ public class SubListAdapterTest
      * a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * <p>The test validates proper exception handling when addAll() is called with
      * an invalid negative index parameter.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -10969,7 +10873,7 @@ public class SubListAdapterTest
      * an index greater than the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * <p>The test validates proper exception handling when addAll() is called with
      * an index parameter that exceeds the sublist size.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11010,7 +10914,7 @@ public class SubListAdapterTest
      * <p>This test verifies that addAll() throws NullPointerException when called with a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when addAll() is called with
+     * <p>The test validates proper exception handling when addAll() is called with
      * a null collection parameter.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11039,28 +10943,35 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() throws NullPointerException with null collection.
+     * Test method to verify that addAll() works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() throws NullPointerException when called with a null collection.</p>
+     * <p>This test verifies that addAll() correctly handles null elements in the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when addAll() is called with
-     * a null collection parameter.</p>
+     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * containing null elements, ensuring proper handling of null values.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * addAll() is called with a null parameter, expecting a NullPointerException to be thrown.</p>
+     * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
+     * A collection with two null elements is created. addAll() is called at index 1 and the
+     * return value is verified to be true. The sublist and vector sizes are checked, and the
+     * element content is verified, including proper handling of null values.</p>
      *
      * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
+     * <p>- VectorAdapter is initialized with elements: ["1", "3"]</p>
      * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
+     * <p>- Another VectorAdapter is created with elements: [null, null]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- NullPointerException is thrown</p>
+     * <p>- addAll() returns true</p>
+     * <p>- SubList size becomes 4</p>
+     * <p>- Elements are in correct order: ["1", null, null, "3"]</p>
+     * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw NullPointerException when called with a null collection.</p>
+     * <p>addAll() should return true and correctly insert null elements from the collection at
+     * the specified index, handling null values properly.</p>
      */
     @Test
     public void testSubListAddAllAtIndexNullElements()
@@ -11090,7 +11001,7 @@ public class SubListAdapterTest
      * <p>This test verifies that addAll() correctly handles adding a sublist to itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when the collection parameter
+     * <p>The test validates the behavior of addAll() when the collection parameter
      * is the same sublist, ensuring proper element duplication and handling.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11138,9 +11049,8 @@ public class SubListAdapterTest
      * the beginning of the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() with sublists that don't
-     * start at index 0 of the backing vector, ensuring proper element insertion considering
-     * the offset and proper shifting of elements in the backing vector.</p>
+     * <p>The test validates the behavior of addAll() with offset,
+     * ensuring proper element insertion and proper shifting of elements in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements and a sublist covering indices 1 to 3.
@@ -11194,27 +11104,26 @@ public class SubListAdapterTest
      * Test method to verify that a sublist equals itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns true when comparing a sublist to itself,
-     * ensuring reflexivity of the equals operation.</p>
+     * <p>This test verifies that the equals() method returns true when comparing a sublist to itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the reflexive property of the equals method for sublists.
-     * This ensures that any sublist should always be equal to itself according to the equals contract.</p>
+     * <p>The test validates the reflexive property of the equals() for sublists.
+     * This ensures that any sublist should always be equal to itself.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates a sublist from indices 1 to 3.
-     * It then calls the equals method on the sublist with itself as the parameter and verifies it returns true.</p>
+     * It then calls the equals() on the sublist with itself as the parameter and verifies it returns true.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      * <p>- SubListAdapter is created from indices 1 to 3 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns true</p>
+     * <p>- equals() method returns true</p>
      * <p>- No changes to the sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return true when comparing a sublist to itself.</p>
+     * <p>The equals() should return true when comparing a sublist to itself.</p>
      */
     @Test
     public void testSubListEqualsSelf()
@@ -11233,27 +11142,26 @@ public class SubListAdapterTest
      * Test method to verify that two equal sublists are considered equal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns true when comparing two sublists with identical content,
-     * ensuring symmetry of the equals operation.</p>
+     * <p>This test verifies that the equals() returns true when comparing two sublists with identical content.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with the same elements in the same order are considered equal.
-     * This ensures proper implementation of the equals method for sublists with identical content.</p>
+     * <p>The test validates that sublists with the same elements in the same order are considered equal.
+     * This ensure proper order and elements checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two separate VectorAdapters with identical elements, creates sublists from both with the same
-     * range, and verifies that they are considered equal by the equals method.</p>
+     * range, and verifies that they are considered equal by the equals().</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Two VectorAdapters are initialized with identical elements: ["1", "2", "3"]</p>
      * <p>- Two SubListAdapters are created from indices 0 to 3 of both vectors</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns true</p>
+     * <p>- equals() returns true</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return true when comparing two sublists with identical content.</p>
+     * <p>The equals() should return true when comparing two sublists with identical content.</p>
      */
     @Test
     public void testSubListEqualsEqualSubLists()
@@ -11279,16 +11187,15 @@ public class SubListAdapterTest
      * Test method to verify that sublists of different sizes are not equal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns false when comparing sublists of different sizes,
-     * ensuring that size difference is properly detected.</p>
+     * <p>This test verifies that the equals() returns false when comparing sublists of different sizes.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with different numbers of elements are not considered equal.
-     * This ensures the equals method correctly handles size comparisons.</p>
+     * <p>The test validates that sublists with different numbers of elements are not considered equal.
+     * This ensures the equals() correctly handles size comparisons.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, then creates two sublists with different ranges
-     * (one full range, one partial range) and verifies they are not equal.</p>
+     * and verifies they are not equal.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
@@ -11296,11 +11203,11 @@ public class SubListAdapterTest
      * <p>- Second SubListAdapter is created from indices 1 to 3 (partial range)</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns false</p>
+     * <p>- equals() returns false</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return false when comparing sublists of different sizes.</p>
+     * <p>The equals() should return false when comparing sublists of different sizes.</p>
      */
     @Test
     public void testSubListEqualsDifferentSizes()
@@ -11320,12 +11227,11 @@ public class SubListAdapterTest
      * Test method to verify that sublists with different elements are not equal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns false when comparing sublists with different elements,
-     * ensuring content difference is properly detected.</p>
+     * <p>This test verifies that the equals() returns false when comparing sublists with different elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with different elements are not considered equal.
-     * This ensures the equals method correctly performs element-by-element comparison.</p>
+     * <p>The test validates that sublists with different elements are not considered equal.
+     * This ensures the equals() correctly performs element-by-element comparison.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with different elements at the same positions, creates sublists
@@ -11337,11 +11243,11 @@ public class SubListAdapterTest
      * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns false</p>
+     * <p>- equals() returns false</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return false when comparing sublists with different elements.</p>
+     * <p>The equals() should return false when comparing sublists with different elements.</p>
      */
     @Test
     public void testSubListEqualsDifferentElements()
@@ -11367,12 +11273,11 @@ public class SubListAdapterTest
      * Test method to verify that sublists with elements in different order are not equal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns false when comparing sublists with elements in different order,
-     * ensuring order sensitivity of the equals operation.</p>
+     * <p>This test verifies that the equals() returns false when comparing sublists with elements in different order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with the same elements but in different order are not considered equal.
-     * This ensures the equals method is order-sensitive as required by the List contract.</p>
+     * <p>The test validates that sublists with the same elements but in different order are not considered equal.
+     * This ensures the equals() is order-sensitive.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with the same elements but in different order, creates sublists
@@ -11384,11 +11289,11 @@ public class SubListAdapterTest
      * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns false</p>
+     * <p>- equals() returns false</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return false when comparing sublists with elements in different order.</p>
+     * <p>The equals() should return false when comparing sublists with elements in different order.</p>
      */
     @Test
     public void testSubListEqualsDifferentOrder()
@@ -11414,12 +11319,11 @@ public class SubListAdapterTest
      * Test method to verify that sublists with null elements are handled correctly in equality comparison.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method correctly handles null elements when comparing sublists,
-     * ensuring proper null value comparison.</p>
+     * <p>This test verifies that the equals() correctly handles null elements when comparing sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with identical content including null elements
-     * are considered equal. This ensures proper handling of null values in the equals implementation.</p>
+     * <p>The test validates that sublists with identical content including null elements
+     * are considered equal. This ensures proper handling of null values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with identical elements including null values, creates sublists
@@ -11430,11 +11334,11 @@ public class SubListAdapterTest
      * <p>- SubListAdapters are created from indices 0 to 3 of both vectors</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns true</p>
+     * <p>- equals() returns true</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return true when comparing sublists with identical content including null elements.</p>
+     * <p>The equals() should return true when comparing sublists with identical content including null elements.</p>
      */
     @Test
     public void testSubListEqualsNullElements()
@@ -11460,28 +11364,27 @@ public class SubListAdapterTest
      * Test method to verify that empty sublists are considered equal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns true when comparing two empty sublists,
-     * ensuring proper handling of empty collections.</p>
+     * <p>This test verifies that the equals() returns true when comparing two empty sublists.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that empty sublists from different backing vectors are considered equal.
-     * This ensures the equals method correctly handles the edge case of empty collections.</p>
+     * <p>The test validate that empty sublists from different backing vectors are considered equal.
+     * This ensures the equals() correctly handles the edge case of empty collections.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates two VectorAdapters with different content, creates empty sublists from both
-     * (range 0 to 0), and verifies they are equal.</p>
+     * <p>The test creates two VectorAdapters with different content, creates empty sublists from both,
+     * and verifies they are equal.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- First VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
      * <p>- Second VectorAdapter is initialized with elements: ["4", "5", "6"]</p>
-     * <p>- SubListAdapters are created from indices 0 to 0 (empty range) of both vectors</p>
+     * <p>- SubListAdapters are created from indices 0 to 0 of both vectors</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns true</p>
+     * <p>- equals() returns true</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return true when comparing two empty sublists.</p>
+     * <p>The equals() should return true when comparing two empty sublists.</p>
      */
     @Test
     public void testSubListEqualsEmptySubLists()
@@ -11507,11 +11410,11 @@ public class SubListAdapterTest
      * Test method to verify that a sublist is not equal to a non-list object.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method returns false when comparing a sublist to a non-list object,
+     * <p>This test verifies that the equals() returns false when comparing a sublist to a non-list object,
      * ensuring type safety in equality comparisons.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the equals method correctly handles comparisons with objects
+     * <p>The test validates that the equals() correctly handles comparisons with objects
      * of different types, specifically non-list objects.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11524,11 +11427,11 @@ public class SubListAdapterTest
      * <p>- String object "1" is created for comparison</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns false</p>
+     * <p>- equals() returns false</p>
      * <p>- No changes to the sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return false when comparing a sublist to a non-list object.</p>
+     * <p>The equals() should return false when comparing a sublist to a non-list object.</p>
      */
     @Test
     public void testSubListEqualsNonListObject()
@@ -11547,11 +11450,11 @@ public class SubListAdapterTest
      * Test method to verify that sublists with offset positions are compared correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals method works correctly for sublists that have offset positions
-     * within their backing vectors, ensuring proper handling of positional offsets.</p>
+     * <p>This test verifies that the equals() works correctly for sublists that have offset positions
+     * within their backing vectors.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with the same content but starting at different
+     * <p>The test validates that sublists with the same content but starting at different
      * positions in their backing vectors are correctly identified as equal.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11563,11 +11466,11 @@ public class SubListAdapterTest
      * <p>- SubListAdapters are created from indices 2 to 5 of both vectors</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals method returns true</p>
+     * <p>- equals() returns true</p>
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>The equals method should return true when comparing sublists with identical content but positional offsets.</p>
+     * <p>The equals() should return true when comparing sublists with identical content but positional offsets.</p>
      */
     @Test
     public void testSubListEqualsWithOffset()
@@ -11597,11 +11500,10 @@ public class SubListAdapterTest
      * Test method to verify the hashCode of an empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that an empty sublist produces the same hashCode as another empty sublist,
-     * ensuring consistency in hashCode implementation for empty collections.</p>
+     * <p>This test verifies that an empty sublist produces the same hashCode as another empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that empty sublists from the same vector produce consistent
+     * <p>The test validates that empty sublists from the same vector produce consistent
      * hashCodes, which is important for proper functioning in hash-based collections.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11610,10 +11512,10 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with no elements</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- hashCode values match</p>
+     * <p>- hashCode() values match</p>
      * <p>- No changes to the sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -11632,11 +11534,10 @@ public class SubListAdapterTest
      * Test method to verify the hashCode of sublists with multiple elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that sublists with identical content produce the same hashCode,
-     * ensuring consistency in hashCode implementation.</p>
+     * <p>This test verifies that sublists with identical content produce the same hashCode.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with the same elements produce identical
+     * <p>The test validates that sublists with the same elements produce identical
      * hashCodes, which is required for proper functioning in hash-based collections.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11652,7 +11553,7 @@ public class SubListAdapterTest
      * <p>- No changes to either sublist state</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Sublists with identical content should produce the same hashCode.</p>
+     * <p>Sublists with identical content should produce the same hashCode().</p>
      */
     @Test
     public void testSubListHashCodeOfMultipleElements()
@@ -11678,11 +11579,10 @@ public class SubListAdapterTest
      * Test method to verify the hashCode of sublists with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that sublists with identical null elements produce the same hashCode,
-     * ensuring proper handling of null values in hashCode calculation.</p>
+     * <p>This test verifies that sublists with identical null elements produce the same hashCode.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that sublists with the same null elements produce identical
+     * <p>The test validates that sublists with the same null elements produce identical
      * hashCodes, ensuring consistent behavior with null values.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11724,11 +11624,10 @@ public class SubListAdapterTest
      * Test method to verify the string representation of an empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that an empty sublist produces the correct string representation,
-     * ensuring proper formatting for empty collections.</p>
+     * <p>This test verifies that an empty sublist produces the correct string representation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method correctly represents empty sublists
+     * <p>The test validates that the toString() correctly represents empty sublists
      * using the standard collection formatting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11737,7 +11636,7 @@ public class SubListAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with no elements</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- String representation is "[]"</p>
@@ -11759,11 +11658,10 @@ public class SubListAdapterTest
      * Test method to verify the string representation of a sublist with multiple elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that a sublist with multiple elements produces the correct string representation,
-     * ensuring proper formatting and element ordering.</p>
+     * <p>This test verifies that a sublist with multiple elements produces the correct string representation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method correctly represents sublists with
+     * <p>The test validates that the toString() correctly represents sublists with
      * multiple elements using the standard collection formatting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11797,11 +11695,10 @@ public class SubListAdapterTest
      * Test method to verify the string representation of a sublist with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that a sublist with null elements produces the correct string representation,
-     * ensuring proper handling of null values in string formatting.</p>
+     * <p>This test verifies that a sublist with null elements produces the correct string representation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method correctly represents sublists with
+     * <p>The test validates that the toString() correctly represents sublists with
      * null elements using the standard collection formatting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11836,11 +11733,10 @@ public class SubListAdapterTest
      * Test method to verify the string representation of a sublist with duplicate elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that a sublist with duplicate elements produces the correct string representation,
-     * ensuring proper formatting of repeated values.</p>
+     * <p>This test verifies that a sublist with duplicate elements produces the correct string representation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method correctly represents sublists with
+     * <p>The test validates that the toString() correctly represents sublists with
      * duplicate elements using the standard collection formatting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -11876,10 +11772,10 @@ public class SubListAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that a sublist with offset positioning within its backing vector produces
-     * the correct string representation, ensuring proper handling of positional offsets.</p>
+     * the correct string representation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method correctly represents sublists that
+     * <p>The test validates that the toString() correctly represents sublists that
      * start at an offset position within their backing vectors.</p>
      *
      * <p><b>Test Description:</b></p>
