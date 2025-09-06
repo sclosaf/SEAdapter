@@ -3533,7 +3533,7 @@ public class SubListAdapterTest
      * <p><b>Expected Results:</b></p>
      * <p>lastIndexOf(element, index) should correctly find null elements within the specified index range.</p>
      */
-    @Test(element, index)
+    @Test
     public void testSubListLastIndexOfWithIndexNullElement()
     {
         vector = new VectorAdapter();
