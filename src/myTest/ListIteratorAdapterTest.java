@@ -178,7 +178,7 @@ public class ListIteratorAdapterTest
      * <p>- A new HListIterator is obtained from the vector and has not been used</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- The iterator's state is unchanged (still at the beginning of the list)</p>
+     * <p>- The iterator's state is unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>listIterator.nextIndex() must return 0 at the beginning of the iterator.</p>
@@ -281,7 +281,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- A VectorAdapter is initialized with elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- A HListIterator is obtained from the vector and advanced to the end (hasNext() returns false)</p>
+     * <p>- A HListIterator is obtained from the vector and advanced to the end</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- The iterator is positioned at the end of the list</p>
@@ -310,7 +310,7 @@ public class ListIteratorAdapterTest
      * in the cursor position reported by nextIndex().</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>Without moving the iterator from its initial position (index 0), the test calls add("0") to insert an element.
+     * <p>Without moving the iterator from its initial position, the test calls add("0") to insert an element.
      * It then asserts that nextIndex() returns 1, indicating the cursor is now repositioned after the newly inserted element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -320,7 +320,7 @@ public class ListIteratorAdapterTest
      * <p><b>Post-Condition:</b></p>
      * <p>- The list size has increased by 1</p>
      * <p>- A new element "0" has been inserted at index 0</p>
-     * <p>- The iterator's cursor is positioned after the new element (at index 1)</p>
+     * <p>- The iterator's cursor is positioned after the new element</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>After adding an element, listIterator.nextIndex() must return 1.</p>
@@ -344,19 +344,19 @@ public class ListIteratorAdapterTest
      * The remove operation should adjust the cursor position.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test calls next() to move the cursor to the first element (index 0) and then calls remove() to delete
+     * <p>The test calls next() to move the cursor to the first element and then calls remove() to delete
      * that element. It then asserts that nextIndex() returns 0, indicating the cursor is now at the beginning of the list,
      * which previously contained the element at index 1.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- A VectorAdapter is initialized with elements: ["1", "2", "3", null, "5"]</p>
      * <p>- A HListIterator is obtained from the vector</p>
-     * <p>- The iterator's next() method has been called once (last returned element is at index 0)</p>
+     * <p>- The iterator's next() method has been called once</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- The list size has decreased by 1</p>
      * <p>- The element "1" at index 0 has been removed</p>
-     * <p>- The iterator's cursor is positioned at the new beginning of the list (index 0)</p>
+     * <p>- The iterator's cursor is positioned at the new beginning of the list</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>After removing the first element, listIterator.nextIndex() must return 0.</p>
@@ -382,14 +382,14 @@ public class ListIteratorAdapterTest
      * and after the set operation.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test calls next() to move the cursor to the first element (index 0) and advance the cursor to index 1.
-     * It then calls set("6") to replace the last returned element (the element at index 0). Finally, it asserts
+     * <p>The test calls next() to move the cursor to the first element and advance the cursor to index 1.
+     * It then calls set("6") to replace the last returned element. Finally, it asserts
      * that nextIndex() still returns 1.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- A VectorAdapter is initialized with elements: ["1", "2", "3", null, "5"]</p>
      * <p>- A HListIterator is obtained from the vector</p>
-     * <p>- The iterator's next() method has been called once (cursor is at index 1, last returned element is at index 0)</p>
+     * <p>- The iterator's next() method has been called once</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- The element at index 0 has been changed from "1" to "6"</p>
@@ -1475,7 +1475,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to advance the iterator, calls remove() once successfully, then immediately calls remove() again
-     * without an intervening navigation operation, expecting an IllegalStateException to be thrown.</p>
+     * without an intervening iteration operation, expecting an IllegalStateException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -1501,11 +1501,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() throws IllegalStateException when called consecutively after a previous() operation
-     * without an intervening navigation call.</p>
+     * without an intervening iteration call.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the iterator maintains proper state tracking for backward traversal operations
-     * and prevents invalid consecutive remove() calls.</p>
+     * <p>The test is designed to validate that the iterator maintains proper
+     * track of its state and prevents invalid consecutive remove() calls.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to advance the iterator, calls previous() to move back, calls remove() once successfully,
@@ -1785,10 +1785,10 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the set operation functionality when called after moving the iterator
-     * forward with next(). This ensures proper element replacement without structural modification.</p>
+     * forward with next().</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test moves the iterator forward using next(), then calls set() to replace the returned element.
+     * <p>The test calls twice next(), then calls set() to replace the returned element.
      * It verifies that the collection size remains unchanged, the new element is present, and the original
      * element is no longer in the collection.</p>
      *
@@ -1815,8 +1815,6 @@ public class ListIteratorAdapterTest
         assertFalse("Should not contain the overridden element", vector.contains("1"));
     }
 
-    //////////////////////////////////////////////////////////////
-
     /**
      * Test method to verify that set() operation works correctly after previous().
      *
@@ -1826,10 +1824,10 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the set operation functionality when called after moving the iterator
-     * backward with previous(). This ensures proper element replacement in both directions.</p>
+     * backward with previous().</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test moves the iterator forward twice with next(), then backward once with previous(), then calls set()
+     * <p>The test calls twice next(), then once previous(), then calls set()
      * to replace the returned element. It verifies size consistency and element replacement.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1864,11 +1862,10 @@ public class ListIteratorAdapterTest
      * <p>This test verifies that set() throws IllegalStateException when called without first calling next() or previous().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for illegal state conditions,
-     * ensuring the iterator maintains correct state management.</p>
+     * <p>The test is designed to validate proper exception handling for illegal state conditions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test attempts to call set() immediately after creating the iterator, without any prior movement
+     * <p>The test attempts to call set(), without any prior movement
      * operations. It expects an IllegalStateException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1896,8 +1893,7 @@ public class ListIteratorAdapterTest
      * <p>This test verifies that set() throws IllegalStateException when called after a remove() operation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that structural modifications (remove) invalidate subsequent set operations,
-     * maintaining iterator functionality consistency.</p>
+     * <p>The test is designed to validate that previous remove calls invalidate any set call afterward.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test moves the iterator forward with next(), performs a remove() operation, then attempts to call set().
@@ -1931,8 +1927,7 @@ public class ListIteratorAdapterTest
      * <p>This test verifies that set() throws IllegalStateException when called after an add() operation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that structural modifications (add) invalidate subsequent set operations,
-     * maintaining iterator functionality consistency.</p>
+     * <p>The test is designed to validate that previous add calls invalidate any set call afterward.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test moves the iterator forward with next(), performs an add() operation, then attempts to call set().
@@ -1966,8 +1961,8 @@ public class ListIteratorAdapterTest
      * <p>This test verifies that multiple set() operations can be performed consecutively without issues.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the iterator maintains proper state management
-     * for multiple consecutive replacement operations.</p>
+     * <p>The test is designed to validate that the iterator maintains proper state for multiple
+     * consecutive replacement operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test moves the iterator forward with next(), calls set() to replace the element,
@@ -2005,11 +2000,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate element replacement behavior when multiple set() operations
-     * target the same element position.</p>
+     * target the same element.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test moves the iterator forward twice with next(), calls set() to replace the element,
-     * moves backward with previous(), and calls set() again on the same position. It verifies that
+     * moves backward with previous()and calls set() again on the same position. It verifies that
      * only the last replacement persists.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -2046,12 +2041,11 @@ public class ListIteratorAdapterTest
      * <p>This test verifies that add() operation inserts elements correctly at the beginning of the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion behavior at the beginning boundary of the collection,
-     * ensuring proper cursor positioning and element ordering.</p>
+     * <p>The test is designed to validate insertion behavior at the beginning of the collection.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test calls add() immediately after creating the iterator (before any movement),
-     * verifying that the element is inserted at position 0, size increases, and subsequent next()
+     * <p>The test calls add() immediatly, verifying that the element is
+     * inserted at position 0, size increases, and subsequent next()
      * returns the original first element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -2085,11 +2079,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate insertion behavior in the middle of the collection,
-     * ensuring proper element shifting and cursor positioning.</p>
+     * ensuring proper element shift.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test moves the iterator forward twice with next(), then calls add() to insert an element
-     * at the current position. It verifies size increase, correct element placement, and that
+     * <p>The test moves the iterator forward twice with next(), then calls add().
+     * It verifies size increase, correct element placement, and that
      * subsequent next() returns the element following the inserted one.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -2124,11 +2118,10 @@ public class ListIteratorAdapterTest
      * <p>This test verifies that add() operation inserts elements correctly at the end of the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion behavior at the end boundary of the collection,
-     * ensuring proper cursor positioning and element ordering.</p>
+     * <p>The test is designed to validate insertion behavior at the end of the collection.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test moves the iterator to the end using hasNext()/next(), then calls add() to append an element.
+     * <p>The test moves the iterator to the end, then calls add() to append an element.
      * It verifies size increase, correct element placement at the end, and that previous()
      * returns the newly added element.</p>
      *
@@ -2162,16 +2155,14 @@ public class ListIteratorAdapterTest
      * Test method to verify multiple consecutive add() operations work correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that multiple add() operations can be performed consecutively with correct ordering.</p>
+     * <p>This test verifies that multiple add() operations can be performed consecutively with correct order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate complex insertion scenarios with multiple consecutive additions
-     * at different cursor positions.</p>
+     * <p>The test is designed to validate multiple consecutive additions at different cursor positions.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test performs two add() operations at the beginning, moves forward with next(),
-     * then performs another add() operation. It verifies all elements are inserted in correct positions
-     * and order.</p>
+     * then performs another add() operation. It verifies all elements are inserted in correct positions.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -2209,7 +2200,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate insertion behavior on empty collections, ensuring proper
-     * initialization and cursor management.</p>
+     * initialization.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, gets its iterator, and calls add() to insert the first element.
@@ -2244,12 +2235,12 @@ public class ListIteratorAdapterTest
      * Test method to verify that listIterator(0) behaves correctly at the beginning of the vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that a list iterator created at index 0 correctly reports its position
-     * and can retrieve the first element when moving forward.</p>
+     * <p>This test verifies that a list iterator created at index 0
+     * and can retrieve the first element.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the initial state of a list iterator created at the start
-     * of a non-empty collection, ensuring proper boundary handling and navigation capabilities.</p>
+     * of a non-empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator at index 0 and verifies that hasNext() returns true,
@@ -2287,7 +2278,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior when starting from a middle position,
-     * ensuring bidirectional navigation works correctly.</p>
+     * ensuring bidirectional movements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator at index 2 and verifies navigation in both directions,
@@ -2325,8 +2316,8 @@ public class ListIteratorAdapterTest
      * and can retrieve the last element when moving backward.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the initial state of a list iterator created at the end
-     * of a collection, ensuring proper boundary handling and backward navigation.</p>
+     * <p>The test is designed to validate a list iterator created at the end
+     * of a collection, ensuring proper boundary handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator at the end index and verifies that hasNext() returns false,
@@ -2359,11 +2350,11 @@ public class ListIteratorAdapterTest
      * Test method to verify that listIterator(-1) throws IndexOutOfBoundsException.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that creating a list iterator with a negative index throws
-     * the appropriate exception.</p>
+     * <p>This test verifies that creating a list iterator with a negative index
+     * throws IndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling for invalid negative indices
+     * <p>The test is designed to validate proper exception handling for invalid negative indices
      * when creating list iterators.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2387,15 +2378,15 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify that listIterator(size+1) throws IndexOutOfBoundsException.
+     * Test method to verify that listIterator(sizei()+1) throws IndexOutOfBoundsException.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that creating a list iterator with an index greater than size
-     * throws the appropriate exception.</p>
+     * throws IndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling for indices beyond the
-     * collection size when creating list iterators.</p>
+     * <p>The test is designed to validate proper exception handling for indices beyond size
+     * when creating list iterators.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a list iterator with index size+1 and expects an
@@ -2426,7 +2417,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate iterator behavior on empty collections, ensuring
-     * proper handling of edge cases.</p>
+     * proper edge cases handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty vector, creates a list iterator at index 0, and verifies
@@ -2461,8 +2452,7 @@ public class ListIteratorAdapterTest
      * elements in correct order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sequential forward navigation from a non-zero
-     * starting position.</p>
+     * <p>The test is designed to validate sequential forward iteration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator at index 2 and iterates forward through all
@@ -2497,12 +2487,11 @@ public class ListIteratorAdapterTest
      * elements in reverse order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate sequential backward navigation from the end
-     * position.</p>
+     * <p>The test is designed to validate sequential backward iteration from the end.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator at index 4 and iterates backward through all
-     * previous elements, verifying each element is retrieved in reverse sequence.</p>
+     * previous elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -2535,13 +2524,12 @@ public class ListIteratorAdapterTest
      * from a middle starting position.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate complex bidirectional navigation patterns
-     * and element retrieval consistency.</p>
+     * <p>The test is designed to validate bidirectional navigation iterations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator at index 3 and performs a sequence of next()
      * and previous() operations, verifying that elements are consistently retrieved
-     * and positions are correctly maintained.</p>
+     * and positions maintained.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -2571,321 +2559,15 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify remove operation after next() call.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly removes the element last returned by next()
-     * and updates the collection accordingly.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation functionality when called
-     * after forward navigation.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 2, calls next() to retrieve an element,
-     * then calls remove() and verifies the element is removed from the collection and
-     * size is decreased.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Collection size decreases by 1</p>
-     * <p>- Removed element is no longer in collection</p>
-     * <p>- Subsequent elements shift left</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>remove() should successfully remove the current element and update collection state.</p>
-     */
-    @Test
-    public void testListIteratorFromIndexRemovAfterNext()
-    {
-        HListIterator listIter = vector.listIterator(2);
-
-        listIter.next();
-        listIter.remove();
-
-        assertEquals("Size should decrease", 4, vector.size());
-        assertEquals("Element at index 2 should be null", null, vector.get(2));
-        assertFalse("Should not contain removed element", vector.contains("3"));
-    }
-
-    /**
-     * Test method to verify remove operation after previous() call.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly removes the element last returned by previous()
-     * and updates the collection accordingly.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the remove operation functionality when called
-     * after backward navigation.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 4, calls previous() to retrieve an element,
-     * then calls remove() and verifies the element is removed from the collection and
-     * size is decreased.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Collection size decreases by 1</p>
-     * <p>- Removed element is no longer in collection</p>
-     * <p>- Subsequent elements shift left</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>remove() should successfully remove the current element and update collection state.</p>
-     */
-    @Test
-    public void testListIteratorFromIndexRemoveAfterPrevious()
-    {
-        HListIterator listIter = vector.listIterator(4);
-
-        listIter.previous();
-        listIter.remove();
-
-        assertEquals("Size should decrease", 4, vector.size());
-        assertEquals("Element at index 3 should be 5", "5", vector.get(3));
-        assertFalse("Should not contain null element", vector.contains(null));
-    }
-
-    /**
-     * Test method to verify that remove() throws IllegalStateException without prior navigation.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() throws IllegalStateException when called without
-     * a prior next() or previous() call.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling for invalid remove() calls
-     * without prior element retrieval.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 2 and immediately calls remove() without
-     * any prior navigation, expecting IllegalStateException to be thrown.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- List iterator is created at index 2</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- IllegalStateException is thrown</p>
-     * <p>- Collection remains unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>IllegalStateException should be thrown when remove() is called without prior navigation.</p>
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testListIteratorFromIndexRemoveWithoutNextPrevious()
-    {
-        HListIterator listIter = vector.listIterator(2);
-        listIter.remove();
-    }
-
-    /**
-     * Test method to verify set operation after next() call.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly replaces the element last returned by next()
-     * and maintains iterator position.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the set operation functionality when called
-     * after forward navigation.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 1, calls next() to retrieve an element,
-     * then calls set() with a new value and verifies the element is replaced in the collection
-     * while iterator position remains unchanged.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Target element is replaced with new value</p>
-     * <p>- Collection size remains unchanged</p>
-     * <p>- Iterator position remains unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>set() should successfully replace the current element without affecting collection size
-     * or iterator position.</p>
-     */
-    @Test
-    public void testListIteratorFromIndexSetAfterNext()
-    {
-        HListIterator listIter = vector.listIterator(1);
-
-        listIter.next();
-        listIter.set("6");
-
-        assertEquals("Element should be modified", "6", vector.get(1));
-        assertEquals("Next should return next element", "3", listIter.next());
-    }
-
-    /**
-     * Test method to verify set operation after previous() call.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly replaces the element last returned by previous()
-     * and maintains iterator position.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the set operation functionality when called
-     * after backward navigation.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 3, calls previous() to retrieve an element,
-     * then calls set() with a new value and verifies the element is replaced in the collection
-     * while iterator position remains unchanged.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Target element is replaced with new value</p>
-     * <p>- Collection size remains unchanged</p>
-     * <p>- Iterator position remains unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>set() should successfully replace the current element without affecting collection size
-     * or iterator position.</p>
-     */
-    @Test
-    public void testListIteratorFromIndexSetAfterPrevious()
-    {
-        HListIterator listIter = vector.listIterator(3);
-
-        listIter.previous();
-        listIter.set("6");
-
-        assertEquals("Element should be modified", "6", vector.get(2));
-        assertEquals("Next should return modified element", "6", listIter.next());
-    }
-
-    /**
-     * Test method to verify that set() throws IllegalStateException without prior navigation.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() throws IllegalStateException when called without
-     * a prior next() or previous() call.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling for invalid set() calls
-     * without prior element retrieval.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 2 and immediately calls set() without
-     * any prior navigation, expecting IllegalStateException to be thrown.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- List iterator is created at index 2</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- IllegalStateException is thrown</p>
-     * <p>- Collection remains unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>IllegalStateException should be thrown when set() is called without prior navigation.</p>
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testListIteratorFromIndexSetWithoutNextPrevious()
-    {
-        HListIterator listIter = vector.listIterator(2);
-        listIter.set("6");
-    }
-
-    /**
-     * Test method to verify that add() operation works correctly at the beginning of the list.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add() method correctly inserts an element at the beginning
-     * of the list when the iterator is positioned at index 0.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the beginning boundary of the list,
-     * ensuring proper size update and element positioning.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at index 0, calls add() to insert a new element,
-     * and verifies that the collection size increases, the new element is placed at index 0,
-     * and subsequent next() call returns the original first element.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Collection size increases by 1</p>
-     * <p>- New element is inserted at position 0</p>
-     * <p>- Original elements are shifted right</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>add() should successfully insert element at beginning, update size, and maintain
-     * iterator position correctly.</p>
-     */
-    @Test
-    public void testListIteratorFromIndexAddAtTheBeginning()
-    {
-        HListIterator listIter = vector.listIterator(0);
-
-        listIter.add("6");
-
-        assertEquals("Size should increase", 6, vector.size());
-        assertEquals("New element should be at index 0", "6", vector.get(0));
-        assertEquals("Next should return original element", "1", listIter.next());
-    }
-
-    /**
-     * Test method to verify that add() operation works correctly at the end of the list.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add() method correctly appends an element at the end
-     * of the list when the iterator is positioned at the last index.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the end boundary of the list,
-     * ensuring proper size update and element positioning.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator at the end index (size()), calls add() to insert
-     * a new element, and verifies that the collection size increases, the new element is
-     * placed at the end, and previous() call returns the newly added element.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Collection size increases by 1</p>
-     * <p>- New element is appended at the end</p>
-     * <p>- Iterator position allows access to new element via previous()</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>add() should successfully append element at end, update size, and allow backward
-     * navigation to the new element.</p>
-     */
-    @Test
-    public void testListIteratorFromIndexAddAtEnd()
-    {
-        HListIterator listIter = vector.listIterator(vector.size());
-
-        listIter.add("6");
-
-        assertEquals("Size should increase", 6, vector.size());
-        assertEquals("New element should be at the end", "6", vector.get(5));
-        assertEquals("Previous should return new element", "6", listIter.previous());
-    }
-
-    /**
      * Test method to verify that nextIndex() maintains proper order during forward iteration over sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextIndex() correctly returns the index of the element
-     * that would be returned by subsequent next() calls during forward iteration.</p>
+     * that would be returned by subsequent next().</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate index consistency during complete forward traversal
-     * of a sublist, ensuring proper index-element correspondence.</p>
+     * of a sublist, ensuring proper matching.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test iterates through the entire sublist using hasNext() and next(), verifying
@@ -2921,11 +2603,11 @@ public class ListIteratorAdapterTest
      * the starting position of the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the initial state of nextIndex() before any
-     * navigation operations on the sublist iterator.</p>
+     * <p>The test is designed to validate the initial state of nextIndex()
+     * before any iteration.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a sublist iterator and immediately checks that nextIndex()
+     * <p>The test immediately checks that nextIndex()
      * returns 0, indicating the position before the first element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -2995,7 +2677,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the decremental behavior of nextIndex() during
-     * backward navigation through the sublist.</p>
+     * backward iteration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first advances to the end of the sublist, then calls previous() sequentially
@@ -3032,11 +2714,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that nextIndex() correctly returns the sublist size when the
-     * iterator has reached the end position.</p>
+     * iterator has reached the end.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the final state of nextIndex() after complete
-     * forward traversal of the sublist.</p>
+     * forward exhaustion.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the iterator to the end of the sublist and verifies that
@@ -3072,8 +2754,7 @@ public class ListIteratorAdapterTest
      * operation on the sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate position maintenance after element insertion
-     * via the add() method.</p>
+     * <p>The test is designed to validate position after element insertion.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls add() on the sublist iterator and verifies that nextIndex()
@@ -3107,8 +2788,7 @@ public class ListIteratorAdapterTest
      * operation on the sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate position maintenance after element removal
-     * via the remove() method.</p>
+     * <p>The test is designed to validate position maintenance after element removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to position the iterator, then remove() to delete the current
@@ -3180,13 +2860,13 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate index consistency during complete backward traversal
-     * of a sublist, ensuring proper index-element correspondence.</p>
+     * of a sublist, ensuring proper matching.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first advances to the end of the sublist, then iterates backward using
      * hasPrevious() and previous(), verifying at each step that previousIndex() matches
      * the index of the element returned by previous(), and that the element matches the
-     * corresponding element in the sublist.</p>
+     * corresponding element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -3217,11 +2897,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that previousIndex() correctly returns -1 when the iterator is at
-     * the starting position of the sublist.</p>
+     * the start.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the initial state of previousIndex() before any
-     * navigation operations on the sublist iterator.</p>
+     * iteration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a sublist iterator and immediately checks that previousIndex()
@@ -3255,7 +2935,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the incremental behavior of previousIndex() during
-     * forward navigation through the sublist.</p>
+     * forward movement.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() sequentially on the sublist iterator and verifies after
@@ -3293,7 +2973,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the decremental behavior of previousIndex() during
-     * backward navigation through the sublist.</p>
+     * backward movement.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test first advances to the end of the sublist, then calls previous() sequentially
@@ -3330,11 +3010,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that previousIndex() correctly returns size-1 when the iterator
-     * has reached the end position after forward traversal.</p>
+     * has reached the end.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the state of previousIndex() after complete
-     * forward traversal of the sublist.</p>
+     * forward traversal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the iterator to the end of the sublist and verifies that
@@ -3370,8 +3050,7 @@ public class ListIteratorAdapterTest
      * operation on the sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate position maintenance after element insertion
-     * via the add() method.</p>
+     * <p>The test is designed to validate position maintenance after element insertion.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls add() on the sublist iterator and verifies that previousIndex()
@@ -3405,8 +3084,7 @@ public class ListIteratorAdapterTest
      * operation on the sublist iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate position maintenance after element removal
-     * via the remove() method.</p>
+     * <p>The test is designed to validate position maintenance after element removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to position the iterator, then remove() to delete the current
@@ -3423,7 +3101,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Expected Results:</b></p>
      * <p>previousIndex() should adjust appropriately after remove() operation, reflecting
-     * the new logical position relative to the remaining elements.</p>
+     * the new position relative to the remaining elements.</p>
      */
     @Test
     public void testSubListPreviousIndexAfterRemove()
@@ -3442,7 +3120,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate that element replacement via set() does not
-     * alter the iterator position index during backward navigation context.</p>
+     * alter the iterator position index during backward iteration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test navigates to a position using next() and previous(), then calls set()
@@ -3460,7 +3138,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Expected Results:</b></p>
      * <p>previousIndex() should remain unchanged after set() operation, as element replacement
-     * does not affect iterator position during backward navigation.</p>
+     * does not affect iterator position.</p>
      */
     @Test
     public void testSubListPreviousAfterSet()
@@ -3482,7 +3160,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the behavior of list iterator boundary conditions
-     * when operating on an empty collection, ensuring proper state reporting.</p>
+     * when operating on an empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty vector, obtains a list iterator from it, and verifies
@@ -3521,8 +3199,7 @@ public class ListIteratorAdapterTest
      * is at the starting position with elements available.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the initial state of hasNext() for a non-empty
-     * sublist before any navigation operations.</p>
+     * <p>The test is designed to validate the initial state of hasNext().</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a sublist iterator from a populated sublist and immediately
@@ -3556,12 +3233,11 @@ public class ListIteratorAdapterTest
      * is in the middle of iteration with more elements available.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the state of hasNext() during active iteration
-     * through a sublist with remaining elements.</p>
+     * <p>The test is designed to validate the state of hasNext() during iteration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the sublist iterator by two positions and verifies that hasNext()
-     * still returns true, indicating more elements are available for forward iteration.</p>
+     * still returns true, indicating more elements are available.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -3590,15 +3266,15 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasNext() correctly returns false when the sublist iterator
-     * has reached the end of available elements.</p>
+     * has reached the end.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the terminal state of hasNext() after complete
-     * forward traversal of a sublist.</p>
+     * <p>The test is designed to validate the terminal state of hasNext() at
+     * the end.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test iterates through all elements of the sublist until hasNext() returns false,
-     * then verifies that the iterator correctly reports no more elements available.</p>
+     * then verifies it reports no more elements available.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -3628,11 +3304,10 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasPrevious() correctly returns false when the sublist iterator
-     * is at the starting position with no previous elements available.</p>
+     * is at the start.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the initial state of hasPrevious() for a sublist
-     * before any backward navigation operations.</p>
+     * <p>The test is designed to validate the initial state of hasPrevious() for a sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a sublist iterator and immediately verifies that hasPrevious()
@@ -3667,7 +3342,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the state of hasPrevious() after forward navigation
-     * through a sublist, when previous elements become available.</p>
+     * through a sublist, when previous elements are available.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the sublist iterator by two positions and verifies that hasPrevious()
@@ -3701,11 +3376,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasPrevious() correctly returns true when the sublist iterator
-     * has reached the end position, with previous elements still available.</p>
+     * has reached the end position.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the state of hasPrevious() after complete forward
-     * traversal of a sublist, when all elements are behind the iterator.</p>
+     * traversal of a sublist, when  elements are behind the iterator.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test iterates through all elements of the sublist until the end, then verifies
@@ -3741,13 +3416,13 @@ public class ListIteratorAdapterTest
      * elements in sequence during complete forward and backward traversal of a sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate complete round-trip iteration through a sublist,
-     * ensuring element retrieval consistency in both directions.</p>
+     * <p>The test is designed to validate complete iteration through a sublist,
+     * ensuring element retrieval in both directions.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test performs complete forward iteration through the sublist using next(),
      * verifying each element, then complete backward iteration using previous(), verifying
-     * each element again in reverse order, finally ensuring no more elements remain.</p>
+     * each element again in reverse order.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -3784,16 +3459,15 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that alternating calls to next() and previous() correctly
-     * retrieve the same elements repeatedly, demonstrating bidirectional navigation stability.</p>
+     * retrieve the same elements repeatedly.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the behavior of alternating navigation operations,
-     * ensuring consistent element retrieval and position maintenance.</p>
+     * ensuring correct element retrieval and position.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test performs a sequence of alternating next() and previous() calls, verifying
-     * that the same elements are returned when moving back and forth over the same positions,
-     * including proper handling of null elements.</p>
+     * that the same elements are returned when moving back and forth over the same positions.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -3807,7 +3481,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Expected Results:</b></p>
      * <p>Alternating next() and previous() calls should return the same elements consistently,
-     * demonstrating stable bidirectional navigation and proper handling of all element types.</p>
+     * demonstrating stable bidirectional navigation.</p>
      */
     @Test
     public void testSubListNextAndPreviousAlternation()
@@ -3834,7 +3508,7 @@ public class ListIteratorAdapterTest
      * after reaching the end of the sublist during iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for boundary violation
+     * <p>The test is designed to validate proper exception handling for boundary condition
      * during forward iteration through a sublist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3871,7 +3545,7 @@ public class ListIteratorAdapterTest
      * at the beginning of the sublist before any forward navigation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for boundary violation
+     * <p>The test is designed to validate proper exception handling for boundary condition
      * during backward iteration from the start position.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3897,7 +3571,6 @@ public class ListIteratorAdapterTest
         subListLIterator.previous();
     }
 
-
     /**
      * Test method to verify that next() throws NoSuchElementException on empty sublist.
      *
@@ -3915,7 +3588,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- SubListAdapter is created from range 0-0 (empty)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HListIterator is created for the empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -3949,11 +3622,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty vector, creates an empty sublist from it, obtains a
-     * list iterator, and attempts to call previous(), expecting NoSuchElementException to be thrown.</p>
+     * list iterator and attempts to call previous(), expecting NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- SubListAdapter is created from range 0-0 (empty)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HListIterator is created for the empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -3991,7 +3664,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- SubListAdapter is created from range 0-0 (empty)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HListIterator is created for the empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -4030,7 +3703,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- SubListAdapter is created from range 0-0 (empty)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HListIterator is created for the empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -4057,16 +3730,16 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that next() correctly retrieves null elements during forward
-     * iteration through a sublist containing multiple null values.</p>
+     * iteration through null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper handling of null elements during
-     * forward iteration through a sublist.</p>
+     * forward iteration.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector containing multiple null elements, creates a sublist
      * covering all elements, and iterates forward through all elements, verifying that
-     * each null element is correctly retrieved and hasNext() reports accurately.</p>
+     * each null element is correctly retrieved and hasNext().</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains 3 null elements</p>
@@ -4104,7 +3777,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that previous() correctly retrieves null elements during backward
-     * iteration through a sublist containing multiple null values.</p>
+     * iteration through null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper handling of null elements during
@@ -4113,8 +3786,7 @@ public class ListIteratorAdapterTest
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector containing multiple null elements, creates a sublist
      * covering all elements, iterates to the end, then iterates backward through all
-     * elements, verifying that each null element is correctly retrieved and hasPrevious()
-     * reports accurately.</p>
+     * elements, verifying that each null element is correctly retrieved and hasPrevious().</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains 3 null elements</p>
@@ -4154,12 +3826,11 @@ public class ListIteratorAdapterTest
      * Test method to verify remove() operation after next() call in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly removes the element last returned by next()
-     * from the sublist and updates the sublist state accordingly.</p>
+     * <p>This test verifies that remove() correctly removes the element last returned by next().</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate element removal functionality during forward iteration
-     * through a sublist, ensuring proper size adjustment and element repositioning.</p>
+     * through a sublist, ensuring proper size adjustment and repositioning.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to retrieve the first element of the sublist, then calls remove()
@@ -4195,12 +3866,11 @@ public class ListIteratorAdapterTest
      * Test method to verify remove() operation after previous() call in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly removes the element last returned by previous()
-     * from the sublist and updates the sublist state accordingly.</p>
+     * <p>This test verifies that remove() correctly removes the element last returned by previous().</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate element removal functionality during backward iteration
-     * through a sublist, ensuring proper size adjustment and element repositioning.</p>
+     * through a sublist, ensuring proper size adjustment and repositioning.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the iterator forward by two elements, moves back one element using previous(),
@@ -4213,7 +3883,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size decreases by 1</p>
-     * <p>- Element at position 1 (originally "3") is removed</p>
+     * <p>- Element at position 1 is removed</p>
      * <p>- Remaining elements shift left</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -4237,11 +3907,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly throws IllegalStateException when called
-     * without a prior next() or previous() call on the sublist iterator.</p>
+     * without a prior next() or previous().</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper error handling for invalid remove() calls
-     * without prior element retrieval in sublist iteration.</p>
+     * without prior element retrieval in sublist.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to call remove() immediately after creating the sublist iterator,
@@ -4271,7 +3941,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() correctly throws IllegalStateException when called
-     * consecutively without an intervening next() or previous() call.</p>
+     * consecutively without an intermediate next() or previous() call.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper error handling for consecutive remove() calls
@@ -4315,7 +3985,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next(), then previous(), then remove(), then attempts to call remove()
-     * again without an intervening navigation operation, expecting IllegalStateException.</p>
+     * again without an intermediate navigation operation, expecting IllegalStateException.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -4356,7 +4026,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- SubListAdapter is created from range 0-0 (empty)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HListIterator is created for the empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -4386,11 +4056,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper error handling for remove() calls following
-     * add() operations in sublist iteration.</p>
+     * add().</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to position the iterator, then add() to insert a new element,
-     * then attempts to call remove() without an intervening navigation operation, expecting
+     * then attempts to call remove(), expecting
      * IllegalStateException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4419,7 +4089,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that multiple remove() operations work correctly when separated
-     * by next() calls during forward iteration through a sublist.</p>
+     * by next() calls.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate sequential element removal functionality with
@@ -4427,8 +4097,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test performs two remove() operations separated by next() calls, verifying
-     * that each removal correctly decreases the sublist size and maintains proper element
-     * positioning.</p>
+     * that each removal correctly decreases the sublist size and position.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -4470,7 +4139,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances to the end of the sublist, then performs two remove() operations
-     * separated by previous() calls, verifying proper size reduction and element positioning.</p>
+     * separated by previous() calls, checking proper size reduction and position.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -4510,12 +4179,11 @@ public class ListIteratorAdapterTest
      * at the end position of sublist iteration.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal functionality at the end boundary
-     * of sublist iteration.</p>
+     * <p>The test is designed to validate element removal functionality at the end.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances to the end of the sublist and calls remove() to delete the last
-     * element, verifying proper size reduction and element repositioning.</p>
+     * element, verifying proper size reduction and repositioning.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -4524,7 +4192,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Sublist size decreases by 1</p>
-     * <p>- Last element (null) is removed</p>
+     * <p>- Last element is removed</p>
      * <p>- Element "3" becomes the new last element</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -4548,8 +4216,8 @@ public class ListIteratorAdapterTest
      * Test method to verify remove() operation with duplicate elements in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() correctly handles duplicate elements during
-     * sublist iteration, removing only the current element without affecting duplicates.</p>
+     * <p>This test verifies that remove() correctly handles duplicate elements,
+     * removing only the current element.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate element removal functionality when working with
@@ -4599,8 +4267,7 @@ public class ListIteratorAdapterTest
      * Test method to verify set() operation after next() call in sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() correctly replaces the element last returned by next()
-     * in the sublist and maintains iterator position.</p>
+     * <p>This test verifies that set() correctly replaces the element last returned by next().</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate element replacement functionality during forward
@@ -4608,7 +4275,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to retrieve the first element, then set() to replace it with
-     * a new value, and verifies the replacement and subsequent iteration behavior.</p>
+     * a new value, and verifies the replacement.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -4647,8 +4314,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances forward by two elements, moves back one element using previous(),
-     * then calls set() to replace the current element, and verifies the replacement and
-     * subsequent iteration behavior.</p>
+     * then calls set() to replace the current element, and verifies the replacement.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
@@ -4719,7 +4385,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper error handling for set() calls following
-     * remove() operations in sublist iteration.</p>
+     * remove().</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() followed by remove(), then attempts to call set() without
@@ -4755,7 +4421,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate proper error handling for set() calls following
-     * add() operations in sublist iteration.</p>
+     * add().</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test calls next() to position the iterator, then add() to insert a new element,
@@ -4788,21 +4454,19 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that multiple consecutive set operations work correctly on a sublist
-     * through its list iterator, ensuring that each modification is properly applied to the underlying collection.</p>
+     * through its list iterator.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the set operation functionality when called multiple times
-     * in sequence on different elements of the sublist, ensuring that each set operation correctly
-     * replaces the intended element without affecting other operations.</p>
+     * in sequence, ensuring that each set operation correctly replaces the intended element.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the iterator to the first two elements, performs set operations on both,
-     * and verifies that both elements are correctly modified in the sublist while maintaining
-     * the integrity of other elements.</p>
+     * and verifies that both elements are correctly modified.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter initialized with ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter created from indices 1 to 4 (elements ["2", "3", null])</p>
+     * <p>- SubListAdapter created from indices 1 to 4</p>
      * <p>- HListIterator positioned at beginning of sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -4829,12 +4493,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that when set is called multiple times on the same element without intermediate
-     * operations, only the last set operation takes effect, overriding previous values.</p>
+     * operations, only the last set operation takes effect.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the behavior of consecutive set operations on the same element,
-     * ensuring that the iterator correctly handles value replacement without creating duplicate or
-     * intermediate states.</p>
+     * ensuring that the iterator correctly handles replacement.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the iterator, performs a set operation, moves back and performs another set
@@ -4872,11 +4535,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element at the beginning of a sublist using list iterator
-     * correctly inserts the element and maintains proper iterator positioning.</p>
+     * correctly inserts the element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the add operation when performed at the very beginning of
-     * the sublist, ensuring proper size increase, element placement, and iterator behavior.</p>
+     * <p>The test is designed to validate the add operation when performed at the beginning of
+     * the sublist, ensuring proper size increase and element placement.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test adds an element at the beginning of the sublist without advancing the iterator,
@@ -4911,14 +4574,14 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element in the middle of a sublist correctly inserts
-     * the element at the specified position and maintains collection integrity.</p>
+     * the element at the specified position.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate add operation functionality when performed in the middle
      * of the collection, ensuring proper element shifting and iterator behavior.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test advances the iterator to the middle position, adds a new element, then verifies
+     * <p>The test advances the iterator to a middle position, adds a new element, then verifies
      * the element is correctly inserted and subsequent elements are properly shifted.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4951,15 +4614,15 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element at the end of a sublist correctly appends
-     * the element and maintains proper iterator positioning.</p>
+     * the element.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate add operation functionality when performed at the end
-     * of the collection, ensuring proper size increase and element placement.</p>
+     * of the collection, ensuring proper size increase and placement.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test advances the iterator to the end, adds a new element, then verifies the element
-     * is correctly appended and can be accessed through previous operation.</p>
+     * is correctly appended.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter initialized with ["1", "2", "3", null, "5"]</p>
@@ -4992,11 +4655,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that multiple consecutive add operations work correctly, maintaining
-     * proper element ordering and collection integrity throughout the sequence.</p>
+     * proper element ordering and integrity.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the behavior of multiple add operations performed in
-     * sequence, ensuring each insertion occurs at the correct position relative to iterator state.</p>
+     * sequence, ensuring each insertion occurs at the correct position).</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test performs three add operations at different iterator positions and verifies
@@ -5036,11 +4699,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that adding an element to an empty sublist correctly creates
-     * a single-element collection with proper iterator behavior.</p>
+     * a single-element collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the edge case of adding to an empty collection,
-     * ensuring the operation correctly initializes the collection and maintains iterator consistency.</p>
+     * ensuring the operation correctly initializes the collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty sublist, adds an element, then verifies the collection
@@ -5048,7 +4711,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Empty VectorAdapter created</p>
-     * <p>- Empty SubListAdapter created from range 0-0</p>
+     * <p>- Empty SubListAdapter created from indices 0 to 0</p>
      * <p>- HListIterator positioned at beginning of empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -5062,7 +4725,6 @@ public class ListIteratorAdapterTest
     @Test
     public void testSubListAddOnEmptyCollection()
     {
-
         VectorAdapter vec = new VectorAdapter();
         SubListAdapter sub = (SubListAdapter) vec.subList(0, 0);
         HListIterator subListLIter = sub.listIterator();
@@ -5075,15 +4737,15 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify list iterator behavior when created from index 0 (beginning).
+     * Test method to verify list iterator behavior when created from index 0.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that a list iterator created from the beginning index (0) has
-     * correct initial state and navigation capabilities.</p>
+     * <p>This test verifies that a list iterator created from the beginning index has
+     * correct initial state.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the initial state of a list iterator created from
-     * the start position, ensuring proper index reporting and element access.</p>
+     * the start position.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator from index 0 and verifies its initial state including
@@ -5120,13 +4782,13 @@ public class ListIteratorAdapterTest
      * state with access to both previous and next elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the state of a list iterator created from a
-     * non-boundary position, ensuring bidirectional navigation works correctly.</p>
+     * <p>The test is designed to validate the state of a list iterator,
+     * ensuring bidirectional navigation works correctly.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a list iterator from index 1 and verifies its state including
-     * bidirectional navigation availability, correct index reporting, and element access in both directions.</p>
-     *
+     * bidirectional navigation availability, correct index reporting and access in both directions.</p>
+     * ()
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter initialized with ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter created from indices 1 to 4</p>
@@ -5156,15 +4818,14 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that a list iterator created from the end index has correct
-     * state with access to previous elements but no next elements.</p>
+     * state with access to previous elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the state of a list iterator created from the
      * end position, ensuring proper boundary condition handling.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a list iterator from the end index and verifies its state including
-     * previous availability, absence of next elements, correct index reporting, and access to last element.</p>
+     * <p>The test creates a list iterator from the end index and verifies its state and elements availability.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter initialized with ["1", "2", "3", null, "5"]</p>
@@ -5195,11 +4856,11 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that creating a list iterator with a negative index correctly
-     * throws IndexOutOfBoundsException, preventing invalid iterator creation.</p>
+     * throws IndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling when attempting to create
-     * a list iterator from an invalid negative index.</p>
+     * <p>The test is designed to validate proper error handling when attempting
+     * to use an invalid negative index.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a list iterator with index -1 and expects an
@@ -5230,8 +4891,8 @@ public class ListIteratorAdapterTest
      * collection size correctly throws IndexOutOfBoundsException.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling when attempting to create
-     * a list iterator from an index beyond the valid range.</p>
+     * <p>The test is designed to validate proper error handling with invalid
+     * index.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a list iterator with index size+1 and expects an
@@ -5239,7 +4900,7 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter initialized with ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter created from indices 1 to 4 (size = 3)</p>
+     * <p>- SubListAdapter created from indices 1 to 4</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- IndexOutOfBoundsException is thrown</p>
@@ -5259,20 +4920,20 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that a list iterator created from index 0 on an empty sublist correctly
-     * reports no next/previous elements and returns appropriate index values.</p>
+     * reports no elements availability and returns appropriate index values.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the behavior of list iterators on empty collections,
-     * ensuring proper handling of boundary conditions and correct index reporting.</p>
+     * ensuring proper handling of boundary conditions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, then creates an empty sublist from it (range 0-0).
+     * <p>The test creates an empty VectorAdapter, then creates an empty sublist from it.
      * A list iterator is created from index 0 on this empty sublist. The test verifies that hasNext()
      * and hasPrevious() return false, and that nextIndex() returns 0 while previousIndex() returns -1.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- SubListAdapter is created from indices 0 to 0 (empty range)</p>
+     * <p>- SubListAdapter is created from indices 0 to 0</p>
      * <p>- HListIterator is created from index 0 on the empty sublist</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -5303,12 +4964,11 @@ public class ListIteratorAdapterTest
      * returns the expected elements in sequence.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's ability to start iteration from an arbitrary index
-     * and traverse forward through the sublist elements correctly.</p>
+     * <p>The test validates the list iterator functionality to forward traverse the sublist elements correctly.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 1 of the sublist (which contains ["2", "3", null]).
-     * The test verifies that next() returns "3" (element at index 1), then null (element at index 2),
+     * <p>A list iterator is created starting from index 1 of the sublist.
+     * The test verifies that next() properly returns the elements,
      * and finally that hasNext() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5341,12 +5001,11 @@ public class ListIteratorAdapterTest
      * returns the expected elements in reverse sequence.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's ability to start iteration from an arbitrary index
-     * and traverse backward through the sublist elements correctly.</p>
+     * <p>The test validates the list iterator functionality to traverse backward through the sublist elements correctly.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 3 (end) of the sublist (which contains ["2", "3", null]).
-     * The test verifies that previous() returns null (element at index 2), then "3" (element at index 1),
+     * <p>A list iterator is created starting from index 3 of the sublist.
+     * The test verifies that previous() properly return the elements,
      * then "2" (element at index 0), and finally that hasPrevious() returns false.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5377,15 +5036,15 @@ public class ListIteratorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that bidirectional iteration from a middle index in a sublist works correctly,
-     * allowing both forward and backward traversal from the starting position.</p>
+     * allowing both forward and backward traversal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's ability to traverse in both directions from an arbitrary
-     * starting point, ensuring proper element sequencing in both directions.</p>
+     * <p>The test validates the list iterator functionality to traverse in both directions from an arbitrary
+     * starting point, ensuring element sequencing in both directions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 2 (middle) of the sublist (which contains ["2", "3", null]).
-     * The test performs forward iteration (to end), then backward iteration (to beginning), then forward
+     * <p>A list iterator is created starting from index 2 of the sublist.
+     * The test performs forward iteration, then backward iteration, then forward
      * again, verifying correct element sequence at each step.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5417,325 +5076,5 @@ public class ListIteratorAdapterTest
         assertEquals("Next should be 2", "2", subListLIter.next());
         assertEquals("Next should be 3", "3", subListLIter.next());
         assertNull("Next should be null", subListLIter.next());
-    }
-
-    /**
-     * Test method to verify element removal after next() operation from specific index.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove operation works correctly when called after next()
-     * from a specific starting index in the sublist.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's remove functionality when starting from an arbitrary
-     * index, ensuring proper element removal and collection state update.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 1 of the sublist. next() is called to advance
-     * to element "3", then remove() is called. The test verifies that the sublist size decreases,
-     * the element is properly removed, and the collection no longer contains the removed element.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 1 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Element "3" is removed from sublist</p>
-     * <p>- Sublist size decreases by 1</p>
-     * <p>- Remaining elements shift appropriately</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>Element "3" is removed, size becomes 2, element at index 1 becomes null.</p>
-     */
-    @Test
-    public void testSubListListIteratorFromIndexRemoveAfterNext()
-    {
-        HListIterator subListLIter = subList.listIterator(1);
-
-        subListLIter.next();
-        subListLIter.remove();
-
-        assertEquals("Size should decrease", 2, subList.size());
-        assertEquals("Element at index 1 should be null", null, subList.get(1));
-        assertFalse("Should not contain removed element", subList.contains("3"));
-    }
-
-    /**
-     * Test method to verify element removal after previous() operation from specific index.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove operation works correctly when called after previous()
-     * from a specific starting index in the sublist.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's remove functionality when moving backward from an
-     * arbitrary starting index, ensuring proper element removal and collection state update.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 3 (end) of the sublist. previous() is called
-     * to move to element null, then remove() is called. The test verifies that the sublist size decreases,
-     * the null element is properly removed, and the collection no longer contains null.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 3 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Null element is removed from sublist</p>
-     * <p>- Sublist size decreases by 1</p>
-     * <p>- Remaining elements shift appropriately</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>Null element is removed, size becomes 2, element at index 1 becomes "3".</p>
-     */
-    @Test
-    public void testSubListListIteratorFromIndexRemoveAfterPrevious()
-    {
-        HListIterator subListLIter = subList.listIterator(3);
-
-        subListLIter.previous();
-        subListLIter.remove();
-
-        assertEquals("Size should decrease", 2, subList.size());
-        assertEquals("Element at index 1 should be 3", "3", subList.get(1));
-        assertFalse("Should not contain null element", subList.contains(null));
-    }
-
-    /**
-     * Test method to verify element modification after next() operation from specific index.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set operation works correctly when called after next()
-     * from a specific starting index in the sublist.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's set functionality when starting from the beginning
-     * and moving forward, ensuring proper element modification.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 0 of the sublist. next() is called to advance
-     * to element "2", then set("6") is called to replace it. The test verifies that the element is
-     * properly modified and that subsequent next() calls return the correct elements.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 0 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Element "2" is replaced with "6"</p>
-     * <p>- Iterator continues to function correctly</p>
-     * <p>- Subsequent elements remain unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>Element at index 0 becomes "6", next() returns "3".</p>
-     */
-    @Test
-    public void testSubListListIteratorFromIndexSetAfterNext()
-    {
-        HListIterator subListLIter = subList.listIterator(0);
-
-        subListLIter.next();
-        subListLIter.set("6");
-
-        assertEquals("Element should be modified", "6", subList.get(0));
-        assertEquals("Next should return next element", "3", subListLIter.next());
-    }
-
-    /**
-     * Test method to verify element modification after previous() operation from specific index.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set operation works correctly when called after previous()
-     * from a specific starting index in the sublist.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's set functionality when starting from the middle
-     * and moving backward, ensuring proper element modification.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 2 of the sublist. previous() is called
-     * to move to element "3", then set("6") is called to replace it. The test verifies that the
-     * element is properly modified and that subsequent next() calls return the modified element.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 2 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- Element "3" is replaced with "6"</p>
-     * <p>- Iterator continues to function correctly</p>
-     * <p>- Subsequent elements remain unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>Element at index 1 becomes "6", next() returns "6".</p>
-     */
-    @Test
-    public void testSubListListIteratorFromIndexSetAfterPrevious()
-    {
-        HListIterator subListLIter = subList.listIterator(2);
-
-        subListLIter.previous();
-        subListLIter.set("6");
-
-        assertEquals("Element should be modified", "6", subList.get(1));
-        assertEquals("Next should return modified element", "6", subListLIter.next());
-    }
-
-    /**
-     * Test method to verify element insertion at beginning from specific index.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add operation works correctly when inserting at the beginning
-     * of the sublist from a specific starting index.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's add functionality when inserting at position 0,
-     * ensuring proper element insertion and collection state update.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 0 of the sublist. add("6") is called to
-     * insert a new element at the beginning. The test verifies that the sublist size increases,
-     * the new element is properly inserted, and subsequent next() calls return the correct elements.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 0 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- New element "6" is inserted at index 0</p>
-     * <p>- Sublist size increases by 1</p>
-     * <p>- Original elements shift right appropriately</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>Size becomes 4, element at index 0 is "6", next() returns original first element "2".</p>
-     */
-    @Test
-    public void testSubListListIteratorFromIndexAddAtTheBeginning()
-    {
-        HListIterator subListLIter = subList.listIterator(0);
-
-        subListLIter.add("6");
-
-        assertEquals("Size should increase", 4, subList.size());
-        assertEquals("New element should be at index 0", "6", subList.get(0));
-        assertEquals("Next should return original element", "2", subListLIter.next());
-    }
-
-    /**
-     * Test method to verify element insertion at end from specific index.
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add operation works correctly when inserting at the end
-     * of the sublist from a specific starting index.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the list iterator's add functionality when inserting at the end position,
-     * ensuring proper element insertion and collection state update.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from the end index (size) of the sublist. add("6")
-     * is called to append a new element. The test verifies that the sublist size increases, the
-     * new element is properly appended, and previous() calls return the new element.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 3 (end) on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- New element "6" is appended at the end</p>
-     * <p>- Sublist size increases by 1</p>
-     * <p>- Original elements remain unchanged</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>Size becomes 4, element at index 3 is "6", previous() returns "6".</p>
-     */
-    @Test
-    public void testSubListListIteratorFromIndexAddAtEnd()
-    {
-        HListIterator subListLIter = subList.listIterator(subList.size());
-
-        subListLIter.add("6");
-
-        assertEquals("Size should increase", 4, subList.size());
-        assertEquals("New element should be at the end", "6", subList.get(3));
-        assertEquals("Previous should return new element", "6", subListLIter.previous());
-    }
-
-    /**
-     * Test method to verify exception when remove() is called without prior next()/previous().
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() throws IllegalStateException when called without a
-     * preceding next() or previous() operation from a specific starting index.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates proper exception handling for illegal remove operations, ensuring
-     * that the iterator maintains correct state management.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 1 of the sublist. remove() is called
-     * immediately without any prior navigation operation. The test expects IllegalStateException
-     * to be thrown.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 1 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- IllegalStateException is thrown</p>
-     * <p>- Iterator state remains unchanged</p>
-     * <p>- Collection remains unmodified</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>remove() throws IllegalStateException when called without prior next()/previous().</p>
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testSubListListIteratorFromIndexRemoveWithoutNextPrevious()
-    {
-        HListIterator subListLIter = subList.listIterator(1);
-        subListLIter.remove();
-    }
-
-    /**
-     * Test method to verify exception when set() is called without prior next()/previous().
-     *
-     * <p><b>Summary:</b></p>
-     * <p>This test verifies that set() throws IllegalStateException when called without a
-     * preceding next() or previous() operation from a specific starting index.</p>
-     *
-     * <p><b>Test Case Design:</b></p>
-     * <p>The test validates proper exception handling for illegal set operations, ensuring
-     * that the iterator maintains correct state management.</p>
-     *
-     * <p><b>Test Description:</b></p>
-     * <p>A list iterator is created starting from index 1 of the sublist. set("6") is called
-     * immediately without any prior navigation operation. The test expects IllegalStateException
-     * to be thrown.</p>
-     *
-     * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter contains ["1", "2", "3", null, "5"]</p>
-     * <p>- SubListAdapter is created from indices 1 to 4: ["2", "3", null]</p>
-     * <p>- HListIterator is created from index 1 on the sublist</p>
-     *
-     * <p><b>Post-Condition:</b></p>
-     * <p>- IllegalStateException is thrown</p>
-     * <p>- Iterator state remains unchanged</p>
-     * <p>- Collection remains unmodified</p>
-     *
-     * <p><b>Expected Results:</b></p>
-     * <p>set() throws IllegalStateException when called without prior next()/previous().</p>
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testSubListListIteratorFromIndexSetWithoutNextPrevious()
-    {
-        HListIterator subListLIter = subList.listIterator(1);
-        subListLIter.set("6");
     }
 }

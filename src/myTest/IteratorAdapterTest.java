@@ -1305,7 +1305,7 @@ public class IteratorAdapterTest
      * <p>The test is designed to validate exception handling for consecutive remove() calls.
      * This enforce the proper sequence of operations.</p>
      *
-     * <p><b>Test Description:</b></>
+     * <p><b>Test Description:</b></p>
      * <p>The test calls next() once to position at the first element,
      * calls remove() to delete it, then immediately attempts to call remove() again
      * without an intervening next() call, expecting an IllegalStateException to be thrown.</p>
