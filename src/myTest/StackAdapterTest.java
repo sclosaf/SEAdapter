@@ -91,11 +91,10 @@ public class StackAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the default constructor initializes a StackAdapter instance correctly with size 0,
-     * capacity 10, and empty state.</p>
+     * capacity 10.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic initialization behavior of the default constructor,
-     * ensuring proper initial state for subsequent operations.</p>
+     * <p>The test is designed to validate the basic initialization behavior of the default constructor.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a new StackAdapter using the default constructor and verifies that it is not null,
@@ -129,12 +128,11 @@ public class StackAdapterTest
      * exceeds the initial capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the automatic capacity expansion mechanism of the underlying
-     * Vector implementation when used by StackAdapter.</p>
+     * <p>The test is designed to validate the automatic capacity expansion mechanism.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes 11 elements onto a stack with initial capacity 10 and verifies that the capacity
-     * doubles to 20 while maintaining correct element order and size.</p>
+     * doubles to 20 while maintaining correct size.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- StackAdapter instance created with default constructor (capacity 10)</p>
@@ -187,7 +185,7 @@ public class StackAdapterTest
      * <p>- Elements are returned in LIFO order</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Elements should be popped in reverse order of pushing (3, 2, 1).</p>
+     * <p>Elements should be popped in reverse order of pushing ("3", "2", "1").</p>
      */
     @Test
     public void testPushProperOrder()
@@ -210,8 +208,7 @@ public class StackAdapterTest
      * <p>This test verifies that null elements are handled correctly by the push operation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the stack's ability to handle null elements, which is
-     * an optional but commonly supported feature in collection implementations.</p>
+     * <p>The test is designed to validate the stack functionality to handle null elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes a null element and verifies that the operation returns null, size increases
@@ -248,7 +245,7 @@ public class StackAdapterTest
      * operations, ensuring proper state maintenance.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test pushes an element, pops it (making stack empty), then pushes another element
+     * <p>The test pushes an element, pops it, then pushes another element
      * and verifies the new state.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -280,7 +277,7 @@ public class StackAdapterTest
      * <p>This test verifies the basic push operation on an initially empty stack.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the most fundamental stack operation - pushing onto
+     * <p>The test is designed to validate the stack operation, pushing onto
      * an empty stack.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -316,7 +313,7 @@ public class StackAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate that duplicate elements are handled correctly and
-     * the stack maintains proper size and order.</p>
+     * the stack maintains proper size.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes the same element four times and verifies the size and that the top
@@ -352,12 +349,11 @@ public class StackAdapterTest
      * <p>This test verifies that pop operations return elements in correct Last-In-First-Out order.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the fundamental pop operation behavior in maintaining
-     * LIFO order after multiple pushes.</p>
+     * <p>The test is designed to validate the pop operation behavior.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes three elements, then pops them one by one while verifying the return values,
-     * size updates, and new top elements after each pop.</p>
+     * size updates, and new top element after pop.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Stack with three elements pushed: "1", "2", "3"</p>
@@ -366,7 +362,7 @@ public class StackAdapterTest
      * <p>- Stack becomes empty after three pops</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Pops should return elements in reverse push order (3, 2, 1) with proper size updates.</p>
+     * <p>Pops should return elements in reverse push order ("3", "2", "1") with proper size updates.</p>
      */
     @Test
     public void testPopProperOrder()
@@ -420,7 +416,7 @@ public class StackAdapterTest
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the complete emptying of the stack through multiple pop operations,
-     * ensuring proper size management and state transitions.</p>
+     * ensuring proper size management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes three elements, then performs three consecutive pop operations while verifying
@@ -434,7 +430,7 @@ public class StackAdapterTest
      * <p>- empty() returns true</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Pop operations should return elements in LIFO order (3, 2, 1) and stack should be empty after all pops.</p>
+     * <p>Pop operations should return elements in LIFO order ("3", "2", "1") and stack should be empty after all pops.</p>
      */
     @Test
     public void testPopUntilEmpty()
@@ -454,12 +450,11 @@ public class StackAdapterTest
      * Test method to verify pop behavior after intermediate push operations.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that pop operations work correctly when interspersed with push operations,
-     * maintaining proper LIFO order.</p>
+     * <p>This test verifies that pop operations work correctly when alternated  with push operations.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate the stack's behavior when push and pop operations are
-     * alternated, ensuring correct element ordering and state management.</p>
+     * alternated, ensuring correct element ordering.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes two elements, pops one, pushes another element, then verifies that subsequent
@@ -470,7 +465,7 @@ public class StackAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Stack becomes empty after all operations</p>
-     * <p>- Elements are returned in correct LIFO order (3, 1)</p>
+     * <p>- Elements are returned in correct LIFO order ("3", "1")</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>Pop operations should maintain LIFO order regardless of intermediate push operations.</p>
@@ -496,8 +491,7 @@ public class StackAdapterTest
      * <p>This test verifies that pop operations correctly handle null elements on the stack.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the stack's ability to handle null elements during pop operations,
-     * ensuring proper return values and state updates.</p>
+     * <p>The test is designed to validate the stack's ability to handle null elements during pop operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes a null element, pops it, and verifies that null is returned and the stack becomes empty.</p>
@@ -568,7 +562,7 @@ public class StackAdapterTest
      * the stack's contents or size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the non-destructive nature of the peek operation, ensuring
+     * <p>The test is designed to validate the peek operation, ensuring
      * that the stack state remains unchanged after peeking.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -709,8 +703,7 @@ public class StackAdapterTest
      * <p>This test verifies that peek correctly handles null elements on the stack.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the stack's ability to handle null elements during peek operations,
-     * ensuring proper return values and state preservation.</p>
+     * <p>The test is designed to validate the stack's ability to handle null elements during peek operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes a null element, calls peek, and verifies that null is returned and the stack
@@ -741,7 +734,7 @@ public class StackAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that peek correctly returns the top element when the stack contains
-     * multiple duplicate elements.</p>
+     * duplicate elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test is designed to validate that peek operations work correctly with duplicate elements,
@@ -948,7 +941,7 @@ public class StackAdapterTest
      * for a middle element in the stack.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the search operation's ability to locate elements
+     * <p>The test is designed to validate the search functionality to locate elements
      * that are not at the top of the stack.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -983,7 +976,7 @@ public class StackAdapterTest
      * for the bottom element in the stack.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the search operation's ability to locate elements
+     * <p>The test is designed to validate the search functionality to locate elements
      * at the bottom of the stack using the 1-based positioning system.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1018,8 +1011,8 @@ public class StackAdapterTest
      * an element that does not exist in the stack.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the search operation's behavior when the requested
-     * element is not present in the stack, ensuring proper error indication.</p>
+     * <p>The test is designed to validate the search behaviour when an element is not
+     * present in the stack.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes three elements and searches for a non-existent element, verifying
@@ -1086,7 +1079,7 @@ public class StackAdapterTest
      * in the stack and returns their proper 1-based position.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the search operation's ability to handle
+     * <p>The test is designed to validate the search functionality to handle
      * null elements mixed with regular elements in the stack.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1160,8 +1153,8 @@ public class StackAdapterTest
      * in element positions after a pop operation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the search operation dynamically
-     * updates element positions when the stack structure changes.</p>
+     * <p>The test is designed to validate that the search operation when the stack
+     * structure changes.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes three elements, pops the top element, and searches for
@@ -1197,8 +1190,8 @@ public class StackAdapterTest
      * in element positions after a push operation.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the search operation dynamically
-     * updates element positions when new elements are added to the stack.</p>
+     * <p>The test is designed to validate that the search operation when new
+     * elements are added to the stack.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test pushes two elements, verifies the position of an element, then
