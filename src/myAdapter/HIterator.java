@@ -3,7 +3,7 @@ package myAdapter;
 import java.util.NoSuchElementException;
 
 /**
- * An iterator over a collection. HIterator takes the place of HEnumeration in
+ * An iterator over a collection. HIterator takes the place of Enumeration in
  * the Java collections framework.  HIterators differ from enumerations in two
  * ways: <ul>
  *	<li> HIterators allow the caller to remove elements from the
@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  * @author  Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see     HCollection
  * @see     HListIterator
- * @see     HEnumeration
+ * @see     Enumeration
  */
 public interface HIterator
 {

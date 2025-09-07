@@ -32,7 +32,7 @@ import java.util.NoSuchElementException;
  * @see     HCollection
  * @see     HList
  * @see     HIterator
- * @see     HEnumeration
+ * @see     Enumeration
  */
 public interface HListIterator extends HIterator
 {

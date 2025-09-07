@@ -2,7 +2,6 @@ package myTest;
 
 import myAdapter.VectorAdapter;
 import myAdapter.SubListAdapter;
-import myAdapter.HEnumeration;
 import myAdapter.EnumerationAdapter;
 
 import java.util.NoSuchElementException;
@@ -17,7 +16,7 @@ import static org.junit.Assert.*;
  * Test suite for the EnumerationAdapter class.
  *
  * <p>This test suite verifies the functionality of the EnumerationAdapter class,
- * which implements the HEnumeration interface to iterate over elements of a
+ * which implements the Enumeration interface to iterate over elements of a
  * VectorAdapter or SubListAdapter. The tests cover various scenarios including
  * normal iteration, edge cases, and error conditions.</p>
  *
@@ -48,7 +47,7 @@ import static org.junit.Assert.*;
  *
  * @author   Zoppolato Tommaso Vittorio (matricola: 2101844)
  * @see      EnumerationAdapter
- * @see      HEnumeration
+ * @see      Enumeration
  */
 public class EnumerationAdapterTest
 {
@@ -66,16 +65,16 @@ public class EnumerationAdapterTest
     private SubListAdapter subList;
 
     /**
-     * HEnumeration instance for iterating over the main vector.
+     * Enumeration instance for iterating over the main vector.
      * Created from the vector.elements().
      */
-    private HEnumeration enumeration;
+    private Enumeration enumeration;
 
     /**
-     * HEnumeration instance for iterating over the sublist.
+     * Enumeration instance for iterating over the sublist.
      * Created from the subList.elements().
      */
-    private HEnumeration subEnumeration;
+    private Enumeration subEnumeration;
 
     /**
      * Default constructor
@@ -134,7 +133,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- Enumeration is at the starting position (cursor = 0)</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -168,7 +167,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- Two elements have been consumed using nextElement()</p>
      *
      * <p><b>Post-Condition:</b>
@@ -206,7 +205,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- All elements have been consumed using nextElement()</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -244,7 +243,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -284,7 +283,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- All elements have been consumed using nextElement()</p>
      * <p>- hasMoreElements() returns false</p>
      *
@@ -321,7 +320,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized as empty</p>
-     * <p>- HEnumeration is created from the empty vector.elements()</p>
+     * <p>- Enumeration is created from the empty vector.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Enumeration state remains unchanged</p>
@@ -334,7 +333,7 @@ public class EnumerationAdapterTest
     public void testHasMoreElementsOnEmptyCollection()
     {
         VectorAdapter vec = new VectorAdapter();
-        HEnumeration enumer = vec.elements();
+        Enumeration enumer = vec.elements();
 
         assertFalse("Empty collection should have no elements",
             enumer.hasMoreElements());
@@ -357,7 +356,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized as empty</p>
-     * <p>- HEnumeration is created from the empty vector.elements()</p>
+     * <p>- Enumeration is created from the empty vector.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -371,7 +370,7 @@ public class EnumerationAdapterTest
     {
         VectorAdapter vec = new VectorAdapter();
 
-        HEnumeration enumer = vec.elements();
+        Enumeration enumer = vec.elements();
         enumer.nextElement();
     }
 
@@ -393,7 +392,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 identical elements: ["0", "0", "0"]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -412,7 +411,7 @@ public class EnumerationAdapterTest
         vec.add("0");
         vec.add("0");
 
-        HEnumeration enumer = vec.elements();
+        Enumeration enumer = vec.elements();
 
         assertEquals("First element should be '0'", "0", enumer.nextElement());
         assertEquals("Second element should be '0'", "0", enumer.nextElement());
@@ -438,7 +437,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 null elements: [null, null, null]</p>
-     * <p>- HEnumeration is created from vector.elements()</p>
+     * <p>- Enumeration is created from vector.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -458,7 +457,7 @@ public class EnumerationAdapterTest
         vec.add(null);
         vec.add(null);
 
-        HEnumeration enumer = vec.elements();
+        Enumeration enumer = vec.elements();
 
         assertTrue("Should manage null elements", enumer.hasMoreElements());
         assertNull("First element should be null", enumer.nextElement());
@@ -483,7 +482,7 @@ public class EnumerationAdapterTest
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter is created from indices 1 to 4 (exclusive) of the main vector</p>
-     * <p>- HEnumeration is created from subList.elements()</p>
+     * <p>- Enumeration is created from subList.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -516,7 +515,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- SubListAdapter contains 3 elements: ["2", "3", null]</p>
-     * <p>- HEnumeration is created from subList.elements()</p>
+     * <p>- Enumeration is created from subList.elements()</p>
      * <p>- Two elements have been consumed using nextElement()</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -552,7 +551,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- SubListAdapter contains 3 elements: ["2", "3", null]</p>
-     * <p>- HEnumeration is created from subList.elements()</p>
+     * <p>- Enumeration is created from subList.elements()</p>
      * <p>- All elements have been consumed using nextElement()</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -589,7 +588,7 @@ public class EnumerationAdapterTest
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter is created from indices 1 to 4 (exclusive) of the main vector</p>
-     * <p>- HEnumeration is created from subList.elements()</p>
+     * <p>- Enumeration is created from subList.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -628,7 +627,7 @@ public class EnumerationAdapterTest
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- SubListAdapter contains 3 elements: ["2", "3", null]</p>
-     * <p>- HEnumeration is created from subList.elements()</p>
+     * <p>- Enumeration is created from subList.elements()</p>
      * <p>- All elements have been consumed using nextElement()</p>
      * <p>- hasMoreElements() returns false</p>
      *
@@ -666,7 +665,7 @@ public class EnumerationAdapterTest
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter is created from indices 1 to 1 of the main vector</p>
-     * <p>- HEnumeration is created from the empty sublist.elements()</p>
+     * <p>- Enumeration is created from the empty sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Enumeration state remains unchanged</p>
@@ -679,7 +678,7 @@ public class EnumerationAdapterTest
     public void testSubListHasMoreElementsOnEmptyCollection()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 1);
-        HEnumeration subEnumer = sub.elements();
+        Enumeration subEnumer = sub.elements();
 
         assertFalse("Empty subList should have no elements", subEnumer.hasMoreElements());
     }
@@ -702,7 +701,7 @@ public class EnumerationAdapterTest
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- SubListAdapter is created from indices 0 to 0 of the main vector</p>
-     * <p>- HEnumeration is created from the empty sublist.elements()</p>
+     * <p>- Enumeration is created from the empty sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -715,7 +714,7 @@ public class EnumerationAdapterTest
     public void testSubListNextElementThrowsExceptionOnEmptyCollecion()
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(0, 0);
-        HEnumeration subEnumer = sub.elements();
+        Enumeration subEnumer = sub.elements();
 
         subEnumer.nextElement();
     }
@@ -739,7 +738,7 @@ public class EnumerationAdapterTest
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 4 null elements: [null, null, null, null]</p>
      * <p>- SubListAdapter is created from indices 1 to 4 of the main vector</p>
-     * <p>- HEnumeration is created from sublist.elements()</p>
+     * <p>- Enumeration is created from sublist.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -761,7 +760,7 @@ public class EnumerationAdapterTest
         vec.add(null);
 
         SubListAdapter sub = (SubListAdapter) vec.subList(1, 4);
-        HEnumeration subEnumer = sub.elements();
+        Enumeration subEnumer = sub.elements();
 
         assertTrue("Should have elements", subEnumer.hasMoreElements());
         assertNull("First element should be null", subEnumer.nextElement());
@@ -789,7 +788,7 @@ public class EnumerationAdapterTest
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 5 of the main vector</p>
      * <p>- Second SubListAdapter is created from indices 1 to 3 of the first sublist</p>
-     * <p>- HEnumeration is created from the nested sublist.elements()</p>
+     * <p>- Enumeration is created from the nested sublist.elements()</p>
      * <p>- Enumeration is at the starting position</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -805,7 +804,7 @@ public class EnumerationAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 5);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 3);
-        HEnumeration subEnumer = subSub.elements();
+        Enumeration subEnumer = subSub.elements();
 
         assertEquals("First element should be 3", "3", subEnumer.nextElement());
         assertNull("Second element should be null", subEnumer.nextElement());
@@ -832,7 +831,7 @@ public class EnumerationAdapterTest
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 4 of the main vector</p>
      * <p>- Second SubListAdapter is created from indices 1 to 1 of the first sublist</p>
-     * <p>- HEnumeration is created from the empty nested sublist.elements()</p>
+     * <p>- Enumeration is created from the empty nested sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Enumeration state remains unchanged</p>
@@ -846,7 +845,7 @@ public class EnumerationAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
-        HEnumeration subEnumer = subSub.elements();
+        Enumeration subEnumer = subSub.elements();
 
         assertFalse("Empty sub-subList should have no elements", subEnumer.hasMoreElements());
     }
@@ -870,7 +869,7 @@ public class EnumerationAdapterTest
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", null, "5"]</p>
      * <p>- First SubListAdapter is created from indices 1 to 4 of the main vector</p>
      * <p>- Second SubListAdapter is created from indices 1 to 1 of the first sublist</p>
-     * <p>- HEnumeration is created from the empty nested sublist.elements()</p>
+     * <p>- Enumeration is created from the empty nested sublist.elements()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NoSuchElementException is thrown</p>
@@ -884,7 +883,7 @@ public class EnumerationAdapterTest
     {
         SubListAdapter sub = (SubListAdapter) vector.subList(1, 4);
         SubListAdapter subSub = (SubListAdapter) sub.subList(1, 1);
-        HEnumeration subEnumer = subSub.elements();
+        Enumeration subEnumer = subSub.elements();
 
         subEnumer.nextElement();
     }

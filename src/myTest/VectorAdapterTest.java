@@ -2,7 +2,6 @@ package myTest;
 
 import myAdapter.VectorAdapter;
 import myAdapter.HCollection;
-import myAdapter.HEnumeration;
 import myAdapter.HIterator;
 import myAdapter.HListIterator;
 import myAdapter.HList;

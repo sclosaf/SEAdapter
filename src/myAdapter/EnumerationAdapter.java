@@ -7,15 +7,15 @@ import java.lang.IndexOutOfBoundsException;
 import java.lang.NullPointerException;
 
 /**
- * An adapter that implements the HEnumeration interface to iterate over elements
+ * An adapter that implements the Enumeration interface to iterate over elements
  * of a VectorAdapter or a specific restricted portion of it by the use
  * of starting and ending indexes.
  *
  * @author      Zoppolato Tommaso Vittorio (matricola: 2101844)
- * @see         HEnumeration
+ * @see         Enumeration
  * @see         VectorAdapter
  */
-public class EnumerationAdapter implements HEnumeration
+public class EnumerationAdapter implements Enumeration
 {
     /**
      * The current position of this enumeration cursor. The next element to be returned

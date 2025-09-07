@@ -38,7 +38,7 @@ import java.lang.IllegalArgumentException;
  * ConcurrentModificationException.  Thus, in the face of concurrent
  * modification, the HIterator fails quickly and cleanly, rather than risking
  * arbitrary, non-deterministic behavior at an undetermined time in the future.
- * The HEnumerations returned by VectorAdapter's elements method are <em>not</em>
+ * The Enumerations returned by VectorAdapter's elements method are <em>not</em>
  * fail-fast.
  *
  * <p>Note that the fail-fast behavior of an iterator cannot be guaranteed
@@ -227,15 +227,15 @@ public class VectorAdapter implements HList
 
     /**
      * Returns an enumeration of the components of this vector. The
-     * returned <code>HEnumeration</code> object will generate all items in
+     * returned <code>Enumeration</code> object will generate all items in
      * this vector. The first item generated is the item at index <code>0</code>,
      * then the item at index <code>1</code>, and so on.
      *
      * @return  an enumeration of the components of this vector.
-     * @see     HEnumeration
+     * @see     Enumeration
      * @see     HIterator
      */
-    public HEnumeration elements()
+    public Enumeration elements()
     {
         return new EnumerationAdapter(this, offset(), offset() + size());
     }
