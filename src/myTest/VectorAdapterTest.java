@@ -1057,7 +1057,7 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that trimToSize() is idempotent (multiple calls have same effect).
+     * Test method to verify that trimToSize() multiple calls have same effect.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that calling trimToSize() multiple times has the same effect as calling it once.</p>
@@ -1957,7 +1957,7 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setSize() works correctly with multiple sequential size changes.
+     * Test method to verify that setSize() works correctly with decrease followed by increase.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that setSize() handles size increase followed by decrease.</p>
@@ -3037,7 +3037,7 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf(Object, int) handles duplicate elementscorrectly.
+     * Test method to verify that indexOf(Object, int) handles duplicate elements correctly.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that indexOf(Object, int) returns the correct occurrence index
@@ -4319,7 +4319,7 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt() correctly removes element at valid index and shifts subsequent elements.
+     * Test method to verify that removeElementAt() correctly removes element at valid index.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeElementAt() correctly removes an element at a valid index.</p>
@@ -8233,7 +8233,7 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify removeAll() returns false when no elements are present.
+     * Test method to verify removeAll() returns false when no common elements are present.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns false when the specified

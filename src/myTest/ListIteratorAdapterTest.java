@@ -871,7 +871,7 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify that hasPrevious() returns true after moving forward in the list.
+     * Test method to verify that hasPrevious() returns true after in the middle of the list.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that hasPrevious() returns true when the list iterator has moved forward
@@ -1465,7 +1465,7 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify that remove() throws IllegalStateException when called consecutively without intermediate navigation.
+     * Test method to verify that remove() throws IllegalStateException when called consecutively after next() without intermediate navigation.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that remove() throws IllegalStateException when called consecutively without an intervening next() or previous() call.</p>
@@ -4737,7 +4737,7 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify list iterator behavior when created from index 0.
+     * Test method to verify listIterator(0) behavior when created.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that a list iterator created from the beginning index has
@@ -4775,7 +4775,7 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify list iterator behavior when created from middle index.
+     * Test method to verify listIterator(1) behavior when created.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that a list iterator created from a middle index has correct
@@ -4814,7 +4814,7 @@ public class ListIteratorAdapterTest
     }
 
     /**
-     * Test method to verify list iterator behavior when created from end index.
+     * Test method to verify listIterator(size()) behavior when created.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that a list iterator created from the end index has correct

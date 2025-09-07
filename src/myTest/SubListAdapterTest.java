@@ -703,7 +703,7 @@ public class SubListAdapterTest
      * Test method to verify that copyInto() throws IndexOutOfBoundsException for smaller target array.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies proper exception handling when target array is too small.</p>
+     * <p>This test verifies IndexOutOfBoundsException is thrown when target array is too small.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test validates exception handling for array size mismatch.</p>
@@ -1379,7 +1379,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that setSize() increases the size of an empty sublist and adds null elements.
+     * Test method to verify that setSize() increases the size of an empty sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that setSize() correctly increases the size of an empty sublist by adding null elements.</p>
@@ -1424,7 +1424,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that setSize() increases the size of a sublist with existing elements and adds null elements.
+     * Test method to verify that setSize() increases the size of a sublist with existing elements.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that setSize() correctly increases the size of a sublist with existing elements.</p>
@@ -4682,7 +4682,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt() correctly handles offset calculations during element modification.
+     * Test method to verify that setElementAt() correctly handles offset calculations.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that setElementAt() correctly calculates offsets.</p>
@@ -5471,7 +5471,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt() correctly handles insertions in a sublist with offset from the backing vector.
+     * Test method to verify that insertElementAt() correctly handles insertions in a sublist with offset.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that insertElementAt() correctly handles element insertion in a sublist that has an offset.</p>
@@ -5658,7 +5658,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addElement() correctly handles element addition in a sublist with offset from the backing vector.
+     * Test method to verify that addElement() correctly handles element addition in a sublist with offset.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that addElement() correctly handles element addition in a sublist that has
@@ -7928,7 +7928,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that only the first occurrence is removed when multiple identical elements exist.
+     * Test method to verify that only the first occurrence is removed with duplicates.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies multiple identical elements removal proper effect.</p>
@@ -8362,7 +8362,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() works correctly at a valid position within the sublist.
+     * Test method to verify that remove(int) works correctly at a valid position within the sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing an element at a valid position
@@ -8406,7 +8406,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() throws ArrayIndexOutOfBoundsException for negative index.
+     * Test method to verify that remove(int) throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing an element at a negative index throws the appropriate exception.</p>
@@ -8442,7 +8442,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() throws ArrayIndexOutOfBoundsException for index equal to size.
+     * Test method to verify that remove(int) throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing an element at an index equal to the
@@ -8480,7 +8480,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() throws ArrayIndexOutOfBoundsException on empty sublist.
+     * Test method to verify that remove(int) throws ArrayIndexOutOfBoundsException on empty sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing an element from an empty sublist
@@ -8517,7 +8517,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() works correctly at the beginning of the sublist.
+     * Test method to verify that remove(int) works correctly at the beginning of the sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing the first element of the sublist correctly
@@ -8562,7 +8562,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() works correctly at the end of the sublist.
+     * Test method to verify that remove(int) works correctly at the end of the sublist.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing the last element of the sublist correctly
@@ -8606,7 +8606,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() works correctly with null elements.
+     * Test method to verify that remove(int) works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removing a null element from the sublist correctly
@@ -8650,7 +8650,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() works correctly with multiple consecutive removals.
+     * Test method to verify that remove(int) works correctly with multiple consecutive removals.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that multiple consecutive removals from the sublist work correctly.</p>
@@ -8696,10 +8696,10 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that remove() works correctly with offset sublists.
+     * Test method to verify that remove(int) works correctly with offset sublists.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that remove() deletes an element from a sublist with an offset.</p>
+     * <p>This test verifies that remove(int) deletes an element from a sublist with an offset.</p>
      *
      * <p><b>Test Case Design:</b></p>
      * <p>The test validates removal in sublists that don't start at the beginning of the vector,
@@ -8780,7 +8780,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that clear() operation removes multiple elements from sublist and updates backing vector correctly.
+     * Test method to verify that clear() operation removes multiple elements from sublist and updates backing vector.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that clear() correctly removes multiple elements.</p>
@@ -9796,7 +9796,7 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that removeAll() returns true and removes only some elements when partially present.
+     * Test method to verify that removeAll() returns true and removes only some elements.
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns true and correctly removes only the elements
@@ -10565,20 +10565,20 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() at index works with non-empty collection.
+     * Test method to verify that addAll(int, HCollection) works with non-empty collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() at a specific index correctly inserts all elements from
+     * <p>This test verifies that addAll(int, HCollection) correctly inserts all elements from
      * a non-empty collection into the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() when inserting a non-empty
+     * <p>The test validates the behavior of addAll(int, HCollection) when inserting a non-empty
      * collection at a specific index in the sublist, ensuring proper element insertion and
      * shifting of existing elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * A collection with two elements is created. addAll() is called at index 1 and the return
+     * A collection with two elements is created. addAll(int, HCollection) is called at index 1 and the return
      * value is verified to be true. The sublist and vector sizes are checked, and the element
      * order is verified after insertion.</p>
      *
@@ -10588,13 +10588,13 @@ public class SubListAdapterTest
      * <p>- Another VectorAdapter is created with elements: ["2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 4</p>
      * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
      * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly insert all elements from the collection at
+     * <p>addAll(int, HCollection) should return true and correctly insert all elements from the collection at
      * the specified index, shifting existing elements as needed.</p>
      */
     @Test
@@ -10620,19 +10620,19 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() at index returns false with empty collection.
+     * Test method to verify that addAll(int, HCollection) returns false with empty collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() at a specific index returns false when called with
+     * <p>This test verifies that addAll(int, HCollection) returns false when called with
      * an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() when attempting to insert
+     * <p>The test validates the behavior of addAll(int, HCollection) when attempting to insert
      * an empty collection at a specific index, ensuring no modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * An empty collection is created. addAll() is called at index 1 and the return value is
+     * An empty collection is created. addAll(int, HCollection) is called at index 1 and the return value is
      * verified to be false. The sublist and vector sizes and contents are checked to ensure
      * no changes occurred.</p>
      *
@@ -10642,13 +10642,13 @@ public class SubListAdapterTest
      * <p>- An empty VectorAdapter is created</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns false</p>
+     * <p>- addAll(int, HCollection) returns false</p>
      * <p>- SubList size remains 2</p>
      * <p>- SubList content remains unchanged</p>
      * <p>- Vector size remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return false and make no modifications when called with an empty collection.</p>
+     * <p>addAll(int, HCollection) should return false and make no modifications when called with an empty collection.</p>
      */
     @Test
     public void testSubListAddAllAtIndexEmptyCollection()
@@ -10668,20 +10668,20 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() at beginning works correctly.
+     * Test method to verify that addAll(int, HCollection) at beginning works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() at index 0 correctly inserts all elements from
+     * <p>This test verifies that addAll(int, HCollection) at index 0 correctly inserts all elements from
      * a collection at the beginning of the sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() when inserting a collection
+     * <p>The test validates the behavior of addAll(int, HCollection) when inserting a collection
      * at the beginning of the sublist, ensuring proper element insertion and
      * shifting of existing elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * A collection with two elements is created. addAll() is called at index 0 and the return
+     * A collection with two elements is created. addAll(int, HCollection) is called at index 0 and the return
      * value is verified to be true. The sublist and vector sizes are checked, and the element
      * order is verified after insertion.</p>
      *
@@ -10691,13 +10691,13 @@ public class SubListAdapterTest
      * <p>- Another VectorAdapter is created with elements: ["1", "2"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 4</p>
      * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
      * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly insert all elements from the collection at
+     * <p>addAll(int, HCollection) should return true and correctly insert all elements from the collection at
      * the beginning of the sublist, shifting existing elements as needed.</p>
      */
     @Test
@@ -10722,19 +10722,19 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() at end works correctly.
+     * Test method to verify that addAll(int, HCollection) at end works correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() at the end of the sublist correctly appends all
+     * <p>This test verifies that addAll(int, HCollection) at the end of the sublist correctly appends all
      * elements from a collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() when inserting a collection
+     * <p>The test validates the behavior of addAll(int, HCollection) when inserting a collection
      * at the end of the sublist, ensuring proper element appending without shifting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * A collection with two elements is created. addAll() is called at index 2 (the end) and
+     * A collection with two elements is created. addAll(int, HCollection) is called at index 2 (the end) and
      * the return value is verified to be true. The sublist and vector sizes are checked, and
      * the element order is verified after appending.</p>
      *
@@ -10744,13 +10744,13 @@ public class SubListAdapterTest
      * <p>- Another VectorAdapter is created with elements: ["3", "4"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 4</p>
      * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
      * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly append all elements from the collection at
+     * <p>addAll(int, HCollection) should return true and correctly append all elements from the collection at
      * the end of the sublist.</p>
      */
     @Test
@@ -10775,18 +10775,18 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() works with empty sublist.
+     * Test method to verify that addAll(int, HCollection) works with empty sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() correctly inserts elements into an empty sublist.</p>
+     * <p>This test verifies that addAll(int, HCollection) correctly inserts elements into an empty sublist.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() when inserting a collection
+     * <p>The test validates the behavior of addAll(int, HCollection) when inserting a collection
      * into an empty sublist, ensuring proper element insertion and sublist initialization.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and an empty sublist (indices 1 to 1).
-     * A collection with two elements is created. addAll() is called at index 0 and the return
+     * A collection with two elements is created. addAll(int, HCollection) is called at index 0 and the return
      * value is verified to be true. The sublist and vector sizes are checked, and the element
      * content is verified.</p>
      *
@@ -10796,13 +10796,13 @@ public class SubListAdapterTest
      * <p>- Another VectorAdapter is created with elements: ["3", "4"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 2</p>
      * <p>- Elements are in correct order: ["3", "4"]</p>
      * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly insert all elements from the collection into
+     * <p>addAll(int, HCollection) should return true and correctly insert all elements from the collection into
      * the empty sublist, properly initializing it.</p>
      */
     @Test
@@ -10825,19 +10825,19 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() throws ArrayIndexOutOfBoundsException with negative index.
+     * Test method to verify that addAll(int, HCollection) throws ArrayIndexOutOfBoundsException with negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() throws ArrayIndexOutOfBoundsException when called with
+     * <p>This test verifies that addAll(int, HCollection) throws ArrayIndexOutOfBoundsException when called with
      * a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates proper exception handling when addAll() is called with
+     * <p>The test validates proper exception handling when addAll(int, HCollection) is called with
      * an invalid negative index parameter.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * A collection with one element is created. addAll() is called with index -1, expecting
+     * A collection with one element is created. addAll(int, HCollection) is called with index -1, expecting
      * an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -10849,7 +10849,7 @@ public class SubListAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw ArrayIndexOutOfBoundsException when called with a negative index.</p>
+     * <p>addAll(int, HCollection) should throw ArrayIndexOutOfBoundsException when called with a negative index.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testSubListAddAllAtIndexNegativeIndex()
@@ -10866,19 +10866,19 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() throws ArrayIndexOutOfBoundsException with index greater than size.
+     * Test method to verify that addAll(int, HCollection) throws ArrayIndexOutOfBoundsException with index greater than size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() throws ArrayIndexOutOfBoundsException when called with
+     * <p>This test verifies that addAll(int, HCollection) throws ArrayIndexOutOfBoundsException when called with
      * an index greater than the sublist size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates proper exception handling when addAll() is called with
+     * <p>The test validates proper exception handling when addAll(int, HCollection) is called with
      * an index parameter that exceeds the sublist size.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * A collection with one element is created. addAll() is called with index 3 (greater than
+     * A collection with one element is created. addAll(int, HCollection) is called with index 3 (greater than
      * size 2), expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -10890,7 +10890,7 @@ public class SubListAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw ArrayIndexOutOfBoundsException when called with an index greater
+     * <p>addAll(int, HCollection) should throw ArrayIndexOutOfBoundsException when called with an index greater
      * than the sublist size.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
@@ -10908,18 +10908,18 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() throws NullPointerException with null collection.
+     * Test method to verify that addAll(int, HCollection) throws NullPointerException with null collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() throws NullPointerException when called with a null collection.</p>
+     * <p>This test verifies that addAll(int, HCollection) throws NullPointerException when called with a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates proper exception handling when addAll() is called with
+     * <p>The test validates proper exception handling when addAll(int, HCollection) is called with
      * a null collection parameter.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * addAll() is called with a null parameter, expecting a NullPointerException to be thrown.</p>
+     * addAll(int, HCollection) is called with a null parameter, expecting a NullPointerException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2"]</p>
@@ -10929,7 +10929,7 @@ public class SubListAdapterTest
      * <p>- NullPointerException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw NullPointerException when called with a null collection.</p>
+     * <p>addAll(int, HCollection) should throw NullPointerException when called with a null collection.</p>
      */
     @Test(expected = NullPointerException.class)
     public void testSubListAddAllAtIndexNullCollection()
@@ -10943,18 +10943,18 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() works correctly with null elements.
+     * Test method to verify that addAll(int, HCollection) works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() correctly handles null elements in the collection.</p>
+     * <p>This test verifies that addAll(int, HCollection) correctly handles null elements in the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of addAll() when inserting a collection
+     * <p>The test is designed to validate the behavior of addAll(int, HCollection) when inserting a collection
      * containing null elements, ensuring proper handling of null values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist covering all elements.
-     * A collection with two null elements is created. addAll() is called at index 1 and the
+     * A collection with two null elements is created. addAll(int, HCollection) is called at index 1 and the
      * return value is verified to be true. The sublist and vector sizes are checked, and the
      * element content is verified, including proper handling of null values.</p>
      *
@@ -10964,13 +10964,13 @@ public class SubListAdapterTest
      * <p>- Another VectorAdapter is created with elements: [null, null]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 4</p>
      * <p>- Elements are in correct order: ["1", null, null, "3"]</p>
      * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly insert null elements from the collection at
+     * <p>addAll(int, HCollection) should return true and correctly insert null elements from the collection at
      * the specified index, handling null values properly.</p>
      */
     @Test
@@ -10995,18 +10995,18 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() works correctly when adding the sublist to itself.
+     * Test method to verify that addAll(int, HCollection) works correctly when adding the sublist to itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() correctly handles adding a sublist to itself.</p>
+     * <p>This test verifies that addAll(int, HCollection) correctly handles adding a sublist to itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() when the collection parameter
+     * <p>The test validates the behavior of addAll(int, HCollection) when the collection parameter
      * is the same sublist, ensuring proper element duplication and handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and a sublist.
-     * addAll() is called with the same sublist as the collection parameter at index 1. The
+     * addAll(int, HCollection) is called with the same sublist as the collection parameter at index 1. The
      * return value is verified to be true. The sublist and vector sizes are checked, and the
      * element content is verified after the operation.</p>
      *
@@ -11015,13 +11015,13 @@ public class SubListAdapterTest
      * <p>- SubListAdapter is created from indices 0 to 2 of the main vector</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 4</p>
      * <p>- Elements are in correct order: ["1", "1", "2", "2"]</p>
      * <p>- Vector size becomes 4</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly duplicate the sublist elements when adding
+     * <p>addAll(int, HCollection) should return true and correctly duplicate the sublist elements when adding
      * the sublist to itself.</p>
      */
     @Test
@@ -11042,19 +11042,19 @@ public class SubListAdapterTest
     }
 
     /**
-     * Test method to verify that addAll() works correctly with offset sublist.
+     * Test method to verify that addAll(int, HCollection) works correctly with offset sublist.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll() works correctly when the sublist has an offset from
+     * <p>This test verifies that addAll(int, HCollection) works correctly when the sublist has an offset from
      * the beginning of the backing vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test validates the behavior of addAll() with offset,
+     * <p>The test validates the behavior of addAll(int, HCollection) with offset,
      * ensuring proper element insertion and proper shifting of elements in the backing vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with four elements and a sublist covering indices 1 to 3.
-     * A collection with two elements is created. addAll() is called at index 1 and the return
+     * A collection with two elements is created. addAll(int, HCollection) is called at index 1 and the return
      * value is verified to be true. The sublist and vector sizes are checked, and the element
      * content is verified after insertion, including elements before and after the sublist.</p>
      *
@@ -11064,14 +11064,14 @@ public class SubListAdapterTest
      * <p>- Another VectorAdapter is created with elements: ["2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- SubList size becomes 4</p>
      * <p>- Elements are in correct order: ["1", "2", "3", "4"]</p>
      * <p>- Vector size becomes 6</p>
      * <p>- Elements before and after sublist remain correct</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and correctly insert elements from the collection into
+     * <p>addAll(int, HCollection) should return true and correctly insert elements from the collection into
      * the offset sublist, properly handling the offset and maintaining elements outside
      * the sublist range.</p>
      */
