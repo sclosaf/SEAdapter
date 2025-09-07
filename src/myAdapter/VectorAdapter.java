@@ -1013,11 +1013,11 @@ public class VectorAdapter implements HList
 
     /**
      * Returns an iterator over the elements in this list in proper
-     * sequence. <p>
+     * sequence.
      *
-     * This implementation returns a straightforward implementation of the
+     * <p>This implementation returns a straightforward implementation of the
      * iterator interface, relying on the backing list's <code>size()</code>,
-     * <code>get(int)</code>, and <code>remove(int)</code> methods.<p>
+     * <code>get(int)</code>, and <code>remove(int)</code> methods.</p>
      *
      * @return an iterator over the elements in this list in proper sequence.
      */
