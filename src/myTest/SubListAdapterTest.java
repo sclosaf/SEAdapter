@@ -30,8 +30,8 @@ import static org.junit.Assert.*;
  * <p>This test suite utilizes JUnit 4.13 testing framework with Hamcrest 1.3
  * matchers for assertions. These dependencies are located as follows:</p>
  * <ul>
- *   <li>JUnit 4.13: <code>lib/junit-4.13.jar</code></li>
- *   <li>Hamcrest Core 1.3: <code>Matcher/hamcrest-core-1.3.jar</code></li>
+ *   <li>JUnit 4.13: <code>JUnit/junit-4.13.jar</code></li>
+ *   <li>Hamcrest Core 1.3: <code>JUnit/hamcrest-core-1.3.jar</code></li>
  * </ul>
  *
  * <p>Categories:</p>
