@@ -4,6 +4,7 @@ import myAdapter.VectorAdapter;
 import myAdapter.SubListAdapter;
 import myAdapter.EnumerationAdapter;
 
+import java.util.Enumeration;
 import java.util.NoSuchElementException;
 
 import org.junit.Before;

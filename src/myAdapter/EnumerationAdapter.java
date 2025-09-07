@@ -1,5 +1,7 @@
 package myAdapter;
 
+import java.util.Enumeration;
+
 import java.util.NoSuchElementException;
 
 import java.lang.IllegalArgumentException;

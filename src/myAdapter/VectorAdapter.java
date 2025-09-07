@@ -3,6 +3,7 @@ package myAdapter;
 import myException.IllegalStateException;
 
 import java.util.Vector;
+import java.util.Enumeration;
 
 import java.util.NoSuchElementException;
 
