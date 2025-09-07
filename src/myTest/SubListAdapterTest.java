@@ -6135,7 +6135,7 @@ public class SubListAdapterTest
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, creates an empty sublist (from index 1 to 1),
-     * calls clone() on the empty sublist, and verifies that the clone is not null, has the same size (0),
+     * calls clone() on the empty sublist, and verifies that the clone is not null, has the same size,
      * and is also empty.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -6144,11 +6144,11 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Clone is not null</p>
-     * <p>- Clone size matches original (0)</p>
+     * <p>- Clone size matches original</p>
      * <p>- Clone is empty as verified by isEmpty()</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>clone() should create a non-null copy of empty sublists with the same size (0) and empty state.</p>
+     * <p>clone() should create a non-null copy of empty sublists with the same size and empty state.</p>
      */
     @Test
     public void testSubListCloneEmptySubList()
@@ -6188,7 +6188,7 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Clone is not null</p>
-     * <p>- Clone size matches original (3)</p>
+     * <p>- Clone size matches original </p>
      * <p>- All elements are preserved in the same order</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -6234,7 +6234,7 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Clone is not null</p>
-     * <p>- Clone size matches original (3)</p>
+     * <p>- Clone size matches original</p>
      * <p>- All null elements are preserved in the clone</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -6324,7 +6324,7 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- Clone is not null</p>
-     * <p>- Clone size matches original (2)</p>
+     * <p>- Clone size matches original</p>
      * <p>- Clone contains correct elements from offset range</p>
      * <p>- Element values are preserved correctly</p>
      *
@@ -9871,8 +9871,8 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeAll() returns false</p>
-     * <p>- Sublist size remains unchanged (2)</p>
-     * <p>- Backing vector size remains unchanged (3)</p>
+     * <p>- Sublist size remains unchanged</p>
+     * <p>- Backing vector size remains unchanged</p>
      * <p>- All elements remain in original positions</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -9917,8 +9917,8 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeAll() returns false</p>
-     * <p>- Sublist size remains unchanged (2)</p>
-     * <p>- Backing vector size remains unchanged (3)</p>
+     * <p>- Sublist size remains unchanged</p>
+     * <p>- Backing vector size remains unchanged</p>
      * <p>- All elements remain in original positions</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -10069,8 +10069,8 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeAll() returns false</p>
-     * <p>- Sublist remains empty (size 0)</p>
-     * <p>- Backing vector size remains unchanged (3)</p>
+     * <p>- Sublist remains empty</p>
+     * <p>- Backing vector size remains unchanged</p>
      * <p>- All elements remain in original positions</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -10154,8 +10154,8 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeAll() returns true</p>
-     * <p>- Sublist becomes empty (size 0)</p>
-     * <p>- Backing vector becomes empty (size 0)</p>
+     * <p>- Sublist becomes empty</p>
+     * <p>- Backing vector becomes empty</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>removeAll() should return true and completely empty the sublist and backing vector when removing itself.</p>
@@ -10198,8 +10198,8 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeAll() returns false</p>
-     * <p>- Sublist size remains unchanged (2)</p>
-     * <p>- Backing vector size remains unchanged (4)</p>
+     * <p>- Sublist size remains unchanged</p>
+     * <p>- Backing vector size remains unchanged</p>
      * <p>- All elements remain in original positions</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -10247,7 +10247,7 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- removeAll() returns true</p>
-     * <p>- Sublist becomes empty (size 0)</p>
+     * <p>- Sublist becomes empty</p>
      * <p>- Backing vector size reduces to 2</p>
      * <p>- Elements before sublist remain correctly positioned</p>
      * <p>- Elements are properly shifted after removal</p>
@@ -10452,7 +10452,7 @@ public class SubListAdapterTest
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- retainAll() returns true</p>
-     * <p>- SubList becomes empty (size 0)</p>
+     * <p>- SubList becomes empty</p>
      * <p>- SubList isEmpty() returns true</p>
      *
      * <p><b>Expected Results:</b></p>

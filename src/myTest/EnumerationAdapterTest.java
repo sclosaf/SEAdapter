@@ -67,13 +67,13 @@ public class EnumerationAdapterTest
 
     /**
      * HEnumeration instance for iterating over the main vector.
-     * Created from the vector.elements() method.
+     * Created from the vector.elements().
      */
     private HEnumeration enumeration;
 
     /**
      * HEnumeration instance for iterating over the sublist.
-     * Created from the subList.elements() method.
+     * Created from the subList.elements().
      */
     private HEnumeration subEnumeration;
 

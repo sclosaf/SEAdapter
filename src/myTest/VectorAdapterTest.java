@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  * which implements the HList and HCollection interfaces to provide a
  * growable dynamic array of objects. The tests cover various scenarios
  * including construction, basic usage, element manipulation,
- * collection operations, edge cases and error conditions.</p>
+ * collection manipulation, edge cases and error conditions.</p>
  *
  * <h2>Test Case Design</h2>
  * <p>The test cases are designed to validate the behavior of VectorAdapter
@@ -91,10 +91,10 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the VectorAdapter constructor with capacity and increment parameters
-     * correctly initializes the vector with specified capacity and zero size.</p>
+     * correctly initializes the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper initialization of VectorAdapter when created with
+     * <p>The test validates proper initialization of VectorAdapter when created with
      * valid capacity and increment values, ensuring basic constructor functionality works as expected.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -127,10 +127,10 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the VectorAdapter constructor with zero capacity and positive increment
-     * correctly initializes the vector with zero capacity and size.</p>
+     * correctly initializes the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case handling when capacity is zero, ensuring the
+     * <p>The test validates edge case handling when capacity is zero, ensuring the
      * constructor can handle minimum capacity values correctly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -163,10 +163,10 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the VectorAdapter constructor throws IllegalArgumentException
-     * when negative capacity is provided.</p>
+     * with negative capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid constructor parameters,
+     * <p>The test validates exception handling for invalid constructor parameters,
      * ensuring proper error reporting for negative capacity values.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -194,11 +194,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the VectorAdapter constructor with positive capacity and zero increment
-     * correctly initializes the vector and uses doubling strategy for growth.</p>
+     * correctly initializes the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that zero increment parameter triggers the doubling
-     * growth strategy in the underlying Vector implementation.</p>
+     * <p>The test validates that zero increment parameter is
+     * correctly handled for initialization.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter instance with capacity 10 and increment 0, then verifies
@@ -230,11 +230,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the VectorAdapter constructor with positive capacity and negative increment
-     * correctly initializes the vector and uses doubling strategy for growth.</p>
+     * correctly initializes the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that negative increment parameter triggers the doubling
-     * growth strategy in the underlying Vector implementation.</p>
+     * <p>The test validates that negative increment parameter is
+     * correctly handled for initialization.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter instance with capacity 7 and increment -2, then verifies
@@ -265,11 +265,10 @@ public class VectorAdapterTest
      * Test method to verify growth behavior with positive increment.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that VectorAdapter grows according to the specified increment value
-     * when adding elements beyond initial capacity.</p>
+     * <p>This test verifies that VectorAdapter grows according to the specified increment value.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity growth mechanism when a positive increment
+     * <p>The test validates the capacity growth mechanism when a positive increment
      * value is specified, ensuring proper memory management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -309,11 +308,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that VectorAdapter doubles its capacity when adding elements beyond
-     * initial capacity with zero increment specified.</p>
+     * initial capacity with zero increment.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the doubling growth strategy when increment is zero,
-     * ensuring proper memory management for the default growth behavior.</p>
+     * <p>The test validates the doubling growth strategy when increment is zero,
+     * ensuring proper memory management for the double growth behavior.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity 3 and increment 0, adds four elements,
@@ -354,11 +353,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the single-parameter VectorAdapter constructor correctly initializes
-     * the vector with specified capacity and zero increment.</p>
+     * the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the simplified constructor that only takes capacity,
-     * ensuring it delegates to the main constructor with zero increment.</p>
+     * <p>The test validates the constructor that only takes capacity,
+     * ensuring it properly handles the zero increment.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter instance with capacity 8, then verifies that the instance
@@ -393,7 +392,7 @@ public class VectorAdapterTest
      * zero capacity value.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case handling for the capacity-only constructor,
+     * <p>The test validates edge case handling for the capacity-only constructor,
      * ensuring it can handle minimum capacity values correctly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -429,8 +428,8 @@ public class VectorAdapterTest
      * IllegalArgumentException when negative capacity is provided.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid constructor parameters
-     * in the simplified capacity-only constructor.</p>
+     * <p>The test validates exception handling for invalid constructor
+     * parameters, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a VectorAdapter instance with capacity -5,
@@ -456,12 +455,12 @@ public class VectorAdapterTest
      * Test method to verify doubling growth behavior with capacity-only constructor.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that VectorAdapter created with capacity-only constructor doubles
-     * its capacity when adding elements beyond initial capacity.</p>
+     * <p>This test verifies that single-parameter VectorAdapter constructor doubles
+     * its capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the doubling growth strategy when using the
-     * capacity-only constructor, which implicitly uses zero increment.</p>
+     * <p>The test validates the doubling growth strategy when using the
+     * capacity-only constructor, which uses zero increment.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity 3, adds four elements,
@@ -502,11 +501,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the no-argument VectorAdapter constructor correctly initializes
-     * the vector with default capacity of 10.</p>
+     * the vector with default values.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the default constructor behavior, ensuring it provides
-     * sensible default values for capacity and initial state.</p>
+     * <p>The test validates the default constructor behavior, ensuring it provides
+     * default values for capacity and increment.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter instance using the default constructor, then verifies
@@ -541,8 +540,8 @@ public class VectorAdapterTest
      * its capacity when adding elements beyond initial capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the doubling growth strategy when using the
-     * default constructor, which implicitly uses zero increment.</p>
+     * <p>The test validates the doubling growth strategy when using the
+     * default constructor, which uses zero increment.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with default constructor, adds 11 elements,
@@ -583,11 +582,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that the collection-based VectorAdapter constructor correctly
-     * initializes the vector with elements from the source collection.</p>
+     * initializes the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the collection constructor functionality, ensuring
-     * it properly copies elements from the source collection while maintaining order.</p>
+     * <p>The test validates the collection constructor functionality, ensuring
+     * it properly copies elements from the source collection, maintaining order.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a source VectorAdapter with three elements, then creates a new
@@ -633,7 +632,7 @@ public class VectorAdapterTest
      * handles empty source collections.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case handling for the collection constructor
+     * <p>The test validates edge case handling for the collection constructor
      * when the source collection is empty, ensuring proper initialization.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -672,8 +671,8 @@ public class VectorAdapterTest
      * NullPointerException when null collection is provided.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid null parameter
-     * in the collection constructor.</p>
+     * <p>The test validates exception handling for invalid null parameter
+     * in the collection constructor, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test attempts to create a VectorAdapter instance with null collection parameter,
@@ -699,11 +698,11 @@ public class VectorAdapterTest
      * Test method to verify independence between source and target collections.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that modifications to the source collection after constructor
-     * invocation do not affect the target VectorAdapter instance.</p>
+     * <p>This test verifies that modifications to the source collection do not
+     * affect the target VectorAdapter instance.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the collection constructor creates an
+     * <p>The test validates that the collection constructor creates an
      * independent copy of the source collection, ensuring data integrity.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -748,16 +747,15 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() copies elements in correct order.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the copyInto method correctly copies elements from the vector to the target array
-     * in the proper sequential order, maintaining the same element positions.</p>
+     * <p>This test verifies that the copyInto() correctly copies elements from the vector to the target array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic functionality of the copyInto method when copying elements
+     * <p>The test validates the basic functionality of the copyInto() when copying elements
      * to an array of exactly the same size as the vector. This ensures proper element ordering during the copy operation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three string elements, creates a target array of matching size,
-     * and calls copyInto. It then verifies that each element in the target array matches the corresponding
+     * and calls copyInto(). It then verifies that each element in the target array matches the corresponding
      * element from the vector in both value and position.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -791,16 +789,15 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() handles empty vectors correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the copyInto method works correctly when copying from an empty vector
-     * to an empty array, ensuring no elements are copied and the array remains unchanged.</p>
+     * <p>This test verifies that the copyInto() works correctly when copying from an empty vector
+     * to an empty array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case handling when both the vector and target array are empty,
+     * <p>The test validates edge case handling when both the vector and target array are empty,
      * ensuring the method doesn't attempt to copy non-existent elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter and an empty target array, then calls copyInto.
-     * It verifies that the array remains empty and no exceptions are thrown.</p>
+     * <p>The test creates an empty VectorAdapter and an empty target array, then calls copyInto().</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
@@ -828,16 +825,16 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() preserves existing array elements beyond vector size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that copyInto only overwrites the initial portion of the target array
-     * corresponding to the vector's size, leaving subsequent elements unchanged.</p>
+     * <p>This test verifies that copyInto() only overwrites the initial portion of the target array
+     * corresponding to the vector's size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the method correctly handles cases where the target array
+     * <p>The test validates that it correctly handles cases where the target array
      * is larger than the vector, ensuring existing elements beyond the vector size are preserved.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, a target array with five elements (three pre-filled),
-     * calls copyInto, and verifies that the first two elements are overwritten while the last three remain unchanged.</p>
+     * calls copyInto(), and verifies that the first two elements are overwritten while the last three remain unchanged.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains two elements: ["1", "2"]</p>
@@ -875,16 +872,16 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() throws IndexOutOfBoundsException for insufficient array size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that copyInto throws IndexOutOfBoundsException when the target array
-     * is smaller than the vector size, preventing array overflow.</p>
+     * <p>This test verifies that copyInto() throws IndexOutOfBoundsException when the target array
+     * is smaller than the vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper error handling when the target array cannot accommodate
-     * all vector elements, ensuring the method fails safely rather than causing array overflow.</p>
+     * <p>The test validates proper error handling when the target array cannot accommodate
+     * all vector elements, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements and a target array with only two elements,
-     * then expects IndexOutOfBoundsException to be thrown when copyInto is called.</p>
+     * then expects IndexOutOfBoundsException to be thrown when copyInto() is called.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains three elements: ["1", "2", "3"]</p>
@@ -913,16 +910,15 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that copyInto correctly copies null elements from the vector to the target array,
-     * ensuring proper handling of null values during the copy operation.</p>
+     * <p>This test verifies that copyInto() correctly copies null elements from the vector to the target array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that null elements are properly handled and copied to the target array
-     * without conversion issues or exceptions.</p>
+     * <p>The test validates that null elements are properly handled and copied
+     * to the target array, properly managing size and order.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three null elements, a target array with three non-null elements,
-     * calls copyInto, and verifies that all array elements become null after the operation.</p>
+     * calls copyInto(), and verifies that all array elements become null after the operation.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains three null elements</p>
@@ -960,20 +956,19 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() throws NullPointerException for null array parameter.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that copyInto throws NullPointerException when provided with a null array parameter,
-     * ensuring proper validation of input parameters.</p>
+     * <p>This test verifies that copyInto() throws NullPointerException when provided with a null array parameter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate parameter validation by passing a null array reference,
-     * ensuring the method fails gracefully with appropriate exception.</p>
+     * <p>The test validates copyInto() exception handling by passing a null array reference,
+     * ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter and calls copyInto with a null array parameter,
+     * <p>The test creates an empty VectorAdapter and calls copyInto() with a null array parameter,
      * expecting NullPointerException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty</p>
-     * <p>- Null array reference is passed to copyInto</p>
+     * <p>- Null array reference is passed to copyInto()</p>
      *
      * <p><b>Post-Condition:</b></p>
      * <p>- NullPointerException is thrown</p>
@@ -992,16 +987,16 @@ public class VectorAdapterTest
      * Test method to verify that copyInto() throws IndexOutOfBoundsException for zero-length array with elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that copyInto throws IndexOutOfBoundsException when attempting to copy
-     * elements into a zero-length array while the vector contains elements.</p>
+     * <p>This test verifies that copyInto() throws IndexOutOfBoundsException when attempting to copy
+     * elements into a zero-length array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case handling when the target array has zero length
-     * but the vector contains elements, ensuring proper exception is thrown.</p>
+     * <p>The test validates edge case handling when the target array has zero length
+     * but the vector contains elements, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with one element and a zero-length target array,
-     * then expects IndexOutOfBoundsException to be thrown when copyInto is called.</p>
+     * then expects IndexOutOfBoundsException to be thrown when copyInto() is called.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains one element: ["1"]</p>
@@ -1028,19 +1023,19 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() works correctly on newly constructed vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that trimToSize correctly reduces the capacity of a newly constructed
-     * vector with initial capacity to match its actual size (zero for empty vector).</p>
+     * <p>This test verifies that trimToSize() correctly reduces the capacity of a newly constructed
+     * vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that trimToSize properly handles vectors created with
+     * <p>The test validates that trimToSize() properly handles vectors created with
      * initial capacity but no elements, reducing capacity to zero.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with initial capacity of 20 and capacity increment of 50,
-     * calls trimToSize, and verifies that capacity becomes zero while the vector remains empty.</p>
+     * <p>The test creates a VectorAdapter with initial capacity of 2 and capacity increment of 5,
+     * calls trimToSize(), and verifies that capacity becomes zero while the vector remains empty.</p>
      *
      * <p><b>Pre-Condition:</b></p>
-     * <p>- VectorAdapter is created with initial capacity 20 and capacity increment 50</p>
+     * <p>- VectorAdapter is created with initial capacity 2 and capacity increment 5</p>
      * <p>- Vector is empty</p>
      *
      * <p><b>Post-Condition:</b></p>
@@ -1048,12 +1043,12 @@ public class VectorAdapterTest
      * <p>- Vector remains empty</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Capacity should be reduced to 0 for an empty vector after trimToSize.</p>
+     * <p>Capacity should be reduced to 0 for an empty vector after trimToSize().</p>
      */
     @Test
     public void testTrimToSizeOnConstructor()
     {
-        vector = new VectorAdapter(20, 50);
+        vector = new VectorAdapter(2, 5);
 
         vector.trimToSize();
 
@@ -1065,15 +1060,14 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() is idempotent (multiple calls have same effect).
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that calling trimToSize multiple times has the same effect as calling it once,
-     * ensuring the method is idempotent and doesn't unnecessarily modify the vector.</p>
+     * <p>This test verifies that calling trimToSize() multiple times has the same effect as calling it once.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that subsequent calls to trimToSize don't change the vector's
+     * <p>The test validates that subsequent calls to trimToSize() do not affect vector
      * state when no modifications occur between calls.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, calls trimToSize twice, and verifies that
+     * <p>The test creates a VectorAdapter with three elements, calls trimToSize() twice, and verifies that
      * capacity, size, and elements remain unchanged after the second call.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1086,7 +1080,7 @@ public class VectorAdapterTest
      * <p>- Elements remain unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Multiple calls to trimToSize should not change the vector's state when no modifications occur between calls.</p>
+     * <p>Multiple calls to trimToSize() should not change the vector's state when no modifications occur between calls.</p>
      */
     @Test
     public void testTrimToSizeAlreadyTrimmed()
@@ -1114,15 +1108,15 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() reduces capacity after element removal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that trimToSize correctly reduces the vector's capacity to match its
-     * current size after elements have been removed, optimizing memory usage.</p>
+     * <p>This test verifies that trimToSize() correctly reduces the vector's capacity to match its
+     * current size after elements removal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that trimToSize properly handles the case where elements
+     * <p>The test validates that trimToSize() properly handles the case where elements
      * have been removed from the vector, reducing capacity to match the new smaller size.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with five elements, removes two elements, calls trimToSize,
+     * <p>The test creates a VectorAdapter with five elements, removes two elements, calls trimToSize(),
      * and verifies that capacity matches the new size and remaining elements are preserved correctly.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1130,11 +1124,11 @@ public class VectorAdapterTest
      * <p>- Two elements are removed (index 2 and 3)</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Capacity equals reduced size (3)</p>
+     * <p>- Capacity equals reduced size</p>
      * <p>- Remaining elements are ["1", "2", "4"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Capacity should be reduced to match the current size after element removal and trimToSize.</p>
+     * <p>Capacity should be reduced to match the current size after element removal and trimToSize().</p>
      */
     @Test
     public void testTrimToSizeAfterRemovingElements()
@@ -1161,15 +1155,14 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that trimToSize correctly handles vectors containing null elements,
-     * reducing capacity while preserving all null values in their original positions.</p>
+     * <p>This test verifies that trimToSize() correctly handles vectors containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that null elements are properly preserved during
-     * the capacity reduction operation performed by trimToSize.</p>
+     * <p>The test validates that null elements are properly preserved during
+     * the capacity reduction operation performed by trimToSize().</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three null elements, calls trimToSize, and verifies
+     * <p>The test creates a VectorAdapter with three null elements, calls trimToSize(), and verifies
      * that capacity matches size and all elements remain null after the operation.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1177,11 +1170,11 @@ public class VectorAdapterTest
      * <p>- Initial capacity is 5</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Capacity equals size (3)</p>
+     * <p>- Capacity equals size</p>
      * <p>- All three elements remain null</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>trimToSize should preserve null elements while reducing capacity to match size.</p>
+     * <p>trimToSize() should preserve null elements while reducing capacity to match size.</p>
      */
     @Test
     public void testTrimToSizeNullElements()
@@ -1204,27 +1197,27 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() works after reducing size via setSize().
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that trimToSize correctly reduces capacity after the vector size
-     * has been explicitly reduced using setSize, optimizing memory usage for the new smaller size.</p>
+     * <p>This test verifies that trimToSize() correctly reduces capacity after the vector size
+     * has been explicitly reduced using setSize().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the interaction between setSize and trimToSize methods,
+     * <p>The test validates the interaction between setSize() and trimToSize() ,
      * ensuring proper capacity management when size is explicitly reduced.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements, reduces size to 2 using setSize,
-     * calls trimToSize, and verifies that capacity matches the new size and remaining elements are preserved.</p>
+     * calls trimToSize(), and verifies that capacity matches the new size and remaining elements are preserved.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter contains three elements: ["1", "2", "3"]</p>
      * <p>- Size is reduced to 2 using setSize</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Capacity equals reduced size (2)</p>
+     * <p>- Capacity equals reduced size</p>
      * <p>- Remaining elements are ["1", "2"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Capacity should be reduced to match the explicitly set smaller size after trimToSize.</p>
+     * <p>Capacity should be reduced to match the explicitly set smaller size after trimToSize().</p>
      */
     @Test
     public void testTrimToSizeAfterSetSizeSmaller()
@@ -1247,16 +1240,16 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() works after increasing size via setSize().
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that trimToSize correctly increases capacity after the vector size
-     * has been explicitly increased using setSize, ensuring capacity matches the new larger size.</p>
+     * <p>This test verifies that trimToSize() correctly increases capacity after the vector size
+     * has been increased using setSize().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the interaction between setSize and trimToSize methods
+     * <p>The test validates the interaction between setSize() and trimToSize()
      * when size is increased, ensuring proper capacity allocation for the new size.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, increases size to 4 using setSize,
-     * calls trimToSize, and verifies that capacity matches the new size and element values are correct
+     * calls trimToSize(), and verifies that capacity matches the new size and element values are correct
      * (original elements preserved, new elements null).</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1264,11 +1257,11 @@ public class VectorAdapterTest
      * <p>- Size is increased to 4 using setSize</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Capacity equals increased size (4)</p>
+     * <p>- Capacity equals increased size</p>
      * <p>- Elements are ["1", "2", null, null]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Capacity should be increased to match the explicitly set larger size after trimToSize,
+     * <p>Capacity should be increased to match the explicitly set larger size after trimToSize(),
      * with new elements initialized to null.</p>
      */
     @Test
@@ -1293,16 +1286,16 @@ public class VectorAdapterTest
      * Test method to verify that trimToSize() overrides previous ensureCapacity().
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that trimToSize correctly reduces capacity to match current size
-     * even after ensureCapacity has been called to increase capacity, prioritizing actual size over reserved capacity.</p>
+     * <p>This test verifies that trimToSize() correctly reduces capacity to match current size
+     * even after ensureCapacity().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that trimToSize takes precedence over ensureCapacity,
+     * <p>The test validates that trimToSize() takes precedence over ensureCapacity(),
      * ensuring optimal memory usage regardless of previous capacity reservations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, calls ensureCapacity to reserve additional space,
-     * then calls trimToSize and verifies that capacity is reduced to match the actual size rather than
+     * then calls trimToSize() and verifies that capacity is reduced to match the actual size rather than
      * the previously reserved capacity.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -1310,11 +1303,11 @@ public class VectorAdapterTest
      * <p>- ensureCapacity(20) is called to reserve additional space</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- Capacity equals actual size (2)</p>
+     * <p>- Capacity equals actual size</p>
      * <p>- Elements remain unchanged: ["1", "2"]</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>trimToSize should reduce capacity to match current size, overriding previous ensureCapacity calls.</p>
+     * <p>trimToSize() should reduce capacity to match current size, overriding previous ensureCapacity calls.</p>
      */
     @Test
     public void testTrimToSizeAfterEnsureCapacity()
@@ -1337,11 +1330,12 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that ensureCapacity() maintains the current capacity when the requested minimum capacity
-     * is smaller than the current capacity, ensuring no unnecessary capacity changes occur.</p>
+     * is smaller than the current capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity management behavior when the requested minimum capacity
-     * is less than the current capacity. This ensures the vector optimizes memory usage by avoiding unnecessary expansions.</p>
+     * <p>The test validates the capacity management behavior when the requested minimum capacity
+     * is less than the current capacity.
+     * This ensures the vector optimizes memory usage by avoiding unnecessary expansions.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 10. It then calls ensureCapacity(5) and verifies
@@ -1375,11 +1369,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that ensureCapacity() maintains the current capacity when the requested minimum capacity
-     * exactly equals the current capacity, ensuring no unnecessary capacity changes occur.</p>
+     * exactly equals the current capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity management behavior when the requested minimum capacity
-     * equals the current capacity. This ensures the vector maintains stability when no expansion is needed.</p>
+     * <p>The test validates the capacity management behavior when the requested minimum capacity
+     * equals the current capacity, avoiding unnecessary operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 10. It then calls ensureCapacity(10) and verifies
@@ -1413,11 +1407,10 @@ public class VectorAdapterTest
      * Test method to verify that ensureCapacity() increases capacity using capacity increment when needed.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that ensureCapacity() properly increases capacity using the specified capacity increment
-     * when the requested minimum capacity exceeds the current capacity.</p>
+     * <p>This test verifies that ensureCapacity() properly increases capacity using the specified capacity increment.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity expansion mechanism using the capacity increment parameter.
+     * <p>The test validates the capacity expansion mechanism using the capacity increment parameter.
      * This ensures the vector grows in controlled increments as specified during construction.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1451,12 +1444,12 @@ public class VectorAdapterTest
      * Test method to verify that ensureCapacity() uses minCapacity when capacity increment is insufficient.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that ensureCapacity() uses the requested minimum capacity directly when the capacity
-     * increment would result in an insufficient capacity increase.</p>
+     * <p>This test verifies that ensureCapacity() uses the requested minimum capacity directly when insufficient capacity
+     * increment increase.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the vector properly handles cases where the standard capacity increment
-     * would not meet the minimum capacity requirement, ensuring adequate capacity is always available.</p>
+     * <p>The test validates that the vector properly handles cases where the standard capacity increment
+     * would not meet the minimum capacity requirement, ensuring proper memory management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 5 and capacity increment of 3. It then calls
@@ -1490,12 +1483,11 @@ public class VectorAdapterTest
      * Test method to verify that ensureCapacity() doubles capacity when capacity increment is zero.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that ensureCapacity() doubles the current capacity when the capacity increment is zero
-     * and the requested minimum capacity exceeds the current capacity.</p>
+     * <p>This test verifies that ensureCapacity() doubles the current capacity when the capacity increment is zero.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the doubling behavior that occurs when no specific capacity increment
-     * is specified (capacity increment = 0), ensuring the vector grows exponentially.</p>
+     * <p>The test validates the doubling behavior that occurs when no specific capacity increment
+     * is specified, ensuring exponential growth.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 5 and default capacity increment (0). It then calls
@@ -1528,12 +1520,12 @@ public class VectorAdapterTest
      * Test method to verify that ensureCapacity() uses minCapacity when double growth is insufficient.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that ensureCapacity() uses the requested minimum capacity directly when doubling
-     * the current capacity would still be insufficient to meet the minimum requirement.</p>
+     * <p>This test verifies that ensureCapacity() uses the requested minimum capacity directly
+     * when doubling would be insufficient.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the vector properly handles cases where exponential growth
-     * would not meet the minimum capacity requirement, ensuring adequate capacity is always available.</p>
+     * <p>The test validates that the vector properly handles cases where exponential growth
+     * would not meet the minimum capacity requirement, ensuring adequate capacity increase.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 5 and default capacity increment (0). It then calls
@@ -1567,10 +1559,10 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that ensureCapacity() properly increases capacity while preserving existing elements
-     * and size after setSize() has been used to expand the vector with null elements.</p>
+     * and size after setSize().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the interaction between setSize() and ensureCapacity(), ensuring that
+     * <p>The test validates the interaction between setSize() and ensureCapacity(), ensuring that
      * capacity expansion doesn't affect the logical size or content of the vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1610,10 +1602,10 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that ensureCapacity() properly increases capacity while preserving existing elements
-     * and size after trimToSize() has been used to reduce capacity to match size.</p>
+     * and size after trimToSize().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the interaction between trimToSize() and ensureCapacity(), ensuring that
+     * <p>The test validates the interaction between trimToSize() and ensureCapacity(), ensuring that
      * capacity expansion after trimming doesn't affect the logical content of the vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1657,11 +1649,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that ensureCapacity() maintains the current capacity when the requested minimum capacity
-     * is zero, ensuring no unnecessary capacity changes occur for edge case values.</p>
+     * is zero.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity management behavior when the requested minimum capacity
-     * is zero, ensuring the vector handles this edge case appropriately.</p>
+     * <p>The test validates the capacity management behavior when the requested minimum capacity
+     * is zero, ensuring the vector handles edge cases properly.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 10. It then calls ensureCapacity(0) and verifies
@@ -1695,11 +1687,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that ensureCapacity() maintains the current capacity when the requested minimum capacity
-     * is negative, ensuring no unnecessary capacity changes occur for invalid input values.</p>
+     * is negative.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the capacity management behavior when the requested minimum capacity
-     * is negative, ensuring the vector handles invalid input gracefully without side effects.</p>
+     * <p>The test validates the capacity management behavior when the requested minimum capacity
+     * is negative, ensuring it handles negative parameters.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 10. It then calls ensureCapacity(-5) and verifies
@@ -1732,12 +1724,11 @@ public class VectorAdapterTest
      * Test method to verify that setSize() increases size from empty vector by adding null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() properly increases the size of an empty vector by adding null elements
-     * to reach the specified size, while maintaining appropriate capacity.</p>
+     * <p>This test verifies that setSize() properly increases the size of an empty vector by adding nulls.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic size expansion behavior of setSize() on an empty vector,
-     * ensuring that null elements are correctly added and capacity is managed appropriately.</p>
+     * <p>The test validates the basic size expansion behavior of setSize() on an empty vector,
+     * ensuring that null elements are correctly added and size is managed appropriately.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter with default constructor (capacity 10). It then calls setSize(3)
@@ -1772,11 +1763,10 @@ public class VectorAdapterTest
      * Test method to verify that setSize() increases size while preserving existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() properly increases the size of a non-empty vector by adding null elements
-     * while preserving existing elements in their original positions.</p>
+     * <p>This test verifies that setSize() properly increases the size of a vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size expansion behavior of setSize() on a vector with existing elements,
+     * <p>The test validates the size expansion behavior of setSize() on a vector with existing elements,
      * ensuring that original elements are preserved and new positions are filled with null values.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1816,11 +1806,10 @@ public class VectorAdapterTest
      * Test method to verify that setSize() decreases size by removing trailing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() properly decreases the size of a vector by removing elements from
-     * the end while preserving elements at the beginning.</p>
+     * <p>This test verifies that setSize() properly decreases the size of a vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the size reduction behavior of setSize(), ensuring that elements
+     * <p>The test validates the size reduction behavior of setSize(), ensuring that elements
      * beyond the new size are effectively removed while elements within the new size are preserved.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1858,11 +1847,10 @@ public class VectorAdapterTest
      * Test method to verify that setSize() with same size maintains current state.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() maintains the current size and all elements when the requested
-     * size equals the current size.</p>
+     * <p>This test verifies that setSize() maintains the current size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the idempotent behavior of setSize() when the size doesn't change,
+     * <p>The test validates the idempotent behavior of setSize() when the size doesn't change,
      * ensuring no unnecessary modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1900,11 +1888,10 @@ public class VectorAdapterTest
      * Test method to verify that setSize() can reduce size to zero, clearing the vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize(0) effectively clears the vector by reducing size to zero,
-     * making the vector empty while potentially maintaining capacity.</p>
+     * <p>This test verifies that setSize(0) effectively clears the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the clear behavior of setSize(0), ensuring that all elements
+     * <p>The test validates the clear behavior of setSize(0), ensuring that all elements
      * are removed and the vector becomes empty.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -1941,11 +1928,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that setSize() throws ArrayIndexOutOfBoundsException when attempting to
-     * set a negative size, ensuring proper validation of input parameters.</p>
+     * set a negative size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the error handling behavior of setSize() for invalid negative
-     * size values, ensuring the vector maintains integrity when faced with invalid input.</p>
+     * <p>The test validates the error handling behavior of setSize() for invalid negative
+     * size values, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and attempts to call setSize(-1). It expects
@@ -1973,12 +1960,11 @@ public class VectorAdapterTest
      * Test method to verify that setSize() works correctly with multiple sequential size changes.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() handles multiple sequential size changes correctly,
-     * preserving appropriate elements through both reductions and expansions.</p>
+     * <p>This test verifies that setSize() handles size increase followed by decrease.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the state management of setSize() through multiple operations,
-     * ensuring element preservation and proper null handling during complex size manipulation sequences.</p>
+     * <p>The test validates the state management of setSize() through multiple operations,
+     *  ensuring proper null handling during size manipulation sequences.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with five elements ["1", "2", "3", "4", "5"], calls setSize(3)
@@ -2024,12 +2010,11 @@ public class VectorAdapterTest
      * Test method to verify that setSize() works correctly with increase followed by decrease.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() handles size increase followed by decrease correctly,
-     * preserving appropriate elements through both operations.</p>
+     * <p>This test verifies that setSize() handles size increase followed by decrease .</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the state management of setSize() through opposite operations,
-     * ensuring element preservation and proper handling when size is increased then decreased.</p>
+     * <p>The test validates the state management of setSize() through multiple operations,
+     * ensuring  proper null handling during size manipulation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements ["1", "2"], calls setSize(4) to expand
@@ -2065,11 +2050,10 @@ public class VectorAdapterTest
      * Test method to verify that setSize() works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setSize() properly handles vectors containing null elements,
-     * preserving null values during size expansion operations.</p>
+     * <p>This test verifies that setSize() properly handles vectors containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the null element handling of setSize(), ensuring that
+     * <p>The test validates the null element handling of setSize(), ensuring that
      * null elements are preserved and additional null elements are correctly added during expansion.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2114,8 +2098,7 @@ public class VectorAdapterTest
      * the expected default capacity of 10.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the default capacity value specified by the
-     * VectorAdapter implementation, ensuring consistency with expected behavior.</p>
+     * <p>The test validates the default capacity expected value.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter using the default constructor and verifies that
@@ -2143,16 +2126,15 @@ public class VectorAdapterTest
      * Test method to verify capacity matches initial capacity when specified in constructor.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that a VectorAdapter created with a specific initial capacity
-     * has exactly that capacity value.</p>
+     * <p>This test verifies that a VectorAdapter created with a specific initial capacity.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the capacity parameter in the constructor
-     * is properly honored and reflected in the capacity() method.</p>
+     * <p>The test validates that the capacity parameter in the constructor
+     * is properly returned by the capacity().</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with initial capacity of 15 and verifies that
-     * the capacity() method returns 15.</p>
+     * the capacity() returns 15.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is created with initial capacity 15</p>
@@ -2176,12 +2158,11 @@ public class VectorAdapterTest
      * Test method to verify that size() returns 0 for an empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the size() method correctly returns 0 for a newly created empty vector,
-     * ensuring proper initialization and size reporting.</p>
+     * <p>This test verifies that the size() correctly returns 0 for a newly created empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic size reporting functionality for an empty vector,
-     * ensuring that the size method accurately reflects the number of elements in the collection.</p>
+     * <p>The test validates the basic size functionality for an empty vector,
+     * ensuring that the size returns the number of elements in the collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter using the default constructor and immediately calls size(),
@@ -2210,12 +2191,11 @@ public class VectorAdapterTest
      * Test method to verify that size() correctly increments after adding elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the size() method properly increments and reports the correct count
-     * after adding multiple elements to the vector.</p>
+     * <p>This test verifies that the size() properly increments.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the dynamic size tracking functionality as elements are added,
-     * ensuring the size accurately reflects the current number of elements in the vector.</p>
+     * <p>The test validates the dynamic size tracking functionality as elements are added,
+     * ensuring the size returns the number of elements in the vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, adds three elements ["1", "2", "3"], then calls size()
@@ -2246,12 +2226,11 @@ public class VectorAdapterTest
      * Test method to verify that size() correctly decrements after removing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the size() method properly decrements and reports the correct count
-     * after removing elements from the vector.</p>
+     * <p>This test verifies that the size() properly decrements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the dynamic size tracking functionality as elements are removed,
-     * ensuring the size accurately reflects the current number of elements remaining in the vector.</p>
+     * <p>The test validates the dynamic size tracking functionality as elements are removed,
+     * ensuring the size returns the number of elements in the vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements ["1", "2", "3"], removes the element at index 1,
@@ -2284,12 +2263,11 @@ public class VectorAdapterTest
      * Test method to verify that size() returns 0 after clear() operation.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the size() method correctly returns 0 after the clear() operation
-     * removes all elements from the vector.</p>
+     * <p>This test verifies the size() interaction with clear().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the clear() operation properly resets the size to 0
-     * and that the size() method accurately reports this state.</p>
+     * <p>The test validates that the clear() operation properly resets the size to 0
+     * and that the size() accurately reports this state.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements ["1", "2", "3"], calls clear() to remove
@@ -2322,12 +2300,10 @@ public class VectorAdapterTest
      * Test method to verify that size() correctly counts null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the size() method properly includes null elements in its count,
-     * ensuring that all elements regardless of value contribute to the size calculation.</p>
+     * <p>This test verifies that the size() properly includes null elements in its count.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that null elements are treated equally to non-null elements
-     * when calculating the size of the vector.</p>
+     * <p>The test validates that null elements are treated equally when calculating the size of the vector.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and adds three null elements, then calls size() and verifies
@@ -2359,12 +2335,11 @@ public class VectorAdapterTest
      * Test method to verify that isEmpty() returns true for a newly created empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the isEmpty() method correctly returns true for a newly created
-     * empty vector, indicating the absence of elements.</p>
+     * <p>This test verifies that the isEmpty() correctly returns true for a newly created
+     * vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic empty state detection functionality,
-     * ensuring that isEmpty() accurately reports when the vector contains no elements.</p>
+     * <p>The test validates the basic empty state detection functionality.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter using the default constructor and immediately calls isEmpty(),
@@ -2392,12 +2367,12 @@ public class VectorAdapterTest
      * Test method to verify that isEmpty() returns false after adding elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the isEmpty() method correctly returns false after elements
-     * are added to the vector, indicating the presence of elements.</p>
+     * <p>This test verifies that the isEmpty() correctly returns false after elements
+     * are added to the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that isEmpty() properly detects when the vector
-     * transitions from empty to non-empty state after element addition.</p>
+     * <p>The test validates that isEmpty() properly detects when the vector
+     * transitions from empty to non-empty state.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, adds two elements ["1", "2"], then calls isEmpty()
@@ -2427,12 +2402,11 @@ public class VectorAdapterTest
      * Test method to verify that isEmpty() returns true after clear() operation.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the isEmpty() method correctly returns true after the clear()
-     * operation removes all elements from the vector.</p>
+     * <p>This test verifies that the isEmpty() correctly returns true after clear().</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that isEmpty() properly detects when the vector
-     * transitions from non-empty to empty state after clear() operation.</p>
+     * <p>The test validates that isEmpty() properly detects when the vector
+     * transitions from non-empty to empty state with clear() operation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements ["1", "2"], calls clear() to remove
@@ -2465,12 +2439,12 @@ public class VectorAdapterTest
      * Test method to verify that isEmpty() returns false for vectors containing null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the isEmpty() method correctly returns false when the vector
-     * contains null elements, confirming that null values are considered as existing elements.</p>
+     * <p>This test verifies that the isEmpty() correctly returns false when the vector
+     * contains null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that isEmpty() treats null elements as valid content
-     * and correctly indicates that the vector is not empty when it contains null values.</p>
+     * <p>The test validates that isEmpty() treats null elements as valid content
+     * and correctly indicates the presence of null values.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter, adds two null elements, then calls isEmpty() and verifies
@@ -2502,12 +2476,11 @@ public class VectorAdapterTest
      * Test method to verify that isEmpty() returns true after setSize(0) operation.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the isEmpty() method correctly returns true after setSize(0)
-     * effectively clears the vector by setting size to zero.</p>
+     * <p>This test verifies that the isEmpty() correctly returns true after setSize(0).</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that isEmpty() properly detects the empty state
-     * after setSize(0) operation, which should have the same effect as clear().</p>
+     * <p>The test validates that isEmpty() properly detects the empty state
+     * after setSize(0) operation. Same effect as clear().</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements ["1", "2"], calls setSize(0) to
@@ -2540,11 +2513,11 @@ public class VectorAdapterTest
      * Test method to verify that contains() returns true for existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the contains() method correctly identifies existing elements
-     * in the vector, returning true for elements that are present.</p>
+     * <p>This test verifies that the contains() correctly identifies existing elements
+     * in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the positive detection functionality of contains(),
+     * <p>The test validates the positive detection functionality of contains(),
      * ensuring it can correctly identify all elements that exist in the vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2578,11 +2551,11 @@ public class VectorAdapterTest
      * Test method to verify that contains() returns false for non-existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the contains() method correctly returns false for elements
-     * that are not present in the vector, ensuring accurate negative detection.</p>
+     * <p>This test verifies that the contains() correctly returns false for elements
+     * that are not present in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the negative detection functionality of contains(),
+     * <p>The test validates the negative detection functionality of contains(),
      * ensuring it correctly identifies when elements are not present in the vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2614,11 +2587,10 @@ public class VectorAdapterTest
      * Test method to verify that contains() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the contains() method can correctly detect null elements
-     * when they are present in the vector.</p>
+     * <p>This test verifies that the contains() correctly detect null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that contains() properly handles null values
+     * <p>The test validates that contains() properly handles null values
      * and can identify their presence in the vector.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2650,12 +2622,12 @@ public class VectorAdapterTest
      * Test method to verify that contains() returns false for all elements on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the contains() method correctly returns false for any element
-     * when called on an empty vector, ensuring proper behavior for the empty collection case.</p>
+     * <p>This test verifies that the contains() correctly returns false for any element
+     * when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that contains() behaves correctly on an empty vector,
-     * returning false for all element queries including null.</p>
+     * <p>The test validates that contains() behaves correctly on an empty vector,
+     * returning false for elements including null.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and calls contains() for various elements
@@ -2688,12 +2660,11 @@ public class VectorAdapterTest
      * Test method to verify that contains() reflects element removal operations.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the contains() method correctly updates its results after
-     * elements are removed from the vector, ensuring dynamic accuracy.</p>
+     * <p>This test verifies that the contains() correctly handles elements removal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that contains() dynamically reflects changes to
-     * the vector's content, particularly after element removal operations.</p>
+     * <p>The test validates that contains() dynamically detects elements
+     * change, in particular after element removal operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements ["1", "2", "3"], removes element "2",
@@ -2731,12 +2702,11 @@ public class VectorAdapterTest
      * Test method to verify that contains() reflects element replacement operations.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the contains() method correctly updates its results after
-     * elements are replaced in the vector, ensuring dynamic accuracy after modification.</p>
+     * <p>This test verifies that the contains() correctly handles element replacement.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that contains() dynamically reflects changes to
-     * the vector's content, particularly after element replacement operations using set().</p>
+     * <p>The test validates that contains() dynamically detects elements change,
+     * in particular after element replacement operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three elements ["1", "2", "3"], replaces element
@@ -2773,12 +2743,11 @@ public class VectorAdapterTest
      * Test method to verify that indexOf returns correct indices for existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf correctly returns the index of existing elements in the vector,
-     * ensuring proper element location functionality.</p>
+     * <p>This test verifies that indexOf correctly returns the index of existing elements in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic indexOf functionality with typical element distribution.
-     * This ensures the method correctly identifies positions of elements in non-empty collections.</p>
+     * <p>The test validates basic indexOf functionality.
+     * This ensures it correctly identifies positions of elements in non-empty collections.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with three string elements ["1", "2", "3"] and verifies that
@@ -2811,11 +2780,10 @@ public class VectorAdapterTest
      * Test method to verify that indexOf returns -1 for non-existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf correctly returns -1 when searching for elements not present
-     * in the vector, ensuring proper handling of absent elements.</p>
+     * <p>This test verifies that indexOf correctly returns -1 when searching for not present elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate negative search results functionality. This ensures the method
+     * <p>The test validates negative search results. This ensures the method
      * correctly identifies when elements are not present in the collection.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2848,16 +2816,15 @@ public class VectorAdapterTest
      * Test method to verify that indexOf correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf correctly identifies and returns the index of null elements
-     * in the vector, ensuring proper null value handling.</p>
+     * <p>This test verifies that indexOf correctly returns the index of null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element search functionality. This ensures the method
+     * <p>The test validates null element search functionality. This ensures the method
      * can locate null values among other elements in the collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", null, "3"] and verifies that indexOf
-     * returns the correct index (1) for the null element.</p>
+     * returns the correct index for the null element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", null, "3"]</p>
@@ -2867,7 +2834,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should return the correct index (1) for the null element.</p>
+     * <p>indexOf should return the correct index for the null element.</p>
      */
     @Test
     public void testIndexOfNullElement()
@@ -2884,11 +2851,10 @@ public class VectorAdapterTest
      * Test method to verify that indexOf returns -1 for any element in empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf consistently returns -1 when called on an empty vector,
-     * regardless of the searched element, ensuring proper empty collection handling.</p>
+     * <p>This test verifies that indexOf consistently returns -1 when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case behavior with empty collections. This ensures
+     * <p>The test validates edge case behavior with empty collections. This ensures
      * the method correctly handles the boundary condition of no elements present.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2918,16 +2884,15 @@ public class VectorAdapterTest
      * Test method to verify that indexOf returns first occurrence index for duplicate elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf returns the index of the first occurrence when duplicate
-     * elements exist in the vector, ensuring proper duplicate element handling.</p>
+     * <p>This test verifies that indexOf returns the index of the first occurrence of duplicates.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate duplicate element search behavior. This ensures the method
-     * follows the specification of returning the first occurrence index.</p>
+     * <p>The test validates duplicate element search behavior. This ensures the method
+     * properly returns the first occurrence index.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with duplicate elements ["0", "1", "1"] and verifies that
-     * indexOf returns the index of the first occurrence (1) for element "1".</p>
+     * indexOf returns the index of the first occurrence for element "1".</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["0", "1", "1"]</p>
@@ -2937,7 +2902,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should return the index of the first occurrence (1) for duplicate elements.</p>
+     * <p>indexOf should return the index of the first occurrence for duplicate elements.</p>
      */
     @Test
     public void testIndexOfDuplicateElements()
@@ -2951,14 +2916,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf with starting index finds elements correctly.
+     * Test method to verify that indexOf(Object, int) finds elements correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf with specified starting index correctly locates elements
-     * at or after the given index, ensuring proper indexed search functionality.</p>
+     * <p>This test verifies that indexOf(Object, int) correctly locates elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the indexed search variant of indexOf. This ensures the method
+     * <p>The test validates the search of indexOf(Object, int). This ensures the method
      * can search from arbitrary positions within the collection.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -2970,11 +2934,11 @@ public class VectorAdapterTest
      * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4", "5"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- indexOf returns correct indices based on starting position</p>
+     * <p>- indexOf(Object, int) returns correct indices based on starting position</p>
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should return correct indices when searching from specified starting positions,
+     * <p>indexOf(Object, int) should return correct indices when searching from specified starting positions,
      * and -1 when elements are not found beyond the starting index.</p>
      */
     @Test
@@ -2994,25 +2958,25 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf with starting index returns -1 for non-existing elements.
+     * Test method to verify that indexOf(Object, int) returns -1 for non-existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf with starting index consistently returns -1 for elements
-     * not present in the vector, regardless of the starting position.</p>
+     * <p>This test verifies that indexOf(Object, int) consistently returns -1 for elements
+     * not present in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate negative search results with indexed searches. This ensures
-     * the method correctly handles absent elements when searching from specific positions.</p>
+     * <p>The test validates negative search results of indexOf(Object, int). This ensures
+     * it correctly handles absent elements when searching from specific positions.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and verifies that indexOf
+     * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and verifies that indexOf(Object, int)
      * returns -1 for non-existing element "4" when searching from different starting indices (0, 1, 2).</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- All indexOf calls return -1 for non-existing elements</p>
+     * <p>- All indexOf(Object, int) calls return -1 for non-existing elements</p>
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
@@ -3032,30 +2996,30 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf with starting index correctly handles null elements.
+     * Test method to verify that indexOf(Object, int) correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf with starting index correctly locates null elements
+     * <p>This test verifies that indexOf(Object, int) correctly locates null elements
      * at or after the given index, ensuring proper null handling in indexed searches.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate null element search behavior with indexed searches.
+     * <p>The test validates null handling of indexOf(Object, int).
      * This ensures the method can find null values from arbitrary starting positions.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", null, "3", null, "5"] and verifies
-     * that indexOf correctly finds null elements from different starting indices, including
+     * that indexOf(Object, int) correctly finds null elements from different starting indices, including
      * finding the first null from index 0, second null from index 2, and no null from index 4.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", null, "3", null, "5"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- indexOf returns correct indices for null elements based on starting position</p>
+     * <p>- indexOf(Object, int) returns correct indices for null elements based on starting position</p>
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should correctly locate null elements when searching from specified starting positions.</p>
+     * <p>indexOf(Object, int) should correctly locate null elements when searching from specified starting positions.</p>
      */
     @Test
     public void testIndexOfWithIndexNullElement()
@@ -3073,32 +3037,31 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf with starting index handles duplicate elements correctly.
+     * Test method to verify that indexOf(Object, int) handles duplicate elementscorrectly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf with starting index returns the correct occurrence index
-     * for duplicate elements based on the starting position, ensuring proper duplicate handling
-     * in indexed searches.</p>
+     * <p>This test verifies that indexOf(Object, int) returns the correct occurrence index
+     * for duplicates.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate duplicate element search behavior with indexed searches.
+     * <p>The test validates duplicate element search behavior of indexOf(Object, int).
      * This ensures the method can find specific occurrences of duplicate elements from different
      * starting positions.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with duplicate elements ["0", "1", "1", "2", "1"] and
-     * verifies that indexOf returns the correct occurrence index for element "1" when searching
+     * verifies that indexOf(Object, int) returns the correct occurrence index for element "1" when searching
      * from different starting indices (1, 2, 3, 4, 5).</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["0", "1", "1", "2", "1"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- indexOf returns correct occurrence indices for duplicates based on starting position</p>
+     * <p>- indexOf(Object, int) returns correct occurrence indices for duplicates based on starting position</p>
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should return the correct occurrence index for duplicate elements based on the
+     * <p>indexOf(Object, int) should return the correct occurrence index for duplicate elements based on the
      * specified starting position.</p>
      */
     @Test
@@ -3119,18 +3082,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf with negative starting index throws IndexOutOfBoundsException.
+     * Test method to verify that indexOf(Object, int) with negative starting index throws IndexOutOfBoundsException.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf throws IndexOutOfBoundsException when called with a negative
-     * starting index, ensuring proper validation of input parameters.</p>
+     * <p>This test verifies that indexOf(Object, int) throws IndexOutOfBoundsException when called with a negative
+     * starting index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid starting indices. This ensures
-     * the method properly rejects negative index values.</p>
+     * <p>The test validates exception handling for invalid indexes. This ensures
+     * robustness and proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and attempts to call indexOf
+     * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and attempts to call indexO(int)f
      * with a negative starting index (-1), expecting an IndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -3141,7 +3104,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should throw IndexOutOfBoundsException when called with a negative starting index.</p>
+     * <p>indexOf(Object, int) should throw IndexOutOfBoundsException when called with a negative starting index.</p>
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testIndexOfWithIndexNegativeIndex()
@@ -3155,30 +3118,30 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that indexOf returns -1 when starting index equals or exceeds vector size.
+     * Test method to verify that indexOf(Object, int) returns -1 when starting index equals or exceeds vector size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that indexOf returns -1 when the starting index is equal to or greater
-     * than the vector size, ensuring proper handling of out-of-bounds starting positions.</p>
+     * <p>This test verifies that indexOf(Object, int) returns -1 when the starting index is equal to or greater
+     * than the vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate boundary condition handling with starting indices at or
-     * beyond the collection size. This ensures the method correctly handles these edge cases.</p>
+     * <p>The test validates boundary condition handling with starting indices over the collection size.
+     * This ensures the method correctly handles edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and verifies that indexOf
-     * returns -1 when called with starting indices equal to (3) or greater than (5, 10) the
+     * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and verifies that indexOf(Object, int)
+     * returns -1 when called with starting indices equal to  or greater than (5, 10) the
      * vector size for various elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- All indexOf calls return -1 for out-of-bounds starting indices</p>
+     * <p>- All indexOf(Object, int) calls return -1 for out-of-bounds starting indices</p>
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should return -1 when starting index is equal to or greater than vector size.</p>
+     * <p>indexOf(Object, int) should return -1 when starting index is equal to or greater than vector size.</p>
      */
     @Test
     public void testIndexOfWithIndexEqualOrGreaterThanSize()
@@ -3194,14 +3157,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify edge case behavior of indexOf with starting index.
+     * Test method to verify edge case behavior of indexOf(Object, int).
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies specific edge case scenarios for indexOf with starting index, including
-     * exact index matches and boundary conditions, ensuring comprehensive test coverage.</p>
+     * <p>This test verifies specific edge case scenarios for indexOf(Object, int).</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate precise boundary conditions and exact matches. This ensures
+     * <p>The test validates precise boundary conditions and exact matches of indexOf(Object, int). This ensures
      * the method handles these specific scenarios correctly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -3214,11 +3176,11 @@ public class VectorAdapterTest
      * <p>- VectorAdapter is initialized with elements: ["1", "2", "3", "4", "5"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- indexOf handles all edge cases correctly</p>
+     * <p>- indexOf(Object, int) handles all edge cases correctly</p>
      * <p>- VectorAdapter state remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>indexOf should correctly handle all edge case scenarios including exact index matches
+     * <p>indexOf(Object, int) should correctly handle all edge case scenarios including exact index matches
      * and boundary conditions.</p>
      */
     @Test
@@ -3238,27 +3200,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf returns correct indices for existing elements.
+     * Test method to verify that lastIndexOf() returns correct indices for existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf correctly returns the last occurrence index for elements that exist in the vector.</p>
+     * <p>This test verifies that lastIndexOf() correctly returns the last occurrence index for elements that exist in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the basic functionality of lastIndexOf method with non-duplicate elements.
+     * <p>The test validates the basic functionality of lastIndexOf().
      * It ensures the method returns the correct index for each element's last occurrence.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three distinct elements and verifies that lastIndexOf returns
+     * <p>The test creates a vector with three distinct elements and verifies that lastIndexOf() returns
      * the correct index for each element when they appear only once in the vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns correct indices for all existing elements</p>
+     * <p>- lastIndexOf() returns correct indices for all existing elements</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should return correct last occurrence indices for all existing elements.</p>
+     * <p>lastIndexOf() should return correct last occurrence indices for all existing elements.</p>
      */
     @Test
     public void testLastIndexOfExistingElement()
@@ -3274,27 +3236,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf returns -1 for non-existing elements.
+     * Test method to verify that lastIndexOf() returns -1 for non-existing elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf correctly returns -1 for elements that do not exist in the vector.</p>
+     * <p>This test verifies that lastIndexOf() correctly returns -1 for elements that do not exist in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior when searching for elements not present in the vector.
+     * <p>The test validates lastIndexOf() behavior when searching for elements not present in the vector.
      * It ensures proper handling of non-existent element cases.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements and verifies that lastIndexOf returns -1
+     * <p>The test creates a vector with three elements and verifies that lastIndexOf() returns -1
      * when searching for elements that are not present in the vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns -1 for all non-existing elements</p>
+     * <p>- lastIndexOf() returns -1 for all non-existing elements</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should return -1 for elements not present in the vector.</p>
+     * <p>lastIndexOf() should return -1 for elements not present in the vector.</p>
      */
     @Test
     public void testLastIndexOfNonExistingElement()
@@ -3309,27 +3271,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf correctly handles null elements.
+     * Test method to verify that lastIndexOf)( correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf correctly identifies and returns the index of null elements.</p>
+     * <p>This test verifies that lastIndexOf() correctly identifies and returns the index of null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's ability to handle null values in the vector.
+     * <p>The test validates the lastIndexOf() handles null values in the vector.
      * It ensures proper null element detection and index reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector containing a null element among other elements and verifies
-     * that lastIndexOf correctly returns the index of the null element.</p>
+     * that lastIndexOf() correctly returns the index of the null element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", null, "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns correct index for null element</p>
+     * <p>- lastIndexOf() returns correct index for null element</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should correctly identify and return the index of null elements.</p>
+     * <p>lastIndexOf() should correctly identify and return the index of null elements.</p>
      */
     @Test
     public void testLastIndexOfNullElement()
@@ -3343,27 +3305,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf returns -1 when called on an empty vector.
+     * Test method to verify that lastIndexOf() returns -1 when called on an empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf correctly returns -1 for any element when the vector is empty.</p>
+     * <p>This test verifies that lastIndexOf() correctly returns -1 for any element when the vector is empty.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case behavior with empty vectors.
+     * <p>The test validates edge case behavior with empty vectors.
      * It ensures the method handles the empty collection scenario properly.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty vector and verifies that lastIndexOf returns -1
+     * <p>The test creates an empty vector and verifies that lastIndexOf() returns -1
      * for both regular elements and null values.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized as empty</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns -1 for all search queries</p>
+     * <p>- lastIndexOf() returns -1 for all search queries</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should return -1 for any element when the vector is empty.</p>
+     * <p>lastIndexOf() should return -1 for any element when the vector is empty.</p>
      */
     @Test
     public void testLastIndexOfOnEmptyVector()
@@ -3375,27 +3337,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf returns the last occurrence index for duplicate elements.
+     * Test method to verify that lastIndexOf() returns the last occurrence index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf correctly identifies the last occurrence of duplicate elements.</p>
+     * <p>This test verifies that lastIndexOf() correctly identifies the last occurrence of duplicate elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior with duplicate elements.
+     * <p>The test validates lastIndexOf() behavior with duplicate elements.
      * It ensures the method returns the highest index where the element appears.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with duplicate elements and verifies that lastIndexOf
+     * <p>The test creates a vector with duplicate elements and verifies that lastIndexOf()
      * returns the index of the last occurrence for the duplicated element.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "1", "0"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns the highest index for duplicate elements</p>
+     * <p>- lastIndexOf() returns the highest index for duplicate elements</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should return the index of the last occurrence for duplicate elements.</p>
+     * <p>lastIndexOf() should return the index of the last occurrence for duplicate elements.</p>
      */
     @Test
     public void testLastIndexOfWithDuplicateElements()
@@ -3409,27 +3371,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter correctly finds elements within specified bounds.
+     * Test method to verify that lastIndexOf(Object, int) correctly finds elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf with index parameter correctly searches backwards from the specified index.</p>
+     * <p>This test verifies that lastIndexOf(Object, int) correctly searches backwards from the specified index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the bounded search functionality of lastIndexOf.
+     * <p>The test validates the bounded search functionality of lastIndexOf(Object, int).
      * It ensures the method respects the index boundary and searches backwards correctly.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with multiple elements and verifies that lastIndexOf
-     * with index parameter correctly finds elements within the specified search bounds.</p>
+     * <p>The test creates a vector with multiple elements and verifies that lastIndexOf(Object, int)
+     * correctly finds elements within the specified search bounds.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns correct indices when searching within bounds</p>
+     * <p>- lastIndexOf(Object, int) returns correct indices when searching within bounds</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf with index parameter should correctly find elements within the specified search range.</p>
+     * <p>lastIndexOf(Object, int) should correctly find elements within the specified search range.</p>
      */
     @Test
     public void testLastIndexOfWithIndexExistingElement()
@@ -3448,27 +3410,26 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter returns -1 for non-existing elements within bounds.
+     * Test method to verify that lastIndexOf(Object, int) returns -1 for non-existing elements .
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf with index parameter correctly returns -1 for non-existing elements.</p>
+     * <p>This test verifies that lastIndexOf(Object, int) correctly returns -1 for non-existing elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior when searching for non-existent elements
+     * <p>The test validates lastIndexOf(Object, int) behavior when searching for non-existent elements
      * within specified bounds.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with elements and verifies that lastIndexOf with index parameter
-     * returns -1 when searching for elements that don't exist in the vector.</p>
+     * <p>The test creates a vector with elements and verifies that lastIndexOf(Object, int) returns -1 when searching for elements that don't exist in the vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns -1 for non-existing elements at all index bounds</p>
+     * <p>- lastIndexOf(Object, int) returns -1 for non-existing elements at all index bounds</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf with index parameter should return -1 for non-existing elements.</p>
+     * <p>lastIndexOf(Object, int) should return -1 for non-existing elements.</p>
      */
     @Test
     public void testLastIndexOfWithIndexNonExistingElement()
@@ -3484,27 +3445,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter correctly handles null elements within bounds.
+     * Test method to verify that lastIndexOf(Object, int) correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf with index parameter correctly identifies null elements within specified bounds.</p>
+     * <p>This test verifies that lastIndexOf(Object, int) correctly identifies null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's ability to handle null values
+     * <p>The test validates lastIndexOf(Object, int) ability to handle null values
      * when searching within specified index bounds.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with multiple null elements and verifies that lastIndexOf
-     * with index parameter correctly finds null elements within the specified search range.</p>
+     * <p>The test creates a vector with multiple null elements and verifies that lastIndexOf(Object, int)
+     * correctly finds null elements within the specified search range.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", null, "3", null, "5"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf correctly identifies null elements within index bounds</p>
+     * <p>- lastIndexOf(Object, int) correctly identifies null elements within index bounds</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf with index parameter should correctly handle null elements within specified bounds.</p>
+     * <p>lastIndexOf(Object, int) should correctly handle null elements within specified bounds.</p>
      */
     @Test
     public void testLastIndexOfWithIndexNullElement()
@@ -3522,28 +3483,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter correctly handles duplicate elements within bounds.
+     * Test method to verify that lastIndexOf(Object, int) correctly handles duplicate elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf with index parameter correctly identifies the last occurrence
+     * <p>This test verifies that lastIndexOf(Object, int) correctly identifies the last occurrence
      * of duplicate elements within specified bounds.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior with duplicate elements
-     * when searching within specified index ranges.</p>
+     * <p>The test validates the lastIndexOf(Object, int) behavior with duplicate elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with duplicate elements and verifies that lastIndexOf
-     * with index parameter correctly returns the last occurrence within the specified bounds.</p>
+     * <p>The test creates a vector with duplicate elements and verifies that lastIndexOf(Object, int)
+     * correctly returns the last occurrence within the specified bounds.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["0", "1", "1", "2", "1"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns correct last occurrence indices within bounds</p>
+     * <p>- lastIndexOf(Object, int) returns correct last occurrence indices within bounds</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf with index parameter should correctly handle duplicate elements within specified bounds.</p>
+     * <p>lastIndexOf(Object, int) should correctly handle duplicate elements within specified bounds.</p>
      */
     @Test
     public void testLastIndexOfWithIndexDuplicateElements()
@@ -3563,17 +3523,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter throws IndexOutOfBoundsException when index equals size.
+     * Test method to verify that lastIndexOf(Object, int) throws IndexOutOfBoundsException when index equals size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf throws IndexOutOfBoundsException when the index parameter equals the vector size.</p>
+     * <p>This test verifies that lastIndexOf(Object, int) throws IndexOutOfBoundsException when the index equals the vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid index values.
+     * <p>The test validates exception handling for invalid index values.
      * It ensures proper error reporting when index equals vector size.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with elements and attempts to call lastIndexOf with index
+     * <p>The test creates a vector with elements and attempts to call lastIndexOf(Object, int) with index
      * equal to the vector size, expecting an IndexOutOfBoundsException.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -3583,7 +3543,7 @@ public class VectorAdapterTest
      * <p>- IndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should throw IndexOutOfBoundsException when index equals vector size.</p>
+     * <p>lastIndexOf(Object, int) should throw IndexOutOfBoundsException when index equals vector size.</p>
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testLastIndexOfWithIndexEqualToSize()
@@ -3597,27 +3557,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter returns -1 for negative indices.
+     * Test method to verify that lastIndexOf(Object, int) returns -1 for negative indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf correctly returns -1 when the index parameter is negative.</p>
+     * <p>This test verifies that lastIndexOf(Object, int) correctly returns -1 when the index is negative.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior with negative index values.
+     * <p>The test validates the lastIndexOf(Object, int) behavior with negative index values.
      * It ensures proper handling of invalid negative indices.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with elements and verifies that lastIndexOf returns -1
+     * <p>The test creates a vector with elements and verifies that lastIndexOf(Object, int) returns -1
      * when called with negative index values.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf returns -1 for all negative indices</p>
+     * <p>- lastIndexOf(Object, int) returns -1 for all negative indices</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf should return -1 when index parameter is negative.</p>
+     * <p>lastIndexOf(Object, int) should return -1 when index is negative.</p>
      */
     @Test
     public void testLastIndexOfWithIndexNegativeIndex()
@@ -3633,28 +3593,28 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastIndexOf with index parameter handles edge cases correctly.
+     * Test method to verify that lastIndexOf(Object, int) handles edge cases correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastIndexOf with index parameter correctly handles various edge cases.</p>
+     * <p>This test verifies that lastIndexOf(Object, int) correctly handles various edge cases.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior with boundary conditions
-     * and edge cases in index parameter usage.</p>
+     * <p>The test validates lastIndexOf(Object, int) behavior with boundary conditions
+     * and edge cases in index usage.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with multiple elements and verifies that lastIndexOf
-     * with index parameter handles various edge cases including exact index matches,
+     * <p>The test creates a vector with multiple elements and verifies that lastIndexOf(Object, int)
+     * handles various edge cases including exact index matches,
      * boundary conditions, and minimum valid indices.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 5 elements: ["1", "2", "3", "4", "5"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastIndexOf handles all edge cases correctly</p>
+     * <p>- lastIndexOf(Object, int) handles all edge cases correctly</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastIndexOf with index parameter should correctly handle all edge cases and boundary conditions.</p>
+     * <p>lastIndexOf(Object, int) should correctly handle all edge cases and boundary conditions.</p>
      */
     @Test
     public void testLastIndexOfWithIndexEdgeCases()
@@ -3673,27 +3633,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that elementAt returns correct elements at valid indices.
+     * Test method to verify that elementAt() returns correct elements at valid indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt correctly returns the element at specified valid indices.</p>
+     * <p>This test verifies that elementAt() correctly returns the element at specified valid indices.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic functionality of elementAt method with valid index values.
+     * <p>The test validates basic functionality of elementAt() with valid index values.
      * It ensures the method returns the correct element for each valid index position.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements and verifies that elementAt returns
+     * <p>The test creates a vector with three elements and verifies that elementAt() returns
      * the correct element for each valid index (0, 1, and 2).</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- elementAt returns correct elements for all valid indices</p>
+     * <p>- elementAt() returns correct elements for all valid indices</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>elementAt should return the correct element for each valid index position.</p>
+     * <p>elementAt() should return the correct element for each valid index position.</p>
      */
     @Test
     public void testElementAtValidIndex()
@@ -3709,17 +3669,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that elementAt throws ArrayIndexOutOfBoundsException for negative indices.
+     * Test method to verify that elementAt() throws ArrayIndexOutOfBoundsException for negative indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt throws ArrayIndexOutOfBoundsException when called with negative indices.</p>
+     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called with negative indices.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative index values.
+     * <p>The test validates exception handling for invalid negative index values.
      * It ensures proper error reporting when accessing elements with negative indices.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with elements and attempts to call elementAt with a negative index (-1),
+     * <p>The test creates a vector with elements and attempts to call elementAt() with a negative index,
      * expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -3729,7 +3689,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>elementAt should throw ArrayIndexOutOfBoundsException when called with negative indices.</p>
+     * <p>elementAt() should throw ArrayIndexOutOfBoundsException when called with negative indices.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testElementAtNegativeIndex()
@@ -3743,18 +3703,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that elementAt throws ArrayIndexOutOfBoundsException when index equals size.
+     * Test method to verify that elementAt() throws ArrayIndexOutOfBoundsException when index equals size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt throws ArrayIndexOutOfBoundsException when index equals vector size.</p>
+     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when index equals vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for index values equal to vector size.
+     * <p>The test validates exception handling for index values equal to vector size.
      * It ensures proper error reporting when accessing elements beyond valid range.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements and attempts to call elementAt with index 3
-     * (equal to vector size), expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
+     * <p>The test creates a vector with three elements and attempts to call elementAt() at index 3,
+     * expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
@@ -3763,7 +3723,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>elementAt should throw ArrayIndexOutOfBoundsException when index equals vector size.</p>
+     * <p>elementAt() should throw ArrayIndexOutOfBoundsException when index equals vector size.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testElementAtIndexEqualToSize()
@@ -3777,17 +3737,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that elementAt throws ArrayIndexOutOfBoundsException on empty vector.
+     * Test method to verify that elementAt() throws ArrayIndexOutOfBoundsException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt throws ArrayIndexOutOfBoundsException when called on an empty vector.</p>
+     * <p>This test verifies that elementAt() throws ArrayIndexOutOfBoundsException when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for empty vectors.
+     * <p>The test validates exception handling for empty vectors.
      * It ensures proper error reporting when attempting to access elements from an empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty vector and attempts to call elementAt with index 0,
+     * <p>The test creates an empty vector and attempts to call elementAt() with index 0,
      * expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -3797,7 +3757,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>elementAt should throw ArrayIndexOutOfBoundsException when called on an empty vector.</p>
+     * <p>elementAt() should throw ArrayIndexOutOfBoundsException when called on an empty vector.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testElementAtOnEmptyVector()
@@ -3807,27 +3767,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that elementAt correctly handles null elements.
+     * Test method to verify that elementAt() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that elementAt correctly returns null for elements that are null.</p>
+     * <p>This test verifies that elementAt() correctly returns null for elements that are null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's ability to handle null values in the vector.
+     * <p>The test validates elementAt() ability to handle null values in the vector.
      * It ensures proper null element retrieval and reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector containing null elements and verifies that elementAt
+     * <p>The test creates a vector containing null elements and verifies that elementAt()
      * correctly returns null when accessing indices containing null values.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: [null, "1", null]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- elementAt returns null for indices containing null elements</p>
+     * <p>- elementAt() returns null for indices containing null elements</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>elementAt should correctly return null for elements that are null.</p>
+     * <p>elementAt() should correctly return null for elements that are null.</p>
      */
     @Test
     public void testElementAtNullElement()
@@ -3842,27 +3802,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that firstElement returns the first element of non-empty vector.
+     * Test method to verify that firstElement() returns the first element of non-empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement correctly returns the first element of a non-empty vector.</p>
+     * <p>This test verifies that firstElement() correctly returns the first element of a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic functionality of firstElement method with non-empty vectors.
+     * <p>The test validates basic functionality of firstElement() with non-empty vectors.
      * It ensures the method returns the correct first element.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements and verifies that firstElement
+     * <p>The test creates a vector with three elements and verifies that firstElement()
      * returns the first element ("1") of the vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- firstElement returns the first element correctly</p>
+     * <p>- firstElement() returns the first element correctly</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>firstElement should return the first element of a non-empty vector.</p>
+     * <p>firstElement() should return the first element of a non-empty vector.</p>
      */
     @Test
     public void testFirstElementNonEmptyVector()
@@ -3876,17 +3836,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that firstElement throws NoSuchElementException on empty vector.
+     * Test method to verify that firstElement() throws NoSuchElementException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement throws NoSuchElementException when called on an empty vector.</p>
+     * <p>This test verifies that firstElement() throws NoSuchElementException when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for empty vectors.
+     * <p>The test validates exception handling for empty vectors.
      * It ensures proper error reporting when attempting to access first element from empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty vector and attempts to call firstElement,
+     * <p>The test creates an empty vector and attempts to call firstElement(),
      * expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -3896,7 +3856,7 @@ public class VectorAdapterTest
      * <p>- NoSuchElementException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>firstElement should throw NoSuchElementException when called on an empty vector.</p>
+     * <p>firstElement() should throw NoSuchElementException when called on an empty vector.</p>
      */
     @Test(expected = NoSuchElementException.class)
     public void testFirstElementEmptyVector()
@@ -3906,27 +3866,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that firstElement correctly handles null first elements.
+     * Test method to verify that firstElement() correctly handles null first elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement correctly returns null when the first element is null.</p>
+     * <p>This test verifies that firstElement() correctly returns null when the first element is null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's ability to handle null values as first element.
+     * <p>The test validates firstElement() ability to handle null values as first element.
      * It ensures proper null element retrieval and reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with null as the first element and verifies that firstElement
+     * <p>The test creates a vector with null as the first element and verifies that firstElement()
      * correctly returns null.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: [null, null, "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- firstElement returns null correctly</p>
+     * <p>- firstElement() returns null correctly</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>firstElement should correctly return null when the first element is null.</p>
+     * <p>firstElement() should correctly return null when the first element is null.</p>
      */
     @Test
     public void testFirstElementNullElement()
@@ -3940,27 +3900,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastElement returns the last element of non-empty vector.
+     * Test method to verify that lastElement() returns the last element of non-empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement correctly returns the last element of a non-empty vector.</p>
+     * <p>This test verifies that lastElement() correctly returns the last element of a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic functionality of lastElement method with non-empty vectors.
+     * <p>The test validates basic functionality of lastElement() with non-empty vectors.
      * It ensures the method returns the correct last element.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements and verifies that lastElement
+     * <p>The test creates a vector with three elements and verifies that lastElement()
      * returns the last element ("3") of the vector.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastElement returns the last element correctly</p>
+     * <p>- lastElement() returns the last element correctly</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastElement should return the last element of a non-empty vector.</p>
+     * <p>lastElement() should return the last element of a non-empty vector.</p>
      */
     @Test
     public void testLastElementNonEmptyVector()
@@ -3974,17 +3934,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastElement throws NoSuchElementException on empty vector.
+     * Test method to verify that lastElement() throws NoSuchElementException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement throws NoSuchElementException when called on an empty vector.</p>
+     * <p>This test verifies that lastElement() throws NoSuchElementException when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for empty vectors.
+     * <p>The test validates exception handling for empty vectors.
      * It ensures proper error reporting when attempting to access last element from empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty vector and attempts to call lastElement,
+     * <p>The test creates an empty vector and attempts to call lastElement(),
      * expecting a NoSuchElementException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -3994,7 +3954,7 @@ public class VectorAdapterTest
      * <p>- NoSuchElementException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastElement should throw NoSuchElementException when called on an empty vector.</p>
+     * <p>lastElement() should throw NoSuchElementException when called on an empty vector.</p>
      */
     @Test(expected = NoSuchElementException.class)
     public void testLastElementEmptyVector()
@@ -4004,27 +3964,27 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that lastElement correctly handles null last elements.
+     * Test method to verify that lastElement() correctly handles null last elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that lastElement correctly returns null when the last element is null.</p>
+     * <p>This test verifies that lastElement() correctly returns null when the last element is null.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's ability to handle null values as last element.
+     * <p>The test validates lastElement() ability to handle null values as last element.
      * It ensures proper null element retrieval and reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with null as the last element and verifies that lastElement
+     * <p>The test creates a vector with null as the last element and verifies that lastElement()
      * correctly returns null.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", null, null]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- lastElement returns null correctly</p>
+     * <p>- lastElement() returns null correctly</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>lastElement should correctly return null when the last element is null.</p>
+     * <p>lastElement() should correctly return null when the last element is null.</p>
      */
     @Test
     public void testLastElementNullElement()
@@ -4039,24 +3999,24 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that firstElement and lastElement return same value for single-element collections.
+     * Test method to verify that firstElement and lastElement() return same value for single-element collections.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that firstElement and lastElement return the same value for single-element vectors.</p>
+     * <p>This test verifies that firstElement and lastElement() return the same value for single-element vectors.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case behavior with single-element collections.
+     * <p>The test validates edge case behavior with single-element collections.
      * It ensures both methods return identical values when the vector contains only one element.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with a single element and verifies that firstElement
-     * and lastElement return the same value.</p>
+     * and lastElement() return the same value.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 1 element: ["1"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- firstElement and lastElement return identical values</p>
+     * <p>- firstElement and lastElement() return identical values</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>firstElement and lastElement should return the same value for single-element vectors.</p>
@@ -4071,14 +4031,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt correctly updates elements at valid indices.
+     * Test method to verify that setElementAt() correctly updates elements at valid indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt correctly updates elements at specified valid indices.</p>
+     * <p>This test verifies that setElementAt() correctly updates elements at specified valid indices.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic functionality of setElementAt method with valid index values.
-     * It ensures the method correctly updates elements while preserving other elements and vector size.</p>
+     * <p>The test validates basic functionality of setElementAt() with valid index values.
+     * It ensures the method correctly updates elements.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, updates the element at index 1,
@@ -4091,7 +4051,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is updated, other elements unchanged, size remains same</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should correctly update elements at valid indices while preserving other elements and size.</p>
+     * <p>setElementAt() should correctly update elements at valid indices while preserving other elements and size.</p>
      */
     @Test
     public void testSetElementAtValidIndex()
@@ -4110,17 +4070,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt throws ArrayIndexOutOfBoundsException for negative indices.
+     * Test method to verify that setElementAt() throws ArrayIndexOutOfBoundsException for negative indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt throws ArrayIndexOutOfBoundsException when called with negative indices.</p>
+     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called with negative indices.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for invalid negative index values.
+     * <p>The test validates exception handling for invalid negative index values.
      * It ensures proper error reporting when attempting to update elements with negative indices.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with elements and attempts to call setElementAt with a negative index (-1),
+     * <p>The test creates a vector with elements and attempts to call setElementAt() with a negative index (-1),
      * expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4130,7 +4090,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should throw ArrayIndexOutOfBoundsException when called with negative indices.</p>
+     * <p>setElementAt() should throw ArrayIndexOutOfBoundsException when called with negative indices.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testSetElementAtNegativeIndex()
@@ -4143,17 +4103,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt throws ArrayIndexOutOfBoundsException when index equals size.
+     * Test method to verify that setElementAt() throws ArrayIndexOutOfBoundsException when index equals size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt throws ArrayIndexOutOfBoundsException when index equals vector size.</p>
+     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when index equals vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for index values equal to vector size.
+     * <p>The test validates exception handling for index values equal to vector size.
      * It ensures proper error reporting when attempting to update elements beyond valid range.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with two elements and attempts to call setElementAt with index 2
+     * <p>The test creates a vector with two elements and attempts to call setElementAt() with index 2
      * (equal to vector size), expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4163,7 +4123,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should throw ArrayIndexOutOfBoundsException when index equals vector size.</p>
+     * <p>setElementAt() should throw ArrayIndexOutOfBoundsException when index equals vector size.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testSetElementAtIndexEqualToSize()
@@ -4176,17 +4136,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt throws ArrayIndexOutOfBoundsException on empty vector.
+     * Test method to verify that setElementAt() throws ArrayIndexOutOfBoundsException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt throws ArrayIndexOutOfBoundsException when called on an empty vector.</p>
+     * <p>This test verifies that setElementAt() throws ArrayIndexOutOfBoundsException when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate exception handling for empty vectors.
+     * <p>The test validates exception handling for empty vectors.
      * It ensures proper error reporting when attempting to update elements in an empty collection.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty vector and attempts to call setElementAt with index 0,
+     * <p>The test creates an empty vector and attempts to call setElementAt() with index 0,
      * expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4206,14 +4166,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt correctly updates elements at the beginning of the vector.
+     * Test method to verify that setElementAt() correctly updates elements at the beginning of the vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt correctly updates elements at index 0 (beginning of vector).</p>
+     * <p>This test verifies that setElementAt() correctly updates elements at the beginning.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case behavior when updating the first element.
-     * It ensures the method correctly updates the first element while preserving other elements.</p>
+     * <p>The test validates edge case behavior when updating the first element.
+     * It ensures the method correctly updates the first element.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, updates the element at index 0,
@@ -4226,7 +4186,7 @@ public class VectorAdapterTest
      * <p>- First element is updated, other elements unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should correctly update elements at the beginning of the vector.</p>
+     * <p>setElementAt() should correctly update elements at the beginning of the vector.</p>
      */
     @Test
     public void testSetElementAtAtTheBeginning()
@@ -4244,14 +4204,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt correctly updates elements at the end of the vector.
+     * Test method to verify that setElementAt() correctly updates elements at the end of the vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt correctly updates elements at the last index (end of vector).</p>
+     * <p>This test verifies that setElementAt() correctly updates elements at the last index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate edge case behavior when updating the last element.
-     * It ensures the method correctly updates the last element while preserving other elements.</p>
+     * <p>The test validates edge case behavior when updating the last element.
+     * It ensures the method correctly updates the last element.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, updates the element at index 2,
@@ -4264,7 +4224,7 @@ public class VectorAdapterTest
      * <p>- Last element is updated, other elements unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should correctly update elements at the end of the vector.</p>
+     * <p>setElementAt() should correctly update elements at the end of the vector.</p>
      */
     @Test
     public void testSetElementAtAtTheEnd()
@@ -4282,14 +4242,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt correctly handles setting elements to null.
+     * Test method to verify that setElementAt() correctly handles setting elements to null.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt correctly updates elements to null values.</p>
+     * <p>This test verifies that setElementAt() correctly updates elements to null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's ability to handle null value assignments.
-     * It ensures proper null element setting and preservation of other elements.</p>
+     * <p>The test validates setElementAt() ability to handle null values.
+     * It ensures proper null element setting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a vector with three elements, sets the element at index 1 to null,
@@ -4302,7 +4262,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is set to null, other elements unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should correctly handle setting elements to null values.</p>
+     * <p>setElementAt() should correctly handle setting elements to null values.</p>
      */
     @Test
     public void testSetElementAtNull()
@@ -4320,17 +4280,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that setElementAt correctly handles multiple updates to the same index.
+     * Test method to verify that setElementAt() correctly handles multiple updates to the same index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that setElementAt correctly handles multiple consecutive updates to the same index.</p>
+     * <p>This test verifies that setElementAt() correctly handles multiple consecutive updates to the same index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the method's behavior with repeated updates to the same position.
-     * It ensures the method preserves the last set value and maintains vector integrity.</p>
+     * <p>The test validates setElementAt() behavior with repeated updates to the same position.
+     * It ensures the method preserves the last set.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a vector with three elements, performs multiple setElementAt operations
+     * <p>The test creates a vector with three elements, performs multiple setElementAt() operations
      * on the same index, and verifies that only the last update persists while vector size remains unchanged.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4340,7 +4300,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 contains last set value, size remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>setElementAt should correctly handle multiple updates to the same index, preserving the last value.</p>
+     * <p>setElementAt() should correctly handle multiple updates to the same index, preserving the last value.</p>
      */
     @Test
     public void testSetElementAtMultipleTimes()
@@ -4359,14 +4319,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt correctly removes element at valid index and shifts subsequent elements.
+     * Test method to verify that removeElementAt() correctly removes element at valid index and shifts subsequent elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt correctly removes an element at a valid index, decreases the size,
-     * and properly shifts subsequent elements to maintain list continuity.</p>
+     * <p>This test verifies that removeElementAt() correctly removes an element at a valid index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the core functionality of element removal at a middle index,
+     * <p>The test validates the core functionality of element removal at a valid index,
      * ensuring proper size management and element shifting behavior.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4383,7 +4342,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should successfully remove element at index 1, decrease size to 2,
+     * <p>removeElementAt() should successfully remove element at index 1, decrease size to 2,
      * and shift subsequent elements leftward.</p>
      */
     @Test
@@ -4402,15 +4361,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt throws ArrayIndexOutOfBoundsException when index is negative.
+     * Test method to verify that removeElementAt() throws ArrayIndexOutOfBoundsException when index is negative.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt throws ArrayIndexOutOfBoundsException when attempting
+     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when attempting
      * to remove an element at a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid negative index values,
-     * ensuring boundary checking is implemented correctly.</p>
+     * <p>The test validates proper exception handling for invalid negative index values,
+     * ensuring boundary checking.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and attempts to remove an element at index -1,
@@ -4424,7 +4383,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should throw ArrayIndexOutOfBoundsException when index is negative.</p>
+     * <p>removeElementAt() should throw ArrayIndexOutOfBoundsException when index is negative.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testRemoveElementAtNegativeIndex()
@@ -4437,15 +4396,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt throws ArrayIndexOutOfBoundsException when index equals size.
+     * Test method to verify that removeElementAt() throws ArrayIndexOutOfBoundsException when index equals size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt throws ArrayIndexOutOfBoundsException when attempting
+     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when attempting
      * to remove an element at an index equal to the current size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for index values that are
-     * exactly equal to the size, which is beyond the valid range.</p>
+     * <p>The test validates proper exception handling for index values that are
+     * exactly equal to the size, ensuring proper error handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and attempts to remove an element at index 2,
@@ -4460,7 +4419,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should throw ArrayIndexOutOfBoundsException when index equals size.</p>
+     * <p>removeElementAt() should throw ArrayIndexOutOfBoundsException when index equals size.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testRemoveElementAtIndexEqualToSize()
@@ -4473,14 +4432,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt throws ArrayIndexOutOfBoundsException on empty vector.
+     * Test method to verify that removeElementAt() throws ArrayIndexOutOfBoundsException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt throws ArrayIndexOutOfBoundsException when attempting
+     * <p>This test verifies that removeElementAt() throws ArrayIndexOutOfBoundsException when attempting
      * to remove an element from an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when attempting to remove
+     * <p>The test validates proper exception handling when attempting to remove
      * elements from an empty collection, ensuring robustness.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4495,7 +4454,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter remains empty</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should throw ArrayIndexOutOfBoundsException when called on empty vector.</p>
+     * <p>removeElementAt() should throw ArrayIndexOutOfBoundsException when called on empty vector.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testRemoveElementAtOnEmptyVector()
@@ -4505,14 +4464,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt correctly removes element at beginning of list.
+     * Test method to verify that removeElementAt() correctly removes element at beginning of list.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt correctly removes the first element and shifts
-     * all subsequent elements leftward.</p>
+     * <p>This test verifies that removeElementAt() correctly removes the first element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal at the beginning boundary case,
+     * <p>The test validates element removal at the beginning boundary case,
      * ensuring proper shifting of all remaining elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4528,7 +4486,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should successfully remove first element and shift all subsequent elements leftward.</p>
+     * <p>removeElementAt() should successfully remove first element and shift all subsequent elements leftward.</p>
      */
     @Test
     public void testRemoveElementAtAtTheBeginning()
@@ -4546,14 +4504,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt correctly removes element at end of list.
+     * Test method to verify that removeElementAt() correctly removes element at end of list.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt correctly removes the last element without
-     * affecting preceding elements.</p>
+     * <p>This test verifies that removeElementAt() correctly removes the last element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal at the end boundary case,
+     * <p>The test validates element removal at the end boundary case,
      * ensuring no unnecessary shifting occurs for preceding elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4569,7 +4526,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is "2"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should successfully remove last element without affecting preceding elements.</p>
+     * <p>removeElementAt() should successfully remove last element without affecting preceding elements.</p>
      */
     @Test
     public void testRemoveElementAtAtTheEnd()
@@ -4587,15 +4544,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt correctly handles removal of null elements.
+     * Test method to verify that removeElementAt() correctly handles removal of null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt correctly handles removal of null elements
-     * and properly shifts subsequent elements.</p>
+     * <p>This test verifies that removeElementAt() correctly handles removal of null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements during removal,
-     * ensuring the implementation correctly handles special values.</p>
+     * <p>The test validates proper handling of null elements during removal.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter containing a null element, removes the null element,
@@ -4610,7 +4565,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElementAt should successfully remove null element and shift subsequent elements leftward.</p>
+     * <p>removeElementAt() should successfully remove null element and shift subsequent elements leftward.</p>
      */
     @Test
     public void testRemoveElementAtNullElements()
@@ -4628,15 +4583,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElementAt works correctly with multiple consecutive removals.
+     * Test method to verify that removeElementAt() works correctly with multiple consecutive removals.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElementAt correctly handles multiple consecutive removal operations,
-     * maintaining proper element positioning after each removal.</p>
+     * <p>This test verifies that removeElementAt() correctly handles multiple consecutive removal operations.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cumulative effect of multiple removal operations,
-     * ensuring the implementation maintains consistency throughout sequential modifications.</p>
+     * <p>The test validates multiple removal operations,
+     * ensuring the vector maintains consistency throughout sequential modifications.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with five elements, performs three consecutive removals
@@ -4651,7 +4605,7 @@ public class VectorAdapterTest
      * <p>- Element at index 1 is "5"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Multiple removeElementAt operations should correctly remove elements and maintain
+     * <p>Multiple removeElementAt() operations should correctly remove elements and maintain
      * proper element positioning after each removal.</p>
      */
     @Test
@@ -4674,14 +4628,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt correctly inserts element at valid middle index.
+     * Test method to verify that insertElementAt() correctly inserts element at valid index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt correctly inserts an element at a valid middle index,
-     * increases the size, and properly shifts subsequent elements to the right.</p>
+     * <p>This test verifies that insertElementAt() correctly inserts an element at a valid index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the core functionality of element insertion at a middle index,
+     * <p>The test validates the core functionality of element insertion at a valid index,
      * ensuring proper size management and element shifting behavior.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4699,7 +4652,7 @@ public class VectorAdapterTest
      * <p>- Element at index 2 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should successfully insert element at middle index, increase size,
+     * <p>insertElementAt() should successfully insert element at valid index, increase size,
      * and shift subsequent elements rightward.</p>
      */
     @Test
@@ -4718,15 +4671,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt throws ArrayIndexOutOfBoundsException when index is negative.
+     * Test method to verify that insertElementAt() throws ArrayIndexOutOfBoundsException when index is negative.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt throws ArrayIndexOutOfBoundsException when attempting
+     * <p>This test verifies that insertElementAt() throws ArrayIndexOutOfBoundsException when attempting
      * to insert an element at a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid negative index values
-     * during insertion operations.</p>
+     * <p>The test validates proper exception handling for invalid negative index values
+     * during insertion operations, ensuring robustness.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and attempts to insert an element at index -1,
@@ -4740,7 +4693,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should throw ArrayIndexOutOfBoundsException when index is negative.</p>
+     * <p>insertElementAt() should throw ArrayIndexOutOfBoundsException when index is negative.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testInsertElementAtNegativeIndex()
@@ -4753,15 +4706,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt throws ArrayIndexOutOfBoundsException when index exceeds size.
+     * Test method to verify that insertElementAt() throws ArrayIndexOutOfBoundsException when index exceeds size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt throws ArrayIndexOutOfBoundsException when attempting
+     * <p>This test verifies that insertElementAt() throws ArrayIndexOutOfBoundsException when attempting
      * to insert an element at an index greater than the current size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for index values that exceed
-     * the current size during insertion operations.</p>
+     * <p>The test validates proper exception handling for index values that exceed
+     * the current size during insertion operations, ensuring robustness.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements and attempts to insert an element at index 3,
@@ -4776,7 +4729,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should throw ArrayIndexOutOfBoundsException when index exceeds size.</p>
+     * <p>insertElementAt() should throw ArrayIndexOutOfBoundsException when index exceeds size.</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testInsertElementAtIndexGreaterThanSize()
@@ -4789,14 +4742,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt correctly inserts element into empty vector.
+     * Test method to verify that insertElementAt() correctly inserts element into empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt correctly inserts an element into an empty vector
+     * <p>This test verifies that insertElementAt() correctly inserts an element into an empty vector
      * at the first position.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion into an empty collection,
+     * <p>The test validates element insertion into an empty collection,
      * ensuring proper initialization and element placement.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4811,7 +4764,7 @@ public class VectorAdapterTest
      * <p>- Element at index 0 is "1"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should successfully insert element into empty vector at index 0.</p>
+     * <p>insertElementAt() should successfully insert element into empty vector at index 0.</p>
      */
     @Test
     public void testInsertElementAtEmptyVector()
@@ -4825,14 +4778,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt correctly inserts element at beginning of list.
+     * Test method to verify that insertElementAt() correctly inserts element at beginning of list.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt correctly inserts an element at the beginning
-     * and shifts all existing elements rightward.</p>
+     * <p>This test verifies that insertElementAt() correctly inserts an element
+     * at the beginning of a collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the beginning boundary case,
+     * <p>The test validates element insertion at the beginning boundary case,
      * ensuring proper shifting of all existing elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4849,7 +4802,7 @@ public class VectorAdapterTest
      * <p>- Element at index 2 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should successfully insert element at beginning and shift all existing elements rightward.</p>
+     * <p>insertElementAt() should successfully insert element at beginning and shift all existing elements rightward.</p>
      */
     @Test
     public void testInsertElementAtAtTheBeginning()
@@ -4867,14 +4820,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt correctly inserts element at end of list.
+     * Test method to verify that insertElementAt() correctly inserts element at end of list.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt correctly appends an element at the end
-     * without affecting preceding elements.</p>
+     * <p>This test verifies that insertElementAt() correctly appends an element
+     * at the end of a collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the end boundary case,
+     * <p>The test validates element insertion at the end boundary case,
      * ensuring no unnecessary shifting occurs for preceding elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -4891,7 +4844,7 @@ public class VectorAdapterTest
      * <p>- Element at index 2 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should successfully append element at end without affecting preceding elements.</p>
+     * <p>insertElementAt() should successfully append element at end without affecting preceding elements.</p>
      */
     @Test
     public void testInsertElementAtAtTheEnd()
@@ -4909,18 +4862,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt correctly handles insertion of null elements.
+     * Test method to verify that insertElementAt() correctly handles insertion of null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt correctly handles insertion of null elements
-     * and properly shifts subsequent elements.</p>
+     * <p>This test verifies that insertElementAt() correctly handles insertion
+     * of null element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements during insertion,
-     * ensuring the implementation correctly handles special values.</p>
+     * <p>The test validates proper handling of null elements during insertion,
+     * ensuring it correctly handles null values.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, inserts a null element at the middle,
+     * <p>The test creates a VectorAdapter with two elements, inserts a null element,
      * and verifies proper size increase, element positioning, and shifting.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -4933,7 +4886,7 @@ public class VectorAdapterTest
      * <p>- Element at index 2 is "3"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>insertElementAt should successfully insert null element and shift subsequent elements rightward.</p>
+     * <p>insertElementAt() should successfully insert null element and shift subsequent elements rightward.</p>
      */
     @Test
     public void testInsertElementAtNullElement()
@@ -4951,15 +4904,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that insertElementAt works correctly with multiple consecutive insertions.
+     * Test method to verify that insertElementAt() works correctly with multiple consecutive insertions.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that insertElementAt correctly handles multiple consecutive insertion operations,
-     * maintaining proper element positioning after each insertion.</p>
+     * <p>This test verifies that insertElementAt() correctly handles multiple
+     * consecutive insertions.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cumulative effect of multiple insertion operations,
-     * ensuring the implementation maintains consistency throughout sequential modifications.</p>
+     * <p>The test validates the cumulative effect of multiple insertion operations,
+     * ensuring consistency throughout sequential modifications.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with two elements, performs two consecutive insertions
@@ -4977,7 +4930,7 @@ public class VectorAdapterTest
      * <p>- Element at index 3 is "4"</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>Multiple insertElementAt operations should correctly insert elements and maintain
+     * <p>Multiple insertElementAt() operations should correctly insert elements and maintain
      * proper element ordering after each insertion.</p>
      */
     @Test
@@ -4998,18 +4951,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that addElement correctly appends element to non-empty vector.
+     * Test method to verify that addElement() correctly appends element to non-empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addElement correctly appends an element to a non-empty vector,
-     * increasing the size and maintaining existing elements in their positions.</p>
+     * <p>This test verifies that addElement() correctly appends an element to a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the append functionality of addElement on a non-empty collection,
-     * ensuring proper size management and element preservation.</p>
+     * <p>The test validates the append functionality of addElement() on a non-empty collection,
+     * ensuring proper size management.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, appends a third element using addElement,
+     * <p>The test creates a VectorAdapter with two elements, appends a third element using addElement(),
      * and verifies that the size increases to 3 while existing elements remain unchanged.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5021,7 +4973,7 @@ public class VectorAdapterTest
      * <p>- New element is appended at the end</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addElement should successfully append element to non-empty vector while preserving existing elements.</p>
+     * <p>addElement() should successfully append element to non-empty vector while preserving existing elements.</p>
      */
     @Test
     public void testAddElementToNonEmptyVector()
@@ -5039,18 +4991,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that addElement correctly adds element to empty vector.
+     * Test method to verify that addElement() correctly adds element to empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addElement correctly adds an element to an empty vector,
-     * changing its state from empty to non-empty with proper element placement.</p>
+     * <p>This test verifies that addElement() correctly adds an element to an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the initialization functionality of addElement on an empty collection,
-     * ensuring proper state transition and element positioning.</p>
+     * <p>The test validates the initialization functionality of addElement() on an empty collection,
+     * ensuring proper state consistency and element positioning.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, adds an element using addElement,
+     * <p>The test creates an empty VectorAdapter, adds an element using addElement(),
      * and verifies that the vector transitions from empty to containing one element at index 0.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5062,7 +5013,7 @@ public class VectorAdapterTest
      * <p>- Vector is no longer empty</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addElement should successfully initialize empty vector with first element at index 0.</p>
+     * <p>addElement() should successfully initialize empty vector with first element at index 0.</p>
      */
     @Test
     public void testAddElementToEmptyVector()
@@ -5076,18 +5027,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that addElement correctly handles null element insertion.
+     * Test method to verify that addElement() correctly handles null element insertion.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addElement correctly handles the insertion of null elements,
-     * increasing size and properly storing the null value.</p>
+     * <p>This test verifies that addElement() correctly handles the insertion of null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during element addition,
-     * ensuring the implementation supports null elements as required by the collection interface.</p>
+     * <p>The test validates proper handling of null values during element addition,
+     * ensuring size increase and properly storing null values.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, adds a null element using addElement,
+     * <p>The test creates an empty VectorAdapter, adds a null element using addElement(),
      * and verifies that the size increases and the null value is correctly stored.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5098,7 +5048,7 @@ public class VectorAdapterTest
      * <p>- Element at index 0 is null</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addElement should successfully add null element and store it as a valid collection element.</p>
+     * <p>addElement() should successfully add null element and store it as a valid collection element.</p>
      */
     @Test
     public void testAddElementNullElement()
@@ -5111,30 +5061,29 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElement correctly removes existing element.
+     * Test method to verify that removeElement() correctly removes existing element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement correctly identifies and removes an existing element,
-     * returning true and properly adjusting the collection size and element positions.</p>
+     * <p>This test verifies that removeElement() correctly identifies and removes an existing element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the successful removal of existing elements,
+     * <p>The test validates the successful removal of existing elements,
      * ensuring proper return value, size reduction, and element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, removes the middle element,
+     * <p>The test creates a VectorAdapter with three elements, removes one element,
      * and verifies successful removal, size reduction, and proper element shifting.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- removeElement returns true</p>
+     * <p>- removeElement() returns true</p>
      * <p>- VectorAdapter size is 2</p>
      * <p>- Elements are properly shifted after removal</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElement should successfully remove existing element and return true.</p>
+     * <p>removeElement() should successfully remove existing element and return true.</p>
      */
     @Test
     public void testRemoveElementExistingElement()
@@ -5151,14 +5100,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElement correctly handles non-existing element.
+     * Test method to verify that removeElement() correctly handles non-existing element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement correctly identifies non-existing elements,
-     * returning false and leaving the collection unchanged.</p>
+     * <p>This test verifies that removeElement() correctly identifies non-existing elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of removal attempts for elements
+     * <p>The test validates proper handling of removal attempts for elements
      * not present in the collection, ensuring no modifications occur.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5169,12 +5117,12 @@ public class VectorAdapterTest
      * <p>- VectorAdapter is initialized with 3 elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- removeElement returns false</p>
+     * <p>- removeElement() returns false</p>
      * <p>- VectorAdapter remains unchanged</p>
      * <p>- All elements remain in their original positions</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElement should return false and leave collection unchanged for non-existing elements.</p>
+     * <p>removeElement() should return false and leave collection unchanged for non-existing elements.</p>
      */
     @Test
     public void testRemoveElementNonExistingElement()
@@ -5192,15 +5140,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElement correctly handles null element removal.
+     * Test method to verify that removeElement() correctly handles null element removal.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement correctly identifies and removes null elements,
-     * returning true and properly adjusting the collection.</p>
+     * <p>This test verifies that removeElement() correctly identifies and removes null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null element removal,
-     * ensuring the implementation can identify and remove null values from the collection.</p>
+     * <p>The test validates proper handling of null element removal,
+     * ensuring it can identify and remove null values from the collection.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter containing a null element, removes the null element,
@@ -5210,12 +5157,12 @@ public class VectorAdapterTest
      * <p>- VectorAdapter is initialized with 3 elements: ["1", null, "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- removeElement returns true</p>
+     * <p>- removeElement() returns true</p>
      * <p>- VectorAdapter size is 2</p>
      * <p>- Remaining elements are properly positioned</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElement should successfully remove null element and return true.</p>
+     * <p>removeElement() should successfully remove null element and return true.</p>
      */
     @Test
     public void testRemoveElementNullElement()
@@ -5232,15 +5179,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElement correctly handles empty vector.
+     * Test method to verify that removeElement() correctly handles empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement correctly handles removal attempts on empty vectors,
-     * returning false and maintaining the empty state.</p>
+     * <p>This test verifies that removeElement() correctly handles removal attempts on empty vectors.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of removal operations on empty collections,
-     * ensuring no exceptions are thrown and the empty state is preserved.</p>
+     * <p>The test validates proper handling of removal operations on empty collections,
+     * ensuring the empty state is preserved.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, attempts to remove an element,
@@ -5250,12 +5196,12 @@ public class VectorAdapterTest
      * <p>- VectorAdapter is empty (size 0)</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- removeElement returns false</p>
+     * <p>- removeElement() returns false</p>
      * <p>- VectorAdapter remains empty</p>
      * <p>- Size remains 0</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElement should return false and maintain empty state when called on empty vector.</p>
+     * <p>removeElement() should return false and maintain empty state when called on empty vector.</p>
      */
     @Test
     public void testRemoveElementFromEmptyVector()
@@ -5268,14 +5214,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeElement only removes first occurrence of element.
+     * Test method to verify that removeElement() only removes first occurrence of element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeElement only removes the first occurrence of duplicate elements,
-     * leaving subsequent occurrences intact in the collection.</p>
+     * <p>This test verifies that removeElement() only removes the first occurrence of duplicate elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the first-occurrence removal behavior for duplicate elements,
+     * <p>The test validates the first-occurrence removal behavior for duplicate elements,
      * ensuring proper collection management when multiple identical elements exist.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5286,13 +5231,13 @@ public class VectorAdapterTest
      * <p>- VectorAdapter is initialized with 4 elements: ["1", "2", "1", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- removeElement returns true</p>
+     * <p>- removeElement() returns true</p>
      * <p>- First occurrence of "1" is removed</p>
      * <p>- Second occurrence of "1" remains</p>
      * <p>- Other elements are properly shifted</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeElement should remove only the first occurrence of duplicate elements.</p>
+     * <p>removeElement() should remove only the first occurrence of duplicate elements.</p>
      */
     @Test
     public void testRemoveElementFirstOccurrenceOnly()
@@ -5311,19 +5256,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeAllElements correctly handles empty vector.
+     * Test method to verify that removeAllElements() correctly handles empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeAllElements correctly handles empty vectors,
-     * maintaining the empty state without throwing exceptions.</p>
+     * <p>This test verifies that removeAllElements() correctly handles empty vectors.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the idempotent behavior of removeAllElements on empty collections,
-     * ensuring the operation can be safely called on already-empty vectors.</p>
+     * <p>The test validates the idempotent behavior of removeAllElements() on empty collections,
+     * ensuring no modifications occurr.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, calls removeAllElements,
-     * and verifies that the vector remains empty and no exceptions are thrown.</p>
+     * <p>The test creates an empty VectorAdapter, calls removeAllElements(),
+     * and verifies that the vector remains empty.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is empty (size 0)</p>
@@ -5331,10 +5275,9 @@ public class VectorAdapterTest
      * <p><b>Post-Condition:</b></p>
      * <p>- VectorAdapter remains empty</p>
      * <p>- Size remains 0</p>
-     * <p>- No exceptions thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeAllElements should maintain empty state when called on empty vector.</p>
+     * <p>removeAllElements() should maintain empty state when called on empty vector.</p>
      */
     @Test
     public void testRemoveAllElementsEmptyVector()
@@ -5347,18 +5290,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeAllElements correctly clears vector with multiple elements.
+     * Test method to verify that removeAllElements() correctly clears vector with multiple elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeAllElements correctly clears a vector containing multiple elements,
-     * resetting it to empty state regardless of content.</p>
+     * <p>This test verifies that removeAllElements() correctly clears a vector containing multiple elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the complete clearance functionality of removeAllElements,
+     * <p>The test validates the complete clearance functionality of removeAllElements(),
      * ensuring all elements are removed and the vector returns to empty state.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with multiple elements, calls removeAllElements,
+     * <p>The test creates a VectorAdapter with multiple elements, calls removeAllElements(),
      * and verifies that the vector becomes completely empty.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5370,7 +5312,7 @@ public class VectorAdapterTest
      * <p>- No elements remain</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeAllElements should completely clear vector regardless of content.</p>
+     * <p>removeAllElements() should completely clear vector regardless of content.</p>
      */
     @Test
     public void testRemoveAllElementsMultipleElements()
@@ -5387,18 +5329,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that removeAllElements correctly clears vector with null elements.
+     * Test method to verify that removeAllElements() correctly clears vector with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that removeAllElements correctly clears a vector containing only null elements,
-     * handling special values appropriately during clearance.</p>
+     * <p>This test verifies that removeAllElements() correctly clears a vector containing only null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements during complete clearance,
-     * ensuring the operation works correctly with special values.</p>
+     * <p>The test validates proper handling of null elements during complete clearance,
+     * ensuring the operation works correctly with null values.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter containing only null elements, calls removeAllElements,
+     * <p>The test creates a VectorAdapter containing only null elements, calls removeAllElements(),
      * and verifies complete clearance regardless of null content.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5410,7 +5351,7 @@ public class VectorAdapterTest
      * <p>- All null elements are removed</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>removeAllElements should clear vector completely even when containing only null elements.</p>
+     * <p>removeAllElements() should clear vector completely even when containing only null elements.</p>
      */
     @Test
     public void testRemoveAllElementsNullElements()
@@ -5427,15 +5368,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that clone correctly handles empty vector.
+     * Test method to verify that clone() correctly handles empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone correctly creates a copy of an empty vector,
-     * producing a non-null empty clone with proper size.</p>
+     * <p>This test verifies that clone() correctly creates a copy of an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the cloning functionality for empty vectors,
-     * ensuring proper object creation and state preservation.</p>
+     * <p>The test validates the cloning functionality for empty vectors,
+     * ensuring proper object creation and state consistency.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, clones it, and verifies that the clone
@@ -5450,7 +5390,7 @@ public class VectorAdapterTest
      * <p>- Clone is empty</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>clone should produce a non-null empty vector when cloning empty vector.</p>
+     * <p>clone() should produce a non-null empty vector when cloning empty vector.</p>
      */
     @Test
     public void testCloneEmptyVector()
@@ -5464,14 +5404,13 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that clone correctly copies vector with multiple elements.
+     * Test method to verify that clone() correctly copies vector with multiple elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone correctly creates a deep copy of a vector with multiple elements,
-     * preserving all element values and order.</p>
+     * <p>This test verifies that clone() correctly creates a deep copy of a vector with multiple elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate complete element preservation during cloning,
+     * <p>The test validates complete element preservation during cloning,
      * ensuring all values and their order are maintained in the clone.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5487,7 +5426,7 @@ public class VectorAdapterTest
      * <p>- All element values match original</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>clone should produce an exact copy with all elements preserved in order.</p>
+     * <p>clone() should produce an exact copy with all elements preserved in order.</p>
      */
     @Test
     public void testCloneMultipleElements()
@@ -5507,15 +5446,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that clone correctly handles null elements.
+     * Test method to verify that clone() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone correctly handles vectors containing null elements,
-     * preserving null values in the cloned collection.</p>
+     * <p>This test verifies that clone() correctly handles vectors containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements during cloning,
-     * ensuring special values are correctly preserved in the clone.</p>
+     * <p>The test validates proper handling of null elements during cloning,
+     * ensuring null values are correctly preserved in the clone.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter containing only null elements, clones it,
@@ -5530,7 +5468,7 @@ public class VectorAdapterTest
      * <p>- Clone size matches original</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>clone should preserve null elements exactly as in the original vector.</p>
+     * <p>clone() should preserve null elements exactly as in the original vector.</p>
      */
     @Test
     public void testCloneNullElements()
@@ -5550,14 +5488,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that clone produces independent copy.
+     * Test method to verify that clone() produces independent copy.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that clone produces a truly independent copy where modifications
-     * to the original do not affect the clone and vice versa.</p>
+     * <p>This test verifies that clone() produces an independent copy where modifications
+     * to the original do not affect the clone.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the independence of cloned objects,
+     * <p>The test validates the independence of cloned objects,
      * ensuring modifications to either original or clone don't affect the other.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -5573,7 +5511,7 @@ public class VectorAdapterTest
      * <p>- Changes to clone don't affect original</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>clone should produce an independent copy that can be modified separately from original.</p>
+     * <p>clone() should produce an independent copy that can be modified separately from original.</p>
      */
     @Test
     public void testCloneIndependence()
@@ -5592,18 +5530,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray returns empty array for empty vector.
+     * Test method to verify that toArray() returns empty array for empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray correctly returns an empty array when called on an empty vector,
-     * maintaining proper array length and null safety.</p>
+     * <p>This test verifies that toArray() correctly returns an empty array when called on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the boundary case of toArray operation on empty collections,
+     * <p>The test validates the boundary case of toArray() operation on empty collections,
      * ensuring proper array creation and length handling.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, calls toArray, and verifies that a non-null
+     * <p>The test creates an empty VectorAdapter, calls toArray(), and verifies that a non-null
      * empty array is returned with length matching the vector size.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5615,7 +5552,7 @@ public class VectorAdapterTest
      * <p>- No elements in array</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray should return non-null empty array for empty vector.</p>
+     * <p>toArray() should return non-null empty array for empty vector.</p>
      */
     @Test
     public void testToArrayEmptyVector()
@@ -5628,18 +5565,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray correctly converts vector with multiple elements to array.
+     * Test method to verify that toArray() correctly converts vector with multiple elements to array.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray correctly converts a vector with multiple elements
-     * to an array, preserving element order and values.</p>
+     * <p>This test verifies that toArray() correctly converts a vector with multiple elements
+     * to an array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the core functionality of toArray for non-empty collections,
+     * <p>The test validates the functionality of toArray() for non-empty collections,
      * ensuring complete and accurate element transfer to array format.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, calls toArray, and verifies
+     * <p>The test creates a VectorAdapter with three elements, calls toArray(), and verifies
      * that the returned array contains all elements in correct order with matching values.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5651,7 +5588,7 @@ public class VectorAdapterTest
      * <p>- All elements preserved in correct order</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray should return array containing all vector elements in correct order.</p>
+     * <p>toArray() should return array containing all vector elements in correct order.</p>
      */
     @Test
     public void testToArrayMultipleElements()
@@ -5671,18 +5608,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray correctly handles vector with null elements.
+     * Test method to verify that toArray() correctly handles vector with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray correctly handles vectors containing null elements,
-     * preserving null values in the returned array.</p>
+     * <p>This test verifies that toArray() correctly handles vectors containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements during array conversion,
-     * ensuring special values are correctly transferred to the array.</p>
+     * <p>The test validates proper handling of null elements during array conversion,
+     * ensuring null values are correctly transferred to the array.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter containing only null elements, calls toArray,
+     * <p>The test creates a VectorAdapter containing only null elements, calls toArray(),
      * and verifies that all null values are preserved in the returned array.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5694,7 +5630,7 @@ public class VectorAdapterTest
      * <p>- All null values preserved</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray should preserve null elements in returned array.</p>
+     * <p>toArray() should preserve null elements in returned array.</p>
      */
     @Test
     public void testToArrayNullElements()
@@ -5714,18 +5650,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) returns empty array for empty vector.
+     * Test method to verify that toArray(Object[]) returns empty array for empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly handles empty vectors when provided
-     * with an empty reference array, returning appropriate empty array.</p>
+     * <p>This test verifies that toArray(Object[]) correctly handles empty vectors when provided
+     * with an empty reference array.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the typed array conversion for empty collections,
+     * <p>The test validates the typed array conversion for empty collections,
      * ensuring proper array type and length handling.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, calls toArray with empty reference array,
+     * <p>The test creates an empty VectorAdapter, calls toArray(Object[]) with empty reference array,
      * and verifies that an empty array is returned.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5738,7 +5674,7 @@ public class VectorAdapterTest
      * <p>- Empty array returned</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should return empty array for empty vector with empty reference array.</p>
+     * <p>toArray(Object[]) should return empty array for empty vector with empty reference array.</p>
      */
     @Test
     public void testToArrayWithReferenceEmptyVector()
@@ -5752,18 +5688,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) returns same array when size matches exactly.
+     * Test method to verify that toArray(Object[]) returns same array when size matches exactly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) returns the reference array itself when
-     * its length exactly matches the vector size, with elements properly copied.</p>
+     * <p>This test verifies that toArray(Object[]) returns the reference array itself when
+     * its length exactly matches the vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the optimization case where reference array
-     * size matches collection size, ensuring same array return and proper element copying.</p>
+     * <p>The test validates the optimization case where reference array
+     * size matches collection size, ensuring same array return and proper element copy.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, calls toArray with
+     * <p>The test creates a VectorAdapter with three elements, calls toArray(Object[]) with
      * same-sized reference array, and verifies same array return with correct elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5776,7 +5712,7 @@ public class VectorAdapterTest
      * <p>- Array contents match vector</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should return same array when size matches exactly.</p>
+     * <p>toArray(Object[]) should return same array when size matches exactly.</p>
      */
     @Test
     public void testToArrayWithReferenceExactSize()
@@ -5796,18 +5732,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) handles larger reference arrays correctly.
+     * Test method to verify that toArray(Object[]) handles larger reference arrays correctly.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly handles reference arrays larger
-     * than vector size, with proper null termination and existing element preservation.</p>
+     * <p>This test verifies that toArray(Object[]) correctly handles reference arrays larger
+     * than vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior with oversized reference arrays,
+     * <p>The test validates the behavior with oversized reference arrays,
      * ensuring proper null termination and preservation of existing array elements.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with two elements, calls toArray with larger
+     * <p>The test creates a VectorAdapter with two elements, calls toArray(Object[]) with larger
      * reference array containing existing values, and verifies proper null termination
      * and element preservation.</p>
      *
@@ -5822,7 +5758,7 @@ public class VectorAdapterTest
      * <p>- Existing elements beyond null preserved</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should null-terminate and preserve existing elements in larger arrays.</p>
+     * <p>toArray(Object[]) should null-terminate and preserve existing elements in larger arrays.</p>
      */
     @Test
     public void testToArrayWithReferenceLargerArray()
@@ -5847,18 +5783,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) creates new array when reference is too small.
+     * Test method to verify that toArray(Object[]) creates new array when reference is too small.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) creates a new array when the reference array
-     * is smaller than vector size, with all elements properly copied.</p>
+     * <p>This test verifies that toArray(Object[]) creates a new array when the reference array
+     * is smaller than vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the array creation behavior for undersized
+     * <p>The test validates the array creation behavior for undersized
      * reference arrays, ensuring proper new array allocation and element copying.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with three elements, calls toArray with
+     * <p>The test creates a VectorAdapter with three elements, calls toArray(Object[]) with
      * smaller reference array, and verifies new array creation with all elements copied.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5871,7 +5807,7 @@ public class VectorAdapterTest
      * <p>- All elements correctly copied</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should create new array when reference array is too small.</p>
+     * <p>toArray(Object[]) should create new array when reference array is too small.</p>
      */
     @Test
     public void testToArrayWithReferenceSmallerArray()
@@ -5892,18 +5828,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) handles null elements in larger arrays.
+     * Test method to verify that toArray(Object[]) handles null elements in larger arrays.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly handles null elements when
-     * using larger reference arrays, with proper null termination.</p>
+     * <p>This test verifies that toArray(Object[]) correctly handles null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the combination of null elements and
+     * <p>The test validates the combination of null elements and
      * oversized reference arrays, ensuring proper null handling and termination.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with null elements, calls toArray with
+     * <p>The test creates a VectorAdapter with null elements, calls toArray(Object[]) with
      * larger reference array, and verifies proper null preservation and termination.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5916,7 +5851,7 @@ public class VectorAdapterTest
      * <p>- Proper null termination after vector elements</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should handle null elements correctly with proper termination.</p>
+     * <p>toArray(Object[]) should handle null elements correctly with proper termination.</p>
      */
     @Test
     public void testToArrayWithReferenceNullElements()
@@ -5937,18 +5872,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) throws NullPointerException for null array reference.
+     * Test method to verify that toArray(Object[]) throws NullPointerException for null array reference.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) throws NullPointerException when provided
-     * with a null array reference, ensuring proper null validation.</p>
+     * <p>This test verifies that toArray(Object[]) throws NullPointerException when provided
+     * with a null array reference.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the exception handling for null array references,
+     * <p>The test validates the exception handling for null array references,
      * ensuring proper error detection and reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements, calls toArray with null reference,
+     * <p>The test creates a VectorAdapter with elements, calls toArray(Object[]) with null reference,
      * and expects NullPointerException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5960,7 +5895,7 @@ public class VectorAdapterTest
      * <p>- No array returned</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should throw NullPointerException for null array reference.</p>
+     * <p>toArray(Object[]) should throw NullPointerException for null array reference.</p>
      */
     @Test(expected = NullPointerException.class)
     public void testToArrayWithReferenceNullArray()
@@ -5973,18 +5908,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) null-terminates correctly for empty vector.
+     * Test method to verify that toArray(Object[]) null-terminates correctly for empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly null-terminates when converting
-     * empty vector using reference array with existing values.</p>
+     * <p>This test verifies that toArray(Object[]) correctly null-terminates when converting
+     * empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the null-termination behavior for empty collections
+     * <p>The test validates the null-termination behavior for empty collections
      * with non-empty reference arrays, ensuring proper array modification.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates an empty VectorAdapter, calls toArray with reference array
+     * <p>The test creates an empty VectorAdapter, calls toArray(Object[]) with reference array
      * containing values, and verifies proper null-termination and value preservation.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -5997,7 +5932,7 @@ public class VectorAdapterTest
      * <p>- Subsequent elements preserved</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should null-terminate empty vector and preserve subsequent elements.</p>
+     * <p>toArray(Object[]) should null-terminate empty vector and preserve subsequent elements.</p>
      */
     @Test
     public void testToArrayWithReferenceEmptyVectorNullTermination()
@@ -6017,18 +5952,17 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that toArray(T[]) handles zero-length reference arrays.
+     * Test method to verify that toArray(Object[]) handles zero-length reference arrays.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that toArray(T[]) correctly handles zero-length reference arrays
-     * by creating a new array of appropriate size.</p>
+     * <p>This test verifies that toArray(Object[]) correctly handles zero-length reference arrays.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of zero-length reference arrays,
+     * <p>The test validates the edge case of zero-length reference arrays,
      * ensuring proper new array creation and element copying.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter with elements, calls toArray with zero-length
+     * <p>The test creates a VectorAdapter with elements, calls toArray(Object[]) with zero-length
      * reference array, and verifies new array creation with proper elements.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -6041,7 +5975,7 @@ public class VectorAdapterTest
      * <p>- All elements correctly copied</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>toArray(T[]) should create new array for zero-length reference arrays.</p>
+     * <p>toArray(Object[]) should create new array for zero-length reference arrays.</p>
      */
     @Test
     public void testToArrayWithReferenceZeroLengthArray()
@@ -6063,11 +5997,10 @@ public class VectorAdapterTest
      * Test method to verify that get() returns correct elements at valid indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the get() method correctly returns elements at specified valid indices
-     * in a non-empty VectorAdapter, ensuring proper element retrieval functionality.</p>
+     * <p>This test verifies that the get() correctly returns elements at specified valid indices.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate basic element retrieval functionality for valid indices.
+     * <p>The test validates basic element retrieval functionality for valid indices.
      * This ensures that the VectorAdapter maintains proper element ordering and indexing.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6102,12 +6035,12 @@ public class VectorAdapterTest
      * Test method to verify that get() throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the get() method throws ArrayIndexOutOfBoundsException when
+     * <p>This test verifies that the get()throws ArrayIndexOutOfBoundsException when
      * attempting to access an element using a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid negative indices,
-     * ensuring the VectorAdapter maintains index boundary integrity.</p>
+     * <p>The test validates proper exception handling for invalid negative indices,
+     * ensuring the vector maintains index boundary condition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and attempts to call
@@ -6138,12 +6071,12 @@ public class VectorAdapterTest
      * Test method to verify that get() throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the get() method throws ArrayIndexOutOfBoundsException when
-     * attempting to access an element using an index equal to the vector's size.</p>
+     * <p>This test verifies that the get() throws ArrayIndexOutOfBoundsException when
+     * attempting to use an index equal to the vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for indices at the upper boundary,
-     * ensuring the VectorAdapter maintains index boundary integrity.</p>
+     * <p>The test validates proper exception handling for indices at the upper boundary,
+     * ensuring the VectorAdapter maintains index boundary condition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2", "3"] and attempts to call
@@ -6175,12 +6108,12 @@ public class VectorAdapterTest
      * Test method to verify that get() throws ArrayIndexOutOfBoundsException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the get() method throws ArrayIndexOutOfBoundsException when
-     * attempting to access any element from an empty VectorAdapter.</p>
+     * <p>This test verifies that the get() throws ArrayIndexOutOfBoundsException when
+     * attempting to access any element from an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for empty collections,
-     * ensuring the VectorAdapter maintains index boundary integrity even when empty.</p>
+     * <p>The test validates proper exception handling for empty collections,
+     * ensuring the vector maintains index boundary integrity even when empty.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and attempts to call get(0), expecting an
@@ -6207,11 +6140,10 @@ public class VectorAdapterTest
      * Test method to verify that get() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the get() method correctly returns null values for elements
-     * that were explicitly set to null in the VectorAdapter.</p>
+     * <p>This test verifies that the get() correctly returns null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null elements, ensuring the
+     * <p>The test validates proper handling of null elements, ensuring the
      * VectorAdapter maintains and returns null values correctly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6246,11 +6178,10 @@ public class VectorAdapterTest
      * Test method to verify that set() correctly replaces elements and returns previous values at valid indices.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method correctly replaces elements at specified indices
-     * and returns the previous values, while maintaining vector integrity.</p>
+     * <p>This test verifies that the set() correctly replaces elements at specified indices.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element replacement functionality, ensuring proper
+     * <p>The test validates element replacement functionality, ensuring proper
      * return values and vector state maintenance.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6287,12 +6218,12 @@ public class VectorAdapterTest
      * Test method to verify that set() throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method throws ArrayIndexOutOfBoundsException when
+     * <p>This test verifies that the set() throws ArrayIndexOutOfBoundsException when
      * attempting to replace an element using a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid negative indices
-     * during element replacement operations.</p>
+     * <p>The test validates proper exception handling for invalid negative
+     * indices, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2"] and attempts to call
@@ -6322,12 +6253,12 @@ public class VectorAdapterTest
      * Test method to verify that set() throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method throws ArrayIndexOutOfBoundsException when
-     * attempting to replace an element using an index equal to the vector's size.</p>
+     * <p>This test verifies that the set() throws ArrayIndexOutOfBoundsException when
+     * attempting to use an index equal to the vector size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for indices at the upper boundary
-     * during element replacement operations.</p>
+     * <p>The test validates proper exception handling for indices at the upper
+     * boundary, ensuring robustness and proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2"] and attempts to call
@@ -6358,12 +6289,12 @@ public class VectorAdapterTest
      * Test method to verify that set() throws ArrayIndexOutOfBoundsException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method throws ArrayIndexOutOfBoundsException when
+     * <p>This test verifies that the set() throws ArrayIndexOutOfBoundsException when
      * attempting to replace any element in an empty VectorAdapter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for empty collections
-     * during element replacement operations.</p>
+     * <p>The test validates proper exception handling for empty collections,
+     * ensuring robustness and proper error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and attempts to call set(0, "1"), expecting an
@@ -6390,11 +6321,10 @@ public class VectorAdapterTest
      * Test method to verify that set() correctly replaces the first element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method correctly replaces the first element (index 0)
-     * and returns the previous value, while maintaining other elements.</p>
+     * <p>This test verifies that the set() correctly replaces the first element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element replacement at the beginning of the vector,
+     * <p>The test validates element replacement at the beginning of the vector,
      * ensuring proper handling of boundary conditions.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6430,11 +6360,10 @@ public class VectorAdapterTest
      * Test method to verify that set() correctly replaces the last element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method correctly replaces the last element
-     * and returns the previous value, while maintaining other elements.</p>
+     * <p>This test verifies that the set() correctly replaces the last element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element replacement at the end of the vector,
+     * <p>The test validates element replacement at the end of the vector,
      * ensuring proper handling of boundary conditions.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6470,11 +6399,10 @@ public class VectorAdapterTest
      * Test method to verify that set() correctly handles null values.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method correctly replaces elements with null values
-     * and returns the previous values.</p>
+     * <p>This test verifies that the set() correctly replaces elements with null values.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during element replacement,
+     * <p>The test validates proper handling of null values during element replacement,
      * ensuring the VectorAdapter can store and retrieve null values correctly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6510,11 +6438,11 @@ public class VectorAdapterTest
      * Test method to verify that set() works correctly with multiple consecutive replacements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the set() method correctly handles multiple consecutive
-     * replacements at the same index position.</p>
+     * <p>This test verifies that the set() correctly handles multiple
+     * replacements at the same index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of multiple replacements at the same index,
+     * <p>The test validates the behavior of multiple replacements at the same index,
      * ensuring the VectorAdapter maintains consistency through sequential operations.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6552,12 +6480,12 @@ public class VectorAdapterTest
      * Test method to verify that add() correctly appends elements to a non-empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add() method correctly appends elements to a non-empty
-     * VectorAdapter and returns true, while maintaining existing elements.</p>
+     * <p>This test verifies that the add() correctly appends elements to
+     * a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element appending functionality to non-empty vectors,
-     * ensuring proper return values and vector state maintenance.</p>
+     * <p>The test validates element appending functionality to non-empty vectors,
+     * ensuring proper return values and vector state consistency.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with one element ["1"], adds a second element "2",
@@ -6590,11 +6518,11 @@ public class VectorAdapterTest
      * Test method to verify that add() correctly adds elements to an empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add() method correctly adds elements to an empty
-     * VectorAdapter and returns true, updating the vector state appropriately.</p>
+     * <p>This test verifies that the add() correctly adds elements to an empty
+     * vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element addition to empty vectors,
+     * <p>The test validates element addition to empty vectors,
      * ensuring proper initialization and state management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6627,11 +6555,11 @@ public class VectorAdapterTest
      * Test method to verify that add() correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add() method correctly appends null elements to a
-     * VectorAdapter and returns true.</p>
+     * <p>This test verifies that the add() correctly appends null
+     * elements to a vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during element addition,
+     * <p>The test validates proper handling of null values during element addition,
      * ensuring the VectorAdapter can store and retrieve null values correctly.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6663,11 +6591,10 @@ public class VectorAdapterTest
      * Test method to verify that remove(Object) returns true and removes existing element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(Object) method correctly removes an existing element
-     * from the VectorAdapter, returns true, and maintains proper element ordering after removal.</p>
+     * <p>This test verifies that the remove(Object) correctly removes an existing element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate successful element removal functionality, ensuring
+     * <p>The test validates successful element removal functionality, ensuring
      * proper return values, size adjustment, and element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6703,11 +6630,11 @@ public class VectorAdapterTest
      * Test method to verify that remove(Object) returns false for non-existing element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(Object) method returns false when attempting to
-     * remove a non-existing element, leaving the VectorAdapter unchanged.</p>
+     * <p>This test verifies that the remove(Object) returns false when attempting to
+     * remove a non-existing element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of non-existing elements during
+     * <p>The test validates proper handling of non-existing elements during
      * removal operations, ensuring vector integrity is maintained.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6744,12 +6671,11 @@ public class VectorAdapterTest
      * Test method to verify that remove(Object) correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(Object) method correctly identifies and removes
-     * null elements from the VectorAdapter, returning true and maintaining proper element ordering.</p>
+     * <p>This test verifies that the remove(Object) removes null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during removal
-     * operations, ensuring null elements can be successfully removed.</p>
+     * <p>The test validates proper handling of null values during removal
+     * operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", null, "3"], removes the null element,
@@ -6784,12 +6710,11 @@ public class VectorAdapterTest
      * Test method to verify that remove(Object) returns false on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(Object) method returns false when attempting to
-     * remove any element from an empty VectorAdapter, leaving the empty state unchanged.</p>
+     * <p>This test verifies that the remove(Object) returns false on empty vector removal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of removal operations on empty
-     * collections, ensuring vector integrity is maintained.</p>
+     * <p>The test validates proper handling of removal operations on empty
+     * collections, ensuring vector consistency.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, attempts to remove element "1",
@@ -6820,12 +6745,12 @@ public class VectorAdapterTest
      * Test method to verify that remove(Object) only removes first occurrence of element.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(Object) method only removes the first occurrence
-     * of a duplicate element, leaving subsequent occurrences unchanged.</p>
+     * <p>This test verifies that the remove(Object) only removes the first occurrence
+     * of a duplicate element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of duplicate elements during removal
-     * operations, ensuring only the first occurrence is removed.</p>
+     * <p>The test validates proper handling of duplicate elements during removal
+     * operations, ensuring proper size management and element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2", "1", "3"], removes the first
@@ -6859,14 +6784,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify that add(int, Object) inserts element at valid middle position.
+     * Test method to verify that add(int, Object) inserts element at valid position.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method correctly inserts an element
-     * at a specified middle index, shifting subsequent elements to the right.</p>
+     * <p>This test verifies that the add(int, Object) correctly inserts an element
+     * at a valid index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at middle positions, ensuring
+     * <p>The test validates element insertion at valid position, ensuring
      * proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6903,11 +6828,11 @@ public class VectorAdapterTest
      * Test method to verify that add(int, Object) inserts element at beginning.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method correctly inserts an element
-     * at the beginning (index 0), shifting all existing elements to the right.</p>
+     * <p>This test verifies that the add(int, Object) correctly inserts an element
+     * at the beginning.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the beginning of the vector,
+     * <p>The test validates element insertion at the beginning of the vector,
      * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -6944,12 +6869,12 @@ public class VectorAdapterTest
      * Test method to verify that add(int, Object) inserts element at end.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method correctly inserts an element
-     * at the end position (index equal to size), effectively appending the element.</p>
+     * <p>This test verifies that the add(int, Object) correctly inserts an element
+     * at the end.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion at the end of the vector,
-     * ensuring no unnecessary element shifting occurs.</p>
+     * <p>The test validates element insertion at the end of the vector,
+     * ensuring size management and no unnecessary element shifting occurs.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2"], inserts element "3" at index 2,
@@ -6985,11 +6910,11 @@ public class VectorAdapterTest
      * Test method to verify that add(int, Object) inserts element into empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method correctly inserts an element
-     * into an empty VectorAdapter at index 0, initializing the vector properly.</p>
+     * <p>This test verifies that the add(int, Object) correctly inserts an element
+     * into an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element insertion into empty vectors,
+     * <p>The test validates element insertion into empty vectors,
      * ensuring proper initialization and state management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7022,12 +6947,12 @@ public class VectorAdapterTest
      * Test method to verify that add(int, Object) throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method throws ArrayIndexOutOfBoundsException
+     * <p>This test verifies that the add(int, Object) throws ArrayIndexOutOfBoundsException
      * when attempting to insert an element at a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid negative indices
-     * during insertion operations.</p>
+     * <p>The test validates proper exception handling for invalid negative
+     * indices, ensuring robustness.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2"], attempts to insert element "3"
@@ -7057,12 +6982,12 @@ public class VectorAdapterTest
      * Test method to verify that add(int, Object) throws ArrayIndexOutOfBoundsException for index greater than size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method throws ArrayIndexOutOfBoundsException
+     * <p>This test verifies that the add(int, Object) throws ArrayIndexOutOfBoundsException
      * when attempting to insert an element at an index greater than the current size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for indices beyond the
-     * current size during insertion operations.</p>
+     * <p>The test validates proper exception handling for indices beyond the
+     * current size during insertion operations, ensuring robustness.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2"], attempts to insert element "3"
@@ -7093,12 +7018,11 @@ public class VectorAdapterTest
      * Test method to verify that add(int, Object) correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the add(int, Object) method correctly inserts null elements
-     * at specified positions, shifting subsequent elements appropriately.</p>
+     * <p>This test verifies that the add(int, Object) correctly inserts null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during insertion
-     * operations, ensuring null elements can be successfully inserted.</p>
+     * <p>The test validates proper handling of null values during insertion
+     * operations.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "3"], inserts a null element at index 1,
@@ -7134,11 +7058,10 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) returns correct element and removes from valid position.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method correctly removes an element at a specified
-     * middle index, returns the removed element, and shifts subsequent elements to the left.</p>
+     * <p>This test verifies that the remove(int) correctly removes an element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal from middle positions, ensuring
+     * <p>The test validates element removal from valid positions, ensuring
      * proper return values, size adjustment, and element shifting.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7174,12 +7097,12 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method throws ArrayIndexOutOfBoundsException
+     * <p>This test verifies that the remove(int) throws ArrayIndexOutOfBoundsException
      * when attempting to remove an element at a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid negative indices
-     * during removal operations.</p>
+     * <p>The test validates proper exception handling for invalid negative
+     * indices, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2"], attempts to remove element
@@ -7209,12 +7132,12 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) throws ArrayIndexOutOfBoundsException for index equal to size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method throws ArrayIndexOutOfBoundsException
+     * <p>This test verifies that the remove(int) throws ArrayIndexOutOfBoundsException
      * when attempting to remove an element at an index equal to the current size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for indices at the
-     * upper boundary during removal operations.</p>
+     * <p>The test validates proper exception handling for indices at the
+     * upper boundary, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2", "3"], attempts to remove element
@@ -7246,12 +7169,12 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) throws ArrayIndexOutOfBoundsException on empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method throws ArrayIndexOutOfBoundsException
-     * when attempting to remove any element from an empty VectorAdapter.</p>
+     * <p>This test verifies that the remove(int) throws ArrayIndexOutOfBoundsException
+     * when attempting to remove any element from an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for removal operations
-     * on empty collections.</p>
+     * <p>The test validates proper exception handling for removals, ensuring
+     * robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter, attempts to remove element at index 0,
@@ -7278,11 +7201,10 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) correctly removes element from beginning.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method correctly removes the first element
-     * (index 0), returns the removed element, and shifts all subsequent elements to the left.</p>
+     * <p>This test verifies that the remove(int) correctly removes the first element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal from the beginning of the vector,
+     * <p>The test validates element removal from the beginning of the vector,
      * ensuring proper element shifting and size management.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7318,11 +7240,10 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) correctly removes element from end.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method correctly removes the last element,
-     * returns the removed element, and maintains other elements unchanged.</p>
+     * <p>This test verifies that the remove(int) correctly removes the last element.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate element removal from the end of the vector,
+     * <p>The test validates element removal from the end of the vector,
      * ensuring no unnecessary element shifting occurs.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7358,12 +7279,11 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) correctly handles null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method correctly removes null elements
-     * from specified positions, returns null, and shifts subsequent elements to the left.</p>
+     * <p>This test verifies that the remove(int) correctly removes null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper handling of null values during removal
-     * operations, ensuring null elements can be successfully removed.</p>
+     * <p>The test validates proper handling of null values during removal
+     * operations, ensuring null management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", null, "3"], removes the null element at index 1,
@@ -7398,12 +7318,12 @@ public class VectorAdapterTest
      * Test method to verify that remove(int) works correctly with multiple consecutive removals.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the remove(int) method correctly handles multiple consecutive
-     * removal operations, maintaining proper element shifting and size management.</p>
+     * <p>This test verifies that the remove(int) correctly handles consecutive
+     * removals.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the behavior of multiple sequential removal operations,
-     * ensuring vector consistency through complex modification scenarios.</p>
+     * <p>The test validates the behavior of multiple sequential removal operations,
+     * ensuring vector consistency through modification scenarios and size management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with elements ["1", "2", "3", "4", "5"], performs three
@@ -7443,15 +7363,15 @@ public class VectorAdapterTest
      * Test method to verify that clear() works correctly on an empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that calling clear() on an empty vector maintains size zero and empty state.</p>
+     * <p>This test verifies that calling clear() on an empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case of clearing an already empty vector,
-     * ensuring the method handles this scenario correctly without errors.</p>
+     * <p>The test validates the edge case of clearing an already empty vector,
+     * ensuring the method handles edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and calls clear(). It then verifies that
-     * the size remains 0 and the isEmpty() method returns true.</p>
+     * the size remains 0 and the isEmpty() returns true.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter is initialized as empty</p>
@@ -7480,7 +7400,7 @@ public class VectorAdapterTest
      * <p>This test verifies that clear() correctly removes all elements from a non-empty vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the primary functionality of clear() when
+     * <p>The test validates the primary functionality of clear() when
      * the vector contains multiple elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7517,7 +7437,7 @@ public class VectorAdapterTest
      * <p>This test verifies that clear() correctly handles vectors containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate clear() functionality when the vector contains
+     * <p>The test validates clear() functionality when the vector contains
      * multiple null values, ensuring proper handling of null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7554,8 +7474,8 @@ public class VectorAdapterTest
      * <p>This test verifies that containsAll() returns true when checking against an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the specified collection is empty,
-     * which should always return true according to the collection contract.</p>
+     * <p>The test validates the edge case where the specified collection is empty,
+     * which should always return true.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a non-empty VectorAdapter and an empty VectorAdapter, then verifies
@@ -7592,8 +7512,9 @@ public class VectorAdapterTest
      * of the specified collection are present.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the normal case where the vector contains
-     * all elements of the specified collection.</p>
+     * <p>The test validates the normal case where the vector contains
+     * all elements of the specified collection, ensuring proper elements
+     * recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters where the main vector contains all elements
@@ -7632,8 +7553,9 @@ public class VectorAdapterTest
      * of the specified collection are missing.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where the vector does not contain
-     * all elements of the specified collection.</p>
+     * <p>The test validates the case where the vector does not contain
+     * all elements of the specified collection, ensuring proper elements
+     * recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters where the main vector is missing some elements
@@ -7672,8 +7594,9 @@ public class VectorAdapterTest
      * elements of the specified collection are present.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the vector contains
-     * none of the elements from the specified collection.</p>
+     * <p>The test validates the edge case where the vector contains
+     * none of the elements from the specified collection, ensuring proper
+     * elements recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with completely different elements,
@@ -7709,12 +7632,11 @@ public class VectorAdapterTest
      * Test method to verify containsAll() works correctly with different element order.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that containsAll() is order-independent and returns true
-     * when all elements are present regardless of order.</p>
+     * <p>This test verifies that containsAll() is order-independent.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that containsAll() focuses on element presence
-     * rather than element order.</p>
+     * <p>The test validates that containsAll() focuses on element presence
+     * rather than element order, ensuring proper elements recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with the same elements but in different order,
@@ -7754,7 +7676,7 @@ public class VectorAdapterTest
      * in the main vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that containsAll() works correctly when
+     * <p>The test validates that containsAll() works correctly when
      * the main vector contains duplicate elements that satisfy the collection requirements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7794,8 +7716,8 @@ public class VectorAdapterTest
      * in both collections.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that containsAll() can properly check
-     * for the presence of null elements.</p>
+     * <p>The test validates that containsAll() can properly check
+     * for the presence of null elements and manage their presence.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates VectorAdapters containing null elements and verifies
@@ -7834,8 +7756,9 @@ public class VectorAdapterTest
      * empty vector with a non-empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the main vector
-     * is empty but the specified collection is not.</p>
+     * <p>The test validates the edge case where the main vector
+     * is empty but the specified collection is not, ensuring proper handling of
+     * edge cases.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty main VectorAdapter and a non-empty test
@@ -7871,8 +7794,9 @@ public class VectorAdapterTest
      * passed a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when null
-     * is passed as the collection parameter.</p>
+     * <p>The test validates proper exception handling when null
+     * is passed as the collection parameter, ensuring robustness and error
+     * reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls containsAll() with null,
@@ -7905,7 +7829,7 @@ public class VectorAdapterTest
      * is checked against itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the reflexive property of containsAll()
+     * <p>The test validates the reflexive property of containsAll()
      * when the collection is the same instance.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -7940,8 +7864,8 @@ public class VectorAdapterTest
      * a non-empty collection and returns true.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the normal case of adding multiple
-     * elements from another collection.</p>
+     * <p>The test validates the normal case of adding multiple
+     * elements from another collection, ensuring size and elements management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters and adds all elements from one to
@@ -7985,8 +7909,8 @@ public class VectorAdapterTest
      * add an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the specified
-     * collection is empty.</p>
+     * <p>The test validates the edge case where the specified
+     * collection is empty, ensuring edge cases management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and attempts to add an empty collection,
@@ -8024,8 +7948,8 @@ public class VectorAdapterTest
      * with elements from another collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where the target vector
-     * is initially empty.</p>
+     * <p>The test validates the case where the target vector
+     * is initially empty, ensuring proper edge case handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and adds all elements from
@@ -8067,8 +7991,9 @@ public class VectorAdapterTest
      * containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that addAll() can properly add
-     * null elements to a vector.</p>
+     * <p>The test validates that addAll() can properly add
+     * null elements to a vector, ensuring null values are properly handled and
+     * counted.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and adds a collection containing
@@ -8110,8 +8035,8 @@ public class VectorAdapterTest
      * passed a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when null
-     * is passed as the collection parameter.</p>
+     * <p>The test validates proper exception handling when null
+     * is passed as the collection parameter, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls addAll() with null,
@@ -8144,8 +8069,8 @@ public class VectorAdapterTest
      * a vector is added to itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the special case of adding a
-     * collection to itself, which should duplicate all elements.</p>
+     * <p>The test validates the case of adding a collection to itself,
+     * which should duplicate all elements, ensuring edge cases management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and adds itself to itself, then
@@ -8184,8 +8109,9 @@ public class VectorAdapterTest
      * when the specified collection contains all elements of the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where every element in the vector
-     * is also present in the specified collection.</p>
+     * <p>The test validates the case where every element in the vector
+     * is also present in the specified collection, ensuring proper element
+     * recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with identical elements and calls removeAll(),
@@ -8228,8 +8154,9 @@ public class VectorAdapterTest
      * elements present in the specified collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where only some elements in the vector
-     * are present in the specified collection.</p>
+     * <p>The test validates the case where only some elements in the vector
+     * are present in the specified collection, ensuring proper elements
+     * recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with overlapping elements and calls removeAll(),
@@ -8273,8 +8200,8 @@ public class VectorAdapterTest
      * collection is empty.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where no elements are
-     * specified for removal.</p>
+     * <p>The test validates the edge case where no elements are
+     * specified for removal, ensuring proper edge case management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls removeAll() with an empty collection,
@@ -8313,8 +8240,9 @@ public class VectorAdapterTest
      * collection contains no elements present in the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where there are no common
-     * elements between the vector and the specified collection.</p>
+     * <p>The test validates the case where there are no common
+     * elements between the vector and the specified collection, ensuring proper
+     * element recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with completely different elements
@@ -8355,8 +8283,8 @@ public class VectorAdapterTest
      * elements present in the specified collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that removeAll() removes all instances
-     * of elements, including duplicates.</p>
+     * <p>The test validates that removeAll() removes all instances
+     * of elements, including duplicates, ensuring proper elements recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with duplicate elements and calls removeAll()
@@ -8399,7 +8327,7 @@ public class VectorAdapterTest
      * when specified in the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that removeAll() can properly handle
+     * <p>The test validates that removeAll() can properly handle
      * and remove null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8443,8 +8371,8 @@ public class VectorAdapterTest
      * empty vector with a non-empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the vector is empty
-     * but the specified collection is not.</p>
+     * <p>The test validates the edge case where the vector is empty
+     * but the specified collection is not, ensuring edge case handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and calls removeAll() with a
@@ -8482,7 +8410,7 @@ public class VectorAdapterTest
      * passed a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when null
+     * <p>The test validates proper exception handling when null
      * is passed as the collection parameter.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8513,11 +8441,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that removeAll() returns true and empties the vector
-     * when called with itself as the collection.</p>
+     * when called with itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the special case where a vector removes
-     * all its own elements.</p>
+     * <p>The test validates the case where a vector removes
+     * all its own elements, ensuring reflexive property.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls removeAll() with itself,
@@ -8554,8 +8482,8 @@ public class VectorAdapterTest
      * when called with an empty collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where no elements are
-     * to be retained.</p>
+     * <p>The test validates the edge case where no elements are
+     * to be retained, ensuring proper edge case handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls retainAll() with an empty collection,
@@ -8595,8 +8523,8 @@ public class VectorAdapterTest
      * when there are no common elements with the specified collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where the vector and collection
-     * have no elements in common.</p>
+     * <p>The test validates the case where the vector and collection
+     * have no elements in common, ensuring proper elements recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with completely different elements
@@ -8638,7 +8566,8 @@ public class VectorAdapterTest
      * collection contains all elements of the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the case where all elements are to be retained.</p>
+     * <p>The test validates the case where all elements are to be retained,
+     * ensuring proper element recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with identical elements and calls retainAll(),
@@ -8683,8 +8612,8 @@ public class VectorAdapterTest
      * elements when some elements are in common.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the normal case where only some elements
-     * are to be retained.</p>
+     * <p>The test validates the normal case where only some elements
+     * are to be retained, ensuring proper element recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters with overlapping elements and calls retainAll(),
@@ -8728,8 +8657,9 @@ public class VectorAdapterTest
      * elements when specified in the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that retainAll() preserves duplicate
-     * elements when they are in the specified collection.</p>
+     * <p>The test validates that retainAll() preserves duplicate
+     * elements when they are in the specified collection, ensuring duplicates
+     * handling.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with duplicate elements and calls retainAll()
@@ -8772,7 +8702,7 @@ public class VectorAdapterTest
      * when specified in the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that retainAll() can properly handle
+     * <p>The test validates that retainAll() can properly handle
      * and retain null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8813,10 +8743,11 @@ public class VectorAdapterTest
      *
      * <p><b>Summary:</b></p>
      * <p>This test verifies that retainAll() returns false when called on an
-     * empty vector with a non-empty collection.</p>
+     * empty vector with a non-empty collection, ensuring proper handling of
+     * edge cases.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where the vector is empty
+     * <p>The test validates the edge case where the vector is empty
      * but the specified collection is not.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -8855,8 +8786,9 @@ public class VectorAdapterTest
      * passed a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when null
-     * is passed as the collection parameter.</p>
+     * <p>The test validates proper exception handling when null
+     * is passed as the collection parameter, ensuring robustness and error
+     * reporting.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls retainAll() with null,
@@ -8889,8 +8821,8 @@ public class VectorAdapterTest
      * itself as the collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the special case where a vector retains
-     * all its own elements.</p>
+     * <p>The test validates the case where a vector retains
+     * all its own elements, ensuring proper reflexivity.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and calls retainAll() with itself,
@@ -8919,15 +8851,16 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) works correctly with non-empty collection.
+     * Test method to verify addAll(int, HCollection) works correctly with non-empty collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) returns true and inserts
+     * <p>This test verifies that addAll(int, HCollection) returns true and inserts
      * all elements at the specified position.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the normal case of inserting multiple
-     * elements at a specific index.</p>
+     * <p>The test validates the normal case of inserting multiple
+     * elements at a specific index, ensuring proper size and elements
+     * management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters and inserts all elements from one into
@@ -8938,11 +8871,11 @@ public class VectorAdapterTest
      * <p>- Test VectorAdapter contains elements: ["2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- Main VectorAdapter contains elements: ["1", "2", "3", "4"] in order</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return true and insert elements at correct position</p>
+     * <p>addAll(int, HCollection) should return true and insert elements at correct position</p>
      */
     @Test
     public void testAddAllAtIndexNonEmptyCollection()
@@ -8965,18 +8898,18 @@ public class VectorAdapterTest
 
 
     /**
-     * Test method to verify addAll(index, collection) returns false for empty collection.
+     * Test method to verify addAll(int, HCollection) returns false for empty collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) returns false when
+     * <p>This test verifies that addAll(int, HCollection) returns false when
      * the specified collection is empty.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the edge case where no elements are
-     * inserted at the specified index.</p>
+     * <p>The test validates the edge case where no elements are
+     * inserted at the specified index, ensuring proper edge case management.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter and calls addAll(index, collection) with
+     * <p>The test creates a VectorAdapter and calls addAll(int, HCollection) with
      * an empty collection, then verifies the return value and unchanged state.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -8984,11 +8917,11 @@ public class VectorAdapterTest
      * <p>- Test VectorAdapter is empty</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns false</p>
+     * <p>- addAll(int, HCollection) returns false</p>
      * <p>- Main VectorAdapter remains unchanged</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should return false for empty collection</p>
+     * <p>addAll(int, HCollection) should return false for empty collection</p>
      */
     @Test
     public void testAddAllAtIndexEmptyCollection()
@@ -9006,14 +8939,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) works correctly at the beginning.
+     * Test method to verify addAll(int, HCollection) works correctly at the beginning.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) correctly inserts
+     * <p>This test verifies that addAll(int, HCollection) correctly inserts
      * elements at the beginning of the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion at index 0.</p>
+     * <p>The test validates default insertion at the beginning, ensuring proper
+     * boundary check condition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters and inserts all elements from one into
@@ -9024,11 +8958,11 @@ public class VectorAdapterTest
      * <p>- Test VectorAdapter contains elements: ["1", "2"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- Main VectorAdapter contains elements: ["1", "2", "3", "4"] in order</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should insert elements at the beginning correctly</p>
+     * <p>addAll(int, HCollection) should insert elements at the beginning correctly</p>
      */
     @Test
     public void testAddAllAtIndexAtTheBeginning()
@@ -9050,14 +8984,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) works correctly at the end.
+     * Test method to verify addAll(int, HCollection) works correctly at the end.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) correctly appends
+     * <p>This test verifies that addAll(int, HCollection) correctly appends
      * elements at the end of the vector.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion at the end index.</p>
+     * <p>The test validates insertion at the end index, ensuring proper
+     * boundary check condition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapters and appends all elements from one to
@@ -9068,11 +9003,11 @@ public class VectorAdapterTest
      * <p>- Test VectorAdapter contains elements: ["3", "4"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- Main VectorAdapter contains elements: ["1", "2", "3", "4"] in order</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should append elements at the end correctly</p>
+     * <p>addAll(int, HCollection) should append elements at the end correctly</p>
      */
     @Test
     public void testAddAllAtIndexAtTheEnd()
@@ -9094,14 +9029,15 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) works correctly with empty vector.
+     * Test method to verify addAll(int, HCollection) works correctly with empty vector.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) correctly populates
+     * <p>This test verifies that addAll(int, HCollection) correctly populates
      * an empty vector with elements from another collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate insertion into an empty vector.</p>
+     * <p>The test validates insertion into an empty vector, ensuring proper
+     * element and size management.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and inserts all elements from
@@ -9112,11 +9048,11 @@ public class VectorAdapterTest
      * <p>- Test VectorAdapter contains elements: ["1", "2", "3"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- Main VectorAdapter contains all added elements</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should populate empty vector correctly</p>
+     * <p>addAll(int, HCollection) should populate empty vector correctly</p>
      */
     @Test
     public void testAddAllAtIndexEmptyVector()
@@ -9136,18 +9072,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) throws ArrayIndexOutOfBoundsException for negative index.
+     * Test method to verify addAll(int, HCollection) throws ArrayIndexOutOfBoundsException for negative index.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) throws ArrayIndexOutOfBoundsException
+     * <p>This test verifies that addAll(int, HCollection) throws ArrayIndexOutOfBoundsException
      * when called with a negative index.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for invalid
-     * negative index values.</p>
+     * <p>The test validates proper exception handling for invalid
+     * negative index values, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter and calls addAll() with a negative index,
+     * <p>The test creates a VectorAdapter and calls addAll(int, HCollection) with a negative index,
      * expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -9158,7 +9094,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw ArrayIndexOutOfBoundsException for negative index</p>
+     * <p>addAll(int, HCollection) should throw ArrayIndexOutOfBoundsException for negative index</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testAddAllAtIndexNegativeIndex()
@@ -9174,18 +9110,18 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) throws ArrayIndexOutOfBoundsException for index greater than size.
+     * Test method to verify addAll(int, HCollection) throws ArrayIndexOutOfBoundsException for index greater than size.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) throws ArrayIndexOutOfBoundsException
+     * <p>This test verifies that addAll(int, HCollection) throws ArrayIndexOutOfBoundsException
      * when called with an index greater than the current size.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling for index values
-     * beyond the current vector size.</p>
+     * <p>The test validates proper exception handling for index values
+     * beyond the current vector size, ensuring robustness and error reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter and calls addAll() with an index greater
+     * <p>The test creates a VectorAdapter and calls addAll(int, HCollection) with an index greater
      * than the size, expecting an ArrayIndexOutOfBoundsException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -9196,7 +9132,7 @@ public class VectorAdapterTest
      * <p>- ArrayIndexOutOfBoundsException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw ArrayIndexOutOfBoundsException for index bigger than size</p>
+     * <p>addAll(int, HCollection) should throw ArrayIndexOutOfBoundsException for index bigger than size</p>
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testAddAllAtIndexGreaterThanSize()
@@ -9212,18 +9148,19 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) throws NullPointerException for null collection.
+     * Test method to verify addAll(int, HCollection) throws NullPointerException for null collection.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) throws NullPointerException
+     * <p>This test verifies that addAll(int, HCollection) throws NullPointerException
      * when passed a null collection.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate proper exception handling when null
-     * is passed as the collection parameter.</p>
+     * <p>The test validates proper exception handling when null
+     * is passed as the collection parameter, ensuring robustness and error
+     * reporting.</p>
      *
      * <p><b>Test Description:</b></p>
-     * <p>The test creates a VectorAdapter and calls addAll(index, collection) with null,
+     * <p>The test creates a VectorAdapter and calls addAll(int, HCollection) with null,
      * expecting a NullPointerException to be thrown.</p>
      *
      * <p><b>Pre-Condition:</b></p>
@@ -9233,7 +9170,7 @@ public class VectorAdapterTest
      * <p>- NullPointerException is thrown</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should throw NullPointerException for null collection</p>
+     * <p>addAll(int, HCollection) should throw NullPointerException for null collection</p>
      */
     @Test(expected = NullPointerException.class)
     public void testAddAllAtIndexNullCollection()
@@ -9246,14 +9183,14 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) works correctly with null elements.
+     * Test method to verify addAll(int, HCollection) works correctly with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) correctly inserts
+     * <p>This test verifies that addAll(int, HCollection) correctly inserts
      * null elements at the specified position.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that addAll() can properly handle
+     * <p>The test validates that addAll(int, HCollection) can properly handle
      * and insert null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9265,11 +9202,11 @@ public class VectorAdapterTest
      * <p>- Test VectorAdapter contains elements: [null, null]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- Main VectorAdapter contains null elements at correct positions</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should insert null elements correctly</p>
+     * <p>addAll(int, HCollection) should insert null elements correctly</p>
      */
     @Test
     public void testAddAllAtIndexNullElements()
@@ -9291,15 +9228,16 @@ public class VectorAdapterTest
     }
 
     /**
-     * Test method to verify addAll(index, collection) works correctly when adding to itself.
+     * Test method to verify addAll(int, HCollection) works correctly when adding to itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that addAll(index, collection) correctly handles
+     * <p>This test verifies that addAll(int, HCollection) correctly handles
      * the case where a vector is inserted into itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the special case of inserting a vector
-     * into itself, which should duplicate all elements.</p>
+     * <p>The test validates the case of inserting a vector
+     * into itself, which should duplicate all elements, ensuring proper
+     * reflexivity.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter and inserts itself at a specific index,
@@ -9309,11 +9247,11 @@ public class VectorAdapterTest
      * <p>- VectorAdapter contains elements: ["1", "2"]</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- addAll() returns true</p>
+     * <p>- addAll(int, HCollection) returns true</p>
      * <p>- VectorAdapter contains duplicated elements: ["1", "1", "2", "2"] in order</p>
      *
      * <p><b>Expected Results:</b></p>
-     * <p>addAll() should duplicate elements when adding to itself</p>
+     * <p>addAll(int, HCollection) should duplicate elements when adding to itself</p>
          */
     @Test
     public void testAddAllAtIndexSelf()
@@ -9334,12 +9272,11 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns true when comparing a VectorAdapter to itself.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly identifies a VectorAdapter instance as equal to itself,
-     * ensuring reflexivity of the equals operation.</p>
+     * <p>This test verifies that the equals() correctly identifies a vector instance as equal to itself.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the reflexive property of the equals method according to the Java specification.
-     * This ensures consistency with the general contract for Object.equals().</p>
+     * <p>The test validates the reflexive property of the equals.
+     * This ensures consistency and elements recognition.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter instance with three elements and then calls equals() on the same instance.
@@ -9349,7 +9286,7 @@ public class VectorAdapterTest
      * <p>- VectorAdapter instance is initialized with three string elements: "1", "2", "3"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns true when comparing the vector to itself</p>
+     * <p>- equals() returns true when comparing the vector to itself</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return true when comparing a VectorAdapter instance to itself.</p>
@@ -9369,22 +9306,22 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns true when comparing two VectorAdapters with identical elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly identifies two VectorAdapter instances with identical
+     * <p>This test verifies that the equals() correctly identifies instances with identical
      * elements in the same order as equal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the equals method's ability to correctly compare two separate collections
+     * <p>The test validates equals() ability to correctly compare two separate collections
      * with the same content, ensuring proper value-based equality.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two separate VectorAdapter instances, both containing the same three string elements
-     * in the same order. The equals() method is called to compare them.</p>
+     * in the same order. The equals() is called to compare them.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Two VectorAdapter instances are initialized with identical elements: "1", "2", "3"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns true when comparing the two vectors</p>
+     * <p>- equals() returns true when comparing the two vectors</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return true when comparing two VectorAdapters with identical elements in the same order.</p>
@@ -9409,23 +9346,23 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns false when comparing VectorAdapters of different sizes.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly identifies VectorAdapter instances with different
+     * <p>This test verifies that the equals() correctly identifies VectorAdapter instances with different
      * sizes as not equal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the equals method properly handles the case where collections
-     * have different sizes, which should immediately indicate inequality.</p>
+     * <p>The test validates that the equals() properly handles the case where collections
+     * have different sizes, which should indicate inequality.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapter instances - one with three elements and another with two elements.
-     * The equals() method is called to compare them.</p>
+     * The equals() is called to compare them.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- First VectorAdapter instance has three elements: "1", "2", "3"</p>
      * <p>- Second VectorAdapter instance has two elements: "1", "2"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns false when comparing the two vectors</p>
+     * <p>- equals() returns false when comparing the two vectors</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return false when comparing VectorAdapters of different sizes.</p>
@@ -9449,16 +9386,16 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns false when comparing VectorAdapters with different elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly identifies VectorAdapter instances with different
-     * elements as not equal, even when they have the same size.</p>
+     * <p>This test verifies that the equals() correctly identifies VectorAdapter instances with different
+     * elements as not equal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the equals method properly compares element values and detects
+     * <p>The test validates that the equals() properly compares element values and detects
      * differences in content between collections of the same size.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapter instances of the same size but with different elements at the same
-     * positions. The equals() method is called to compare them.</p>
+     * positions. The equals() is called to compare them.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Both VectorAdapter instances have three elements</p>
@@ -9466,7 +9403,7 @@ public class VectorAdapterTest
      * <p>- Second vector contains: "1", "4", "3"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns false when comparing the two vectors</p>
+     * <p>- equals() returns false when comparing the two vectors</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return false when comparing VectorAdapters with different elements.</p>
@@ -9491,16 +9428,15 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns false when comparing VectorAdapters with elements in different order.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly identifies VectorAdapter instances with the same
+     * <p>This test verifies that the equals() correctly identifies VectorAdapter instances with the same
      * elements but in different order as not equal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the equals method considers element order when comparing lists,
-     * as required by the List interface contract.</p>
+     * <p>The test validates that the equals() considers element order when comparing lists.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapter instances with the same elements but in different order.
-     * The equals() method is called to compare them.</p>
+     * The equals() is called to compare them.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Both VectorAdapter instances have the same three elements: "1", "2", "3"</p>
@@ -9508,7 +9444,7 @@ public class VectorAdapterTest
      * <p>- Second vector has order: "1", "3", "2"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns false when comparing the two vectors</p>
+     * <p>- equals() returns false when comparing the two vectors</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return false when comparing VectorAdapters with elements in different order.</p>
@@ -9533,22 +9469,22 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns true when comparing VectorAdapters with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly handles null elements when comparing
+     * <p>This test verifies that the equals() correctly handles null elements when comparing
      * VectorAdapter instances.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the equals method properly compares collections containing
+     * <p>The test validates that the equals properly compares collections containing
      * null values, ensuring correct null-safety in equality comparisons.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapter instances with identical elements including null values at
-     * the same positions. The equals() method is called to compare them.</p>
+     * the same positions. The equals() is called to compare them.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- Both VectorAdapter instances have three elements: "1", null, "3"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns true when comparing the two vectors</p>
+     * <p>- equals() returns true when comparing the two vectors</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return true when comparing VectorAdapters with identical elements including null values.</p>
@@ -9573,11 +9509,11 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns true when comparing empty VectorAdapters.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly identifies two empty VectorAdapter
+     * <p>This test verifies that the equals() correctly identifies two empty VectorAdapter
      * instances as equal.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate the equals method's handling of empty collections,
+     * <p>The test validates equals() handling of empty collections,
      * ensuring that two empty lists are considered equal.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9587,7 +9523,7 @@ public class VectorAdapterTest
      * <p>- Both VectorAdapter instances are empty (no elements)</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns true when comparing the two vectors</p>
+     * <p>- equals() returns true when comparing the two vectors</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return true when comparing two empty VectorAdapters.</p>
@@ -9605,11 +9541,11 @@ public class VectorAdapterTest
      * Test method to verify that equals() returns false when comparing a VectorAdapter to a non-list object.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the equals() method correctly returns false when comparing a VectorAdapter
+     * <p>This test verifies that the equals() correctly returns false when comparing a VectorAdapter
      * to an object of a different type.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the equals method properly handles type incompatibility
+     * <p>The test validates that the equals() properly handles type incompatibility
      * and returns false when comparing to objects of different types.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9620,7 +9556,7 @@ public class VectorAdapterTest
      * <p>- Comparison object is a String with value "1"</p>
      *
      * <p><b>Post-Condition:</b></p>
-     * <p>- equals() method returns false when comparing the vector to a String</p>
+     * <p>- equals() returns false when comparing the vector to a String</p>
      *
      * <p><b>Expected Results:</b></p>
      * <p>equals() should return false when comparing a VectorAdapter to a non-list object.</p>
@@ -9640,11 +9576,11 @@ public class VectorAdapterTest
      * Test method to verify the hashCode() of an empty VectorAdapter.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the hashCode() method returns consistent values for empty VectorAdapter instances.</p>
+     * <p>This test verifies that the hashCode() returns consistent values for empty VectorAdapter instances.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the hashCode method produces consistent results for empty
-     * collections, which is important for proper functioning in hash-based collections.</p>
+     * <p>The test validates that the hashCode() produces consistent results for empty
+     * collections.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two empty VectorAdapter instances and verifies that their hash codes are equal.</p>
@@ -9670,12 +9606,12 @@ public class VectorAdapterTest
      * Test method to verify the hashCode() of VectorAdapters with multiple elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the hashCode() method returns equal values for VectorAdapter instances
+     * <p>This test verifies that the hashCode() returns equal values for VectorAdapter instances
      * with identical elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the hashCode method produces equal values for collections
-     * with equal content, which is required by the general contract of hashCode().</p>
+     * <p>The test validates that the hashCode() produces equal values for collections
+     * with equal content.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates two VectorAdapter instances with identical elements and verifies that their
@@ -9710,11 +9646,11 @@ public class VectorAdapterTest
      * Test method to verify the hashCode() of VectorAdapters with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the hashCode() method returns consistent values for VectorAdapter instances
+     * <p>This test verifies that the hashCode() returns consistent values for VectorAdapter instances
      * containing null elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the hashCode method properly handles null values and produces
+     * <p>The test validates that the hashCode() properly handles null values and produces
      * consistent results for collections with identical null elements.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9750,12 +9686,12 @@ public class VectorAdapterTest
      * Test method to verify the toString() of an empty VectorAdapter.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the toString() method returns the correct string representation
+     * <p>This test verifies that the toString() returns the correct string representation
      * for an empty VectorAdapter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method produces the standard empty
-     * collection representation, which is important for debugging and logging purposes.</p>
+     * <p>The test validates that the toString() produces the standard empty
+     * collection representation.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates an empty VectorAdapter and verifies that its toString() method returns
@@ -9782,11 +9718,11 @@ public class VectorAdapterTest
      * Test method to verify the toString() of a VectorAdapter with multiple elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the toString() method returns the correct string representation
+     * <p>This test verifies that the toString() returns the correct string representation
      * for a VectorAdapter with multiple elements.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method properly formats collections
+     * <p>The test validates that the toString() properly formats collections
      * with multiple elements, including proper comma separation and bracket placement.</p>
      *
      * <p><b>Test Description:</b></p>
@@ -9817,16 +9753,16 @@ public class VectorAdapterTest
      * Test method to verify the toString() of a VectorAdapter with null elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the toString() method correctly represents null elements
+     * <p>This test verifies that the toString() correctly represents null elements
      * in a VectorAdapter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method properly handles null values
+     * <p>The test validates that the toString() properly handles null values
      * within collections, representing them as "null" in the output string.</p>
      *
      * <p><b>Test Description:</b></p>
      * <p>The test creates a VectorAdapter with a null element between two string elements and
-     * verifies that its toString() method returns the expected representation.</p>
+     * verifies that its toString() returns the expected representation.</p>
      *
      * <p><b>Pre-Condition:</b></p>
      * <p>- VectorAdapter instance contains three elements: "1", null, "3"</p>
@@ -9852,11 +9788,11 @@ public class VectorAdapterTest
      * Test method to verify the toString() of a VectorAdapter with duplicate elements.
      *
      * <p><b>Summary:</b></p>
-     * <p>This test verifies that the toString() method correctly represents duplicate elements
+     * <p>This test verifies that the toString() correctly represents duplicate elements
      * in a VectorAdapter.</p>
      *
      * <p><b>Test Case Design:</b></p>
-     * <p>The test is designed to validate that the toString method properly handles duplicate values
+     * <p>The test validates that the toString() properly handles duplicate values
      * within collections, representing each occurrence in the output string.</p>
      *
      * <p><b>Test Description:</b></p>
